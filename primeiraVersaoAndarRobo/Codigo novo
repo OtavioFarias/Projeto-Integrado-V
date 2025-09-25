@@ -1,0 +1,39 @@
+
+#define Motor_Direita_1 49
+#define Motor_Direita_2 47
+#define Motor_Esquerda_1 50
+#define Motor_Esquerda_2 52
+
+#define Motor_frente_Direita_1 20
+#define Motor_frente_Direita_2 21
+#define Motor_frente_Esquerda_1 0
+#define Motor_frente_Esquerda_2 1
+
+void setup() {
+  pinMode(Motor_Direita_1, OUTPUT);
+  pinMode(Motor_Direita_2, OUTPUT);
+  pinMode(Motor_Esquerda_1, OUTPUT);
+  pinMode(Motor_Esquerda_2, OUTPUT);
+
+  pinMode(Motor_frente_Direita_1, OUTPUT);
+  pinMode(Motor_frente_Direita_2, OUTPUT);
+  pinMode(Motor_frente_Esquerda_1, OUTPUT);
+  pinMode(Motor_frente_Esquerda_2, OUTPUT);
+
+  frente();
+
+}
+
+void loop() {
+  // put your main code here, to run repeatedly:
+
+}
+
+void frente() {
+  digitalWrite(Motor_Direita_1, HIGH); digitalWrite(Motor_Direita_2, LOW);
+  digitalWrite(Motor_Esquerda_1, HIGH); digitalWrite(Motor_Esquerda_2, LOW);
+
+  digitalWrite(Motor_frente_Direita_1, HIGH); digitalWrite(Motor_frente_Direita_2, LOW);
+  digitalWrite(Motor_frente_Esquerda_1, HIGH); digitalWrite(Motor_frente_Esquerda_2, LOW);
+
+}
