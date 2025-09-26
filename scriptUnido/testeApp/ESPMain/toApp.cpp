@@ -1,5 +1,6 @@
 #include <map>
 #include <BluetoothSerial.h>
+#include "toArduino.h"
 
 #if !defined(CONFIG_BT_ENABLED) || !defined(CONFIG_BLUEDROID_ENABLED)
 #error Bluetooth is not enabled! Please run `make menuconfig` to and enable it
@@ -68,12 +69,13 @@ void iniciarBluetooth(){
 void receberDadosApp(){
   // Se receber dados do Bluetooth, repassa para o Serial
   if (SerialBT.available()) {
-    char c = SerialBT.read();
-    Serial.write(c); // mostra no monitor serial
+    String mensagem = SerialBT.readStringUntil('\n');
+    enviarDadosVariaveis(mensagem);
     SerialBT.print("Echo: "); 
-    SerialBT.println(c); // devolve ao PC
+    SerialBT.println(mensagem); // devolve ao PC
   }
 }
+
 
 void enviarAppTeste(){
   // Também pode enviar mensagens periódicas

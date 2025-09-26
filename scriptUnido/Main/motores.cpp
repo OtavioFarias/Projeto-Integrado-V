@@ -79,3 +79,34 @@ void andarAutomatico(){
 
 }
 
+void passoFrente(int duracao){
+
+  frente();
+  delay(duracao);
+  parar();
+
+}
+
+void passoTras(int duracao){
+
+  tras();
+  delay(duracao);
+  parar();
+
+}
+
+void passoDireita(int duracao){
+
+  direita();
+  delay(duracao);
+  parar();
+
+}
+
+void passoEsquerda(int duracao){
+
+  esquerda();
+  delay(duracao);
+  parar();
+
+}

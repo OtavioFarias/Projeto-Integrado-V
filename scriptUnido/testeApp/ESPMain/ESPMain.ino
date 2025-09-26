@@ -1,9 +1,11 @@
 #include "toApp.h"
+#include "toArduino.h"
 
 
 void setup() {
   
-  iniciarBluetooth();  
+  iniciarBluetooth(); 
+  iniciarComunicacaoArduino(); 
 
 }
 
@@ -14,3 +16,4 @@ void loop() {
   enviarAppTeste();
 
 }
+

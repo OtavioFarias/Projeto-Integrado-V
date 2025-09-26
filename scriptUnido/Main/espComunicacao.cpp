@@ -5,14 +5,14 @@ extern int andarAutonomo; //1 - anda sozinho 0 - Controle via ESP
 String buffer = ""; // Armazena dados recebidos
 
 void enviarDadosUltrassonicoESP(float frente, float direita, float esquerda, float tras) {
-  Serial1.print("F:"); Serial1.print(frente);
-  Serial1.print(" D:"); Serial1.print(direita);
-  Serial1.print(" E:"); Serial1.print(esquerda);
-  Serial1.print(" T:"); Serial1.println(tras);
+  Serial2.print("F:"); Serial1.print(frente);
+  Serial2.print(" D:"); Serial1.print(direita);
+  Serial2.print(" E:"); Serial1.print(esquerda);
+  Serial2.print(" T:"); Serial1.println(tras);
 }
 
 void inciarComunicacaoESP(){
-  Serial1.begin(9600);   // UART com ESP32
+  Serial2.begin(9600);   // UART com ESP32 define quais usar, vamos usar 16 e 17
   Serial.println("Mega pronto para comunicar com ESP32...");
 }
 
@@ -21,7 +21,7 @@ void enviarDadosESP(){
   static unsigned long ultimoEnvio = 0;
   if (millis() - ultimoEnvio > 2000) {
     ultimoEnvio = millis();
-    Serial1.println("Ola ESP32, aqui é o MEGA!");
+    Serial2.println("Ola ESP32, aqui é o MEGA!");
   }
 }
 
@@ -61,6 +61,15 @@ void processarMensagem(String msg) {
       else if (chave == "distanciaParaVirar") distanciaParaVirar = valor.toInt();
       else if (chave == "leiturasUltrassonico") leiturasUltrassonico = valor.toInt();
       else if (chave == "andarAutonomo") andarAutonomo = valor.toInt();
+      else if (chave == "frente") frente();
+      else if (chave == "tras") tras();
+      else if (chave == "direita") direita();
+      else if (chave == "esquerda") esquerda();
+      else if (chave == "parar") parar();
+      else if (chave == "passoFrente") passoFrente(valor.toInt());
+      else if (chave == "passoTras") passoTras(valor.toInt());
+      else if (chave == "passoDireita") passoDireita(valor.toInt());
+      else if (chave == "passoEsquerda") passoEsquerda(valor.toInt());
     }
 
     start = end + 1;

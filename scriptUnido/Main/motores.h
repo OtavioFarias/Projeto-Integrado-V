@@ -32,5 +32,14 @@ void girarAngulo();
 
 void andarAutomatico();
 
+void passoFrente(int duracao);
+
+void passoTras(int duracao);
+
+void passoDireita(int duracao); 
+
+void passoEsquerda(int duracao);
+
+
 #endif
 

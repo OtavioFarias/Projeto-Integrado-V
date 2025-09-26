@@ -16,6 +16,8 @@ void setup() {
   //frente();
   parar();
 
+  testarVoltagemTx2();
+
 }
 
 void loop() {

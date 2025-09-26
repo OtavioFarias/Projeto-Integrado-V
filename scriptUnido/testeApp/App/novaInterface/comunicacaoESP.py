@@ -54,7 +54,16 @@ def loop_menu(ser, menu_win, curses):
         menu_win.addstr("3 - Distância Para Virar\n")
         menu_win.addstr("4 - Leituras Ultrassônico\n")
         menu_win.addstr("5 - Andar Autônomo\n")
-        menu_win.addstr("6 - Mensagem Customizada\n")
+        menu_win.addstr("6 - frente\n")
+        menu_win.addstr("7 - tras\n")
+        menu_win.addstr("8 - direita\n")
+        menu_win.addstr("9 - esquerda\n")
+        menu_win.addstr("10 - parar\n")
+        menu_win.addstr("11 - passoFrente\n")
+        menu_win.addstr("12 - passoTras\n")
+        menu_win.addstr("13 - passoDireita\n")
+        menu_win.addstr("14 - passoEsquerda\n")
+        menu_win.addstr("15 - Mensagem Customizada\n")
         menu_win.addstr("0 - Sair\n")
         menu_win.addstr("\nEscolha: ")
         menu_win.refresh()
@@ -66,13 +75,23 @@ def loop_menu(ser, menu_win, curses):
             menu_win.refresh()
             curses.napms(1000)  # Aguarda 1 segundo
             break
-        elif escolha in ['1','2','3','4','5']:
+        elif escolha in ['1','2','3','4','5','6','7','8','9','10','11','12','13','14']:
             chave = {
                 '1':'velocidade',
                 '2':'anguloObjetivo',
                 '3':'distanciaParaVirar',
                 '4':'leiturasUltrassonico',
-                '5':'andarAutonomo'
+                '5':'andarAutonomo',
+                '6':'frente',
+                '7':'tras',
+                '8':'direita',
+                '9':'esquerda',
+                '10':'parar',
+                '11':'passoFrente',
+                '12':'passoTras',
+                '13':'passoEsquerda',
+                '14':'passoDireita'
+
             }[escolha]
 
             menu_win.addstr(f"Digite o valor para {chave}: ")
@@ -82,7 +101,7 @@ def loop_menu(ser, menu_win, curses):
             menu_win.addstr(f"[ENVIADO] {chave}: {valor}\n")
             menu_win.refresh()
             curses.napms(1000)
-        elif escolha == '6':
+        elif escolha == '15':
             menu_win.addstr("Digite a mensagem no formato chave:valor;chave:valor;: ")
             menu_win.refresh()
             custom = menu_win.getstr().decode('utf-8').strip()

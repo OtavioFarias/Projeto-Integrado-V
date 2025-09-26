@@ -3,6 +3,10 @@
 
 #pragma once
 
+#include <Arduino.h>
+
 void resetMega();
+
+void testarVoltagemTx2();
 
 #endif

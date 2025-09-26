@@ -30,8 +30,9 @@ void enviarArduinoTeste(){
   }
 }
 
-void enviarDadosVariaveis(){
+void enviarDadosVariaveis(String mensagem){
 
-  SerialESP.println("VAR1:50;VAR3:200;\n");
+  SerialESP.print(mensagem); // Envia pelo UART1 (pinos 16/17)
+  //SerialESP.print("VAR1:50;VAR3:200;\n");
 
 }
