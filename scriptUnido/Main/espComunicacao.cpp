@@ -1,3 +1,7 @@
+#include "espComunicacao.h"
+
+extern int andarAutonomo; //1 - anda sozinho 0 - Controle via ESP
+
 String buffer = ""; // Armazena dados recebidos
 
 void enviarDadosUltrassonicoESP(float frente, float direita, float esquerda, float tras) {
@@ -65,4 +69,8 @@ void processarMensagem(String msg) {
 }
 
 
-void andarESP(){}
+void andarESP(){
+
+   Serial.print("Implementação Pendente: ");
+
+}

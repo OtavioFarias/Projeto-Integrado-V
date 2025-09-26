@@ -1,11 +1,11 @@
-#include <AFMotor_R4.h>
+#include "motores.h"
 
 AF_DCMotor motor1(1); 
 AF_DCMotor motor2(2);
 AF_DCMotor motor3(3); 
 AF_DCMotor motor4(4);
 
-int velocidade = 100;
+extern int velocidade = 100;
 
 void iniciarMotores(){
 

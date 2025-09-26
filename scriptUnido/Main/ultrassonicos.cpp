@@ -1,9 +1,5 @@
-#define TRIG_FRENTE 52
-#define TRIG_OUTROS 22
-#define ECHO_FRENTE 19   // com interrupção
-#define ECHO_DIREITA 28
-#define ECHO_ESQUERDA 26
-#define ECHO_TRAS 30
+#include "ultrassonicos.h"
+
 
 volatile unsigned long tempoInicio = 0;
 volatile unsigned long duracaoPulso = 0;
@@ -16,6 +12,7 @@ float distanciaTras = 0;
 
 float distanciaParaVirar = 20;    // cm
 int leiturasUltrassonico = 5;    // média de leituras
+
 
 void disparaSensor() {
   digitalWrite(TRIG_OUTROS, LOW);

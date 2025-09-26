@@ -1,10 +1,10 @@
-#include <Wire.h>
-#include <MPU6050.h>
+#include "mpu.h"
 
-MPU6050 mpu;
-float anguloZ = 0;
-float anguloObjetivo = 90; // graus
-unsigned long ultimoTempoMPU = 0;
+
+extern MPU6050 mpu;
+extern float anguloZ = 0;
+extern float anguloObjetivo = 90; // graus
+extern unsigned long ultimoTempoMPU = 0;
 
 void atualizarAnguloZ() {
   int16_t gx, gy, gz;

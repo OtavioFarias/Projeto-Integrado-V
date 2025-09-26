@@ -1,3 +1,9 @@
+#include "espComunicacao.h"
+#include "motores.h"
+#include "mpu.h"
+#include "outros.h"
+#include "ultrassonicos.h"
+
 int andarAutonomo = 1; //1 - anda sozinho 0 - Controle via ESP
 
 void setup() {
