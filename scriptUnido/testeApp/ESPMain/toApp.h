@@ -1,3 +1,6 @@
+#ifndef TOAPP_H
+#define TOAPP_H
+
 #pragma once
 #include "BluetoothSerial.h"
 
@@ -11,3 +14,5 @@ void receberDadosApp();
 void enviarAppTeste();
 
 void enviarKeepAlive();
+
+#endif

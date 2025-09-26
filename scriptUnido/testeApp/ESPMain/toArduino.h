@@ -1,3 +1,6 @@
+#ifndef TOARDUINO_H
+#define TOARDUINO_H
+
 #pragma once
 #include <HardwareSerial.h>
 
@@ -10,3 +13,5 @@ void lerArduino();
 void enviarArduinoTeste();
 
 void enviarDadosVariaveis();
+
+#endif
