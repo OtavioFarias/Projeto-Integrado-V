@@ -6,6 +6,7 @@ AF_DCMotor motor3(3);
 AF_DCMotor motor4(4);
 
 extern int velocidade = 100;
+float distanciaParaVirar = 20;    // cm
 
 void iniciarMotores(){
 
@@ -70,8 +71,7 @@ void andarAutomatico(){
 
   if (distancia > 0 && distancia < distanciaParaVirar) {
     parar();   // obstáculo detectado
-    esquerda();
-    delay(2500);
+    virarCoordenado();
     frente();
   } 
 
@@ -108,5 +108,44 @@ void passoEsquerda(int duracao){
   esquerda();
   delay(duracao);
   parar();
+
+}
+
+// Função principal de virar coordenado
+void virarCoordenado() {
+  int direcao = direcaoIndicadaFPGA();
+
+  // define objetivo conforme direção recebida
+  if (direcao == 0) { 
+    anguloObjetivo = 0; 
+  } else if (direcao == 1) { 
+    anguloObjetivo = 90; 
+  } else if (direcao == 2) { 
+    anguloObjetivo = 180; 
+  } else if (direcao == 3) { 
+    anguloObjetivo = -90; 
+  }
+
+  // loop até atingir objetivo
+  while (true) {
+    atualizarAnguloZ_ComFiltro(); // mantém anguloZ atualizado
+    float erro = erroDeRotacao();
+
+    if (fabs(erro) < 3) { // tolerância de 3 graus
+      parar();
+      break;
+    }
+
+    if (erro > 0) {
+      passoEsquerda(20); // gira em passos pequenos
+    } else {
+      passoDireita(20);
+    }
+  }
+}
+
+int direcaoIndicadaFPGA(){
+  // 0 = frente, 1 = direita, 2 = trás, 3 = esquerda)
+  return 1;
 
 }

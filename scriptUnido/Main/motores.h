@@ -5,8 +5,10 @@
 
 #include <AFMotor_R4.h>
 #include "ultrassonicos.h"
+#include "mpu.h"
 
 extern int velocidade;
+extern float distanciaParaVirar;    // cm
 
 void iniciarMotores();
 
@@ -39,6 +41,10 @@ void passoTras(int duracao);
 void passoDireita(int duracao); 
 
 void passoEsquerda(int duracao);
+
+void virarCoordenado();
+
+int direcaoIndicadaFPGA();
 
 
 #endif

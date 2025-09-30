@@ -4,6 +4,7 @@
 */
 
 #include <HardwareSerial.h>
+#include "toApp.h"
 
 HardwareSerial SerialESP(2);  // UART2
 
@@ -18,6 +19,8 @@ void lerArduino(){
     String recebido = SerialESP.readStringUntil('\n');
     Serial.print("Recebido do MEGA: ");
     Serial.println(recebido);
+    enviarAppTeste();    
+
   }
 }
 

@@ -12,4 +12,6 @@ void enviarAppTeste();
 
 void enviarKeepAlive();
 
+void atualizarLEDConexao();
+
 #endif

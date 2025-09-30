@@ -4,7 +4,7 @@
 #include "outros.h"
 #include "ultrassonicos.h"
 
-int andarAutonomo = 0; //1 - anda sozinho 0 - Controle via ESP
+int andarAutonomo = 1; //1 - anda sozinho, 0 - Controle via ESP
 
 void setup() {
   
@@ -13,20 +13,28 @@ void setup() {
   inciarComunicacaoESP();
 
   iniciarMotores();
-  //frente();
-  parar();
-
-  testarVoltagemTx2();
+  frente();
+  //parar();
 
 }
 
 void loop() {
   // put your main code here, to run repeatedly:
 
+  //passoFrente(500);
+
   receberDadosESP();
 
-  if(andarAutonomo == 1){andarAutomatico();}
-  else{andarESP();}
+  if(andarAutonomo == 1){
+
+    andarAutomatico();
+
+    }
+  else{
+
+    andarESP();
+
+  }
 
 }
 

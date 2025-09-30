@@ -5,10 +5,10 @@ extern int andarAutonomo; //1 - anda sozinho 0 - Controle via ESP
 String buffer = ""; // Armazena dados recebidos
 
 void enviarDadosUltrassonicoESP(float frente, float direita, float esquerda, float tras) {
-  Serial2.print("F:"); Serial1.print(frente);
-  Serial2.print(" D:"); Serial1.print(direita);
-  Serial2.print(" E:"); Serial1.print(esquerda);
-  Serial2.print(" T:"); Serial1.println(tras);
+  Serial2.print("F:"); Serial2.print(frente);
+  Serial2.print(" D:"); Serial2.print(direita);
+  Serial2.print(" E:"); Serial2.print(esquerda);
+  Serial2.print(" T:"); Serial2.println(tras);
 }
 
 void inciarComunicacaoESP(){
@@ -28,17 +28,19 @@ void enviarDadosESP(){
 
 
 void receberDadosESP() {
-  // Recebe caracteres da UART e forma uma string até '\n'
-  while (Serial1.available()) {
-    char c = Serial1.read();
-    if (c == '\n') {
-      processarMensagem(buffer);
-      buffer = "";
-    } else {
-      buffer += c;
+  Serial.println("Tentando ler dados ESP: ");
+  
+  if (Serial2.available()) { // Verifica se há dados
+    String mensagem = Serial2.readStringUntil('\n'); // Lê a string completa até '\n'
+    mensagem.trim(); // Remove espaços ou caracteres invisíveis
+    if (mensagem.length() > 0) {
+      Serial.print("Recebido do ESP32: ");
+      Serial.println(mensagem);
+      processarMensagem(mensagem); // envia para a função que processa a mensagem
     }
   }
 }
+
 
 // Função para processar a mensagem recebida
 void processarMensagem(String msg) {
@@ -74,12 +76,13 @@ void processarMensagem(String msg) {
 
     start = end + 1;
     end = msg.indexOf(';', start);
+    enviarDadosESP();
   }
 }
 
 
 void andarESP(){
 
-   Serial.print("Implementação Pendente: ");
+   Serial.println("Implementação Pendente: ");
 
 }

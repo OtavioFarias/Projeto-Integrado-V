@@ -7,9 +7,11 @@
 #include <Arduino.h>
 
 #define TRIG_FRENTE 52
-#define TRIG_OUTROS 22
+#define TRIG_DIREITA 32
+#define TRIG_ESQUERDA 27
+#define TRIG_TRAS 31
 #define ECHO_FRENTE 19   // com interrupção
-#define ECHO_DIREITA 28
+#define ECHO_DIREITA 33
 #define ECHO_ESQUERDA 26
 #define ECHO_TRAS 30
 
@@ -22,7 +24,6 @@ extern float distanciaDireita;
 extern float distanciaEsquerda;
 extern float distanciaTras;
 
-extern float distanciaParaVirar;    // cm
 extern int leiturasUltrassonico;    // média de leituras
 
 void disparaSensor();

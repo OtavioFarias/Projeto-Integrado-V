@@ -14,6 +14,8 @@
 esp_spp_sec_t sec_mask = ESP_SPP_SEC_NONE;  // or ESP_SPP_SEC_ENCRYPT|ESP_SPP_SEC_AUTHENTICATE to request pincode confirmation
 esp_spp_role_t role = ESP_SPP_ROLE_SLAVE;   // or ESP_SPP_ROLE_MASTER
 
+const int LED_PIN = 23;
+
 BluetoothSerial SerialBT;
 
 void iniciarBluetooth(){
@@ -60,6 +62,7 @@ void iniciarBluetooth(){
       }
     } else {
       Serial.println("Didn't find any devices");
+      iniciarBluetooth();
     }
   } else {
     Serial.println("Error on discoverAsync f.e. not working after a \"connect\"");
@@ -91,5 +94,14 @@ void enviarKeepAlive() {
   if (millis() - lastPing > 2000) {   // a cada 2s manda algo
     lastPing = millis();
     SerialBT.write('\0');             // envia caractere nulo (invisível)
+  }
+}
+
+void atualizarLEDConexao() {
+  digitalWrite(LED_PIN, HIGH); 
+  if (SerialBT.hasClient()) {     // verifica se alguém está conectado via BT
+    digitalWrite(LED_PIN, HIGH);  // LED aceso
+  } else {
+    digitalWrite(LED_PIN, LOW);   // LED apagado
   }
 }

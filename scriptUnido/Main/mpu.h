@@ -13,5 +13,7 @@ extern float anguloObjetivo; // graus
 extern unsigned long ultimoTempoMPU;
 
 void atualizarAnguloZ();
+float erroDeRotacao();
+void atualizarAnguloZ_ComFiltro();
 
 #endif

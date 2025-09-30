@@ -13,7 +13,8 @@ void loop() {
   
   receberDadosApp();
   enviarKeepAlive();
-  enviarAppTeste();
+  //enviarAppTeste();
+  lerArduino();
 
 }
-
+const int LED_PIN = 23;
