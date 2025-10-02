@@ -19,7 +19,6 @@ const int LED_PIN = 23;
 BluetoothSerial SerialBT;
 
 void iniciarBluetooth(){
-  Serial.begin(115200);
   if (!SerialBT.begin("ESP32test", true)) {
     Serial.println("========== serialBT failed!");
     abort();
@@ -71,8 +70,13 @@ void iniciarBluetooth(){
 
 void receberDadosApp(){
   // Se receber dados do Bluetooth, repassa para o Serial
+
+  
   if (SerialBT.available()) {
+    Serial.println(SerialBT.available()); 
     String mensagem = SerialBT.readStringUntil('\n');
+    Serial.print("Echo: "); 
+    Serial.println(mensagem);
     enviarDadosVariaveis(mensagem);
     SerialBT.print("Echo: "); 
     SerialBT.println(mensagem); // devolve ao PC
@@ -94,14 +98,5 @@ void enviarKeepAlive() {
   if (millis() - lastPing > 2000) {   // a cada 2s manda algo
     lastPing = millis();
     SerialBT.write('\0');             // envia caractere nulo (invisível)
-  }
-}
-
-void atualizarLEDConexao() {
-  digitalWrite(LED_PIN, HIGH); 
-  if (SerialBT.hasClient()) {     // verifica se alguém está conectado via BT
-    digitalWrite(LED_PIN, HIGH);  // LED aceso
-  } else {
-    digitalWrite(LED_PIN, LOW);   // LED apagado
   }
 }

@@ -10,11 +10,13 @@ unsigned long ultimoTempoMPU = 0;
 #define ALPHA 0.98  
 
 void atualizarAnguloZ_ComFiltro() {
+
   int16_t gx, gy, gz;
   int16_t ax, ay, az;
   mpu.getMotion6(&ax, &ay, &az, &gx, &gy, &gz);
 
   unsigned long agora = micros();
+
   float dt = (agora - ultimoTempoMPU) / 1000000.0;
   ultimoTempoMPU = agora;
 

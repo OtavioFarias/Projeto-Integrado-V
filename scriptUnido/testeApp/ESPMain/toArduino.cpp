@@ -35,6 +35,8 @@ void enviarArduinoTeste(){
 
 void enviarDadosVariaveis(String mensagem){
 
+  Serial.print("Enviando para o MEGA: ");
+  Serial.println(mensagem);
   SerialESP.print(mensagem); // Envia pelo UART1 (pinos 16/17)
   //SerialESP.print("VAR1:50;VAR3:200;\n");
 

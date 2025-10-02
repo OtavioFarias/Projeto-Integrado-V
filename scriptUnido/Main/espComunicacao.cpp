@@ -3,6 +3,7 @@
 extern int andarAutonomo; //1 - anda sozinho 0 - Controle via ESP
 
 String buffer = ""; // Armazena dados recebidos
+int ativarEnvioDados = 0; // 1- envia 0 - não envia
 
 void enviarDadosUltrassonicoESP(float frente, float direita, float esquerda, float tras) {
   Serial2.print("F:"); Serial2.print(frente);
@@ -28,7 +29,7 @@ void enviarDadosESP(){
 
 
 void receberDadosESP() {
-  Serial.println("Tentando ler dados ESP: ");
+  //Serial.println("Tentando ler dados ESP: ");
   
   if (Serial2.available()) { // Verifica se há dados
     String mensagem = Serial2.readStringUntil('\n'); // Lê a string completa até '\n'
@@ -56,9 +57,14 @@ void processarMensagem(String msg) {
     if (sep != -1) {
       String chave = par.substring(0, sep);
       String valor = par.substring(sep + 1);
+      Serial.print("Chave: "); 
+      Serial.println(chave);
+      
+      Serial.print("valor: "); 
+      Serial.println(valor.toInt());
 
       // Atualiza variáveis conforme a chave
-      if (chave == "velocidade") velocidade = valor.toInt();
+      if (chave == "velocidade"){velocidade = valor.toInt(); iniciarMotores();}
       else if (chave == "anguloObjetivo") anguloObjetivo = valor.toInt();
       else if (chave == "distanciaParaVirar") distanciaParaVirar = valor.toInt();
       else if (chave == "leiturasUltrassonico") leiturasUltrassonico = valor.toInt();
@@ -72,6 +78,9 @@ void processarMensagem(String msg) {
       else if (chave == "passoTras") passoTras(valor.toInt());
       else if (chave == "passoDireita") passoDireita(valor.toInt());
       else if (chave == "passoEsquerda") passoEsquerda(valor.toInt());
+      else if (chave == "virarCoordenado") virarCoordenado();
+      else if (chave == "ativarEnvioDados") ativarEnvioDados = valor.toInt();
+
     }
 
     start = end + 1;
@@ -83,6 +92,15 @@ void processarMensagem(String msg) {
 
 void andarESP(){
 
-   Serial.println("Implementação Pendente: ");
+  //Serial.println("Andar com controle do App");
+
+  int distancia = medirSensor();
+
+  if(ativarEnvioDados == 1){
+
+    Serial.print("Distância medida pelo sensor da frente: ");
+    Serial.println(distancia);
+
+  }
 
 }

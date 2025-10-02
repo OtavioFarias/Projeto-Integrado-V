@@ -5,7 +5,7 @@ AF_DCMotor motor2(2);
 AF_DCMotor motor3(3); 
 AF_DCMotor motor4(4);
 
-extern int velocidade = 100;
+extern int velocidade = 255;
 float distanciaParaVirar = 20;    // cm
 
 void iniciarMotores(){
@@ -67,7 +67,10 @@ void girarAngulo(){}
 void andarAutomatico(){
 
 
-  int distancia = medirSensor(ECHO_FRENTE);
+  int distancia = medirSensor();
+
+  Serial.print("Distância: ");
+  Serial.println(distancia);
 
   if (distancia > 0 && distancia < distanciaParaVirar) {
     parar();   // obstáculo detectado
@@ -78,6 +81,7 @@ void andarAutomatico(){
   delay(100);
 
 }
+
 
 void passoFrente(int duracao){
 
@@ -113,7 +117,10 @@ void passoEsquerda(int duracao){
 
 // Função principal de virar coordenado
 void virarCoordenado() {
+  Serial.println("Virar");
   int direcao = direcaoIndicadaFPGA();
+
+  Serial.println(direcao);
 
   // define objetivo conforme direção recebida
   if (direcao == 0) { 
@@ -128,18 +135,23 @@ void virarCoordenado() {
 
   // loop até atingir objetivo
   while (true) {
+
     atualizarAnguloZ_ComFiltro(); // mantém anguloZ atualizado
     float erro = erroDeRotacao();
 
-    if (fabs(erro) < 3) { // tolerância de 3 graus
+    Serial.println("erro de rotação");   
+    Serial.println(erro);
+
+
+    if (fabs(erro) < 30) { // tolerância de 3 graus
       parar();
       break;
     }
 
     if (erro > 0) {
-      passoEsquerda(20); // gira em passos pequenos
+      passoEsquerda(200); // gira em passos pequenos
     } else {
-      passoDireita(20);
+      passoDireita(200);
     }
   }
 }

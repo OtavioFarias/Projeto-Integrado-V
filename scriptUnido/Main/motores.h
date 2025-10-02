@@ -6,6 +6,7 @@
 #include <AFMotor_R4.h>
 #include "ultrassonicos.h"
 #include "mpu.h"
+#include "espComunicacao.h"
 
 extern int velocidade;
 extern float distanciaParaVirar;    // cm

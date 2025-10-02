@@ -7,8 +7,8 @@
 #include "outros.h"
 #include "ultrassonicos.h"
 
-
 extern String buffer; // Armazena dados recebidos
+extern int ativarEnvioDados;
 
 void enviarDadosUltrassonicoESP();
 

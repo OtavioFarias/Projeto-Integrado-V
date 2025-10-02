@@ -3,18 +3,19 @@
 
 
 void setup() {
-  
+
+  Serial.begin(115200);
+
   iniciarBluetooth(); 
-  iniciarComunicacaoArduino(); 
+  //iniciarComunicacaoArduino(); 
 
 }
 
 void loop() {
-  
+
   receberDadosApp();
   enviarKeepAlive();
   //enviarAppTeste();
   lerArduino();
 
 }
-const int LED_PIN = 23;

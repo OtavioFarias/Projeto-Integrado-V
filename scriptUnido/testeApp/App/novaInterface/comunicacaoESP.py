@@ -63,7 +63,9 @@ def loop_menu(ser, menu_win, curses):
         menu_win.addstr("12 - passoTras\n")
         menu_win.addstr("13 - passoDireita\n")
         menu_win.addstr("14 - passoEsquerda\n")
-        menu_win.addstr("15 - Mensagem Customizada\n")
+        menu_win.addstr("15 - virarCoordenado\n")
+        menu_win.addstr("16 - ativarEnvioDados\n")
+        menu_win.addstr("17 - Mensagem Customizada\n")
         menu_win.addstr("0 - Sair\n")
         menu_win.addstr("\nEscolha: ")
         menu_win.refresh()
@@ -75,7 +77,7 @@ def loop_menu(ser, menu_win, curses):
             menu_win.refresh()
             curses.napms(1000)  # Aguarda 1 segundo
             break
-        elif escolha in ['1','2','3','4','5','6','7','8','9','10','11','12','13','14']:
+        elif escolha in ['1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16']:
             chave = {
                 '1':'velocidade',
                 '2':'anguloObjetivo',
@@ -90,7 +92,9 @@ def loop_menu(ser, menu_win, curses):
                 '11':'passoFrente',
                 '12':'passoTras',
                 '13':'passoEsquerda',
-                '14':'passoDireita'
+                '14':'passoDireita',
+                '15':"virarCoordenado",
+                '16':"ativarEnvioDados"
 
             }[escolha]
 
@@ -101,7 +105,7 @@ def loop_menu(ser, menu_win, curses):
             menu_win.addstr(f"[ENVIADO] {chave}: {valor}\n")
             menu_win.refresh()
             curses.napms(1000)
-        elif escolha == '15':
+        elif escolha == '17':
             menu_win.addstr("Digite a mensagem no formato chave:valor;chave:valor;: ")
             menu_win.refresh()
             custom = menu_win.getstr().decode('utf-8').strip()

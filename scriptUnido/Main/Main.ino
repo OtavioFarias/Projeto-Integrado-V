@@ -13,8 +13,26 @@ void setup() {
   inciarComunicacaoESP();
 
   iniciarMotores();
+  //frente();
+  //passoFrente(500);
+
+  pinMode(TRIG_FRENTE, OUTPUT);
+  pinMode(ECHO_FRENTE, INPUT);
+
+  // se quiser usar interrupção:
+  attachInterrupt(digitalPinToInterrupt(ECHO_FRENTE), capturaPulso, CHANGE);
+
+  Wire.begin();
+  mpu.initialize();
+  Serial.print("2");
+  if (!mpu.testConnection()) {
+    Serial.println("Erro: MPU6050 não encontrado!");
+  }else{
+  Serial.println("MPU6050 encontrado!");
+  }
+
+
   frente();
-  //parar();
 
 }
 
@@ -23,12 +41,13 @@ void loop() {
 
   //passoFrente(500);
 
-  receberDadosESP();
+  //receberDadosESP();
+
 
   if(andarAutonomo == 1){
 
     andarAutomatico();
-
+    
     }
   else{
 
