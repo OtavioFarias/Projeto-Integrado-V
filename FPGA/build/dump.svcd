@@ -1,5 +1,5 @@
 $date
-	Thu Oct  9 15:33:09 2025
+	Thu Oct  9 16:26:22 2025
 $end
 $version
 	ModelSim Version 2020.1
@@ -55,13 +55,29 @@ $var wire 1 I novoDado $end
 $var reg 1 J operacaoFinalizada $end
 $var integer 32 K x $end
 $var integer 32 L y $end
-$var reg 1 M marcarDireita $end
-$var reg 1 N marcarEsquerda $end
+$var reg 4 M marcarDireita [0:3] $end
+$var reg 4 N marcarEsquerda [0:3] $end
 $var reg 4 O posicaoDireita [0:3] $end
 $var reg 4 P posicaoEsquerda [0:3] $end
-$var reg 4 Q diretaAcabou [0:3] $end
-$var reg 4 R esquerdaAcabou [0:3] $end
+$var reg 1 Q direitaAcabou $end
+$var reg 1 R esquerdaAcabou $end
 $var reg 2 S stage [1:0] $end
+$var wire 1 T posicaoEsquerdaX [0] $end
+$var wire 1 U posicaoEsquerdaX [1] $end
+$var wire 1 V posicaoEsquerdaX [2] $end
+$var wire 1 W posicaoEsquerdaX [3] $end
+$var wire 1 X posicaoEsquerdaY [0] $end
+$var wire 1 Y posicaoEsquerdaY [1] $end
+$var wire 1 Z posicaoEsquerdaY [2] $end
+$var wire 1 [ posicaoEsquerdaY [3] $end
+$var wire 1 \ posicaoDireitaX [0] $end
+$var wire 1 ] posicaoDireitaX [1] $end
+$var wire 1 ^ posicaoDireitaX [2] $end
+$var wire 1 _ posicaoDireitaX [3] $end
+$var wire 1 ` posicaoDireitaY [0] $end
+$var wire 1 a posicaoDireitaY [1] $end
+$var wire 1 b posicaoDireitaY [2] $end
+$var wire 1 c posicaoDireitaY [3] $end
 $upscope $end
 $upscope $end
 $enddefinitions $end
@@ -71,19 +87,19 @@ $dumpvars
 1$
 b11 %
 b0 &
-0'
+1'
 b1 (
 b10 )
 b1 *
 1+
 1,
 1J
-0M
-0N
-bx O
-bx P
-b0 Q
-b0 R
+b0 M
+b0 N
+b0 O
+b0 P
+0Q
+0R
 b10 S
 b1000 !
 b100 "
@@ -94,6 +110,22 @@ b1 0
 b10 1
 b1000 K
 b1000 L
+0W
+1V
+0U
+0T
+1[
+1Z
+1Y
+1X
+1_
+0^
+1]
+0\
+0c
+1b
+0a
+0`
 02
 13
 17
@@ -104,7 +136,7 @@ b1000 L
 0:
 09
 08
-0<
+1<
 1@
 0?
 0>
@@ -299,10 +331,11 @@ b1000 K
 1#
 12
 0J
-1N
-b1 S
-b101 O
-b10 P
+b100 M
+b11 N
+b11 O
+b11 P
+b0 S
 0,
 #30000
 0#
@@ -311,30 +344,141 @@ b10 P
 1#
 12
 b100 O
-b11 P
+1R
 #40000
 0#
 02
 #45000
 1#
 12
-b11 O
-b1 R
+1Q
 #50000
 0#
 02
 #55000
 1#
 12
-b1 Q
+0Q
+0R
+1J
+b10 S
+1,
+0+
+0I
 #60000
 0#
 02
 #65000
 1#
 12
-b0 Q
-b0 R
-1J
-b10 S
-1,
+#70000
+0#
+02
+#75000
+1#
+12
+#80000
+0#
+02
+#85000
+1#
+12
+#90000
+0#
+02
+#95000
+1#
+12
+#100000
+0#
+02
+#105000
+1#
+12
+#110000
+0#
+02
+#115000
+1#
+12
+#120000
+0#
+02
+#125000
+1#
+12
+#130000
+0#
+02
+#135000
+1#
+12
+#140000
+0#
+02
+#145000
+1#
+12
+#150000
+0#
+02
+#155000
+1#
+12
+#160000
+0#
+02
+#165000
+1#
+12
+#170000
+0#
+02
+#175000
+1#
+12
+#180000
+0#
+02
+#185000
+1#
+12
+#190000
+0#
+02
+#195000
+1#
+12
+#200000
+0#
+02
+#205000
+1#
+12
+#210000
+0#
+02
+#215000
+1#
+12
+#220000
+0#
+02
+#225000
+1#
+12
+#230000
+0#
+02
+#235000
+1#
+12
+#240000
+0#
+02
+#245000
+1#
+12
+#250000
+0#
+02

@@ -25,16 +25,28 @@ localparam marcarVertical = 2'b00,
 		   marcarHorizontal = 2'b01,
 		   IDLE = 2'b10;
 
-reg marcarDireita;
-reg marcarEsquerda;
+reg [tamanhoDistancia] marcarDireita;
+reg [tamanhoDistancia] marcarEsquerda;
 
 reg [tamanhoDistancia] posicaoDireita;
 reg [tamanhoDistancia] posicaoEsquerda;
 
-reg [tamanhoDistancia] diretaAcabou;
-reg [tamanhoDistancia] esquerdaAcabou;
+reg direitaAcabou;
+reg esquerdaAcabou;
 
 reg [1:0] stage;
+
+wire [tamanhoDistancia] posicaoEsquerdaX;
+wire [tamanhoDistancia] posicaoEsquerdaY;
+
+wire [tamanhoDistancia] posicaoDireitaX;
+wire [tamanhoDistancia] posicaoDireitaY;
+
+assign posicaoEsquerdaX = posicaoAtualnoEixoX - distanciaEsquerda;
+assign posicaoEsquerdaY = posicaoAtualnoEixoY - distanciaEsquerda;
+assign posicaoDireitaX = posicaoAtualnoEixoX + distanciaDireita;
+assign posicaoDireitaY = posicaoAtualnoEixoY + distanciaDireita;
+
 
 always_ff @(posedge clock, posedge reset) begin
 
@@ -54,68 +66,71 @@ always_ff @(posedge clock, posedge reset) begin
 		marcarDireita <= 0;
 		marcarEsquerda <= 0;
 		
-		diretaAcabou <= 1'b0;
+		direitaAcabou <= 1'b0;
 		esquerdaAcabou <= 1'b0;
 		 
+		posicaoDireita <= 0;
+		posicaoEsquerda <= 0;
 		 
 	end
 	else begin
 		
-		if(novoDado && stage == IDLE) begin
-		
-			operacaoFinalizada <= 1'b0;
+		case(stage) 
+	
+		IDLE: begin
 			
-			// mandar dados para a unidade responsável por marcar
-			// aqui os conceitos de direita e esquerda são em relação a posição atual do carrinho
-			if(direcaoAtual) begin // vertical be
+			if(novoDado) begin
+			
+				operacaoFinalizada <= 1'b0;
+				
+				//marca posição atual
+				malha[posicaoAtualnoEixoX][posicaoAtualnoEixoY] <= 2'b01;
+				
+				// mandar dados para a unidade responsável por marcar
+				// aqui os conceitos de direita e esquerda são em relação a posição atual do carrinho
+				if(direcaoAtual) begin // vertical be
 
-				marcarDireita  <=  posicaoAtualnoEixoY + distanciaDireita - 1;
-				marcarEsquerda <= posicaoAtualnoEixoY - distanciaEsquerda + 1;
+					marcarDireita  <=  posicaoDireitaX - 1;
+					marcarEsquerda <= posicaoEsquerdaX + 1;
+					
+					// posições atuais da célula a ser marcada, começa na posição atual do carrinho e direciona para até a célula destino
+					posicaoDireita <= posicaoAtualnoEixoX;
+					posicaoEsquerda <= posicaoAtualnoEixoX;
+					
+					stage <= marcarVertical;
+					
+					malha[posicaoDireitaX][posicaoAtualnoEixoY] <= 2'b10;
+					malha[posicaoEsquerdaX][posicaoAtualnoEixoY] <= 2'b10;
 				
-				// posições atuais da célula a ser marcada, começa na posição atual do carrinho e direciona para até a célula destino
-				posicaoDireita <= posicaoAtualnoEixoY;
-				posicaoEsquerda <= posicaoAtualnoEixoY;
+				end
+				else begin
 				
-				stage <= marcarVertical;
+					marcarDireita  <= posicaoDireitaY - 1;
+					marcarEsquerda <= posicaoEsquerdaY + 1;
 				
-				malha[posicaoAtualnoEixoX + distanciaDireita][posicaoAtualnoEixoY] <= 2'b10;
-				malha[posicaoAtualnoEixoX + distanciaEsquerda][posicaoAtualnoEixoY] <= 2'b10;
-			
+					stage <= marcarHorizontal;
+					
+					malha[posicaoAtualnoEixoX][posicaoDireitaY] <= 2'b10;
+					malha[posicaoAtualnoEixoX][posicaoEsquerdaY] <= 2'b10;
+				
+					// posições atuais da célula a ser marcada, começa na célula destino e vai até a posição atual do carrinho
+					posicaoDireita <= posicaoAtualnoEixoX + distanciaDireita;
+					posicaoEsquerda <= posicaoAtualnoEixoX - distanciaEsquerda;
+				
+				end
 			end
 			else begin
 			
-				marcarDireita  <= posicaoAtualnoEixoX + distanciaDireita - 1;
-				marcarEsquerda <= posicaoAtualnoEixoX - distanciaEsquerda + 1;
-			
-				stage <= marcarHorizontal;
-				
-				malha[posicaoAtualnoEixoX + distanciaDireita][posicaoAtualnoEixoX] <= 2'b10;
-				malha[posicaoAtualnoEixoX + distanciaEsquerda][posicaoAtualnoEixoX] <= 2'b10;
-			
-				// posições atuais da célula a ser marcada, começa na célula destino e vai até a posição atual do carrinho
-				posicaoDireita <= posicaoAtualnoEixoX + distanciaDireita;
-				posicaoEsquerda <= posicaoAtualnoEixoX - distanciaEsquerda;
+				stage <= IDLE;
 			
 			end
-		end		
-	end
-end
-
-always_ff @(posedge clock) begin
-
-	case(stage) 
-	
-		IDLE: begin
-		
-			
-		
 		end
 
 		marcarHorizontal: begin
 
-			if(diretaAcabou && esquerdaAcabou) begin
+			if(direitaAcabou && esquerdaAcabou) begin
 			
-				diretaAcabou <= 1'b0;
+				direitaAcabou <= 1'b0;
 				esquerdaAcabou <= 1'b0;
 				
 				operacaoFinalizada <= 1'b1;
@@ -125,24 +140,24 @@ always_ff @(posedge clock) begin
 			end
 			else begin 
 			
-					stage <= marcarHorizontal;
+				stage <= marcarHorizontal;
 
-				if(posicaoDireita != posicaoAtualnoEixoX) begin
+				if(posicaoDireita != marcarDireita) begin
 
-					posicaoDireita  <= posicaoDireita - 1;
+					posicaoDireita  <= posicaoDireita + 1;
 					
 					malha[posicaoDireita][posicaoAtualnoEixoY] <= 2'b01;
 					
 				end
 				else begin
 				
-					diretaAcabou <= 1'b1;
+					direitaAcabou <= 1'b1;
 				
 				end
 				
-				if(posicaoEsquerda != posicaoAtualnoEixoX) begin
+				if(posicaoEsquerda != marcarEsquerda) begin
 				
-					posicaoEsquerda <= posicaoEsquerda + 1;
+					posicaoEsquerda <= posicaoEsquerda - 1;
 					
 					malha[posicaoEsquerda][posicaoAtualnoEixoX] <= 2'b01;
 				
@@ -159,9 +174,9 @@ always_ff @(posedge clock) begin
 		
 		marcarVertical: begin
 		
-			if(diretaAcabou && esquerdaAcabou) begin
+			if(direitaAcabou && esquerdaAcabou) begin
 			
-				diretaAcabou <= 1'b0;
+				direitaAcabou <= 1'b0;
 				esquerdaAcabou <= 1'b0;
 				
 				operacaoFinalizada <= 1'b1;
@@ -171,24 +186,24 @@ always_ff @(posedge clock) begin
 			end
 			else begin 
 			
-					stage <= marcarHorizontal;
+				stage <= marcarVertical;
 
-				if(posicaoDireita != posicaoAtualnoEixoY) begin
+				if(posicaoDireita != marcarDireita) begin
 
-					posicaoDireita  <= posicaoDireita - 1;
+					posicaoDireita  <= posicaoDireita + 1;
 					
 					malha[posicaoDireita][posicaoAtualnoEixoY] <= 2'b01;
 					
 				end
 				else begin
 				
-					diretaAcabou <= 1'b1;
+					direitaAcabou <= 1'b1;
 				
 				end
 				
-				if(posicaoEsquerda != posicaoAtualnoEixoX) begin
+				if(posicaoEsquerda != marcarEsquerda) begin
 				
-					posicaoEsquerda <= posicaoEsquerda + 1;
+					posicaoEsquerda <= posicaoEsquerda - 1;
 					
 					malha[posicaoEsquerda][posicaoAtualnoEixoY] <= 2'b01;
 				
@@ -205,6 +220,8 @@ always_ff @(posedge clock) begin
 		
 	endcase
 
+				
+	end
 end
 
 endmodule

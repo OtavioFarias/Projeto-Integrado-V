@@ -49,7 +49,7 @@ module tb;
         novoDado = 1;
         posicaoAtualnoEixoX = 3;
         posicaoAtualnoEixoY = 0;
-        direcaoAtual = 0;
+        direcaoAtual = 1;
         distanciaFrente = 1;
         distanciaDireita = 2;
         distanciaEsquerda = 1;
@@ -68,7 +68,9 @@ module tb;
 		
 		wait(operacaoFinalizada == 0);
 		wait(operacaoFinalizada == 1);
+		novoDado = 0;
 		
+		#200
 		
         $finish;
     end
