@@ -1,0 +1,340 @@
+$date
+	Thu Oct  9 15:33:09 2025
+$end
+$version
+	ModelSim Version 2020.1
+$end
+$timescale
+	1ps
+$end
+
+$scope module tb $end
+$var parameter 32 ! TamanhoMalha $end
+$var parameter 32 " tamanhoDistancia $end
+$var reg 1 # clock $end
+$var reg 1 $ reset $end
+$var reg 4 % posicaoAtualnoEixoX [3:0] $end
+$var reg 4 & posicaoAtualnoEixoY [3:0] $end
+$var reg 1 ' direcaoAtual $end
+$var reg 4 ( distanciaFrente [3:0] $end
+$var reg 4 ) distanciaDireita [3:0] $end
+$var reg 4 * distanciaEsquerda [3:0] $end
+$var reg 1 + novoDado $end
+$var reg 1 , operacaoFinalizada $end
+
+$scope module dut $end
+$var parameter 32 - TamanhoMalha $end
+$var parameter 32 . tamanhoDistancia $end
+$var parameter 2 / marcarVertical $end
+$var parameter 2 0 marcarHorizontal $end
+$var parameter 2 1 IDLE $end
+$var wire 1 2 clock $end
+$var wire 1 3 reset $end
+$var wire 1 4 posicaoAtualnoEixoX [0] $end
+$var wire 1 5 posicaoAtualnoEixoX [1] $end
+$var wire 1 6 posicaoAtualnoEixoX [2] $end
+$var wire 1 7 posicaoAtualnoEixoX [3] $end
+$var wire 1 8 posicaoAtualnoEixoY [0] $end
+$var wire 1 9 posicaoAtualnoEixoY [1] $end
+$var wire 1 : posicaoAtualnoEixoY [2] $end
+$var wire 1 ; posicaoAtualnoEixoY [3] $end
+$var wire 1 < direcaoAtual $end
+$var wire 1 = distanciaFrente [0] $end
+$var wire 1 > distanciaFrente [1] $end
+$var wire 1 ? distanciaFrente [2] $end
+$var wire 1 @ distanciaFrente [3] $end
+$var wire 1 A distanciaDireita [0] $end
+$var wire 1 B distanciaDireita [1] $end
+$var wire 1 C distanciaDireita [2] $end
+$var wire 1 D distanciaDireita [3] $end
+$var wire 1 E distanciaEsquerda [0] $end
+$var wire 1 F distanciaEsquerda [1] $end
+$var wire 1 G distanciaEsquerda [2] $end
+$var wire 1 H distanciaEsquerda [3] $end
+$var wire 1 I novoDado $end
+$var reg 1 J operacaoFinalizada $end
+$var integer 32 K x $end
+$var integer 32 L y $end
+$var reg 1 M marcarDireita $end
+$var reg 1 N marcarEsquerda $end
+$var reg 4 O posicaoDireita [0:3] $end
+$var reg 4 P posicaoEsquerda [0:3] $end
+$var reg 4 Q diretaAcabou [0:3] $end
+$var reg 4 R esquerdaAcabou [0:3] $end
+$var reg 2 S stage [1:0] $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+0#
+1$
+b11 %
+b0 &
+0'
+b1 (
+b10 )
+b1 *
+1+
+1,
+1J
+0M
+0N
+bx O
+bx P
+b0 Q
+b0 R
+b10 S
+b1000 !
+b100 "
+b1000 -
+b100 .
+b0 /
+b1 0
+b10 1
+b1000 K
+b1000 L
+02
+13
+17
+16
+05
+04
+0;
+0:
+09
+08
+0<
+1@
+0?
+0>
+0=
+0D
+1C
+0B
+0A
+1H
+0G
+0F
+0E
+1I
+$end
+#5000
+1#
+12
+b0 K
+b0 L
+b1 L
+b10 L
+b11 L
+b100 L
+b101 L
+b110 L
+b111 L
+b1000 L
+b1 K
+b0 L
+b1 L
+b10 L
+b11 L
+b100 L
+b101 L
+b110 L
+b111 L
+b1000 L
+b10 K
+b0 L
+b1 L
+b10 L
+b11 L
+b100 L
+b101 L
+b110 L
+b111 L
+b1000 L
+b11 K
+b0 L
+b1 L
+b10 L
+b11 L
+b100 L
+b101 L
+b110 L
+b111 L
+b1000 L
+b100 K
+b0 L
+b1 L
+b10 L
+b11 L
+b100 L
+b101 L
+b110 L
+b111 L
+b1000 L
+b101 K
+b0 L
+b1 L
+b10 L
+b11 L
+b100 L
+b101 L
+b110 L
+b111 L
+b1000 L
+b110 K
+b0 L
+b1 L
+b10 L
+b11 L
+b100 L
+b101 L
+b110 L
+b111 L
+b1000 L
+b111 K
+b0 L
+b1 L
+b10 L
+b11 L
+b100 L
+b101 L
+b110 L
+b111 L
+b1000 L
+b1000 K
+#10000
+0#
+02
+#15000
+1#
+12
+b0 K
+b0 L
+b1 L
+b10 L
+b11 L
+b100 L
+b101 L
+b110 L
+b111 L
+b1000 L
+b1 K
+b0 L
+b1 L
+b10 L
+b11 L
+b100 L
+b101 L
+b110 L
+b111 L
+b1000 L
+b10 K
+b0 L
+b1 L
+b10 L
+b11 L
+b100 L
+b101 L
+b110 L
+b111 L
+b1000 L
+b11 K
+b0 L
+b1 L
+b10 L
+b11 L
+b100 L
+b101 L
+b110 L
+b111 L
+b1000 L
+b100 K
+b0 L
+b1 L
+b10 L
+b11 L
+b100 L
+b101 L
+b110 L
+b111 L
+b1000 L
+b101 K
+b0 L
+b1 L
+b10 L
+b11 L
+b100 L
+b101 L
+b110 L
+b111 L
+b1000 L
+b110 K
+b0 L
+b1 L
+b10 L
+b11 L
+b100 L
+b101 L
+b110 L
+b111 L
+b1000 L
+b111 K
+b0 L
+b1 L
+b10 L
+b11 L
+b100 L
+b101 L
+b110 L
+b111 L
+b1000 L
+b1000 K
+#20000
+0$
+0#
+03
+02
+#25000
+1#
+12
+0J
+1N
+b1 S
+b101 O
+b10 P
+0,
+#30000
+0#
+02
+#35000
+1#
+12
+b100 O
+b11 P
+#40000
+0#
+02
+#45000
+1#
+12
+b11 O
+b1 R
+#50000
+0#
+02
+#55000
+1#
+12
+b1 Q
+#60000
+0#
+02
+#65000
+1#
+12
+b0 Q
+b0 R
+1J
+b10 S
+1,
