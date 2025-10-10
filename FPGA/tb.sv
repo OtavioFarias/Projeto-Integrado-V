@@ -49,7 +49,7 @@ module tb;
         posicaoAtualnoEixoY = 0;
         direcaoAtual = 0;
         distanciaDireita = 0;
-        distanciaEsquerda = 0;
+        distanciaEsquerda = 1;
 
         #20 reset = 0; // libera reset
 
