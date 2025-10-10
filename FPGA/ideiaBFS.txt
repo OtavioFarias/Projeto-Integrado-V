@@ -1,0 +1,31 @@
+typedef strutc { // tudo aqui vai ser uma sequencia de bits começando pelas coordenadas
+
+    int visited 
+    int filhos // 3 filhos, vai ter as coordenadas deles
+    int pai // 1 pai s, vai ter as coordenadas dele
+
+} node
+
+int BFS(node *startNode, queue *fila){
+
+    node *actualNode;
+    
+    enqueue(startNode, fila);
+     
+    while(!empty()){
+    
+        *actualNode = dequeue();
+    
+        enqueue->nova fila = actualNode
+        
+        //aqui tu não precisa colocar uma struct, cada filho é adjacente e vai ser feito através de um cálculo matemático para cada a questão do visitado é um problema, posso fazer uma cópia da malha e considerar apenas filhos onde estejam com valor 1, para marcar que já passou por ali posso colocar valor 0 neles
+        for filho in actualNode->filho {
+        // aqui faz contas e condicionais
+            enqueue(filho, fila)
+        
+        }
+        
+        adiciona em outra fila os valores que vai tirando da fila
+    
+    }
+}
