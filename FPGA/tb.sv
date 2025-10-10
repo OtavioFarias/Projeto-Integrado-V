@@ -3,7 +3,7 @@
 module tb;
 
     // Parâmetros
-    parameter TamanhoMalha = 8;
+    parameter TamanhoMalha = 9;
     parameter tamanhoDistancia = 4; // bits para posição/distância
 
     // Sinais do DUT
@@ -13,12 +13,11 @@ module tb;
     logic [tamanhoDistancia-1:0] posicaoAtualnoEixoX;
     logic [tamanhoDistancia-1:0] posicaoAtualnoEixoY;
     logic direcaoAtual;
-    logic [tamanhoDistancia-1:0] distanciaFrente;
     logic [tamanhoDistancia-1:0] distanciaDireita;
     logic [tamanhoDistancia-1:0] distanciaEsquerda;
     logic novoDado;
 
-    logic [1:0] malha[TamanhoMalha-1:0][TamanhoMalha-1:0];
+    logic [1:0] malha[TamanhoMalha*TamanhoMalha-1:0];
     logic operacaoFinalizada;
 
     // Instancia o DUT
@@ -31,7 +30,6 @@ module tb;
         .posicaoAtualnoEixoX(posicaoAtualnoEixoX),
         .posicaoAtualnoEixoY(posicaoAtualnoEixoY),
         .direcaoAtual(direcaoAtual),
-        .distanciaFrente(distanciaFrente),
         .distanciaDireita(distanciaDireita),
         .distanciaEsquerda(distanciaEsquerda),
         .novoDado(novoDado),
@@ -47,12 +45,11 @@ module tb;
     initial begin
         reset = 1;
         novoDado = 1;
-        posicaoAtualnoEixoX = 3;
+        posicaoAtualnoEixoX = 2;
         posicaoAtualnoEixoY = 0;
-        direcaoAtual = 1;
-        distanciaFrente = 1;
-        distanciaDireita = 2;
-        distanciaEsquerda = 1;
+        direcaoAtual = 0;
+        distanciaDireita = 0;
+        distanciaEsquerda = 0;
 
         #20 reset = 0; // libera reset
 
@@ -70,7 +67,10 @@ module tb;
 		wait(operacaoFinalizada == 1);
 		novoDado = 0;
 		
-		#200
+		$display("Ciclos totais: ");
+		$display(ciclos);
+		
+		//#200
 		
         $finish;
     end
@@ -89,17 +89,19 @@ module tb;
         end
     endtask
 
+	int ciclos = 0;
     // Monitor para imprimir malha quando operação finalizada
     always @(posedge clock) begin
-        if(operacaoFinalizada) begin
+    	if(!reset) begin
             $display("=== Malha Atualizada ===");
-            for(int i=0; i<TamanhoMalha; i=i+1) begin
-                for(int j=0; j<TamanhoMalha; j=j+1) begin
-                    $write("%0d ", malha[j][i]); // [x][y]
+            for(int i=0; i < TamanhoMalha; i=i+1) begin
+                for(int j=TamanhoMalha - 1; j >= 0; j=j-1) begin
+                    $write("%0d ", malha[i*TamanhoMalha+j]); // [x][y]
                 end
                 $write("\n");
             end
             $display("========================");
+            ciclos = ciclos + 1;
         end
     end
 

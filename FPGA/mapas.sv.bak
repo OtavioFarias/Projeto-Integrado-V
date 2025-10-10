@@ -3,12 +3,13 @@ module mapas #(parameter int TamanhoMalha = 20, parameter int tamanhoDistancia =
 	input clock,
 	input reset,
 	
-	input [tamanhoDistancia - 1:0] posicaoAtualnoEixoX,
-	input [tamanhoDistancia - 1:0] posicaoAtualnoEixoY,
+	input [tamanhoDistancia] posicaoAtualnoEixoX,
+	input [tamanhoDistancia] posicaoAtualnoEixoY,
 	input direcaoAtual, // 0 - horizontal, 1 - vertical
 	
-	input [tamanhoDistancia - 1:0] distanciaDireita,
-	input [tamanhoDistancia - 1:0] distanciaEsquerda,
+	input [tamanhoDistancia] distanciaFrente,
+	input [tamanhoDistancia] distanciaDireita,
+	input [tamanhoDistancia] distanciaEsquerda,
 	
 	input novoDado,
 	
@@ -18,33 +19,34 @@ module mapas #(parameter int TamanhoMalha = 20, parameter int tamanhoDistancia =
 
 );
 
-localparam marcarVertical = 2'b01,
-		   marcarHorizontal = 2'b10,
-		   IDLE = 2'b00;
+int x,y;
 
-reg [tamanhoDistancia - 1:0] marcarDireita;
-reg [tamanhoDistancia - 1:0] marcarEsquerda;
+localparam marcarVertical = 2'b00,
+		   marcarHorizontal = 2'b01,
+		   IDLE = 2'b10;
 
-reg [tamanhoDistancia - 1:0] posicaoDireita;
-reg [tamanhoDistancia - 1:0] posicaoEsquerda;
+reg [tamanhoDistancia] marcarDireita;
+reg [tamanhoDistancia] marcarEsquerda;
+
+reg [tamanhoDistancia] posicaoDireita;
+reg [tamanhoDistancia] posicaoEsquerda;
 
 reg direitaAcabou;
 reg esquerdaAcabou;
 
 reg [1:0] stage;
 
-wire [tamanhoDistancia - 1:0] posicaoEsquerdaX;
-wire [tamanhoDistancia - 1:0] posicaoEsquerdaY;
+wire [tamanhoDistancia] posicaoEsquerdaX;
+wire [tamanhoDistancia] posicaoEsquerdaY;
 
-wire [tamanhoDistancia - 1:0] posicaoDireitaX;
-wire [tamanhoDistancia - 1:0] posicaoDireitaY;
+wire [tamanhoDistancia] posicaoDireitaX;
+wire [tamanhoDistancia] posicaoDireitaY;
 
 assign posicaoEsquerdaX = posicaoAtualnoEixoX - distanciaEsquerda;
 assign posicaoEsquerdaY = posicaoAtualnoEixoY - distanciaEsquerda;
 assign posicaoDireitaX = posicaoAtualnoEixoX + distanciaDireita;
 assign posicaoDireitaY = posicaoAtualnoEixoY + distanciaDireita;
 
-integer x,y;
 
 always_ff @(posedge clock, posedge reset) begin
 
@@ -83,17 +85,17 @@ always_ff @(posedge clock, posedge reset) begin
 				
 				//marca posição atual
 				malha[posicaoAtualnoEixoX+posicaoAtualnoEixoY*TamanhoMalha] <= 2'b01;
-					
+				
 				// mandar dados para a unidade responsável por marcar
 				// aqui os conceitos de direita e esquerda são em relação a posição atual do carrinho
-				if(direcaoAtual) begin // vertical 
+				if(direcaoAtual) begin // vertical be
 
-					marcarDireita  <=  posicaoDireitaX + 1;
-					marcarEsquerda <= posicaoEsquerdaX - 1;
+					marcarDireita  <=  posicaoDireitaX - 1;
+					marcarEsquerda <= posicaoEsquerdaX + 1;
 					
 					// posições atuais da célula a ser marcada, começa na posição atual do carrinho e direciona para até a célula destino
-					posicaoDireita <= posicaoAtualnoEixoX + 1;
-					posicaoEsquerda <= posicaoAtualnoEixoX - 1;
+					posicaoDireita <= posicaoAtualnoEixoX;
+					posicaoEsquerda <= posicaoAtualnoEixoX;
 					
 					stage <= marcarVertical;
 					
@@ -103,17 +105,17 @@ always_ff @(posedge clock, posedge reset) begin
 				end
 				else begin
 				
-					marcarDireita  <= posicaoDireitaY + 1;
-					marcarEsquerda <= posicaoEsquerdaY - 1;
-				
-					// posições atuais da célula a ser marcada, começa na célula destino e vai até a posição atual do carrinho
-					posicaoDireita <= posicaoAtualnoEixoY + 1;
-					posicaoEsquerda <= posicaoAtualnoEixoY - 1;
+					marcarDireita  <= posicaoDireitaY - 1;
+					marcarEsquerda <= posicaoEsquerdaY + 1;
 				
 					stage <= marcarHorizontal;
 					
-					malha[posicaoAtualnoEixoX+(posicaoDireitaY+1)*TamanhoMalha] <= 2'b10;
-					malha[posicaoAtualnoEixoX+(posicaoEsquerdaY-1)*TamanhoMalha] <= 2'b10;
+					malha[posicaoAtualnoEixoX+posicaoDireitaY*TamanhoMalha+1] <= 2'b10;
+					malha[posicaoAtualnoEixoX+posicaoEsquerdaY*TamanhoMalha-1] <= 2'b10;
+				
+					// posições atuais da célula a ser marcada, começa na célula destino e vai até a posição atual do carrinho
+					posicaoDireita <= posicaoAtualnoEixoX + distanciaDireita;
+					posicaoEsquerda <= posicaoAtualnoEixoX - distanciaEsquerda;
 				
 				end
 			end
@@ -124,8 +126,54 @@ always_ff @(posedge clock, posedge reset) begin
 			end
 		end
 
-		marcarVertical: begin
+		marcarHorizontal: begin
 
+			if(direitaAcabou && esquerdaAcabou) begin
+			
+				direitaAcabou <= 1'b0;
+				esquerdaAcabou <= 1'b0;
+				
+				operacaoFinalizada <= 1'b1;
+				
+				stage <= IDLE;
+			
+			end
+			else begin 
+			
+				stage <= marcarHorizontal;
+
+				if(posicaoDireita != marcarDireita) begin
+
+					posicaoDireita  <= posicaoDireita + 1;
+					
+					malha[posicaoDireita+posicaoAtualnoEixoX*TamanhoMalha] <= 2'b01;
+					
+				end
+				else begin
+				
+					direitaAcabou <= 1'b1;
+				
+				end
+				
+				if(posicaoEsquerda != marcarEsquerda) begin
+				
+					posicaoEsquerda <= posicaoEsquerda - 1;
+					
+					malha[posicaoEsquerda+posicaoAtualnoEixoX*TamanhoMalha] <= 2'b01;
+				
+				end
+				else begin
+				
+					esquerdaAcabou <= 1'b1;
+				
+				end
+			
+			end
+		end			
+
+		
+		marcarVertical: begin
+		
 			if(direitaAcabou && esquerdaAcabou) begin
 			
 				direitaAcabou <= 1'b0;
@@ -167,53 +215,8 @@ always_ff @(posedge clock, posedge reset) begin
 				end
 			
 			end
-		end			
 		
-		marcarHorizontal: begin
-
-			if(direitaAcabou && esquerdaAcabou) begin
-			
-				direitaAcabou <= 1'b0;
-				esquerdaAcabou <= 1'b0;
-				
-				operacaoFinalizada <= 1'b1;
-				
-				stage <= IDLE;
-			
-			end
-			else begin 
-			
-				stage <= marcarHorizontal;
-
-				if(posicaoDireita != marcarDireita) begin
-
-					posicaoDireita  <= posicaoDireita + 1;
-					
-					malha[posicaoDireita*TamanhoMalha+posicaoAtualnoEixoX] <= 2'b01;
-					
-				end
-				else begin
-				
-					direitaAcabou <= 1'b1;
-				
-				end
-				
-				if(posicaoEsquerda != marcarEsquerda) begin
-				
-					posicaoEsquerda <= posicaoEsquerda - 1;
-					
-					malha[posicaoEsquerda*TamanhoMalha+posicaoAtualnoEixoX] <= 2'b01;
-				
-				end
-				else begin
-				
-					esquerdaAcabou <= 1'b1;
-				
-				end
-			
-			end
-		end			
-		
+		end
 		
 	endcase
 

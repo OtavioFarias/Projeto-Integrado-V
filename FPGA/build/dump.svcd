@@ -1,5 +1,5 @@
 $date
-	Thu Oct  9 21:10:38 2025
+	Fri Oct 10 11:38:07 2025
 $end
 $version
 	ModelSim Version 2020.1
@@ -16,11 +16,11 @@ $var reg 1 $ reset $end
 $var reg 4 % posicaoAtualnoEixoX [3:0] $end
 $var reg 4 & posicaoAtualnoEixoY [3:0] $end
 $var reg 1 ' direcaoAtual $end
-$var reg 4 ( distanciaFrente [3:0] $end
-$var reg 4 ) distanciaDireita [3:0] $end
-$var reg 4 * distanciaEsquerda [3:0] $end
-$var reg 1 + novoDado $end
-$var reg 1 , operacaoFinalizada $end
+$var reg 4 ( distanciaDireita [3:0] $end
+$var reg 4 ) distanciaEsquerda [3:0] $end
+$var reg 1 * novoDado $end
+$var reg 1 + operacaoFinalizada $end
+$var integer 32 , ciclos $end
 
 $scope module dut $end
 $var parameter 32 - TamanhoMalha $end
@@ -30,54 +30,50 @@ $var parameter 2 0 marcarHorizontal $end
 $var parameter 2 1 IDLE $end
 $var wire 1 2 clock $end
 $var wire 1 3 reset $end
-$var wire 1 4 posicaoAtualnoEixoX [0] $end
-$var wire 1 5 posicaoAtualnoEixoX [1] $end
-$var wire 1 6 posicaoAtualnoEixoX [2] $end
-$var wire 1 7 posicaoAtualnoEixoX [3] $end
-$var wire 1 8 posicaoAtualnoEixoY [0] $end
-$var wire 1 9 posicaoAtualnoEixoY [1] $end
-$var wire 1 : posicaoAtualnoEixoY [2] $end
-$var wire 1 ; posicaoAtualnoEixoY [3] $end
+$var wire 1 4 posicaoAtualnoEixoX [3] $end
+$var wire 1 5 posicaoAtualnoEixoX [2] $end
+$var wire 1 6 posicaoAtualnoEixoX [1] $end
+$var wire 1 7 posicaoAtualnoEixoX [0] $end
+$var wire 1 8 posicaoAtualnoEixoY [3] $end
+$var wire 1 9 posicaoAtualnoEixoY [2] $end
+$var wire 1 : posicaoAtualnoEixoY [1] $end
+$var wire 1 ; posicaoAtualnoEixoY [0] $end
 $var wire 1 < direcaoAtual $end
-$var wire 1 = distanciaFrente [0] $end
-$var wire 1 > distanciaFrente [1] $end
-$var wire 1 ? distanciaFrente [2] $end
-$var wire 1 @ distanciaFrente [3] $end
-$var wire 1 A distanciaDireita [0] $end
-$var wire 1 B distanciaDireita [1] $end
-$var wire 1 C distanciaDireita [2] $end
-$var wire 1 D distanciaDireita [3] $end
-$var wire 1 E distanciaEsquerda [0] $end
-$var wire 1 F distanciaEsquerda [1] $end
-$var wire 1 G distanciaEsquerda [2] $end
-$var wire 1 H distanciaEsquerda [3] $end
-$var wire 1 I novoDado $end
-$var reg 1 J operacaoFinalizada $end
-$var integer 32 K x $end
-$var integer 32 L y $end
-$var reg 4 M marcarDireita [0:3] $end
-$var reg 4 N marcarEsquerda [0:3] $end
-$var reg 4 O posicaoDireita [0:3] $end
-$var reg 4 P posicaoEsquerda [0:3] $end
-$var reg 1 Q direitaAcabou $end
-$var reg 1 R esquerdaAcabou $end
-$var reg 2 S stage [1:0] $end
-$var wire 1 T posicaoEsquerdaX [0] $end
-$var wire 1 U posicaoEsquerdaX [1] $end
-$var wire 1 V posicaoEsquerdaX [2] $end
-$var wire 1 W posicaoEsquerdaX [3] $end
-$var wire 1 X posicaoEsquerdaY [0] $end
-$var wire 1 Y posicaoEsquerdaY [1] $end
-$var wire 1 Z posicaoEsquerdaY [2] $end
-$var wire 1 [ posicaoEsquerdaY [3] $end
-$var wire 1 \ posicaoDireitaX [0] $end
-$var wire 1 ] posicaoDireitaX [1] $end
-$var wire 1 ^ posicaoDireitaX [2] $end
-$var wire 1 _ posicaoDireitaX [3] $end
-$var wire 1 ` posicaoDireitaY [0] $end
-$var wire 1 a posicaoDireitaY [1] $end
-$var wire 1 b posicaoDireitaY [2] $end
-$var wire 1 c posicaoDireitaY [3] $end
+$var wire 1 = distanciaDireita [3] $end
+$var wire 1 > distanciaDireita [2] $end
+$var wire 1 ? distanciaDireita [1] $end
+$var wire 1 @ distanciaDireita [0] $end
+$var wire 1 A distanciaEsquerda [3] $end
+$var wire 1 B distanciaEsquerda [2] $end
+$var wire 1 C distanciaEsquerda [1] $end
+$var wire 1 D distanciaEsquerda [0] $end
+$var wire 1 E novoDado $end
+$var reg 1 F operacaoFinalizada $end
+$var reg 4 G marcarDireita [3:0] $end
+$var reg 4 H marcarEsquerda [3:0] $end
+$var reg 4 I posicaoDireita [3:0] $end
+$var reg 4 J posicaoEsquerda [3:0] $end
+$var reg 1 K direitaAcabou $end
+$var reg 1 L esquerdaAcabou $end
+$var reg 2 M stage [1:0] $end
+$var wire 1 N posicaoEsquerdaX [3] $end
+$var wire 1 O posicaoEsquerdaX [2] $end
+$var wire 1 P posicaoEsquerdaX [1] $end
+$var wire 1 Q posicaoEsquerdaX [0] $end
+$var wire 1 R posicaoEsquerdaY [3] $end
+$var wire 1 S posicaoEsquerdaY [2] $end
+$var wire 1 T posicaoEsquerdaY [1] $end
+$var wire 1 U posicaoEsquerdaY [0] $end
+$var wire 1 V posicaoDireitaX [3] $end
+$var wire 1 W posicaoDireitaX [2] $end
+$var wire 1 X posicaoDireitaX [1] $end
+$var wire 1 Y posicaoDireitaX [0] $end
+$var wire 1 Z posicaoDireitaY [3] $end
+$var wire 1 [ posicaoDireitaY [2] $end
+$var wire 1 \ posicaoDireitaY [1] $end
+$var wire 1 ] posicaoDireitaY [0] $end
+$var integer 32 ^ x $end
+$var integer 32 _ y $end
 $upscope $end
 $upscope $end
 $enddefinitions $end
@@ -85,50 +81,50 @@ $enddefinitions $end
 $dumpvars
 0#
 1$
-b11 %
+b10 %
 b0 &
-1'
-b1 (
-b10 )
-b1 *
+0'
+b0 (
+b0 )
+1*
 1+
-1,
-1J
+1F
+b0 G
+b0 H
+b0 I
+b0 J
+0K
+0L
 b0 M
-b0 N
-b0 O
-b0 P
-0Q
-0R
-b10 S
-b1000 !
+b1001 !
 b100 "
-b1000 -
+b1001 -
 b100 .
-b0 /
-b1 0
-b10 1
-b1000 K
-b1000 L
-0W
-1V
+b1 /
+b10 0
+b0 1
+b1001 ^
+b1001 _
+b0 ,
+0Q
+1P
+0O
+0N
 0U
 0T
-1[
-1Z
-1Y
+0S
+0R
+0Y
 1X
-1_
-0^
-1]
+0W
+0V
+0]
 0\
-0c
-1b
-0a
-0`
+0[
+0Z
 02
 13
-17
+07
 16
 05
 04
@@ -136,192 +132,226 @@ b1000 L
 0:
 09
 08
-1<
-1@
+0<
+0@
 0?
 0>
 0=
 0D
-1C
+0C
 0B
 0A
-1H
-0G
-0F
-0E
-1I
+1E
 $end
 #5000
 1#
 12
-b0 K
-b0 L
-b1 L
-b10 L
-b11 L
-b100 L
-b101 L
-b110 L
-b111 L
-b1000 L
-b1 K
-b0 L
-b1 L
-b10 L
-b11 L
-b100 L
-b101 L
-b110 L
-b111 L
-b1000 L
-b10 K
-b0 L
-b1 L
-b10 L
-b11 L
-b100 L
-b101 L
-b110 L
-b111 L
-b1000 L
-b11 K
-b0 L
-b1 L
-b10 L
-b11 L
-b100 L
-b101 L
-b110 L
-b111 L
-b1000 L
-b100 K
-b0 L
-b1 L
-b10 L
-b11 L
-b100 L
-b101 L
-b110 L
-b111 L
-b1000 L
-b101 K
-b0 L
-b1 L
-b10 L
-b11 L
-b100 L
-b101 L
-b110 L
-b111 L
-b1000 L
-b110 K
-b0 L
-b1 L
-b10 L
-b11 L
-b100 L
-b101 L
-b110 L
-b111 L
-b1000 L
-b111 K
-b0 L
-b1 L
-b10 L
-b11 L
-b100 L
-b101 L
-b110 L
-b111 L
-b1000 L
-b1000 K
+b0 ^
+b0 _
+b1 _
+b10 _
+b11 _
+b100 _
+b101 _
+b110 _
+b111 _
+b1000 _
+b1001 _
+b1 ^
+b0 _
+b1 _
+b10 _
+b11 _
+b100 _
+b101 _
+b110 _
+b111 _
+b1000 _
+b1001 _
+b10 ^
+b0 _
+b1 _
+b10 _
+b11 _
+b100 _
+b101 _
+b110 _
+b111 _
+b1000 _
+b1001 _
+b11 ^
+b0 _
+b1 _
+b10 _
+b11 _
+b100 _
+b101 _
+b110 _
+b111 _
+b1000 _
+b1001 _
+b100 ^
+b0 _
+b1 _
+b10 _
+b11 _
+b100 _
+b101 _
+b110 _
+b111 _
+b1000 _
+b1001 _
+b101 ^
+b0 _
+b1 _
+b10 _
+b11 _
+b100 _
+b101 _
+b110 _
+b111 _
+b1000 _
+b1001 _
+b110 ^
+b0 _
+b1 _
+b10 _
+b11 _
+b100 _
+b101 _
+b110 _
+b111 _
+b1000 _
+b1001 _
+b111 ^
+b0 _
+b1 _
+b10 _
+b11 _
+b100 _
+b101 _
+b110 _
+b111 _
+b1000 _
+b1001 _
+b1000 ^
+b0 _
+b1 _
+b10 _
+b11 _
+b100 _
+b101 _
+b110 _
+b111 _
+b1000 _
+b1001 _
+b1001 ^
 #10000
 0#
 02
 #15000
 1#
 12
-b0 K
-b0 L
-b1 L
-b10 L
-b11 L
-b100 L
-b101 L
-b110 L
-b111 L
-b1000 L
-b1 K
-b0 L
-b1 L
-b10 L
-b11 L
-b100 L
-b101 L
-b110 L
-b111 L
-b1000 L
-b10 K
-b0 L
-b1 L
-b10 L
-b11 L
-b100 L
-b101 L
-b110 L
-b111 L
-b1000 L
-b11 K
-b0 L
-b1 L
-b10 L
-b11 L
-b100 L
-b101 L
-b110 L
-b111 L
-b1000 L
-b100 K
-b0 L
-b1 L
-b10 L
-b11 L
-b100 L
-b101 L
-b110 L
-b111 L
-b1000 L
-b101 K
-b0 L
-b1 L
-b10 L
-b11 L
-b100 L
-b101 L
-b110 L
-b111 L
-b1000 L
-b110 K
-b0 L
-b1 L
-b10 L
-b11 L
-b100 L
-b101 L
-b110 L
-b111 L
-b1000 L
-b111 K
-b0 L
-b1 L
-b10 L
-b11 L
-b100 L
-b101 L
-b110 L
-b111 L
-b1000 L
-b1000 K
+b0 ^
+b0 _
+b1 _
+b10 _
+b11 _
+b100 _
+b101 _
+b110 _
+b111 _
+b1000 _
+b1001 _
+b1 ^
+b0 _
+b1 _
+b10 _
+b11 _
+b100 _
+b101 _
+b110 _
+b111 _
+b1000 _
+b1001 _
+b10 ^
+b0 _
+b1 _
+b10 _
+b11 _
+b100 _
+b101 _
+b110 _
+b111 _
+b1000 _
+b1001 _
+b11 ^
+b0 _
+b1 _
+b10 _
+b11 _
+b100 _
+b101 _
+b110 _
+b111 _
+b1000 _
+b1001 _
+b100 ^
+b0 _
+b1 _
+b10 _
+b11 _
+b100 _
+b101 _
+b110 _
+b111 _
+b1000 _
+b1001 _
+b101 ^
+b0 _
+b1 _
+b10 _
+b11 _
+b100 _
+b101 _
+b110 _
+b111 _
+b1000 _
+b1001 _
+b110 ^
+b0 _
+b1 _
+b10 _
+b11 _
+b100 _
+b101 _
+b110 _
+b111 _
+b1000 _
+b1001 _
+b111 ^
+b0 _
+b1 _
+b10 _
+b11 _
+b100 _
+b101 _
+b110 _
+b111 _
+b1000 _
+b1001 _
+b1000 ^
+b0 _
+b1 _
+b10 _
+b11 _
+b100 _
+b101 _
+b110 _
+b111 _
+b1000 _
+b1001 _
+b1001 ^
 #20000
 0$
 0#
@@ -330,155 +360,33 @@ b1000 K
 #25000
 1#
 12
-0J
-b100 M
-b11 N
-b11 O
-b11 P
-b0 S
-0,
+b1 ,
+0F
+b1 G
+b1111 H
+b1 I
+b1111 J
+b10 M
+0+
 #30000
 0#
 02
 #35000
 1#
 12
-b100 O
-1R
+b10 ,
+1K
+1L
 #40000
 0#
 02
 #45000
 1#
 12
-1Q
-#50000
-0#
-02
-#55000
-1#
-12
-0Q
-0R
-1J
-b10 S
-1,
-0+
-0I
-#60000
-0#
-02
-#65000
-1#
-12
-#70000
-0#
-02
-#75000
-1#
-12
-#80000
-0#
-02
-#85000
-1#
-12
-#90000
-0#
-02
-#95000
-1#
-12
-#100000
-0#
-02
-#105000
-1#
-12
-#110000
-0#
-02
-#115000
-1#
-12
-#120000
-0#
-02
-#125000
-1#
-12
-#130000
-0#
-02
-#135000
-1#
-12
-#140000
-0#
-02
-#145000
-1#
-12
-#150000
-0#
-02
-#155000
-1#
-12
-#160000
-0#
-02
-#165000
-1#
-12
-#170000
-0#
-02
-#175000
-1#
-12
-#180000
-0#
-02
-#185000
-1#
-12
-#190000
-0#
-02
-#195000
-1#
-12
-#200000
-0#
-02
-#205000
-1#
-12
-#210000
-0#
-02
-#215000
-1#
-12
-#220000
-0#
-02
-#225000
-1#
-12
-#230000
-0#
-02
-#235000
-1#
-12
-#240000
-0#
-02
-#245000
-1#
-12
-#250000
-0#
-02
+b11 ,
+0K
+0L
+1F
+b0 M
+1+
+0*
