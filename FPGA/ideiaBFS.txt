@@ -6,6 +6,7 @@ typedef strutc { // tudo aqui vai ser uma sequencia de bits começando pelas coo
 
 } node
 
+//start node precisa ser alguem escolhido de forma mais inteligente, acho que o ideal é divdir em 4 quadrantes e pegar o nó inicial sendo o quadrante onde o destino está
 int BFS(node *startNode, queue *fila){
 
     node *actualNode;
