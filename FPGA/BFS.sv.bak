@@ -1,0 +1,141 @@
+module BFS#(parameter int TamanhoMalha = 20, parameter int tamanhoDistancia = 8 /* em bits*/)(
+
+
+	input clock,
+	input reset,
+	
+	input [tamanhoDistancia - 1:0] posicaoAtualnoEixoX,
+	input [tamanhoDistancia - 1:0] posicaoAtualnoEixoY,
+	
+	input reg [tamanhoDistancia - 1:0] destinoX,
+	input reg [tamanhoDistancia - 1:0] destinoY,
+	
+	input [1:0] quadrante, //o modulo que procura a menor distancia informa qual foi o quadrante que achou a menor distancia para começar a busca, 00 - esquerdaFrente, 01 - direitaFrente, 10 - esquerdaTras, 11 - direitaTras
+	
+	input request,
+	
+	input [1:0] malha[TamanhoMalha*TamanhoMalha], //x,y - 00 - desconhecido, 01 - livre, 10 - ocupado,
+	
+	output reg operacaoFinalizada,
+	
+	////////////filas
+	
+	input [tamanhoDistancia*2 - 1:0] data_read_fila_bfs, data_read_fila_trajeto,
+	input empty_fila_bfs, 
+	
+	output wr__en_fila_bfs, wr__en_fila_trajeto,
+	output rd__en_fila_bfs,
+	
+	output reg [tamanhoDistancia*2 - 1:0] data_write_fila_bfs
+	output reg [tamanhoDistancia*2 - 1:0] data_write_fila_trajeto
+	
+);
+
+reg [1:0] malhaLocal[TamanhoMalha*TamanhoMalha];
+
+localparam IDLE = 3'b001,
+		   		 START = 3'b010, // adicionar start na fila
+		   		 DEQUEUE = 3'b000,
+		   		 ENQUEUE_TRAJETO = 3'b011,
+				 ENQUEUE_BFS = 3'b100,
+				 BUSCANDO_FILHOS = 3'b101;
+
+reg [2:0] stage;
+
+reg [tamanhoDistancia*2 - 1:0] nodoAtual;
+
+reg [1:0] filhosVistos; //em sentido horário contador para saber por quais filhos do nodo foram percorridos
+
+always_ff @(posedge clock, posedge reset) begin
+
+	if(reset) begin
+	
+		operacaoFinalizada <= 0;
+		
+		malhaLocal <= malha;
+		
+		stage <= IDLE;
+	
+	end
+	else begin
+	
+		case(stage)
+		
+			IDLE: begin
+			
+				if(request) begin
+				
+					stage <= START;
+					operacaoFinalizada <= 0;
+					
+				end
+				else begin
+				
+					stage <= IDLE;
+				
+				end
+			end
+			
+			START: begin 
+			
+				wr__en_fila_bfs <= 1;
+				data_write_fila_bfs <= {posicaoAtualnoEixoX, posicaoAtualnoEixoY};
+				
+				stage <= DEQUEUE;
+			
+			end
+			
+			DEQUEUE: begin	
+			
+				if(!empty_fila_bfs) begin
+		
+					wr__en_fila_bfs <= 0;
+					nodoAtual <= data_read_fila_bfs;
+					
+					stage <= ENQUEUE_TRAJETO;
+		
+				end
+				else begin
+				
+					stage <= IDLE;
+					operacaoFinalizada <= 1;
+				
+				end
+			
+			end
+	   		ENQUEUE_TRAJETO: begin
+	   		
+	   			wr__en_fila_bfs <= 1;
+				data_write_fila_trajeto <= nodoAtual;
+				
+				filhosVistos <= 0;
+				
+				stage <= BUSCANDO_FILHOS;
+	   		
+	   		end
+	   		
+			ENQUEUE_BFS: begin
+			//estágio intermediario antes de voltar para buscando filhos para esperar o dado
+			
+			end
+			
+			BUSCANDO_FILHOS: begin
+			
+				if(filhosVistos == 2'b11) begin
+				
+					stage <= DEQUEUE;
+				
+				end
+				else begin
+				
+					stage <= ENQUEUE_BFS;
+				
+				end
+			end
+
+			default: begin stage <= IDLE; end
+		endcase
+	end
+end
+
+endmodule

@@ -1,48 +1,29 @@
 # vsim -c tb -do "log -r /*; vcd file build/dump.svcd; vcd add -r /*; run -all; quit -f" 
-# Start time: 11:38:07 on Oct 10,2025
+# Start time: 11:34:03 on Oct 13,2025
 # Loading sv_std.std
 # Loading work.tb
-# Loading work.mapas
+# Loading work.distancias
 # log -r /*
 #  vcd file build/dump.svcd
 #  vcd add -r /*
 #  run -all
-# === Malha Atualizada ===
-# 0 0 0 0 0 0 0 0 0 
-# 0 0 0 0 0 0 0 0 0 
-# 0 0 0 0 0 0 0 0 0 
-# 0 0 0 0 0 0 0 0 0 
-# 0 0 0 0 0 0 0 0 0 
-# 0 0 0 0 0 0 0 0 0 
-# 0 0 0 0 0 0 0 0 0 
-# 0 0 0 0 0 0 0 0 0 
-# 0 0 0 0 0 0 0 0 0 
-# ========================
-# === Malha Atualizada ===
-# 0 0 0 0 0 0 0 0 0 
-# 0 0 0 0 0 0 0 0 0 
-# 0 0 0 0 0 0 0 0 0 
-# 0 0 0 0 0 0 0 0 0 
-# 0 0 0 0 0 0 0 0 0 
-# 0 0 0 0 0 0 0 0 0 
-# 0 0 0 0 0 0 0 0 0 
-# 0 0 2 0 0 0 0 0 0 
-# 0 0 1 0 0 0 0 0 0 
-# ========================
-# === Malha Atualizada ===
-# 0 0 0 0 0 0 0 0 0 
-# 0 0 0 0 0 0 0 0 0 
-# 0 0 0 0 0 0 0 0 0 
-# 0 0 0 0 0 0 0 0 0 
-# 0 0 0 0 0 0 0 0 0 
-# 0 0 0 0 0 0 0 0 0 
-# 0 0 0 0 0 0 0 0 0 
-# 0 0 2 0 0 0 0 0 0 
-# 0 0 1 0 0 0 0 0 0 
-# ========================
-# Ciclos totais: 
-#           3
-# ** Note: $finish    : tb.sv(75)
-#    Time: 45 ns  Iteration: 2  Instance: /tb
-# End time: 11:38:07 on Oct 10,2025, Elapsed time: 0:00:00
+# === Início da simulação ===
+# Posicao X:   1, Posicao Y:   0, Valor na Malha: 0
+# Posicao X:   0, Posicao Y:   1, Valor na Malha: 0
+# Posicao X:   1, Posicao Y:   1, Valor na Malha: 0
+# Posicao X:   2, Posicao Y:   0, Valor na Malha: 0
+# Posicao X:   2, Posicao Y:   1, Valor na Malha: 0
+# Posicao X:   0, Posicao Y:   2, Valor na Malha: 0
+# Posicao X:   1, Posicao Y:   2, Valor na Malha: 0
+# Posicao X:   2, Posicao Y:   2, Valor na Malha: 0
+# Posicao X:   3, Posicao Y:   0, Valor na Malha: 0
+# Posicao X:   3, Posicao Y:   1, Valor na Malha: 0
+# Posicao X:   3, Posicao Y:   2, Valor na Malha: 0
+# Posicao X:   0, Posicao Y:   3, Valor na Malha: 0
+# Posicao X:   1, Posicao Y:   3, Valor na Malha: 0
+# Posicao X:   2, Posicao Y:   3, Valor na Malha: 3
+# Posicao X:   3, Posicao Y:   3, Valor na Malha: 0
+# ** Note: $finish    : tb_distancias.sv(77)
+#    Time: 285 ns  Iteration: 0  Instance: /tb
+# End time: 11:34:03 on Oct 13,2025, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
