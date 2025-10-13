@@ -1,5 +1,5 @@
 # vsim -c tb -do "log -r /*; vcd file build/dump.svcd; vcd add -r /*; run -all; quit -f" 
-# Start time: 11:34:03 on Oct 13,2025
+# Start time: 12:26:35 on Oct 13,2025
 # Loading sv_std.std
 # Loading work.tb
 # Loading work.distancias
@@ -8,22 +8,10 @@
 #  vcd add -r /*
 #  run -all
 # === Início da simulação ===
-# Posicao X:   1, Posicao Y:   0, Valor na Malha: 0
-# Posicao X:   0, Posicao Y:   1, Valor na Malha: 0
-# Posicao X:   1, Posicao Y:   1, Valor na Malha: 0
-# Posicao X:   2, Posicao Y:   0, Valor na Malha: 0
-# Posicao X:   2, Posicao Y:   1, Valor na Malha: 0
-# Posicao X:   0, Posicao Y:   2, Valor na Malha: 0
-# Posicao X:   1, Posicao Y:   2, Valor na Malha: 0
-# Posicao X:   2, Posicao Y:   2, Valor na Malha: 0
-# Posicao X:   3, Posicao Y:   0, Valor na Malha: 0
-# Posicao X:   3, Posicao Y:   1, Valor na Malha: 0
-# Posicao X:   3, Posicao Y:   2, Valor na Malha: 0
-# Posicao X:   0, Posicao Y:   3, Valor na Malha: 0
-# Posicao X:   1, Posicao Y:   3, Valor na Malha: 0
-# Posicao X:   2, Posicao Y:   3, Valor na Malha: 3
-# Posicao X:   3, Posicao Y:   3, Valor na Malha: 0
-# ** Note: $finish    : tb_distancias.sv(77)
-#    Time: 285 ns  Iteration: 0  Instance: /tb
-# End time: 11:34:03 on Oct 13,2025, Elapsed time: 0:00:00
+# === Resultado ===
+# Destino encontrado: X=2 Y=3
+# Operacao finalizada: 1
+# ** Note: $finish    : tb_distancias.sv(80)
+#    Time: 20085 ns  Iteration: 0  Instance: /tb
+# End time: 12:26:35 on Oct 13,2025, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0

@@ -15,6 +15,8 @@ module distancias #(parameter int TamanhoMalha = 20, parameter int tamanhoDistan
 	
 	input [1:0] malha[TamanhoMalha*TamanhoMalha], //x,y - 00 - desconhecido, 01 - livre, 10 - ocupado,
 	
+	input [3:0] enable, // 0001 - direita,Frente, 0010 - esquerdaFrente, 0100 - direitaTras, 1000 - esquerdaTras
+	
 	output reg operacaoFinalizada,
 	
 	output reg [tamanhoDistancia - 1:0] destinoX,
@@ -54,9 +56,13 @@ reg [tamanhoDistancia - 1:0] coordenadaCandidatoDireitaFrenteY;
 
 reg [tamanhoDistancia - 1:0] candidatoAtualDireitaFrente;
 
+reg [1:0] limiteAtingidoDireitaFrente; // 01 - x atingiu o limite, 10 - y atingiu o limite, quando ambos atingem o limite, aquele setor acabou
+
 always_ff @(posedge clock, posedge reset) begin
 
 	if(reset) begin
+	
+		limiteAtingidoDireitaFrente <= 2'b00;	
 	
 		operacaoFinalizada <= 0;
 			
@@ -116,7 +122,17 @@ always_ff @(posedge clock, posedge reset) begin
 				
 				raio <= 1;
 				
-				contadorXdireitaFrente <= posicaoAtualnoEixoX + 1;
+				if(posicaoAtualnoEixoX + 1 == TamanhoMalha) begin
+			
+					limiteAtingidoDireitaFrente[0] <= 1'b1;
+					
+				end
+				else begin
+					
+					contadorXdireitaFrente <= posicaoAtualnoEixoX + 1;
+				
+				end
+				
 				contadorYdireitaFrente <= posicaoAtualnoEixoY;
 				
 				stage <= esperarMedida;
@@ -141,11 +157,14 @@ always_ff @(posedge clock, posedge reset) begin
 			
 			incrementarRaio: begin 
 				//se algum lado acho candidato faz a conta do menor e acaba
-				if(candidatoEncontradoFrenteDireita) begin
+				
+				if(candidatoEncontradoFrenteDireita || limiteAtingidoDireitaFrente == 2'b11) begin
 			
 					stage <= IDLE;
 					raio <= 1;
 					//ja atribuir sinla de acabou e mandar par novo, além de resetar candidatos
+					
+					operacaoFinalizada <= 1;
 					
 					//ganhador
 					destinoX <= coordenadaCandidatoDireitaFrenteX;
@@ -156,7 +175,18 @@ always_ff @(posedge clock, posedge reset) begin
 				
 					stage <= esperarMedida;
 					raio <= raio + 1;
-					contadorXdireitaFrente <= posicaoAtualnoEixoX + raio + 1;
+					
+					if(posicaoAtualnoEixoX + raio == TamanhoMalha - 1) begin
+			
+						limiteAtingidoDireitaFrente[0] <= 1'b1;
+					
+					end
+					else begin
+						
+						contadorXdireitaFrente <= posicaoAtualnoEixoX + raio + 1;
+				
+					end
+					
 					contadorYdireitaFrente <= posicaoAtualnoEixoY;
 					direitaAcabou <= 0;
 					
@@ -174,9 +204,8 @@ assign distanciaDireitaFrente =  (contadorXdireitaFrente + contadorYdireitaFrent
 always_ff @(posedge clock) begin
 	
 	//só começa se não tiver acabado, fazer para todos
-	if(!direitaAcabou) begin 
+	if(!direitaAcabou && enable[0] == 1'b1) begin 
 		// local válido
-		$display("Posicao X: %d, Posicao Y: %d, Valor na Malha: %d", contadorXdireitaFrente, contadorYdireitaFrente, malha[contadorXdireitaFrente + contadorYdireitaFrente*TamanhoMalha]);
 		
 		if(malha[contadorXdireitaFrente + contadorYdireitaFrente*TamanhoMalha] == 3) begin 
 		
@@ -194,9 +223,9 @@ always_ff @(posedge clock) begin
 		
 		end
 
-		if(contadorXdireitaFrente == raio + posicaoAtualnoEixoX) begin
+		if(contadorXdireitaFrente == raio + posicaoAtualnoEixoX || limiteAtingidoDireitaFrente[0] == 1'b1) begin
 		
-			if(contadorYdireitaFrente == raio + posicaoAtualnoEixoY) begin
+			if(contadorYdireitaFrente == raio + posicaoAtualnoEixoY || limiteAtingidoDireitaFrente[1] == 1'b1) begin
 			
 				//acabou busca nesse raio
 				direitaAcabou <= 1;
@@ -204,12 +233,28 @@ always_ff @(posedge clock) begin
 			end
 			else begin
 			
-				contadorYdireitaFrente <= contadorYdireitaFrente + 1;
+				if(contadorYdireitaFrente == TamanhoMalha - 1) begin
+			
+					limiteAtingidoDireitaFrente[1] <= 1'b1;
+					
+				end
+				else begin
 				
+					contadorYdireitaFrente <= contadorYdireitaFrente + 1;
+				
+				end
 				if(contadorYdireitaFrente == raio + posicaoAtualnoEixoX - 1) begin 
 				
-					contadorXdireitaFrente <= posicaoAtualnoEixoX;
+					if(contadorXdireitaFrente == TamanhoMalha - 1) begin
+			
+						limiteAtingidoDireitaFrente[0] <= 1'b1;
 					
+					end
+					else begin
+				
+						contadorXdireitaFrente <= posicaoAtualnoEixoX;
+					
+					end
 				end
 			
 			end
@@ -217,8 +262,16 @@ always_ff @(posedge clock) begin
 		end
 		else begin
 		
-			contadorXdireitaFrente <= contadorXdireitaFrente + 1;
+			if(contadorXdireitaFrente == TamanhoMalha - 1) begin
 			
+					limiteAtingidoDireitaFrente[0] <= 1'b1;
+					
+			end
+			else begin
+			
+				contadorXdireitaFrente <= contadorXdireitaFrente + 1;
+			
+			end
 		end
 	end
 end

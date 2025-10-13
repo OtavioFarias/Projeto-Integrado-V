@@ -20,6 +20,7 @@ module tb();
   wire [tamanhoDistancia-1:0] destinoX;
   wire [tamanhoDistancia-1:0] destinoY;
 
+  logic [3:0] enable;
   // DUT
   distancias #(
     .TamanhoMalha(TamanhoMalha),
@@ -33,7 +34,8 @@ module tb();
     .malha(malha),
     .operacaoFinalizada(operacaoFinalizada),
     .destinoX(destinoX),
-    .destinoY(destinoY)
+    .destinoY(destinoY),
+    .enable(enable)
   );
 
   // clock 10ns
@@ -59,6 +61,7 @@ module tb();
     novoDado = 0;
     posicaoAtualnoEixoX = 0;
     posicaoAtualnoEixoY = 0;
+    enable = 4'b1111;
     preencher_malha();
 
     #20 reset = 0;
@@ -68,12 +71,12 @@ module tb();
     #10 novoDado = 0;
 
     // aguardar até que DUT finalize (em um projeto real teria um flag)
-    repeat (20) @(posedge clock);
-	/*
+    repeat (2000) @(posedge clock);
+	
     $display("=== Resultado ===");
     $display("Destino encontrado: X=%0d Y=%0d", destinoX, destinoY);
     $display("Operacao finalizada: %0b", operacaoFinalizada);
-	*/
+	
     #50 $finish;
   end
 
