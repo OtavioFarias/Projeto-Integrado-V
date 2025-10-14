@@ -1,5 +1,5 @@
 # vsim -c tb -do "log -r /*; vcd file build/dump.svcd; vcd add -r /*; run -all; quit -f" 
-# Start time: 14:13:22 on Oct 14,2025
+# Start time: 14:19:43 on Oct 14,2025
 # Loading sv_std.std
 # Loading work.tb
 # Loading work.distancias
@@ -13,32 +13,22 @@
 #  run -all
 # === Início da simulação ===
 # DireitaFrente - Posicao X:   4, Posicao Y:   3, Valor na Malha: 0
+# DireitaTras - Posicao X:   3, Posicao Y:   2, Valor na Malha: 0
+# EsquerdaFrente - Posicao X:   2, Posicao Y:   3, Valor na Malha: 3
+# EsquerdaTras - Posicao X:   2, Posicao Y:   2, Valor na Malha: 0
 # DireitaFrente - Posicao X:   3, Posicao Y:   4, Valor na Malha: 0
+# DireitaTras - Posicao X:   4, Posicao Y:   2, Valor na Malha: 0
+# EsquerdaFrente - Posicao X:   3, Posicao Y:   4, Valor na Malha: 0
 # DireitaFrente - Posicao X:   4, Posicao Y:   4, Valor na Malha: 0
-# DireitaFrente - Posicao X:   5, Posicao Y:   3, Valor na Malha: 0
-# DireitaFrente - Posicao X:   5, Posicao Y:   4, Valor na Malha: 0
-# DireitaFrente - Posicao X:   6, Posicao Y:   4, Valor na Malha: 0
-# DireitaFrente - Posicao X:   6, Posicao Y:   5, Valor na Malha: 0
-# DireitaFrente - Posicao X:   3, Posicao Y:   6, Valor na Malha: 0
-# DireitaFrente - Posicao X:   4, Posicao Y:   6, Valor na Malha: 0
-# DireitaFrente - Posicao X:   5, Posicao Y:   6, Valor na Malha: 0
-# DireitaFrente - Posicao X:   6, Posicao Y:   6, Valor na Malha: 0
-# DireitaFrente - Posicao X:   7, Posicao Y:   3, Valor na Malha: 0
-# DireitaFrente - Posicao X:   7, Posicao Y:   4, Valor na Malha: 0
-# DireitaFrente - Posicao X:   7, Posicao Y:   4, Valor na Malha: 0
-# DireitaFrente - Posicao X:   7, Posicao Y:   5, Valor na Malha: 0
-# DireitaFrente - Posicao X:   7, Posicao Y:   6, Valor na Malha: 0
-# DireitaFrente - Posicao X:   7, Posicao Y:   7, Valor na Malha: 0
-# DireitaFrente - Posicao X:   7, Posicao Y:   7, Valor na Malha: 0
 # candidatoAtualDireitaFrente: 255
 # candidatoAtualDireitaTras: 255
-# candidatoAtualEsquerdaFrente: 255
+# candidatoAtualEsquerdaFrente:   1
 # candidatoAtualEsquerdaTras: 255
-# Direita Frente venceu
+# Esquerda Frente venceu
 # === Resultado ===
-# Destino encontrado: X=0 Y=0
+# Destino encontrado: X=2 Y=3
 # Operacao finalizada: 1
 # ** Note: $finish    : tb_distancias.sv(91)
 #    Time: 20085 ns  Iteration: 0  Instance: /tb
-# End time: 14:13:22 on Oct 14,2025, Elapsed time: 0:00:00
+# End time: 14:19:43 on Oct 14,2025, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0

@@ -19,12 +19,13 @@ module distancias #(parameter int TamanhoMalha = 20, parameter int tamanhoDistan
 
 );
 
-localparam IDLE = 2'b00,
-		   incrementarRaio = 2'b01,
-		   iniciarMedida = 2'b10,
-		   esperarMedida = 2'b11;
+localparam IDLE = 3'b00,
+		   incrementarRaio = 3'b001,
+		   iniciarMedida = 3'b010,
+		   decidirGanhador = 3'b100,
+		   esperarMedida = 3'b011;
 
-reg [0:1] stage;
+reg [2:0] stage;
 
 reg [TamanhoMalha - 1:0] contadorXdireitaFrente;
 reg [TamanhoMalha - 1:0] contadorYdireitaFrente;
@@ -208,11 +209,14 @@ always_ff @(posedge clock, posedge reset) begin
 						enableDireitaTras <= 0;
 						enableEsquerdaFrente <= 0;
 						enableEsquerdaTras <= 0;	
+						
+						stage <= decidirGanhador;
 					
 					end
-				
-					stage <= incrementarRaio;
-				
+					else begin
+					
+						stage <= incrementarRaio;
+					end
 				end
 				else begin
 				
@@ -236,76 +240,76 @@ always_ff @(posedge clock, posedge reset) begin
 						 candidatoEncontradoTrasEsquerda, limiteAtingidoEsquerdaTras);
 				$display("---------------------------------\n");
 				*/
-
 				
-				if((candidatoEncontradoFrenteDireita || limiteAtingidoDireitaFrente == 2'b11) && (candidatoEncontradoTrasDireita || limiteAtingidoDireitaTras == 2'b11) && (candidatoEncontradoFrenteEsquerda || limiteAtingidoEsquerdaFrente == 2'b11) && (candidatoEncontradoTrasEsquerda || limiteAtingidoEsquerdaTras == 2'b11)) begin
+				stage <= esperarMedida;
+				raio <= raio + 1;
+				
+				raioAtualizado <= 1;
+				
 			
-					stage <= IDLE;
-					raio <= 1;
-					//ja atribuir sinla de acabou e mandar par novo, além de resetar candidatos
+				
+			end
+			
+			decidirGanhador: begin
+			
+				stage <= IDLE;
+				raio <= 1;
+				//ja atribuir sinla de acabou e mandar par novo, além de resetar candidatos
+				
+				operacaoFinalizada <= 1;
+				
+				//ganhador
+				
+				$display("candidatoAtualDireitaFrente: %d", candidatoAtualDireitaFrente);
+				$display("candidatoAtualDireitaTras: %d", candidatoAtualDireitaTras);
+				$display("candidatoAtualEsquerdaFrente: %d", candidatoAtualEsquerdaFrente);
+				$display("candidatoAtualEsquerdaTras: %d", candidatoAtualEsquerdaTras);
+				
+				//direitaFrente
+				if(($signed(candidatoAtualDireitaFrente) >= $signed(candidatoAtualDireitaTras)) && ($signed(candidatoAtualDireitaFrente) >= $signed(candidatoAtualEsquerdaFrente)) && ($signed(candidatoAtualDireitaFrente) >= $signed(candidatoAtualEsquerdaTras))) begin
 					
-					operacaoFinalizada <= 1;
+					destinoX <= coordenadaCandidatoDireitaFrenteX;
+					destinoY <= coordenadaCandidatoDireitaFrenteY;
 					
-					//ganhador
+					$display("Direita Frente venceu");
 					
-					$display("candidatoAtualDireitaFrente: %d", candidatoAtualDireitaFrente);
-					$display("candidatoAtualDireitaTras: %d", candidatoAtualDireitaTras);
-					$display("candidatoAtualEsquerdaFrente: %d", candidatoAtualEsquerdaFrente);
-					$display("candidatoAtualEsquerdaTras: %d", candidatoAtualEsquerdaTras);
-					
-					//direitaFrente
-					if(($signed(candidatoAtualDireitaFrente) >= $signed(candidatoAtualDireitaTras)) && ($signed(candidatoAtualDireitaFrente) >= $signed(candidatoAtualEsquerdaFrente)) && ($signed(candidatoAtualDireitaFrente) >= $signed(candidatoAtualEsquerdaTras))) begin
-						
-						destinoX <= coordenadaCandidatoDireitaFrenteX;
-						destinoY <= coordenadaCandidatoDireitaFrenteY;
-						
-						$display("Direita Frente venceu");
-						
-					end
-					else begin
-					
-						//direitaTras
-						if(($signed(candidatoAtualDireitaFrente) >= $signed(candidatoAtualDireitaTras)) && ($signed(candidatoAtualDireitaFrente) >= $signed(candidatoAtualEsquerdaFrente)) && ($signed(candidatoAtualDireitaFrente) >= $signed(candidatoAtualEsquerdaTras))) begin
-						
-							destinoX <= coordenadaCandidatoDireitaTrasX;
-							destinoY <= coordenadaCandidatoDireitaTrasY;
-							
-							$display("Direita Tras venceu");
-					
-						end
-						else begin
-							
-							//esquerdaFrente
-							if(($signed(candidatoAtualEsquerdaFrente) >= $signed(candidatoAtualDireitaFrente)) && ($signed(candidatoAtualEsquerdaFrente) >= $signed(candidatoAtualDireitaTras)) && ($signed(candidatoAtualEsquerdaFrente) >= $signed(candidatoAtualEsquerdaTras))) begin
-							
-								destinoX <= coordenadaCandidatoEsquerdaFrenteX;
-								destinoY <= coordenadaCandidatoEsquerdaFrenteY;
-							
-								$display("Esquerda Frente venceu");
-							
-							end
-							//esquerdaTras
-							else begin
-							
-								destinoX <= coordenadaCandidatoEsquerdaTrasX;
-								destinoY <= coordenadaCandidatoEsquerdaTrasY;
-								
-								$display("Esquerda Tras venceu");
-							
-							end
-						end
-					end
 				end
 				else begin
 				
-					stage <= esperarMedida;
-					raio <= raio + 1;
+					//direitaTras
+					if(($signed(candidatoAtualDireitaFrente) >= $signed(candidatoAtualDireitaTras)) && ($signed(candidatoAtualDireitaFrente) >= $signed(candidatoAtualEsquerdaFrente)) && ($signed(candidatoAtualDireitaFrente) >= $signed(candidatoAtualEsquerdaTras))) begin
 					
-					raioAtualizado <= 1;
-					
-				end
+						destinoX <= coordenadaCandidatoDireitaTrasX;
+						destinoY <= coordenadaCandidatoDireitaTrasY;
+						
+						$display("Direita Tras venceu");
 				
+					end
+					else begin
+						
+						//esquerdaFrente
+						if(($signed(candidatoAtualEsquerdaFrente) >= $signed(candidatoAtualDireitaFrente)) && ($signed(candidatoAtualEsquerdaFrente) >= $signed(candidatoAtualDireitaTras)) && ($signed(candidatoAtualEsquerdaFrente) >= $signed(candidatoAtualEsquerdaTras))) begin
+						
+							destinoX <= coordenadaCandidatoEsquerdaFrenteX;
+							destinoY <= coordenadaCandidatoEsquerdaFrenteY;
+						
+							$display("Esquerda Frente venceu");
+						
+						end
+						//esquerdaTras
+						else begin
+						
+							destinoX <= coordenadaCandidatoEsquerdaTrasX;
+							destinoY <= coordenadaCandidatoEsquerdaTrasY;
+							
+							$display("Esquerda Tras venceu");
+						
+						end
+					end
+				end
+
 			end
+			
 		endcase
 	end
 end

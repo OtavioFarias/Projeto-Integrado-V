@@ -60,7 +60,7 @@ Z8 !s90 distanciaDireitaFrente.sv|distanciaDireitaTras.sv|distanciaEsquerdaFrent
 R5
 vdistanciaDireitaFrente
 R1
-Z9 !s110 1760462001
+Z9 !s110 1760462382
 !i10b 1
 !s100 AdCAJ23obhkeVc[hFekAa1
 R2
@@ -71,13 +71,13 @@ R0
 w1760461958
 8distanciaDireitaFrente.sv
 FdistanciaDireitaFrente.sv
-!i122 566
+!i122 573
 L0 1 247
 R4
 r1
 !s85 0
 31
-Z10 !s108 1760462001.000000
+Z10 !s108 1760462382.000000
 Z11 !s107 unidadeDeComunicacao.sv|Top.sv|tb_distancias.sv|sync_fifo.sv|mapas.sv|distancias.sv|distanciaEsquerdaTras.sv|distanciaEsquerdaFrente.sv|distanciaDireitaTras.sv|distanciaDireitaFrente.sv|
 R8
 !i113 1
@@ -96,7 +96,7 @@ R0
 w1760461943
 8distanciaDireitaTras.sv
 FdistanciaDireitaTras.sv
-!i122 566
+!i122 573
 L0 1 279
 R4
 r1
@@ -121,7 +121,7 @@ R0
 w1760461931
 8distanciaEsquerdaFrente.sv
 FdistanciaEsquerdaFrente.sv
-!i122 566
+!i122 573
 L0 1 249
 R4
 r1
@@ -146,7 +146,7 @@ R0
 w1760461908
 R6
 R7
-!i122 566
+!i122 573
 L0 1 264
 R4
 r1
@@ -162,17 +162,17 @@ vdistancias
 R1
 R9
 !i10b 1
-!s100 gCET6]5CJLOZ4aSBn<R]53
+!s100 PeFa>7i@A5[8n2Hn=9J[H0
 R2
-Ifi>c2bI<mh6I;EZQPm3Ia3
+Ij>OkciCeT^ZHzAbPo0EVC2
 R3
 S1
 R0
-w1760461588
+w1760462381
 8distancias.sv
 Fdistancias.sv
-!i122 566
-L0 1 420
+!i122 573
+L0 1 424
 R4
 r1
 !s85 0
@@ -195,7 +195,7 @@ R0
 w1760373582
 8mapas.sv
 Fmapas.sv
-!i122 566
+!i122 573
 L0 1 305
 R4
 r1
@@ -219,7 +219,7 @@ R0
 w1760137670
 8sync_fifo.sv
 Fsync_fifo.sv
-!i122 566
+!i122 573
 L0 4 48
 R4
 r1
@@ -234,16 +234,16 @@ vtb
 R1
 R9
 !i10b 1
-!s100 iQbL?JWY@J5Z7UF@ORUoG0
+!s100 iG;`OZe[dWXgL;kYglnmF3
 R2
-IAobWNSXWWRjF=@a93<Q0e1
+ITMRiRYgl56EWZJAf3XoGZ3
 R3
 S1
 R0
-w1760461998
+w1760462021
 Z12 8tb_distancias.sv
 Z13 Ftb_distancias.sv
-!i122 566
+!i122 573
 L0 3 116
 R4
 r1
@@ -363,7 +363,7 @@ R0
 w1760138169
 8Top.sv
 FTop.sv
-!i122 566
+!i122 573
 L0 1 83
 R4
 r1
