@@ -1,5 +1,5 @@
 $date
-	Mon Oct 13 12:26:35 2025
+	Tue Oct 14 14:13:22 2025
 $end
 $version
 	ModelSim Version 2020.1
@@ -201,33 +201,776 @@ $var reg 1 z! operacaoFinalizada $end
 $var reg 8 {! destinoX [7:0] $end
 $var reg 8 |! destinoY [7:0] $end
 $var reg 2 }! stage [0:1] $end
-$var reg 1 ~! direitaFrentePronta $end
-$var reg 1 !" direitaTrasPronta $end
-$var reg 1 "" esquerdaFrentePronta $end
-$var reg 1 #" esquerdaTrasPronta $end
-$var reg 8 $" contadorXdireitaFrente [7:0] $end
-$var reg 8 %" contadorYdireitaFrente [7:0] $end
-$var reg 8 &" contadorXdireitaTras [7:0] $end
-$var reg 8 '" contadorYdireitaTras [7:0] $end
-$var reg 8 (" contadorXesquerdaFrente [7:0] $end
-$var reg 8 )" contadorYesquerdaFrente [7:0] $end
-$var reg 8 *" contadorXesquerdaTras [7:0] $end
-$var reg 8 +" contadorYesquerdaTras [7:0] $end
-$var reg 1 ," candidatoEncontradoFrenteDireita $end
-$var reg 1 -" direitaAcabou $end
-$var reg 8 ." raio [7:0] $end
-$var reg 8 /" coordenadaCandidatoDireitaFrenteX [7:0] $end
-$var reg 8 0" coordenadaCandidatoDireitaFrenteY [7:0] $end
-$var reg 8 1" candidatoAtualDireitaFrente [7:0] $end
-$var reg 2 2" limiteAtingidoDireitaFrente [1:0] $end
-$var wire 1 3" distanciaDireitaFrente [7] $end
-$var wire 1 4" distanciaDireitaFrente [6] $end
-$var wire 1 5" distanciaDireitaFrente [5] $end
-$var wire 1 6" distanciaDireitaFrente [4] $end
-$var wire 1 7" distanciaDireitaFrente [3] $end
-$var wire 1 8" distanciaDireitaFrente [2] $end
-$var wire 1 9" distanciaDireitaFrente [1] $end
-$var wire 1 :" distanciaDireitaFrente [0] $end
+$var reg 8 ~! contadorXdireitaFrente [7:0] $end
+$var reg 8 !" contadorYdireitaFrente [7:0] $end
+$var reg 8 "" contadorXdireitaTras [7:0] $end
+$var reg 8 #" contadorYdireitaTras [7:0] $end
+$var reg 8 $" contadorXesquerdaFrente [7:0] $end
+$var reg 8 %" contadorYesquerdaFrente [7:0] $end
+$var reg 8 &" contadorXesquerdaTras [7:0] $end
+$var reg 8 '" contadorYesquerdaTras [7:0] $end
+$var reg 1 (" candidatoEncontradoFrenteDireita $end
+$var reg 1 )" candidatoEncontradoFrenteEsquerda $end
+$var reg 1 *" candidatoEncontradoTrasDireita $end
+$var reg 1 +" candidatoEncontradoTrasEsquerda $end
+$var reg 1 ," direitaFrenteAcabou $end
+$var reg 1 -" esquerdaFrenteAcabou $end
+$var reg 1 ." direitaTrasAcabou $end
+$var reg 1 /" esquerdaTrasAcabou $end
+$var reg 8 0" raio [7:0] $end
+$var reg 8 1" coordenadaCandidatoDireitaFrenteX [7:0] $end
+$var reg 8 2" coordenadaCandidatoDireitaTrasX [7:0] $end
+$var reg 8 3" coordenadaCandidatoEsquerdaFrenteX [7:0] $end
+$var reg 8 4" coordenadaCandidatoEsquerdaTrasX [7:0] $end
+$var reg 8 5" coordenadaCandidatoDireitaFrenteY [7:0] $end
+$var reg 8 6" coordenadaCandidatoDireitaTrasY [7:0] $end
+$var reg 8 7" coordenadaCandidatoEsquerdaFrenteY [7:0] $end
+$var reg 8 8" coordenadaCandidatoEsquerdaTrasY [7:0] $end
+$var reg 8 9" candidatoAtualDireitaFrente [7:0] $end
+$var reg 8 :" candidatoAtualEsquerdaFrente [7:0] $end
+$var reg 8 ;" candidatoAtualDireitaTras [7:0] $end
+$var reg 8 <" candidatoAtualEsquerdaTras [7:0] $end
+$var reg 2 =" limiteAtingidoDireitaFrente [1:0] $end
+$var reg 2 >" limiteAtingidoDireitaTras [1:0] $end
+$var reg 2 ?" limiteAtingidoEsquerdaFrente [1:0] $end
+$var reg 2 @" limiteAtingidoEsquerdaTras [1:0] $end
+$var reg 1 A" enableDireitaFrente $end
+$var reg 1 B" enableDireitaTras $end
+$var reg 1 C" enableEsquerdaFrente $end
+$var reg 1 D" enableEsquerdaTras $end
+$var reg 1 E" raioAtualizado $end
+
+$scope module distanciaDireitaFrente $end
+$var parameter 32 F" TamanhoMalha $end
+$var parameter 32 G" tamanhoDistancia $end
+$var parameter 2 H" IDLE $end
+$var parameter 2 I" Raio $end
+$var parameter 2 J" Calculo $end
+$var parameter 2 K" WAIT $end
+$var wire 1 A clock $end
+$var wire 1 B reset $end
+$var wire 1 L" enable $end
+$var wire 1 M" raio [7] $end
+$var wire 1 N" raio [6] $end
+$var wire 1 O" raio [5] $end
+$var wire 1 P" raio [4] $end
+$var wire 1 Q" raio [3] $end
+$var wire 1 R" raio [2] $end
+$var wire 1 S" raio [1] $end
+$var wire 1 T" raio [0] $end
+$var wire 1 C posicaoAtualnoEixoX [7] $end
+$var wire 1 D posicaoAtualnoEixoX [6] $end
+$var wire 1 E posicaoAtualnoEixoX [5] $end
+$var wire 1 F posicaoAtualnoEixoX [4] $end
+$var wire 1 G posicaoAtualnoEixoX [3] $end
+$var wire 1 H posicaoAtualnoEixoX [2] $end
+$var wire 1 I posicaoAtualnoEixoX [1] $end
+$var wire 1 J posicaoAtualnoEixoX [0] $end
+$var wire 1 K posicaoAtualnoEixoY [7] $end
+$var wire 1 L posicaoAtualnoEixoY [6] $end
+$var wire 1 M posicaoAtualnoEixoY [5] $end
+$var wire 1 N posicaoAtualnoEixoY [4] $end
+$var wire 1 O posicaoAtualnoEixoY [3] $end
+$var wire 1 P posicaoAtualnoEixoY [2] $end
+$var wire 1 Q posicaoAtualnoEixoY [1] $end
+$var wire 1 R posicaoAtualnoEixoY [0] $end
+$var wire 1 T malha [0] $end
+$var wire 1 U malha [1] $end
+$var wire 1 V malha [2] $end
+$var wire 1 W malha [3] $end
+$var wire 1 X malha [4] $end
+$var wire 1 Y malha [5] $end
+$var wire 1 Z malha [6] $end
+$var wire 1 [ malha [7] $end
+$var wire 1 \ malha [8] $end
+$var wire 1 ] malha [9] $end
+$var wire 1 ^ malha [10] $end
+$var wire 1 _ malha [11] $end
+$var wire 1 ` malha [12] $end
+$var wire 1 a malha [13] $end
+$var wire 1 b malha [14] $end
+$var wire 1 c malha [15] $end
+$var wire 1 d malha [16] $end
+$var wire 1 e malha [17] $end
+$var wire 1 f malha [18] $end
+$var wire 1 g malha [19] $end
+$var wire 1 h malha [20] $end
+$var wire 1 i malha [21] $end
+$var wire 1 j malha [22] $end
+$var wire 1 k malha [23] $end
+$var wire 1 l malha [24] $end
+$var wire 1 m malha [25] $end
+$var wire 1 n malha [26] $end
+$var wire 1 o malha [27] $end
+$var wire 1 p malha [28] $end
+$var wire 1 q malha [29] $end
+$var wire 1 r malha [30] $end
+$var wire 1 s malha [31] $end
+$var wire 1 t malha [32] $end
+$var wire 1 u malha [33] $end
+$var wire 1 v malha [34] $end
+$var wire 1 w malha [35] $end
+$var wire 1 x malha [36] $end
+$var wire 1 y malha [37] $end
+$var wire 1 z malha [38] $end
+$var wire 1 { malha [39] $end
+$var wire 1 | malha [40] $end
+$var wire 1 } malha [41] $end
+$var wire 1 ~ malha [42] $end
+$var wire 1 !! malha [43] $end
+$var wire 1 "! malha [44] $end
+$var wire 1 #! malha [45] $end
+$var wire 1 $! malha [46] $end
+$var wire 1 %! malha [47] $end
+$var wire 1 &! malha [48] $end
+$var wire 1 '! malha [49] $end
+$var wire 1 (! malha [50] $end
+$var wire 1 )! malha [51] $end
+$var wire 1 *! malha [52] $end
+$var wire 1 +! malha [53] $end
+$var wire 1 ,! malha [54] $end
+$var wire 1 -! malha [55] $end
+$var wire 1 .! malha [56] $end
+$var wire 1 /! malha [57] $end
+$var wire 1 0! malha [58] $end
+$var wire 1 1! malha [59] $end
+$var wire 1 2! malha [60] $end
+$var wire 1 3! malha [61] $end
+$var wire 1 4! malha [62] $end
+$var wire 1 5! malha [63] $end
+$var wire 1 6! malha [64] $end
+$var wire 1 7! malha [65] $end
+$var wire 1 8! malha [66] $end
+$var wire 1 9! malha [67] $end
+$var wire 1 :! malha [68] $end
+$var wire 1 ;! malha [69] $end
+$var wire 1 <! malha [70] $end
+$var wire 1 =! malha [71] $end
+$var wire 1 >! malha [72] $end
+$var wire 1 ?! malha [73] $end
+$var wire 1 @! malha [74] $end
+$var wire 1 A! malha [75] $end
+$var wire 1 B! malha [76] $end
+$var wire 1 C! malha [77] $end
+$var wire 1 D! malha [78] $end
+$var wire 1 E! malha [79] $end
+$var wire 1 F! malha [80] $end
+$var wire 1 G! malha [81] $end
+$var wire 1 H! malha [82] $end
+$var wire 1 I! malha [83] $end
+$var wire 1 J! malha [84] $end
+$var wire 1 K! malha [85] $end
+$var wire 1 L! malha [86] $end
+$var wire 1 M! malha [87] $end
+$var wire 1 N! malha [88] $end
+$var wire 1 O! malha [89] $end
+$var wire 1 P! malha [90] $end
+$var wire 1 Q! malha [91] $end
+$var wire 1 R! malha [92] $end
+$var wire 1 S! malha [93] $end
+$var wire 1 T! malha [94] $end
+$var wire 1 U! malha [95] $end
+$var wire 1 V! malha [96] $end
+$var wire 1 W! malha [97] $end
+$var wire 1 X! malha [98] $end
+$var wire 1 Y! malha [99] $end
+$var wire 1 Z! malha [100] $end
+$var wire 1 [! malha [101] $end
+$var wire 1 \! malha [102] $end
+$var wire 1 ]! malha [103] $end
+$var wire 1 ^! malha [104] $end
+$var wire 1 _! malha [105] $end
+$var wire 1 `! malha [106] $end
+$var wire 1 a! malha [107] $end
+$var wire 1 b! malha [108] $end
+$var wire 1 c! malha [109] $end
+$var wire 1 d! malha [110] $end
+$var wire 1 e! malha [111] $end
+$var wire 1 f! malha [112] $end
+$var wire 1 g! malha [113] $end
+$var wire 1 h! malha [114] $end
+$var wire 1 i! malha [115] $end
+$var wire 1 j! malha [116] $end
+$var wire 1 k! malha [117] $end
+$var wire 1 l! malha [118] $end
+$var wire 1 m! malha [119] $end
+$var wire 1 n! malha [120] $end
+$var wire 1 o! malha [121] $end
+$var wire 1 p! malha [122] $end
+$var wire 1 q! malha [123] $end
+$var wire 1 r! malha [124] $end
+$var wire 1 s! malha [125] $end
+$var wire 1 t! malha [126] $end
+$var wire 1 u! malha [127] $end
+$var wire 1 U" raioAtualizado $end
+$var reg 1 V" operacaoFinalizada $end
+$var reg 8 W" candidatoAtual [7:0] $end
+$var reg 8 X" coordenadaCandidatoX [7:0] $end
+$var reg 8 Y" coordenadaCandidatoY [7:0] $end
+$var reg 1 Z" acabouCalculoLocal $end
+$var reg 1 [" candidatoEncontrado $end
+$var reg 8 \" contadorX [7:0] $end
+$var reg 8 ]" contadorY [7:0] $end
+$var reg 2 ^" limiteAtingido [1:0] $end
+$var reg 2 _" stage [1:0] $end
+$var wire 1 `" distancia [7] $end
+$var wire 1 a" distancia [6] $end
+$var wire 1 b" distancia [5] $end
+$var wire 1 c" distancia [4] $end
+$var wire 1 d" distancia [3] $end
+$var wire 1 e" distancia [2] $end
+$var wire 1 f" distancia [1] $end
+$var wire 1 g" distancia [0] $end
+$upscope $end
+
+$scope module distanciaDireitaTras $end
+$var parameter 32 h" TamanhoMalha $end
+$var parameter 32 i" tamanhoDistancia $end
+$var parameter 2 j" IDLE $end
+$var parameter 2 k" Raio $end
+$var parameter 2 l" Calculo $end
+$var parameter 2 m" WAIT $end
+$var wire 1 A clock $end
+$var wire 1 B reset $end
+$var wire 1 n" enable $end
+$var wire 1 o" raio [7] $end
+$var wire 1 p" raio [6] $end
+$var wire 1 q" raio [5] $end
+$var wire 1 r" raio [4] $end
+$var wire 1 s" raio [3] $end
+$var wire 1 t" raio [2] $end
+$var wire 1 u" raio [1] $end
+$var wire 1 v" raio [0] $end
+$var wire 1 C posicaoAtualnoEixoX [7] $end
+$var wire 1 D posicaoAtualnoEixoX [6] $end
+$var wire 1 E posicaoAtualnoEixoX [5] $end
+$var wire 1 F posicaoAtualnoEixoX [4] $end
+$var wire 1 G posicaoAtualnoEixoX [3] $end
+$var wire 1 H posicaoAtualnoEixoX [2] $end
+$var wire 1 I posicaoAtualnoEixoX [1] $end
+$var wire 1 J posicaoAtualnoEixoX [0] $end
+$var wire 1 K posicaoAtualnoEixoY [7] $end
+$var wire 1 L posicaoAtualnoEixoY [6] $end
+$var wire 1 M posicaoAtualnoEixoY [5] $end
+$var wire 1 N posicaoAtualnoEixoY [4] $end
+$var wire 1 O posicaoAtualnoEixoY [3] $end
+$var wire 1 P posicaoAtualnoEixoY [2] $end
+$var wire 1 Q posicaoAtualnoEixoY [1] $end
+$var wire 1 R posicaoAtualnoEixoY [0] $end
+$var wire 1 T malha [0] $end
+$var wire 1 U malha [1] $end
+$var wire 1 V malha [2] $end
+$var wire 1 W malha [3] $end
+$var wire 1 X malha [4] $end
+$var wire 1 Y malha [5] $end
+$var wire 1 Z malha [6] $end
+$var wire 1 [ malha [7] $end
+$var wire 1 \ malha [8] $end
+$var wire 1 ] malha [9] $end
+$var wire 1 ^ malha [10] $end
+$var wire 1 _ malha [11] $end
+$var wire 1 ` malha [12] $end
+$var wire 1 a malha [13] $end
+$var wire 1 b malha [14] $end
+$var wire 1 c malha [15] $end
+$var wire 1 d malha [16] $end
+$var wire 1 e malha [17] $end
+$var wire 1 f malha [18] $end
+$var wire 1 g malha [19] $end
+$var wire 1 h malha [20] $end
+$var wire 1 i malha [21] $end
+$var wire 1 j malha [22] $end
+$var wire 1 k malha [23] $end
+$var wire 1 l malha [24] $end
+$var wire 1 m malha [25] $end
+$var wire 1 n malha [26] $end
+$var wire 1 o malha [27] $end
+$var wire 1 p malha [28] $end
+$var wire 1 q malha [29] $end
+$var wire 1 r malha [30] $end
+$var wire 1 s malha [31] $end
+$var wire 1 t malha [32] $end
+$var wire 1 u malha [33] $end
+$var wire 1 v malha [34] $end
+$var wire 1 w malha [35] $end
+$var wire 1 x malha [36] $end
+$var wire 1 y malha [37] $end
+$var wire 1 z malha [38] $end
+$var wire 1 { malha [39] $end
+$var wire 1 | malha [40] $end
+$var wire 1 } malha [41] $end
+$var wire 1 ~ malha [42] $end
+$var wire 1 !! malha [43] $end
+$var wire 1 "! malha [44] $end
+$var wire 1 #! malha [45] $end
+$var wire 1 $! malha [46] $end
+$var wire 1 %! malha [47] $end
+$var wire 1 &! malha [48] $end
+$var wire 1 '! malha [49] $end
+$var wire 1 (! malha [50] $end
+$var wire 1 )! malha [51] $end
+$var wire 1 *! malha [52] $end
+$var wire 1 +! malha [53] $end
+$var wire 1 ,! malha [54] $end
+$var wire 1 -! malha [55] $end
+$var wire 1 .! malha [56] $end
+$var wire 1 /! malha [57] $end
+$var wire 1 0! malha [58] $end
+$var wire 1 1! malha [59] $end
+$var wire 1 2! malha [60] $end
+$var wire 1 3! malha [61] $end
+$var wire 1 4! malha [62] $end
+$var wire 1 5! malha [63] $end
+$var wire 1 6! malha [64] $end
+$var wire 1 7! malha [65] $end
+$var wire 1 8! malha [66] $end
+$var wire 1 9! malha [67] $end
+$var wire 1 :! malha [68] $end
+$var wire 1 ;! malha [69] $end
+$var wire 1 <! malha [70] $end
+$var wire 1 =! malha [71] $end
+$var wire 1 >! malha [72] $end
+$var wire 1 ?! malha [73] $end
+$var wire 1 @! malha [74] $end
+$var wire 1 A! malha [75] $end
+$var wire 1 B! malha [76] $end
+$var wire 1 C! malha [77] $end
+$var wire 1 D! malha [78] $end
+$var wire 1 E! malha [79] $end
+$var wire 1 F! malha [80] $end
+$var wire 1 G! malha [81] $end
+$var wire 1 H! malha [82] $end
+$var wire 1 I! malha [83] $end
+$var wire 1 J! malha [84] $end
+$var wire 1 K! malha [85] $end
+$var wire 1 L! malha [86] $end
+$var wire 1 M! malha [87] $end
+$var wire 1 N! malha [88] $end
+$var wire 1 O! malha [89] $end
+$var wire 1 P! malha [90] $end
+$var wire 1 Q! malha [91] $end
+$var wire 1 R! malha [92] $end
+$var wire 1 S! malha [93] $end
+$var wire 1 T! malha [94] $end
+$var wire 1 U! malha [95] $end
+$var wire 1 V! malha [96] $end
+$var wire 1 W! malha [97] $end
+$var wire 1 X! malha [98] $end
+$var wire 1 Y! malha [99] $end
+$var wire 1 Z! malha [100] $end
+$var wire 1 [! malha [101] $end
+$var wire 1 \! malha [102] $end
+$var wire 1 ]! malha [103] $end
+$var wire 1 ^! malha [104] $end
+$var wire 1 _! malha [105] $end
+$var wire 1 `! malha [106] $end
+$var wire 1 a! malha [107] $end
+$var wire 1 b! malha [108] $end
+$var wire 1 c! malha [109] $end
+$var wire 1 d! malha [110] $end
+$var wire 1 e! malha [111] $end
+$var wire 1 f! malha [112] $end
+$var wire 1 g! malha [113] $end
+$var wire 1 h! malha [114] $end
+$var wire 1 i! malha [115] $end
+$var wire 1 j! malha [116] $end
+$var wire 1 k! malha [117] $end
+$var wire 1 l! malha [118] $end
+$var wire 1 m! malha [119] $end
+$var wire 1 n! malha [120] $end
+$var wire 1 o! malha [121] $end
+$var wire 1 p! malha [122] $end
+$var wire 1 q! malha [123] $end
+$var wire 1 r! malha [124] $end
+$var wire 1 s! malha [125] $end
+$var wire 1 t! malha [126] $end
+$var wire 1 u! malha [127] $end
+$var wire 1 w" raioAtualizado $end
+$var reg 1 x" operacaoFinalizada $end
+$var reg 8 y" candidatoAtual [7:0] $end
+$var reg 8 z" coordenadaCandidatoX [7:0] $end
+$var reg 8 {" coordenadaCandidatoY [7:0] $end
+$var reg 1 |" acabouCalculoLocal $end
+$var reg 1 }" candidatoEncontrado $end
+$var reg 8 ~" contadorX [7:0] $end
+$var reg 8 !# contadorY [7:0] $end
+$var reg 2 "# limiteAtingido [1:0] $end
+$var reg 2 ## stage [1:0] $end
+$var wire 1 $# distancia [7] $end
+$var wire 1 %# distancia [6] $end
+$var wire 1 &# distancia [5] $end
+$var wire 1 '# distancia [4] $end
+$var wire 1 (# distancia [3] $end
+$var wire 1 )# distancia [2] $end
+$var wire 1 *# distancia [1] $end
+$var wire 1 +# distancia [0] $end
+$upscope $end
+
+$scope module distanciaEsquerdaFrente $end
+$var parameter 32 ,# TamanhoMalha $end
+$var parameter 32 -# tamanhoDistancia $end
+$var parameter 2 .# IDLE $end
+$var parameter 2 /# Raio $end
+$var parameter 2 0# Calculo $end
+$var parameter 2 1# WAIT $end
+$var wire 1 A clock $end
+$var wire 1 B reset $end
+$var wire 1 2# enable $end
+$var wire 1 3# raio [7] $end
+$var wire 1 4# raio [6] $end
+$var wire 1 5# raio [5] $end
+$var wire 1 6# raio [4] $end
+$var wire 1 7# raio [3] $end
+$var wire 1 8# raio [2] $end
+$var wire 1 9# raio [1] $end
+$var wire 1 :# raio [0] $end
+$var wire 1 C posicaoAtualnoEixoX [7] $end
+$var wire 1 D posicaoAtualnoEixoX [6] $end
+$var wire 1 E posicaoAtualnoEixoX [5] $end
+$var wire 1 F posicaoAtualnoEixoX [4] $end
+$var wire 1 G posicaoAtualnoEixoX [3] $end
+$var wire 1 H posicaoAtualnoEixoX [2] $end
+$var wire 1 I posicaoAtualnoEixoX [1] $end
+$var wire 1 J posicaoAtualnoEixoX [0] $end
+$var wire 1 K posicaoAtualnoEixoY [7] $end
+$var wire 1 L posicaoAtualnoEixoY [6] $end
+$var wire 1 M posicaoAtualnoEixoY [5] $end
+$var wire 1 N posicaoAtualnoEixoY [4] $end
+$var wire 1 O posicaoAtualnoEixoY [3] $end
+$var wire 1 P posicaoAtualnoEixoY [2] $end
+$var wire 1 Q posicaoAtualnoEixoY [1] $end
+$var wire 1 R posicaoAtualnoEixoY [0] $end
+$var wire 1 T malha [0] $end
+$var wire 1 U malha [1] $end
+$var wire 1 V malha [2] $end
+$var wire 1 W malha [3] $end
+$var wire 1 X malha [4] $end
+$var wire 1 Y malha [5] $end
+$var wire 1 Z malha [6] $end
+$var wire 1 [ malha [7] $end
+$var wire 1 \ malha [8] $end
+$var wire 1 ] malha [9] $end
+$var wire 1 ^ malha [10] $end
+$var wire 1 _ malha [11] $end
+$var wire 1 ` malha [12] $end
+$var wire 1 a malha [13] $end
+$var wire 1 b malha [14] $end
+$var wire 1 c malha [15] $end
+$var wire 1 d malha [16] $end
+$var wire 1 e malha [17] $end
+$var wire 1 f malha [18] $end
+$var wire 1 g malha [19] $end
+$var wire 1 h malha [20] $end
+$var wire 1 i malha [21] $end
+$var wire 1 j malha [22] $end
+$var wire 1 k malha [23] $end
+$var wire 1 l malha [24] $end
+$var wire 1 m malha [25] $end
+$var wire 1 n malha [26] $end
+$var wire 1 o malha [27] $end
+$var wire 1 p malha [28] $end
+$var wire 1 q malha [29] $end
+$var wire 1 r malha [30] $end
+$var wire 1 s malha [31] $end
+$var wire 1 t malha [32] $end
+$var wire 1 u malha [33] $end
+$var wire 1 v malha [34] $end
+$var wire 1 w malha [35] $end
+$var wire 1 x malha [36] $end
+$var wire 1 y malha [37] $end
+$var wire 1 z malha [38] $end
+$var wire 1 { malha [39] $end
+$var wire 1 | malha [40] $end
+$var wire 1 } malha [41] $end
+$var wire 1 ~ malha [42] $end
+$var wire 1 !! malha [43] $end
+$var wire 1 "! malha [44] $end
+$var wire 1 #! malha [45] $end
+$var wire 1 $! malha [46] $end
+$var wire 1 %! malha [47] $end
+$var wire 1 &! malha [48] $end
+$var wire 1 '! malha [49] $end
+$var wire 1 (! malha [50] $end
+$var wire 1 )! malha [51] $end
+$var wire 1 *! malha [52] $end
+$var wire 1 +! malha [53] $end
+$var wire 1 ,! malha [54] $end
+$var wire 1 -! malha [55] $end
+$var wire 1 .! malha [56] $end
+$var wire 1 /! malha [57] $end
+$var wire 1 0! malha [58] $end
+$var wire 1 1! malha [59] $end
+$var wire 1 2! malha [60] $end
+$var wire 1 3! malha [61] $end
+$var wire 1 4! malha [62] $end
+$var wire 1 5! malha [63] $end
+$var wire 1 6! malha [64] $end
+$var wire 1 7! malha [65] $end
+$var wire 1 8! malha [66] $end
+$var wire 1 9! malha [67] $end
+$var wire 1 :! malha [68] $end
+$var wire 1 ;! malha [69] $end
+$var wire 1 <! malha [70] $end
+$var wire 1 =! malha [71] $end
+$var wire 1 >! malha [72] $end
+$var wire 1 ?! malha [73] $end
+$var wire 1 @! malha [74] $end
+$var wire 1 A! malha [75] $end
+$var wire 1 B! malha [76] $end
+$var wire 1 C! malha [77] $end
+$var wire 1 D! malha [78] $end
+$var wire 1 E! malha [79] $end
+$var wire 1 F! malha [80] $end
+$var wire 1 G! malha [81] $end
+$var wire 1 H! malha [82] $end
+$var wire 1 I! malha [83] $end
+$var wire 1 J! malha [84] $end
+$var wire 1 K! malha [85] $end
+$var wire 1 L! malha [86] $end
+$var wire 1 M! malha [87] $end
+$var wire 1 N! malha [88] $end
+$var wire 1 O! malha [89] $end
+$var wire 1 P! malha [90] $end
+$var wire 1 Q! malha [91] $end
+$var wire 1 R! malha [92] $end
+$var wire 1 S! malha [93] $end
+$var wire 1 T! malha [94] $end
+$var wire 1 U! malha [95] $end
+$var wire 1 V! malha [96] $end
+$var wire 1 W! malha [97] $end
+$var wire 1 X! malha [98] $end
+$var wire 1 Y! malha [99] $end
+$var wire 1 Z! malha [100] $end
+$var wire 1 [! malha [101] $end
+$var wire 1 \! malha [102] $end
+$var wire 1 ]! malha [103] $end
+$var wire 1 ^! malha [104] $end
+$var wire 1 _! malha [105] $end
+$var wire 1 `! malha [106] $end
+$var wire 1 a! malha [107] $end
+$var wire 1 b! malha [108] $end
+$var wire 1 c! malha [109] $end
+$var wire 1 d! malha [110] $end
+$var wire 1 e! malha [111] $end
+$var wire 1 f! malha [112] $end
+$var wire 1 g! malha [113] $end
+$var wire 1 h! malha [114] $end
+$var wire 1 i! malha [115] $end
+$var wire 1 j! malha [116] $end
+$var wire 1 k! malha [117] $end
+$var wire 1 l! malha [118] $end
+$var wire 1 m! malha [119] $end
+$var wire 1 n! malha [120] $end
+$var wire 1 o! malha [121] $end
+$var wire 1 p! malha [122] $end
+$var wire 1 q! malha [123] $end
+$var wire 1 r! malha [124] $end
+$var wire 1 s! malha [125] $end
+$var wire 1 t! malha [126] $end
+$var wire 1 u! malha [127] $end
+$var wire 1 ;# raioAtualizado $end
+$var reg 1 <# operacaoFinalizada $end
+$var reg 8 =# candidatoAtual [7:0] $end
+$var reg 8 ># coordenadaCandidatoX [7:0] $end
+$var reg 8 ?# coordenadaCandidatoY [7:0] $end
+$var reg 1 @# acabouCalculoLocal $end
+$var reg 1 A# candidatoEncontrado $end
+$var reg 8 B# contadorX [7:0] $end
+$var reg 8 C# contadorY [7:0] $end
+$var reg 2 D# limiteAtingido [1:0] $end
+$var reg 2 E# stage [1:0] $end
+$var wire 1 F# distancia [7] $end
+$var wire 1 G# distancia [6] $end
+$var wire 1 H# distancia [5] $end
+$var wire 1 I# distancia [4] $end
+$var wire 1 J# distancia [3] $end
+$var wire 1 K# distancia [2] $end
+$var wire 1 L# distancia [1] $end
+$var wire 1 M# distancia [0] $end
+$upscope $end
+
+$scope module distanciaEsquerdaTras $end
+$var parameter 32 N# TamanhoMalha $end
+$var parameter 32 O# tamanhoDistancia $end
+$var parameter 2 P# IDLE $end
+$var parameter 2 Q# Raio $end
+$var parameter 2 R# Calculo $end
+$var parameter 2 S# WAIT $end
+$var wire 1 A clock $end
+$var wire 1 B reset $end
+$var wire 1 T# enable $end
+$var wire 1 U# raio [7] $end
+$var wire 1 V# raio [6] $end
+$var wire 1 W# raio [5] $end
+$var wire 1 X# raio [4] $end
+$var wire 1 Y# raio [3] $end
+$var wire 1 Z# raio [2] $end
+$var wire 1 [# raio [1] $end
+$var wire 1 \# raio [0] $end
+$var wire 1 C posicaoAtualnoEixoX [7] $end
+$var wire 1 D posicaoAtualnoEixoX [6] $end
+$var wire 1 E posicaoAtualnoEixoX [5] $end
+$var wire 1 F posicaoAtualnoEixoX [4] $end
+$var wire 1 G posicaoAtualnoEixoX [3] $end
+$var wire 1 H posicaoAtualnoEixoX [2] $end
+$var wire 1 I posicaoAtualnoEixoX [1] $end
+$var wire 1 J posicaoAtualnoEixoX [0] $end
+$var wire 1 K posicaoAtualnoEixoY [7] $end
+$var wire 1 L posicaoAtualnoEixoY [6] $end
+$var wire 1 M posicaoAtualnoEixoY [5] $end
+$var wire 1 N posicaoAtualnoEixoY [4] $end
+$var wire 1 O posicaoAtualnoEixoY [3] $end
+$var wire 1 P posicaoAtualnoEixoY [2] $end
+$var wire 1 Q posicaoAtualnoEixoY [1] $end
+$var wire 1 R posicaoAtualnoEixoY [0] $end
+$var wire 1 T malha [0] $end
+$var wire 1 U malha [1] $end
+$var wire 1 V malha [2] $end
+$var wire 1 W malha [3] $end
+$var wire 1 X malha [4] $end
+$var wire 1 Y malha [5] $end
+$var wire 1 Z malha [6] $end
+$var wire 1 [ malha [7] $end
+$var wire 1 \ malha [8] $end
+$var wire 1 ] malha [9] $end
+$var wire 1 ^ malha [10] $end
+$var wire 1 _ malha [11] $end
+$var wire 1 ` malha [12] $end
+$var wire 1 a malha [13] $end
+$var wire 1 b malha [14] $end
+$var wire 1 c malha [15] $end
+$var wire 1 d malha [16] $end
+$var wire 1 e malha [17] $end
+$var wire 1 f malha [18] $end
+$var wire 1 g malha [19] $end
+$var wire 1 h malha [20] $end
+$var wire 1 i malha [21] $end
+$var wire 1 j malha [22] $end
+$var wire 1 k malha [23] $end
+$var wire 1 l malha [24] $end
+$var wire 1 m malha [25] $end
+$var wire 1 n malha [26] $end
+$var wire 1 o malha [27] $end
+$var wire 1 p malha [28] $end
+$var wire 1 q malha [29] $end
+$var wire 1 r malha [30] $end
+$var wire 1 s malha [31] $end
+$var wire 1 t malha [32] $end
+$var wire 1 u malha [33] $end
+$var wire 1 v malha [34] $end
+$var wire 1 w malha [35] $end
+$var wire 1 x malha [36] $end
+$var wire 1 y malha [37] $end
+$var wire 1 z malha [38] $end
+$var wire 1 { malha [39] $end
+$var wire 1 | malha [40] $end
+$var wire 1 } malha [41] $end
+$var wire 1 ~ malha [42] $end
+$var wire 1 !! malha [43] $end
+$var wire 1 "! malha [44] $end
+$var wire 1 #! malha [45] $end
+$var wire 1 $! malha [46] $end
+$var wire 1 %! malha [47] $end
+$var wire 1 &! malha [48] $end
+$var wire 1 '! malha [49] $end
+$var wire 1 (! malha [50] $end
+$var wire 1 )! malha [51] $end
+$var wire 1 *! malha [52] $end
+$var wire 1 +! malha [53] $end
+$var wire 1 ,! malha [54] $end
+$var wire 1 -! malha [55] $end
+$var wire 1 .! malha [56] $end
+$var wire 1 /! malha [57] $end
+$var wire 1 0! malha [58] $end
+$var wire 1 1! malha [59] $end
+$var wire 1 2! malha [60] $end
+$var wire 1 3! malha [61] $end
+$var wire 1 4! malha [62] $end
+$var wire 1 5! malha [63] $end
+$var wire 1 6! malha [64] $end
+$var wire 1 7! malha [65] $end
+$var wire 1 8! malha [66] $end
+$var wire 1 9! malha [67] $end
+$var wire 1 :! malha [68] $end
+$var wire 1 ;! malha [69] $end
+$var wire 1 <! malha [70] $end
+$var wire 1 =! malha [71] $end
+$var wire 1 >! malha [72] $end
+$var wire 1 ?! malha [73] $end
+$var wire 1 @! malha [74] $end
+$var wire 1 A! malha [75] $end
+$var wire 1 B! malha [76] $end
+$var wire 1 C! malha [77] $end
+$var wire 1 D! malha [78] $end
+$var wire 1 E! malha [79] $end
+$var wire 1 F! malha [80] $end
+$var wire 1 G! malha [81] $end
+$var wire 1 H! malha [82] $end
+$var wire 1 I! malha [83] $end
+$var wire 1 J! malha [84] $end
+$var wire 1 K! malha [85] $end
+$var wire 1 L! malha [86] $end
+$var wire 1 M! malha [87] $end
+$var wire 1 N! malha [88] $end
+$var wire 1 O! malha [89] $end
+$var wire 1 P! malha [90] $end
+$var wire 1 Q! malha [91] $end
+$var wire 1 R! malha [92] $end
+$var wire 1 S! malha [93] $end
+$var wire 1 T! malha [94] $end
+$var wire 1 U! malha [95] $end
+$var wire 1 V! malha [96] $end
+$var wire 1 W! malha [97] $end
+$var wire 1 X! malha [98] $end
+$var wire 1 Y! malha [99] $end
+$var wire 1 Z! malha [100] $end
+$var wire 1 [! malha [101] $end
+$var wire 1 \! malha [102] $end
+$var wire 1 ]! malha [103] $end
+$var wire 1 ^! malha [104] $end
+$var wire 1 _! malha [105] $end
+$var wire 1 `! malha [106] $end
+$var wire 1 a! malha [107] $end
+$var wire 1 b! malha [108] $end
+$var wire 1 c! malha [109] $end
+$var wire 1 d! malha [110] $end
+$var wire 1 e! malha [111] $end
+$var wire 1 f! malha [112] $end
+$var wire 1 g! malha [113] $end
+$var wire 1 h! malha [114] $end
+$var wire 1 i! malha [115] $end
+$var wire 1 j! malha [116] $end
+$var wire 1 k! malha [117] $end
+$var wire 1 l! malha [118] $end
+$var wire 1 m! malha [119] $end
+$var wire 1 n! malha [120] $end
+$var wire 1 o! malha [121] $end
+$var wire 1 p! malha [122] $end
+$var wire 1 q! malha [123] $end
+$var wire 1 r! malha [124] $end
+$var wire 1 s! malha [125] $end
+$var wire 1 t! malha [126] $end
+$var wire 1 u! malha [127] $end
+$var wire 1 ]# raioAtualizado $end
+$var reg 1 ^# operacaoFinalizada $end
+$var reg 8 _# candidatoAtual [7:0] $end
+$var reg 8 `# coordenadaCandidatoX [7:0] $end
+$var reg 8 a# coordenadaCandidatoY [7:0] $end
+$var reg 1 b# acabouCalculoLocal $end
+$var reg 1 c# candidatoEncontrado $end
+$var reg 8 d# contadorX [7:0] $end
+$var reg 8 e# contadorY [7:0] $end
+$var reg 2 f# limiteAtingido [1:0] $end
+$var reg 2 g# stage [1:0] $end
+$var wire 1 h# distancia [7] $end
+$var wire 1 i# distancia [6] $end
+$var wire 1 j# distancia [5] $end
+$var wire 1 k# distancia [4] $end
+$var wire 1 l# distancia [3] $end
+$var wire 1 m# distancia [2] $end
+$var wire 1 n# distancia [1] $end
+$var wire 1 o# distancia [0] $end
+$upscope $end
 $upscope $end
 $upscope $end
 $enddefinitions $end
@@ -236,32 +979,91 @@ $dumpvars
 0#
 1$
 0%
-b0 &
-b0 '
-b1111 9
+b11 &
+b11 '
+b1000 9
 0z!
 b0 {!
 b0 |!
 b0 }!
-0~!
-0!"
-0""
-0#"
+b0 ~!
+b0 !"
+b0 ""
+b0 #"
 b0 $"
 b0 %"
 b0 &"
 b0 '"
-b0 ("
-b0 )"
-b0 *"
-b0 +"
+0("
+0)"
+0*"
+0+"
 0,"
-1-"
-b0 ."
-b0 /"
+0-"
+0."
+0/"
 b0 0"
-b11111111 1"
+b0 1"
 b0 2"
+b0 3"
+b0 4"
+b0 5"
+b0 6"
+b0 7"
+b0 8"
+b0 9"
+b0 :"
+b0 ;"
+b0 <"
+b0 ="
+b0 >"
+b0 ?"
+b0 @"
+0A"
+0B"
+0C"
+0D"
+0E"
+0V"
+b0 W"
+b0 X"
+b0 Y"
+0Z"
+0["
+b0 \"
+b0 ]"
+b11 ^"
+b0 _"
+0x"
+b0 y"
+b0 z"
+b0 {"
+0|"
+0}"
+b0 ~"
+b0 !#
+b11 "#
+b0 ##
+0<#
+b0 =#
+b0 >#
+b0 ?#
+0@#
+0A#
+b0 B#
+b0 C#
+b11 D#
+b0 E#
+0^#
+b0 _#
+b0 `#
+b0 a#
+0b#
+0c#
+b0 d#
+b0 e#
+b11 f#
+b0 g#
 b1000 !
 b1000 "
 b1000 ;
@@ -270,6 +1072,30 @@ b0 =
 b1 >
 b10 ?
 b11 @
+b1000 F"
+b1000 G"
+b0 H"
+b1 I"
+b10 J"
+b11 K"
+b1000 h"
+b1000 i"
+b0 j"
+b1 k"
+b10 l"
+b11 m"
+b1000 ,#
+b1000 -#
+b0 .#
+b1 /#
+b10 0#
+b11 1#
+b1000 N#
+b1000 O#
+b0 P#
+b1 Q#
+b10 R#
+b11 S#
 b1000000 :
 0(
 00
@@ -288,26 +1114,50 @@ b1000000 :
 03
 02
 01
-0:"
-09"
-08"
-07"
-06"
-05"
-04"
-03"
+0g"
+1f"
+0e"
+1d"
+1c"
+1b"
+1a"
+1`"
+0+#
+0*#
+0)#
+0(#
+0'#
+0&#
+0%#
+0$#
+0M#
+0L#
+0K#
+0J#
+0I#
+0H#
+0G#
+0F#
+0o#
+1n#
+1m#
+0l#
+0k#
+0j#
+0i#
+0h#
 0A
 1B
-0J
-0I
+1J
+1I
 0H
 0G
 0F
 0E
 0D
 0C
-0R
-0Q
+1R
+1Q
 0P
 0O
 0N
@@ -443,14 +1293,62 @@ b1000000 :
 0s!
 0t!
 0u!
-1y!
-1x!
-1w!
+0y!
+0x!
+0w!
 1v!
+0L"
+0T"
+0S"
+0R"
+0Q"
+0P"
+0O"
+0N"
+0M"
+0U"
+0n"
+0v"
+0u"
+0t"
+0s"
+0r"
+0q"
+0p"
+0o"
+0w"
+02#
+0:#
+09#
+08#
+07#
+06#
+05#
+04#
+03#
+0;#
+0T#
+0\#
+0[#
+0Z#
+0Y#
+0X#
+0W#
+0V#
+0U#
+0]#
 $end
 #5000
 1#
 1A
+1,"
+1-"
+1."
+1/"
+b11111111 9"
+b11111111 ;"
+b11111111 :"
+b11111111 <"
 #10000
 0#
 0A
@@ -482,240 +1380,355 @@ b10 }!
 #45000
 1#
 1A
-0-"
-b1 ."
-b1 $"
+0,"
+1A"
+b10 ?"
+b11 ?"
+b10 >"
+b11 >"
+b10 @"
+b11 @"
+b1 0"
 b11 }!
-1:"
+1L"
+1T"
+1v"
+1:#
+1\#
 #50000
 0#
 0A
 #55000
 1#
 1A
-b1 %"
-b0 $"
+b100 \"
+b10 ^"
+b11 ]"
+b10 _"
+b11111111 W"
+b0 ^"
+1g"
+0f"
+0d"
+0c"
+0b"
+0a"
+0`"
 #60000
 0#
 0A
 #65000
 1#
 1A
-b1 $"
-0:"
-19"
+b100 ]"
+b11 \"
 #70000
 0#
 0A
 #75000
 1#
 1A
-1-"
+b100 \"
+0g"
+1f"
 #80000
 0#
 0A
 #85000
 1#
 1A
-b1 }!
+1Z"
+b1 _"
+1,"
 #90000
 0#
 0A
 #95000
 1#
 1A
-b11 }!
-b10 ."
-b10 $"
-b0 %"
-0-"
+b1 }!
+b101 \"
+b11 ]"
+b11 _"
 #100000
 0#
 0A
 #105000
 1#
 1A
-b1 %"
-1:"
+b11 }!
+b10 0"
+1E"
+0T"
+1S"
+0v"
+1u"
+0:#
+19#
+0\#
+1[#
+1]#
+1;#
+1w"
+1U"
 #110000
 0#
 0A
 #115000
 1#
 1A
-b10 %"
-b0 $"
-0:"
+0E"
+b1 }!
+b10 _"
+0Z"
+0,"
+0]#
+0;#
+0w"
+0U"
 #120000
 0#
 0A
 #125000
 1#
 1A
-b1 $"
-1:"
+b11 }!
+b11 0"
+1E"
+b100 ]"
+1]#
+1;#
+1w"
+1U"
+1g"
+1T"
+1v"
+1:#
+1\#
 #130000
 0#
 0A
 #135000
 1#
 1A
-b10 $"
-0:"
-09"
-18"
+0E"
+b110 \"
+0]#
+0;#
+0w"
+0U"
+0g"
+0f"
+1e"
 #140000
 0#
 0A
 #145000
 1#
 1A
-1-"
+b101 ]"
+1g"
 #150000
 0#
 0A
 #155000
 1#
 1A
-b1 }!
+b110 ]"
+b11 \"
+1f"
+0e"
 #160000
 0#
 0A
 #165000
 1#
 1A
-b11 }!
-b11 ."
-b11 $"
-b0 %"
-0-"
-1:"
-19"
-08"
+b100 \"
+0g"
+0f"
+1e"
 #170000
 0#
 0A
 #175000
 1#
 1A
-b1 %"
-0:"
-09"
-18"
+b101 \"
+1g"
 #180000
 0#
 0A
 #185000
 1#
 1A
-b10 %"
-1:"
+b110 \"
+0g"
+1f"
 #190000
 0#
 0A
 #195000
 1#
 1A
-b11 %"
-b0 $"
-19"
-08"
+1Z"
+b1 _"
+1,"
 #200000
 0#
 0A
 #205000
 1#
 1A
-b1 $"
-0:"
-09"
-18"
+b1 }!
+b111 \"
+b11 ]"
+b11 _"
+0f"
 #210000
 0#
 0A
 #215000
 1#
 1A
-b10 $"
-1:"
+b11 }!
+b100 0"
+1E"
+0T"
+0S"
+1R"
+0v"
+0u"
+1t"
+0:#
+09#
+18#
+0\#
+0[#
+1Z#
+1]#
+1;#
+1w"
+1U"
 #220000
 0#
 0A
 #225000
 1#
 1A
-1,"
-b101 1"
-b10 /"
-b11 0"
-b11 $"
-0:"
-19"
+0E"
+b1 }!
+b10 _"
+0Z"
+0,"
+0]#
+0;#
+0w"
+0U"
 #230000
 0#
 0A
 #235000
 1#
 1A
-1-"
+b11 }!
+b101 0"
+1E"
+b100 ]"
+1]#
+1;#
+1w"
+1U"
+1g"
+1T"
+1v"
+1:#
+1\#
 #240000
 0#
 0A
 #245000
 1#
 1A
-b1 }!
+0E"
+b1 ^"
+0]#
+0;#
+0w"
+0U"
 #250000
 0#
 0A
 #255000
 1#
 1A
-b0 }!
-b1 ."
-1z!
-b10 {!
-b11 |!
-1(
-18
-17
-1/
+b101 ]"
+0g"
+1f"
 #260000
 0#
 0A
 #265000
 1#
 1A
+b110 ]"
+1g"
 #270000
 0#
 0A
 #275000
 1#
 1A
+b111 ]"
+0g"
+0f"
+0e"
+1d"
 #280000
 0#
 0A
 #285000
 1#
 1A
+b11 ^"
 #290000
 0#
 0A
 #295000
 1#
 1A
+1Z"
+b1 _"
+1,"
 #300000
 0#
 0A
 #305000
 1#
 1A
+b1 }!
+b1001 \"
+b11 ]"
+1V"
+b11 _"
+1("
+1f"
+1e"
+0d"
 #310000
 0#
 0A
 #315000
 1#
 1A
+b0 }!
+b1 0"
+1z!
+0R"
+0t"
+08#
+0Z#
+1(
 #320000
 0#
 0A

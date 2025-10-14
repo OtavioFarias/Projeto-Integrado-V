@@ -58,8 +58,8 @@ always_ff @(posedge clock, posedge reset) begin
 		 	end
 		 end
 		 
-		 operacaoFinalizada <= 1'b1;
-		 stage <= IDLE;
+		operacaoFinalizada <= 1'b1;
+		stage <= IDLE;
 		 
 		marcarDireita <= 0;
 		marcarEsquerda <= 0;

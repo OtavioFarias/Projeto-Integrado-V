@@ -1,0 +1,76 @@
+
+//lado esquerdaFrente
+always_ff @(posedge clock) begin
+	
+	//só começa se não tiver acabado, fazer para todos
+	if(!esquerdaFrenteAcabou && enable[0] == 1'b1) begin 
+		// local válido
+		
+		if(malha[contadorXesquerdaFrente + contadorYesquerdaFrente*TamanhoMalha] == 3) begin 
+		
+			candidatoEncontradoFrenteDireita <= 1;
+		
+				//valor ja escolhido	        novoCandidato
+			if(candidatoAtualesquerdaFrente > distanciaesquerdaFrente) begin
+			
+				//novo menor caminho guardado
+				candidatoAtualesquerdaFrente <= distanciaesquerdaFrente;
+				coordenadaCandidatoesquerdaFrenteX <= contadorXesquerdaFrente;
+				coordenadaCandidatoesquerdaFrenteY <= contadorYesquerdaFrente;
+			
+			end
+		
+		end
+
+		if(contadorXesquerdaFrente == raio + posicaoAtualnoEixoX || limiteAtingidoesquerdaFrente[0] == 1'b1) begin
+		
+			if(contadorYesquerdaFrente == raio + posicaoAtualnoEixoY || limiteAtingidoesquerdaFrente[1] == 1'b1) begin
+			
+				//acabou busca nesse raio
+				esquerdaFrenteAcabou <= 1;
+			
+			end
+			else begin
+			
+				if(contadorYesquerdaFrente == TamanhoMalha - 1) begin
+			
+					limiteAtingidoesquerdaFrente[1] <= 1'b1;
+					
+				end
+				else begin
+				
+					contadorYesquerdaFrente <= contadorYesquerdaFrente + 1;
+				
+				end
+				if(contadorYesquerdaFrente == raio + posicaoAtualnoEixoX - 1) begin 
+				
+					if(contadorXesquerdaFrente == TamanhoMalha - 1) begin
+			
+						limiteAtingidoesquerdaFrente[0] <= 1'b1;
+					
+					end
+					else begin
+				
+						contadorXesquerdaFrente <= posicaoAtualnoEixoX;
+					
+					end
+				end
+			
+			end
+		
+		end
+		else begin
+		
+			if(contadorXesquerdaFrente == TamanhoMalha - 1) begin
+			
+					limiteAtingidoesquerdaFrente[0] <= 1'b1;
+					
+			end
+			else begin
+			
+				contadorXesquerdaFrente <= contadorXesquerdaFrente + 1;
+			
+			end
+		end
+	end
+end

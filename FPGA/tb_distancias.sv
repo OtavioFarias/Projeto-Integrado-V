@@ -59,8 +59,19 @@ module tb();
     $display("=== Início da simulação ===");
     reset = 1;
     novoDado = 0;
-    posicaoAtualnoEixoX = 0;
-    posicaoAtualnoEixoY = 0;
+    
+    //posicaoAtualnoEixoX = 0;
+    //posicaoAtualnoEixoX = TamanhoMalha - 1;
+   	 
+    //posicaoAtualnoEixoY = 0; 
+    //posicaoAtualnoEixoY = TamanhoMalha - 1;
+    
+    //1000 - direitaFrente ok, 0100 - esquerdaFrente ok, 
+    //0010 - direitaTras ok ok, 0001 - esquerdaTras ok ok
+	
+	posicaoAtualnoEixoX = 3;
+    posicaoAtualnoEixoY = 3;
+	
     enable = 4'b1111;
     preencher_malha();
 

@@ -34,33 +34,157 @@ r1
 !i113 1
 Z5 tCvgOpt 0
 n@b@f@s
-vdistancias
+vdistancia
 R1
-Z6 !s110 1760369194
+!s110 1760446646
 !i10b 1
-!s100 ibZ0]aSCihW]c1M]WRkgS1
+!s100 oDI1=G5NBOMS7j=eA7WSk1
 R2
-IO93<3eYNRmD[32j?nTQfc1
+I1UnLz^W4W476:j0zYXfD<2
 R3
 S1
 R0
-w1760369162
-8distancias.sv
-Fdistancias.sv
-!i122 363
-L0 6 274
+w1760446183
+Z6 8distanciaEsquerdaTras.sv
+Z7 FdistanciaEsquerdaTras.sv
+!i122 451
+L0 1 195
 R4
 r1
 !s85 0
 31
-Z7 !s108 1760369194.000000
-!s107 unidadeDeComunicacao.sv|Top.sv|tb_distancias.sv|sync_fifo.sv|mapas.sv|distancias.sv|
-Z8 !s90 distancias.sv|mapas.sv|sync_fifo.sv|tb_distancias.sv|Top.sv|unidadeDeComunicacao.sv|
+!s108 1760446646.000000
+!s107 unidadeDeComunicacao.sv|Top.sv|tb_distancias.sv|sync_fifo.sv|mapas.sv|distancias.sv|distanciaEsquerdaTras.sv|distanciaEsquerdaFrente.sv|distanciaDireitaTras.sv|distanciaDireitaFrente.sv|
+Z8 !s90 distanciaDireitaFrente.sv|distanciaDireitaTras.sv|distanciaEsquerdaFrente.sv|distanciaEsquerdaTras.sv|distancias.sv|mapas.sv|sync_fifo.sv|tb_distancias.sv|Top.sv|unidadeDeComunicacao.sv|
+!i113 1
+R5
+vdistanciaDireitaFrente
+R1
+Z9 !s110 1760462001
+!i10b 1
+!s100 AdCAJ23obhkeVc[hFekAa1
+R2
+I;bdYf?gdD=nZ;o@jL=1oC3
+R3
+S1
+R0
+w1760461958
+8distanciaDireitaFrente.sv
+FdistanciaDireitaFrente.sv
+!i122 566
+L0 1 247
+R4
+r1
+!s85 0
+31
+Z10 !s108 1760462001.000000
+Z11 !s107 unidadeDeComunicacao.sv|Top.sv|tb_distancias.sv|sync_fifo.sv|mapas.sv|distancias.sv|distanciaEsquerdaTras.sv|distanciaEsquerdaFrente.sv|distanciaDireitaTras.sv|distanciaDireitaFrente.sv|
+R8
+!i113 1
+R5
+ndistancia@direita@frente
+vdistanciaDireitaTras
+R1
+R9
+!i10b 1
+!s100 lD:;z=iVTSTihiZh]<BcC1
+R2
+I=mEcBLKU@14ebL8iN2l^22
+R3
+S1
+R0
+w1760461943
+8distanciaDireitaTras.sv
+FdistanciaDireitaTras.sv
+!i122 566
+L0 1 279
+R4
+r1
+!s85 0
+31
+R10
+R11
+R8
+!i113 1
+R5
+ndistancia@direita@tras
+vdistanciaEsquerdaFrente
+R1
+R9
+!i10b 1
+!s100 QEhdj;=c>:^jR?mbl[LCD2
+R2
+I<S0nmTjnh2]:eFagKkNAc1
+R3
+S1
+R0
+w1760461931
+8distanciaEsquerdaFrente.sv
+FdistanciaEsquerdaFrente.sv
+!i122 566
+L0 1 249
+R4
+r1
+!s85 0
+31
+R10
+R11
+R8
+!i113 1
+R5
+ndistancia@esquerda@frente
+vdistanciaEsquerdaTras
+R1
+R9
+!i10b 1
+!s100 ==eULOXg[l<hXeNh@kaZn2
+R2
+IJT4N59MPOc4[Rhgo3SHnR3
+R3
+S1
+R0
+w1760461908
+R6
+R7
+!i122 566
+L0 1 264
+R4
+r1
+!s85 0
+31
+R10
+R11
+R8
+!i113 1
+R5
+ndistancia@esquerda@tras
+vdistancias
+R1
+R9
+!i10b 1
+!s100 gCET6]5CJLOZ4aSBn<R]53
+R2
+Ifi>c2bI<mh6I;EZQPm3Ia3
+R3
+S1
+R0
+w1760461588
+8distancias.sv
+Fdistancias.sv
+!i122 566
+L0 1 420
+R4
+r1
+!s85 0
+31
+R10
+R11
+R8
 !i113 1
 R5
 vmapas
 R1
-R6
+R9
 !i10b 1
 !s100 Cn0bPN>4Y@IRTeZd2XL3n3
 R2
@@ -68,23 +192,23 @@ I<3Sbf9DLEj17kWz][`Jjo2
 R3
 S1
 R0
-w1760137249
+w1760373582
 8mapas.sv
 Fmapas.sv
-!i122 363
+!i122 566
 L0 1 305
 R4
 r1
 !s85 0
 31
-R7
-Z9 !s107 unidadeDeComunicacao.sv|Top.sv|tb_distancias.sv|sync_fifo.sv|mapas.sv|distancias.sv|
+R10
+R11
 R8
 !i113 1
 R5
 vsync_fifo
 R1
-R6
+R9
 !i10b 1
 !s100 jCk[LgNg@o[z@iB>P3EP43
 R2
@@ -95,38 +219,38 @@ R0
 w1760137670
 8sync_fifo.sv
 Fsync_fifo.sv
-!i122 363
+!i122 566
 L0 4 48
 R4
 r1
 !s85 0
 31
-R7
-R9
+R10
+R11
 R8
 !i113 1
 R5
 vtb
 R1
-R6
+R9
 !i10b 1
-!s100 c2B0f=AgJmmf9i?iAEP0>1
+!s100 iQbL?JWY@J5Z7UF@ORUoG0
 R2
-I2T>h54fc4OGCVf[ba?0D]1
+IAobWNSXWWRjF=@a93<Q0e1
 R3
 S1
 R0
-w1760369189
-Z10 8tb_distancias.sv
-Z11 Ftb_distancias.sv
-!i122 363
-L0 3 105
+w1760461998
+Z12 8tb_distancias.sv
+Z13 Ftb_distancias.sv
+!i122 566
+L0 3 116
 R4
 r1
 !s85 0
 31
-R7
-R9
+R10
+R11
 R8
 !i113 1
 R5
@@ -141,10 +265,10 @@ R3
 S1
 R0
 w1760121264
-R10
-R11
+R12
+R13
 !i122 310
-Z12 L0 3 87
+Z14 L0 3 87
 R4
 r1
 !s85 0
@@ -165,10 +289,10 @@ R3
 S1
 R0
 w1760035026
-Z13 8tb_2.sv
-Z14 Ftb_2.sv
+Z15 8tb_2.sv
+Z16 Ftb_2.sv
 !i122 263
-Z15 L0 3 111
+Z17 L0 3 111
 R4
 r1
 !s85 0
@@ -192,7 +316,7 @@ w1760120781
 8tb.sv
 Ftb.sv
 !i122 265
-R12
+R14
 R4
 r1
 !s85 0
@@ -213,10 +337,10 @@ R3
 S1
 R0
 w1760033786
-R13
-R14
-!i122 20
 R15
+R16
+!i122 20
+R17
 R4
 r1
 !s85 0
@@ -228,7 +352,7 @@ r1
 R5
 vTop
 R1
-R6
+R9
 !i10b 1
 !s100 bhEaKUXjS1WJHhgE8IMY33
 R2
@@ -239,14 +363,14 @@ R0
 w1760138169
 8Top.sv
 FTop.sv
-!i122 363
+!i122 566
 L0 1 83
 R4
 r1
 !s85 0
 31
-R7
-R9
+R10
+R11
 R8
 !i113 1
 R5
