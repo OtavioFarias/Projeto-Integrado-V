@@ -6,6 +6,7 @@ AF_DCMotor motor3(3);
 AF_DCMotor motor4(4);
 
 extern int velocidade = 255;
+extern float toleranciaErroRotacao = 10
 float distanciaParaVirar = 20;    // cm
 
 void iniciarMotores(){
@@ -143,7 +144,7 @@ void virarCoordenado() {
     Serial.println(erro);
 
 
-    if (fabs(erro) < 30) { // tolerância de 3 graus
+    if (fabs(erro) < toleranciaErroRotacao) { // tolerância de 3 graus
       parar();
       break;
     }

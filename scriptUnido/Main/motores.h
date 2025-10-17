@@ -8,6 +8,7 @@
 #include "mpu.h"
 #include "espComunicacao.h"
 
+extern toleranciaErroRotacao
 extern int velocidade;
 extern float distanciaParaVirar;    // cm
 
