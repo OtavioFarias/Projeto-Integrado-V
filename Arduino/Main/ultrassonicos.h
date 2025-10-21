@@ -6,16 +6,16 @@
 
 #include <Arduino.h>
 
-#define TRIG_FRENTE 52
-#define ECHO_FRENTE 19   // com interrupção
+#define TRIG_FRENTE 49
+#define ECHO_FRENTE 19   
 
 
-#define TRIG_ESQUERDA 52
-#define ECHO_ESQUERDA 19   // com interrupção
+#define TRIG_ESQUERDA 25
+#define ECHO_ESQUERDA 27  
 
 
-#define TRIG_DIREITA 52
-#define ECHO_DIREITA 19   // com interrupção
+#define TRIG_DIREITA 36
+#define ECHO_DIREITA 34   
 
 extern volatile unsigned long tempoInicio;
 extern volatile unsigned long duracaoPulso;

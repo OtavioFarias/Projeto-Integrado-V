@@ -1,5 +1,5 @@
 
-
+/*
 #include "toFPGA.h"
 
 // Configuração do Access Point
@@ -34,5 +34,5 @@ void receberDados() {
     String dados = client.readStringUntil('\n');
   }
 }
-
+*/
 

@@ -3,7 +3,7 @@
 #include "motores.h"
 
 // Pino do sensor Hall
-const int pinoSensor = 2;  
+const int pinoSensor = 31;  
 
 float distanciaDesejada = 42;
 

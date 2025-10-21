@@ -1,5 +1,5 @@
 
-
+/*
 #ifndef TOFPGA_H
 #define TOFPGA_H
 
@@ -16,3 +16,4 @@ void receberDados();
 
 #endif
 
+*/
