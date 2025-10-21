@@ -80,6 +80,7 @@ void processarMensagem(String msg) {
       else if (chave == "passoEsquerda") passoEsquerda(valor.toInt());
       else if (chave == "virarCoordenado") virarCoordenado(valor.toInt());
       else if (chave == "ativarEnvioDados") ativarEnvioDados = valor.toInt();
+      else if (chave == "andarQuadrado") andarQuadrado(valor.toInt());
 
     }
 
@@ -105,6 +106,29 @@ void andarESP(){
 
 }
 
-void esperarFPGA(){}
+void esperarFPGA(){
 
-void enviarDadosLaterais(){}
+
+  delay(1000);
+
+
+  Serial2.println("Vou bater");
+
+  uint8_t valor = 1;    
+  filaDestino.push(&valor);  
+
+  delay(1000);
+
+
+}
+
+void enviarDadosLaterais(){
+
+      Serial2.println("Distância Direita: ");
+      Serial2.print(distanciaDireita);
+
+
+      Serial2.println("Distância Esquerda: ");
+      Serial2.print(distanciaEsquerda);
+
+}

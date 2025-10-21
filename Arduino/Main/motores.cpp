@@ -97,7 +97,8 @@ void andarAutomatico(){
     //manda requisição para o FPGA, se não apenas manda os dados
     parar();   // obstáculo detectado
     irParaCoordenada();
-    frente();
+    //frente();
+    andarQuadrado(direcaoAtual);
   } 
 
   delay(100);

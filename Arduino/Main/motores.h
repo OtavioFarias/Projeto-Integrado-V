@@ -10,6 +10,7 @@
 #include "mpu.h"
 #include "espComunicacao.h"
 
+extern cppQueue	filaDestino;
 
 extern int velocidade;
 extern float toleranciaErroRotacao;

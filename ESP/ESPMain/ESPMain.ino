@@ -7,7 +7,8 @@ void setup() {
   Serial.begin(115200);
 
   iniciarBluetooth(); 
-  //iniciarComunicacaoArduino(); 
+  iniciarComunicacaoArduino(); 
+  iniciarWIFI();
 
 }
 
@@ -15,7 +16,7 @@ void loop() {
 
   receberDadosApp();
   enviarKeepAlive();
-  //enviarAppTeste();
+  enviarAppTeste();
   lerArduino();
 
 }

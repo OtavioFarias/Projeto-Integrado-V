@@ -94,7 +94,7 @@ float chamaMedirSensor(){
   
   distanciaFrente = mediaUltrassonico(leiturasUltrassonico, 0);
   distanciaDireita = mediaUltrassonico(leiturasUltrassonico, 2);
-  distanciaEsquerda = mediaUltrassonico(leiturasUltrassonico, 0);
+  distanciaEsquerda = mediaUltrassonico(leiturasUltrassonico, 1);
 
   return distanciaFrente;
 

@@ -3,8 +3,8 @@
   ESP32 usa UART2 (pinos 16 RX, 17 TX)
 */
 
-#include <HardwareSerial.h>
 #include "toApp.h"
+#include "toArduino.h"
 
 HardwareSerial SerialESP(2);  // UART2
 

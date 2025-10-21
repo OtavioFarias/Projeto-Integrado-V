@@ -1,7 +1,7 @@
 
 
-//#include <WiFi.h>
-/*
+#include "toFPGA.h"
+
 // Configuração do Access Point
 const char* ssid = "ESP32_AP";
 const char* password = "12345678";
@@ -34,5 +34,5 @@ void receberDados() {
     String dados = client.readStringUntil('\n');
   }
 }
-*/
+
 

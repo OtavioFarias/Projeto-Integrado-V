@@ -2,8 +2,8 @@
 #define TOAPP_H
 
 #pragma once
-#include "BluetoothSerial.h"
-
+#include <map>
+#include <BluetoothSerial.h>
 void iniciarBluetooth();
 
 void receberDadosApp();
