@@ -19,8 +19,6 @@ void setup() {
   pinMode(TRIG_FRENTE, OUTPUT);
   pinMode(ECHO_FRENTE, INPUT);
 
-  // se quiser usar interrupção:
-  attachInterrupt(digitalPinToInterrupt(ECHO_FRENTE), capturaPulso, CHANGE);
 
   Wire.begin();
   mpu.initialize();
@@ -37,7 +35,7 @@ void setup() {
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
+  
   receberDadosESP();
 
 

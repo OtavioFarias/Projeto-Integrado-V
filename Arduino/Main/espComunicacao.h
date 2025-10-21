@@ -23,4 +23,8 @@ void processarMensagem(String msg);
 
 void andarESP();
 
+void esperarFPGA();
+
+void enviarDadosLaterais();
+
 #endif

@@ -78,7 +78,7 @@ void processarMensagem(String msg) {
       else if (chave == "passoTras") passoTras(valor.toInt());
       else if (chave == "passoDireita") passoDireita(valor.toInt());
       else if (chave == "passoEsquerda") passoEsquerda(valor.toInt());
-      else if (chave == "virarCoordenado") virarCoordenado();
+      else if (chave == "virarCoordenado") virarCoordenado(valor.toInt());
       else if (chave == "ativarEnvioDados") ativarEnvioDados = valor.toInt();
 
     }
@@ -94,7 +94,7 @@ void andarESP(){
 
   //Serial.println("Andar com controle do App");
 
-  int distancia = medirSensor();
+  int distancia = medirSensor(0);
 
   if(ativarEnvioDados == 1){
 
@@ -104,3 +104,7 @@ void andarESP(){
   }
 
 }
+
+void esperarFPGA(){}
+
+void enviarDadosLaterais(){}

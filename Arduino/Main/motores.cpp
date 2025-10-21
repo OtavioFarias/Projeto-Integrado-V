@@ -1,13 +1,30 @@
+//falta adicionar um controle para saber onde o robo está, possivelmente faça isso usando um variavel de 2 bits que indica a direção atual e ao chamar a função de andar para o próximo bloco, ele atualiza a posição atual
+
 #include "motores.h"
+
+// Pino do sensor Hall
+const int pinoSensor = 2;  
+
+float distanciaDesejada = 42;
+
+int tamanhoQuadradoEmPulsos = distanciaDesejada/(6.5*3.14);
 
 AF_DCMotor motor1(1); 
 AF_DCMotor motor2(2);
 AF_DCMotor motor3(3); 
 AF_DCMotor motor4(4);
 
-extern int velocidade = 255;
-extern float toleranciaErroRotacao = 10
+int velocidade = 255;
+float toleranciaErroRotacao = 10;
 float distanciaParaVirar = 20;    // cm
+
+uint8_t direcaoAtual = 0; //00 - frente, 01 - esquerda, 10 - direita, 11 - tras
+
+//posicao do carrinho na malha
+int posicaoAtualX = 0;
+int posicaoAtualY = 0;
+
+cppQueue	filaDestino(sizeof(uint8_t), 10, FIFO, true);
 
 void iniciarMotores(){
 
@@ -68,14 +85,18 @@ void girarAngulo(){}
 void andarAutomatico(){
 
 
-  int distancia = medirSensor();
+  int distancia = chamaMedirSensor();
 
   Serial.print("Distância: ");
   Serial.println(distancia);
 
+  enviarDadosLaterais();
+
   if (distancia > 0 && distancia < distanciaParaVirar) {
+
+    //manda requisição para o FPGA, se não apenas manda os dados
     parar();   // obstáculo detectado
-    virarCoordenado();
+    irParaCoordenada();
     frente();
   } 
 
@@ -116,12 +137,85 @@ void passoEsquerda(int duracao){
 
 }
 
-// Função principal de virar coordenado
-void virarCoordenado() {
-  Serial.println("Virar");
-  int direcao = direcaoIndicadaFPGA();
 
-  Serial.println(direcao);
+
+void irParaCoordenada(){
+
+  //precisa de um tratamento para colocar o robo na posição correta
+
+  //chamar função que envia requisição para o FPGA e espera
+
+  esperarFPGA();
+
+  while (!filaDestino.isEmpty()) {
+
+    uint8_t valor; 
+    filaDestino.pop(&valor);
+
+
+    int distancia = chamaMedirSensor();
+
+    Serial.print("Distância: ");
+    Serial.println(distancia);
+
+    enviarDadosLaterais();
+    
+    if (distancia > 0 && distancia < distanciaParaVirar) {
+
+      //manda requisição para o FPGA, se não apenas manda os dados
+      parar();   // obstáculo detectado
+      irParaCoordenada();
+      
+    }
+    else{
+
+
+      andarQuadrado(valor);
+
+
+    }
+
+  }
+
+}
+
+void andarQuadrado(int direcao){
+
+  ajustarDirecao(direcao);
+
+  int contagem = 0; // zera a contagem
+
+  while (contagem < tamanhoQuadradoEmPulsos) {
+    
+    contagem++;
+
+    frente();
+
+    mudarPosicaoAtual();
+
+  }
+
+  parar();
+
+  
+
+}
+
+void ajustarDirecao(int direcao){ //direçao para qua, precisa ir
+
+  if(direcao != direcaoAtual) {
+
+    virarCoordenado(1);
+    ajustarDirecao(direcao);
+
+  }
+
+  direcaoAtual = direcao;
+
+}
+
+// Função principal de virar coordenado
+void virarCoordenado(int direcao) {
 
   // define objetivo conforme direção recebida
   if (direcao == 0) { 
@@ -136,29 +230,57 @@ void virarCoordenado() {
 
   // loop até atingir objetivo
   while (true) {
-
     atualizarAnguloZ_ComFiltro(); // mantém anguloZ atualizado
     float erro = erroDeRotacao();
 
-    Serial.println("erro de rotação");   
-    Serial.println(erro);
-
-
-    if (fabs(erro) < toleranciaErroRotacao) { // tolerância de 3 graus
+    if (fabs(erro) < 3) { // tolerância de 3 graus
       parar();
       break;
     }
 
     if (erro > 0) {
-      passoEsquerda(200); // gira em passos pequenos
+      passoEsquerda(20); // gira em passos pequenos
     } else {
-      passoDireita(200);
+      passoDireita(20);
     }
   }
 }
 
-int direcaoIndicadaFPGA(){
-  // 0 = frente, 1 = direita, 2 = trás, 3 = esquerda)
-  return 1;
+
+void mudarPosicaoAtual(){
+
+  //atualizar posição atual, será chamado sempre que andar, só faz a lógica de atualizar a variavel
+
+  switch(direcaoAtual) {
+
+    //frente
+    case 00:
+
+      posicaoAtualY++;    
+
+    break;
+
+    //esquerda
+    case 01:
+
+      posicaoAtualX--;
+
+    break;
+
+    //direita
+    case 10:
+
+      posicaoAtualX++;
+
+    break;
+
+    //tras
+    case 11:
+
+      posicaoAtualY--;
+
+    break;
+
+  }
 
 }

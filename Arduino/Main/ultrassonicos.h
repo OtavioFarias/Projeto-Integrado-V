@@ -9,6 +9,14 @@
 #define TRIG_FRENTE 52
 #define ECHO_FRENTE 19   // com interrupção
 
+
+#define TRIG_ESQUERDA 52
+#define ECHO_ESQUERDA 19   // com interrupção
+
+
+#define TRIG_DIREITA 52
+#define ECHO_DIREITA 19   // com interrupção
+
 extern volatile unsigned long tempoInicio;
 extern volatile unsigned long duracaoPulso;
 extern volatile bool medidaPronta;
@@ -16,7 +24,6 @@ extern volatile bool medidaPronta;
 extern float distanciaFrente;
 extern float distanciaDireita;
 extern float distanciaEsquerda;
-extern float distanciaTras;
 
 extern int leiturasUltrassonico;    // média de leituras
 
@@ -28,8 +35,10 @@ bool temMedida();
 
 float getDistancia();
 
-float medirSensor();
+float medirSensor(int direcao);
 
-float mediaUltrassonico(int echoPin, int n);
+float mediaUltrassonico(int n,  int direcao);
+
+float chamaMedirSensor();
 
 #endif
