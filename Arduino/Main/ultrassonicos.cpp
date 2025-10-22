@@ -41,46 +41,61 @@ float getDistancia() {
 
 // Faz uma leitura via pulseIn (sem interrupção)
 float medirSensor(int direcao) {
-
   long duracao;
+  int trigPin, echoPin;
 
-  switch(direcao){
-
+  // Define qual sensor será usado
+  switch (direcao) {
     case 0:
-
-    duracao = pulseIn(ECHO_FRENTE, HIGH, 30000); // timeout 30ms
-    if (duracao == 0) return -1;  // sem eco
-    return duracao / 58.0;        // cm
-
-    break;
-
+      //Serial.println("Ativando Sensor Frente");
+      trigPin = TRIG_FRENTE;
+      echoPin = ECHO_FRENTE;
+      break;
     case 1:
-
-      duracao = pulseIn(ECHO_ESQUERDA, HIGH, 30000); // timeout 30ms
-      if (duracao == 0) return -1;  // sem eco
-      return duracao / 58.0;        // cm
-
-    break;
-
-
+      //Serial.println("Ativando Sensor Esquerda");
+      trigPin = TRIG_ESQUERDA;
+      echoPin = ECHO_ESQUERDA;
+      break;
     case 2:
-
-    duracao = pulseIn(ECHO_DIREITA, HIGH, 30000); // timeout 30ms
-    if (duracao == 0) return -1;  // sem eco
-    return duracao / 58.0;        // cm
-
-    break;
+      //Serial.println("Ativando Sensor Direita");
+      trigPin = TRIG_DIREITA;
+      echoPin = ECHO_DIREITA;
+      break;
+    default:
+      return -1;
   }
 
-  return 0;
-  
+  // Dispara o pulso ultrassônico
+  digitalWrite(trigPin, LOW);
+  delayMicroseconds(2);
+  digitalWrite(trigPin, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(trigPin, LOW);
+
+  // Mede o tempo do eco
+  duracao = pulseIn(echoPin, HIGH, 30000); // timeout 30ms
+
+  if (duracao == 0) return -1; // sem eco
+
+  float distancia = duracao / 58.0; // converte em cm
+  /*
+  Serial.print("Distância ");
+  Serial.print(direcao == 0 ? "Frente" : (direcao == 1 ? "Esquerda" : "Direita"));
+  Serial.print(": ");
+  Serial.println(distancia);
+  */
+  return distancia;
 }
+
 
 // Média de leituras para reduzir ruído
 float mediaUltrassonico(int n, int direcao) {
   float soma = 0;
   int count = 0;
   for (int i = 0; i < n; i++) {
+
+    //Serial.println("Mendindo Média da Distância");
+
     float d = medirSensor(direcao); // 0 - frente, 1 - esquerda, 2 - direita
     if (d > 0) { soma += d; count++; }
     delay(5);
@@ -91,9 +106,14 @@ float mediaUltrassonico(int n, int direcao) {
 //função para chamar diferentes modos para disparar os sensores, possivelmente juntos, em série ou alternado
 float chamaMedirSensor(){
 //adicionar média das leiturar baseado na variavel: leiturasUltrassonico = 5;
-  
+
+  //Serial.println("Chamando Medir Distância Frente");
   distanciaFrente = mediaUltrassonico(leiturasUltrassonico, 0);
+
+  //Serial.println("Chamando Medir Distância Direita");
   distanciaDireita = mediaUltrassonico(leiturasUltrassonico, 2);
+
+  //Serial.println("Chamando Medir Distância Esquerda");
   distanciaEsquerda = mediaUltrassonico(leiturasUltrassonico, 1);
 
   return distanciaFrente;

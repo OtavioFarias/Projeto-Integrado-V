@@ -3,7 +3,10 @@
 #include "motores.h"
 
 // Pino do sensor Hall
-const int pinoSensor = 31;  
+const int pinoSensorHall = 48;  
+
+int estadoAnteriorHall = HIGH;   // guarda estado anterior do sensor
+int contadorPulsos = 0;          // contador de pulsos
 
 float distanciaDesejada = 42;
 
@@ -86,20 +89,27 @@ void andarAutomatico(){
 
 
   int distancia = chamaMedirSensor();
-
+/*
   Serial.print("Distância: ");
   Serial.println(distancia);
-
+*/
   enviarDadosLaterais();
 
   if (distancia > 0 && distancia < distanciaParaVirar) {
+
+    Serial.println("Vou Bater");
 
     //manda requisição para o FPGA, se não apenas manda os dados
     parar();   // obstáculo detectado
     irParaCoordenada();
     //frente();
+    //andarQuadrado(direcaoAtual);
+  }
+  else{
+
     andarQuadrado(direcaoAtual);
-  } 
+
+  }
 
   delay(100);
 
@@ -180,29 +190,42 @@ void irParaCoordenada(){
 
 }
 
-void andarQuadrado(int direcao){
+void andarQuadrado(int direcao) {
+  Serial.println("Andar um Quadrado");
 
   ajustarDirecao(direcao);
 
-  int contagem = 0; // zera a contagem
+  contadorPulsos = 0;        // zera contador antes de começar
+  estadoAnteriorHall = HIGH; // inicializa estado anterior
 
-  while (contagem < tamanhoQuadradoEmPulsos) {
-    
-    contagem++;
+  while (contadorPulsos < tamanhoQuadradoEmPulsos) {
+    frente();                 // anda para frente
+    atualizarContadorHall();  // atualiza contador de pulsos do sensor
 
-    frente();
+    Serial.print("Contagem de Pulsos: ");
+    Serial.print(contadorPulsos);
+    Serial.print(" / ");
+    Serial.println(tamanhoQuadradoEmPulsos);
 
-    mudarPosicaoAtual();
+    delay(500);
 
   }
 
-  parar();
 
-  
+  mudarPosicaoAtual(); 
 
+  parar();                     // para o robô
+  Serial.println("Lado do quadrado completo!");
 }
 
+
 void ajustarDirecao(int direcao){ //direçao para qua, precisa ir
+
+  Serial.println("Ajustando Direção");
+  Serial.print("Direção Atual: ");
+  Serial.println(direcaoAtual);
+  Serial.print("Nova Direção: ");
+  Serial.println(direcao);
 
   if(direcao != direcaoAtual) {
 
@@ -217,6 +240,8 @@ void ajustarDirecao(int direcao){ //direçao para qua, precisa ir
 
 // Função principal de virar coordenado
 void virarCoordenado(int direcao) {
+
+  Serial.println("Estou Virando");
 
   // define objetivo conforme direção recebida
   if (direcao == 0) { 
@@ -284,4 +309,17 @@ void mudarPosicaoAtual(){
 
   }
 
+}
+
+void atualizarContadorHall() {
+  int estadoAtual = digitalRead(pinoSensorHall);
+
+  // Detecta borda HIGH → LOW (ímã aproximou)
+  if (estadoAnteriorHall == HIGH && estadoAtual == LOW) {
+    contadorPulsos++;
+    Serial.print("Pulso detectado! Contagem: ");
+    Serial.println(contadorPulsos);
+  }
+
+  estadoAnteriorHall = estadoAtual;
 }

@@ -10,6 +10,9 @@
 #include "mpu.h"
 #include "espComunicacao.h"
 
+extern const int pinoSensorHall;
+
+
 extern cppQueue	filaDestino;
 
 extern int velocidade;
@@ -57,6 +60,10 @@ void mudarPosicaoAtual();
 void andarQuadrado(int direcao);
 
 void ajustarDirecao(int direcao);
+
+void contarPulso();
+
+void atualizarContadorHall();
 
 #endif
 

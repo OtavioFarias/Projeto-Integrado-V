@@ -10,8 +10,8 @@
 #define ECHO_FRENTE 19   
 
 
-#define TRIG_ESQUERDA 25
-#define ECHO_ESQUERDA 27  
+#define TRIG_ESQUERDA 31
+#define ECHO_ESQUERDA 33 
 
 
 #define TRIG_DIREITA 36

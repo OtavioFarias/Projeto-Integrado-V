@@ -27,4 +27,6 @@ void esperarFPGA();
 
 void enviarDadosLaterais();
 
+
+
 #endif

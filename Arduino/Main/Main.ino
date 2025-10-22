@@ -3,14 +3,15 @@
 #include "mpu.h"
 #include "outros.h"
 #include "ultrassonicos.h"
+#include <EnableInterrupt.h>
 
-int andarAutonomo = 0; //1 - anda sozinho, 0 - Controle via ESP
+int andarAutonomo = 1; //1 - anda sozinho, 0 - Controle via ESP
 
 void setup() {
   
   Serial.begin(9600);    // Serial para monitor
 
-  inciarComunicacaoESP();
+  //inciarComunicacaoESP();
 
   iniciarMotores();
   //frente();
@@ -19,22 +20,32 @@ void setup() {
   pinMode(TRIG_FRENTE, OUTPUT);
   pinMode(ECHO_FRENTE, INPUT);
 
+  pinMode(TRIG_ESQUERDA, OUTPUT);
+  pinMode(ECHO_ESQUERDA, INPUT);
+
+  pinMode(TRIG_DIREITA, OUTPUT);
+  pinMode(ECHO_DIREITA, INPUT);
+
+  pinMode(pinoSensorHall, INPUT_PULLUP);
 
   Wire.begin();
   mpu.initialize();
-  Serial.print("2");
+
+  /*
   if (!mpu.testConnection()) {
     Serial.println("Erro: MPU6050 não encontrado!");
   }else{
   Serial.println("MPU6050 encontrado!");
   }
 
-
+  */
   //frente();
 
 }
 
 void loop() {
+
+  atualizarAnguloZ_ComFiltro();
   
   receberDadosESP();
 

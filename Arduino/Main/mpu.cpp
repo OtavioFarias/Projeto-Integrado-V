@@ -31,6 +31,7 @@ void atualizarAnguloZ_ComFiltro() {
 
   // filtro complementar
   anguloZ = ALPHA * anguloGyro + (1 - ALPHA) * anguloAccel;
+
 }
 
 void atualizarAnguloZ() {

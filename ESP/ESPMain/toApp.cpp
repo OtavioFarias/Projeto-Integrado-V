@@ -1,6 +1,6 @@
-
+#include <map>
+#include <BluetoothSerial.h>
 #include "toArduino.h"
-#include "toApp.h"
 
 #if !defined(CONFIG_BT_ENABLED) || !defined(CONFIG_BLUEDROID_ENABLED)
 #error Bluetooth is not enabled! Please run `make menuconfig` to and enable it
@@ -17,7 +17,6 @@ esp_spp_role_t role = ESP_SPP_ROLE_SLAVE;   // or ESP_SPP_ROLE_MASTER
 const int LED_PIN = 23;
 
 BluetoothSerial SerialBT;
-
 
 void iniciarBluetooth(){
   if (!SerialBT.begin("ESP32test", true)) {
@@ -67,16 +66,14 @@ void iniciarBluetooth(){
   } else {
     Serial.println("Error on discoverAsync f.e. not working after a \"connect\"");
   }
-
-  Serial.println("Bluetooth Conectado");
-
 }
-
 
 void receberDadosApp(){
   // Se receber dados do Bluetooth, repassa para o Serial
 
+  
   if (SerialBT.available()) {
+    Serial.println(SerialBT.available()); 
     String mensagem = SerialBT.readStringUntil('\n');
     Serial.print("Echo: "); 
     Serial.println(mensagem);
@@ -100,7 +97,6 @@ void enviarKeepAlive() {
   static unsigned long lastPing = 0;
   if (millis() - lastPing > 2000) {   // a cada 2s manda algo
     lastPing = millis();
-    Serial.println("Enviando Keep Alive");  
-    SerialBT.println("ESP Conectado");             // envia caractere nulo (invisível)
+    SerialBT.write('\0');             // envia caractere nulo (invisível)
   }
 }
