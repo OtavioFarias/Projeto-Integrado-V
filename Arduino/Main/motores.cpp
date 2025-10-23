@@ -266,10 +266,12 @@ void virarCoordenado(Direcao direcao) {
     }
 
     if (erro > 0) {
-      passoEsquerda(15); // gira em passos pequenos
+      passoEsquerda(5); // gira em passos pequenos
     } else {
-      passoDireita(15);
+      passoDireita(5);
     }
+
+    delay(50);
 
     //erro = erro - 10;
 
