@@ -81,6 +81,8 @@ float medirSensor(int direcao) {
 
     tempo += 10000; //adiciona 10ms a cada medição
 
+    delay(50);
+
   }while(duracao == 0 && tempo < 100000); //1s tempo máximo de medição
   
   if (duracao == 0) return -1; // sem eco
