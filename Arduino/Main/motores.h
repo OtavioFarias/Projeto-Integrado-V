@@ -10,6 +10,13 @@
 #include "mpu.h"
 #include "espComunicacao.h"
 
+enum Direcao {
+  FRENTE = 0,
+  ESQUERDA = 1,
+  DIREITA = 2,
+  TRAS = 3
+};
+
 extern const int pinoSensorHall;
 
 
@@ -51,19 +58,21 @@ void passoDireita(int duracao);
 
 void passoEsquerda(int duracao);
 
-void virarCoordenado(int direcao);
+void virarCoordenado(Direcao direcao);
 
 void irParaCoordenada();
 
 void mudarPosicaoAtual();
 
-void andarQuadrado(int direcao);
+void andarQuadrado(Direcao direcao);
 
-void ajustarDirecao(int direcao);
+void ajustarDirecao(Direcao direcao);
 
 void contarPulso();
 
 void atualizarContadorHall();
+
+Direcao ajustarRequisicao(Direcao direcao);
 
 #endif
 

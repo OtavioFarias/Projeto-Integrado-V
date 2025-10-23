@@ -21,7 +21,7 @@ int velocidade = 255;
 float toleranciaErroRotacao = 10;
 float distanciaParaVirar = 20;    // cm
 
-uint8_t direcaoAtual = 0; //00 - frente, 01 - esquerda, 10 - direita, 11 - tras
+Direcao direcaoAtual = FRENTE;
 
 //posicao do carrinho na malha
 int posicaoAtualX = 0;
@@ -89,10 +89,10 @@ void andarAutomatico(){
 
 
   int distancia = chamaMedirSensor();
-/*
+
   Serial.print("Distância: ");
   Serial.println(distancia);
-*/
+
   enviarDadosLaterais();
 
   if (distancia > 0 && distancia < distanciaParaVirar) {
@@ -190,10 +190,24 @@ void irParaCoordenada(){
 
 }
 
-void andarQuadrado(int direcao) {
+Direcao ajustarRequisicao(Direcao direcaoFPGA) {
+  // O FPGA envia a direção absoluta (na malha)
+  // Esta função converte para a direção relativa ao carrinho
+
+  // Exemplo:
+  // Se o robô está virado para a ESQUERDA (1)
+  // e o FPGA manda DIREITA (2)
+  // => resultado será TRAS (3)
+
+  int direcaoVerdadeira = (direcaoFPGA - direcaoAtual + 4) % 4;
+
+  return (Direcao)direcaoVerdadeira;
+}
+
+void andarQuadrado(Direcao direcao) {
   Serial.println("Andar um Quadrado");
 
-  ajustarDirecao(direcao);
+  ajustarDirecao(ajustarRequisicao(direcao));
 
   contadorPulsos = 0;        // zera contador antes de começar
   estadoAnteriorHall = HIGH; // inicializa estado anterior
@@ -207,8 +221,8 @@ void andarQuadrado(int direcao) {
     Serial.print(" / ");
     Serial.println(tamanhoQuadradoEmPulsos);
 
-    delay(500);
-
+    //delay(500);
+    
   }
 
 
@@ -219,7 +233,7 @@ void andarQuadrado(int direcao) {
 }
 
 
-void ajustarDirecao(int direcao){ //direçao para qua, precisa ir
+void ajustarDirecao(Direcao direcao){ //direçao para qua, precisa ir
 
   Serial.println("Ajustando Direção");
   Serial.print("Direção Atual: ");
@@ -229,37 +243,39 @@ void ajustarDirecao(int direcao){ //direçao para qua, precisa ir
 
   if(direcao != direcaoAtual) {
 
-    virarCoordenado(1);
-    ajustarDirecao(direcao);
+    virarCoordenado(direcao);
+
+    //arrumar essa mudança de direção
+    direcaoAtual = direcao;
 
   }
-
-  direcaoAtual = direcao;
 
 }
 
 // Função principal de virar coordenado
-void virarCoordenado(int direcao) {
+void virarCoordenado(Direcao direcao) {
 
   Serial.println("Estou Virando");
 
   // define objetivo conforme direção recebida
-  if (direcao == 0) { 
+  if (direcao == FRENTE) { 
     anguloObjetivo = 0; 
-  } else if (direcao == 1) { 
+  } else if (direcao == ESQUERDA) { 
     anguloObjetivo = 90; 
-  } else if (direcao == 2) { 
+  } else if (direcao == DIREITA) { 
     anguloObjetivo = 180; 
-  } else if (direcao == 3) { 
+  } else if (direcao == TRAS) { 
     anguloObjetivo = -90; 
   }
+
+
 
   // loop até atingir objetivo
   while (true) {
     atualizarAnguloZ_ComFiltro(); // mantém anguloZ atualizado
     float erro = erroDeRotacao();
 
-    if (fabs(erro) < 3) { // tolerância de 3 graus
+    if (fabs(erro) < 15) { 
       parar();
       break;
     }
@@ -270,6 +286,10 @@ void virarCoordenado(int direcao) {
       passoDireita(20);
     }
   }
+  Serial.println("Nova Direção Alcançada");
+  direcaoAtual = direcao;
+  
+
 }
 
 
@@ -280,28 +300,28 @@ void mudarPosicaoAtual(){
   switch(direcaoAtual) {
 
     //frente
-    case 00:
+    case FRENTE:
 
       posicaoAtualY++;    
 
     break;
 
     //esquerda
-    case 01:
+    case ESQUERDA:
 
       posicaoAtualX--;
 
     break;
 
     //direita
-    case 10:
+    case DIREITA:
 
       posicaoAtualX++;
 
     break;
 
     //tras
-    case 11:
+    case TRAS:
 
       posicaoAtualY--;
 

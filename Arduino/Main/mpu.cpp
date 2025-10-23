@@ -31,7 +31,10 @@ void atualizarAnguloZ_ComFiltro() {
 
   // filtro complementar
   anguloZ = ALPHA * anguloGyro + (1 - ALPHA) * anguloAccel;
-
+/*
+  Serial.print("Angulo atual");
+  Serial.println(anguloZ);
+*/
 }
 
 void atualizarAnguloZ() {
@@ -48,7 +51,7 @@ void atualizarAnguloZ() {
 }
 
 float erroDeRotacao() {
-  float erro = anguloObjetivo - anguloZ;
+  float erro = abs(anguloObjetivo) - abs(anguloZ);
 
   // normaliza para -180° ... +180°
   while (erro > 180) erro -= 360;
