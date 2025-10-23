@@ -19,7 +19,7 @@ AF_DCMotor motor4(4);
 
 int velocidade = 255;
 float toleranciaErroRotacao = 10;
-float distanciaParaVirar = 20;    // cm
+float distanciaParaVirar = 42;    // cm
 
 Direcao direcaoAtual = FRENTE;
 
@@ -257,6 +257,9 @@ void virarCoordenado(Direcao direcao) {
     float erro = erroDeRotacao();
 
     Serial.println("Girando");
+
+    Serial.print("Erro atual:");
+    Serial.println(erro);
 
     if (erro < 10) { 
       parar();
