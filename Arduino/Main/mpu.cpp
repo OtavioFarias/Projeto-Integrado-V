@@ -51,7 +51,7 @@ void atualizarAnguloZ() {
 }
 
 float erroDeRotacao() {
-  float erro = abs(anguloObjetivo) - abs(anguloZ);
+  float erro = anguloObjetivo + anguloZ;
 
   // normaliza para -180° ... +180°
   while (erro > 180) erro -= 360;

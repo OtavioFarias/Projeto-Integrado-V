@@ -111,8 +111,6 @@ void andarAutomatico(){
 
   }
 
-  delay(100);
-
 }
 
 
@@ -266,12 +264,15 @@ void virarCoordenado(Direcao direcao) {
     }
 
     if (erro > 0) {
-      passoEsquerda(5); // gira em passos pequenos
+      passoEsquerda(500); // gira em passos pequenos
     } else {
-      passoDireita(5);
+      passoDireita(500);
     }
 
-    delay(50);
+    delay(500);
+
+    Serial.print("Erro:");
+    Serial.println(erro);
 
     //erro = erro - 10;
 
@@ -279,6 +280,8 @@ void virarCoordenado(Direcao direcao) {
   Serial.println("Nova Direção Alcançada: ");
   direcaoAtual = direcao;
   Serial.println(direcaoAtual);
+
+
   
 
 }
