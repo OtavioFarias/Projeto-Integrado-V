@@ -65,16 +65,24 @@ float medirSensor(int direcao) {
       return -1;
   }
 
-  // Dispara o pulso ultrassônico
-  digitalWrite(trigPin, LOW);
-  delayMicroseconds(2);
-  digitalWrite(trigPin, HIGH);
-  delayMicroseconds(10);
-  digitalWrite(trigPin, LOW);
+  int tempo = 30000;
 
-  // Mede o tempo do eco
-  duracao = pulseIn(echoPin, HIGH, 30000); // timeout 30ms
+  do{
 
+    // Dispara o pulso ultrassônico
+    digitalWrite(trigPin, LOW);
+    delayMicroseconds(2);
+    digitalWrite(trigPin, HIGH);
+    delayMicroseconds(10);
+    digitalWrite(trigPin, LOW);
+
+    // Mede o tempo do eco
+    duracao = pulseIn(echoPin, HIGH, tempo); // timeout 30ms
+
+    tempo += 10000; //adiciona 10ms a cada medição
+
+  }while(duracao == 0 && tempo < 100000); //1s tempo máximo de medição
+  
   if (duracao == 0) return -1; // sem eco
 
   float distancia = duracao / 58.0; // converte em cm

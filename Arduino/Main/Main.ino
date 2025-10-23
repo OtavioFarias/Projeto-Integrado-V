@@ -52,6 +52,7 @@ void loop() {
 
   if(andarAutonomo == 1){
 
+    Serial.println("Andar Autonomo Ativado");
     andarAutomatico();
     
     }

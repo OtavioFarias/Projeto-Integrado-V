@@ -158,33 +158,15 @@ void irParaCoordenada(){
 
   esperarFPGA();
 
+  Serial.println("Novo Trajeto Recebido do FPGA");
+
   while (!filaDestino.isEmpty()) {
 
     uint8_t valor; 
     filaDestino.pop(&valor);
 
+    andarQuadrado(valor);
 
-    int distancia = chamaMedirSensor();
-
-    Serial.print("Distância: ");
-    Serial.println(distancia);
-
-    enviarDadosLaterais();
-    
-    if (distancia > 0 && distancia < distanciaParaVirar) {
-
-      //manda requisição para o FPGA, se não apenas manda os dados
-      parar();   // obstáculo detectado
-      irParaCoordenada();
-      
-    }
-    else{
-
-
-      andarQuadrado(valor);
-
-
-    }
 
   }
 
@@ -269,25 +251,32 @@ void virarCoordenado(Direcao direcao) {
   }
 
 
+  //int erro = 30;
 
   // loop até atingir objetivo
   while (true) {
     atualizarAnguloZ_ComFiltro(); // mantém anguloZ atualizado
     float erro = erroDeRotacao();
 
-    if (fabs(erro) < 15) { 
+    Serial.println("Girando");
+
+    if (erro < 10) { 
       parar();
       break;
     }
 
     if (erro > 0) {
-      passoEsquerda(20); // gira em passos pequenos
+      passoEsquerda(15); // gira em passos pequenos
     } else {
-      passoDireita(20);
+      passoDireita(15);
     }
+
+    //erro = erro - 10;
+
   }
-  Serial.println("Nova Direção Alcançada");
+  Serial.println("Nova Direção Alcançada: ");
   direcaoAtual = direcao;
+  Serial.println(direcaoAtual);
   
 
 }
