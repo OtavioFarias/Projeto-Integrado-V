@@ -31,6 +31,10 @@ void setup() {
   Wire.begin();
   mpu.initialize();
 
+calibrarGyroZ();
+ultimoTempoMPU = micros();
+
+
   /*
   if (!mpu.testConnection()) {
     Serial.println("Erro: MPU6050 não encontrado!");

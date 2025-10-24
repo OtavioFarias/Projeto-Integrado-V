@@ -237,6 +237,8 @@ void virarCoordenado(Direcao direcao) {
 
   Serial.println("Estou Virando");
 
+  anguloZ = 0;
+
   // define objetivo conforme direção recebida
   if (direcao == FRENTE) { 
     anguloObjetivo = 0; 
@@ -261,7 +263,7 @@ void virarCoordenado(Direcao direcao) {
     Serial.print("Erro atual:");
     Serial.println(erro);
 
-    if (erro < 10) { 
+    if (erro < 15) { //erro que acabou 
       parar();
       break;
     }

@@ -15,5 +15,5 @@ extern unsigned long ultimoTempoMPU;
 void atualizarAnguloZ();
 float erroDeRotacao();
 void atualizarAnguloZ_ComFiltro();
-
+void calibrarGyroZ();
 #endif

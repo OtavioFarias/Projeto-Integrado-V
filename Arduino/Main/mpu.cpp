@@ -9,33 +9,48 @@ unsigned long ultimoTempoMPU = 0;
 // fator do filtro (0.98 = mais confiança no gyro, 0.02 = correção do accel)
 #define ALPHA 0.98  
 
-void atualizarAnguloZ_ComFiltro() {
+float gz_offset = 0;  // declare como variável global
 
+
+// --- Calibração simples do giroscópio (chamar no setup) ---
+void calibrarGyroZ() {
+  long soma = 0;
+  const int N = 500;
+
+  for (int i = 0; i < N; i++) {
+    int16_t ax, ay, az, gx, gy, gz;
+    mpu.getMotion6(&ax, &ay, &az, &gx, &gy, &gz);
+    soma += gz;
+    delay(5);
+  }
+
+  gz_offset = soma / (float)N;  // média do offset
+  Serial.print("Offset Z calibrado: ");
+  Serial.println(gz_offset);
+}
+
+// --- Função ajustada ---
+void atualizarAnguloZ_ComFiltro() {
   int16_t gx, gy, gz;
   int16_t ax, ay, az;
   mpu.getMotion6(&ax, &ay, &az, &gx, &gy, &gz);
 
   unsigned long agora = micros();
-
   float dt = (agora - ultimoTempoMPU) / 1000000.0;
   ultimoTempoMPU = agora;
 
-  // giroscópio em °/s
-  float gZ = gz / 131.0;
+  // Compensa o offset e converte para °/s
+  float gZ = (gz - gz_offset) / 131.0;
 
-  // integração do giroscópio
-  float anguloGyro = anguloZ + gZ * dt;
+  // Integra o giroscópio (sem acelerômetro no eixo Z)
+  anguloZ += gZ * dt;
 
-  // ângulo absoluto pelo acelerômetro (plano X-Y -> eixo Z)
-  float anguloAccel = atan2((float)ay, (float)ax) * 180.0 / M_PI;
-
-  // filtro complementar
-  anguloZ = ALPHA * anguloGyro + (1 - ALPHA) * anguloAccel;
-/*
-  Serial.print("Angulo atual");
+  /*
+  Serial.print("Ângulo Z: ");
   Serial.println(anguloZ);
-*/
+  */
 }
+
 
 void atualizarAnguloZ() {
   int16_t gx, gy, gz;
