@@ -263,18 +263,20 @@ void virarCoordenado(Direcao direcao) {
     Serial.print("Erro atual:");
     Serial.println(erro);
 
-    if (erro < 15) { //erro que acabou 
+    Serial.print("Angulo Atual: ");
+    Serial.println(anguloZ);
+
+    if (erro < toleranciaErroRotacao) { //erro que acabou 
       parar();
       break;
     }
 
     if (erro > 0) {
-      passoEsquerda(500); // gira em passos pequenos
+      passoEsquerda(25); // gira em passos pequenos
     } else {
-      passoDireita(500);
+      passoDireita(25);
     }
 
-    delay(500);
 
     Serial.print("Erro:");
     Serial.println(erro);

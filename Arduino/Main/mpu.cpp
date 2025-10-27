@@ -42,8 +42,10 @@ void atualizarAnguloZ_ComFiltro() {
   // Compensa o offset e converte para °/s
   float gZ = (gz - gz_offset) / 131.0;
 
+    //ao tentar usar o antigo   anguloZ += gZ * dt; o carrinho mexia apenas metade do ângulo necessário para virar, então alterei o comportamento dessa medida de angulo
+
   // Integra o giroscópio (sem acelerômetro no eixo Z)
-  anguloZ += gZ * dt;
+  anguloZ += gZ * dt/2;
 
   /*
   Serial.print("Ângulo Z: ");
@@ -62,7 +64,9 @@ void atualizarAnguloZ() {
   ultimoTempoMPU = agora;
 
   float gZ = gz / 131.0;
-  anguloZ += gZ * dt;
+
+  //ao tentar usar o antigo   anguloZ += gZ * dt; o carrinho mexia apenas metade do ângulo necessário para virar, então alterei o comportamento dessa medida de angulo
+  anguloZ += gZ * dt / 6;
 }
 
 float erroDeRotacao() {
