@@ -31,8 +31,8 @@ void setup() {
   Wire.begin();
   mpu.initialize();
 
-calibrarGyroZ();
-ultimoTempoMPU = micros();
+  calibrarGyroZ();
+  ultimoTempoMPU = micros();
 
 
   /*
