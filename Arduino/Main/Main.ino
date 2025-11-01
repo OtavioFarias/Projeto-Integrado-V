@@ -53,6 +53,9 @@ void loop() {
   
   receberDadosESP();
 
+  if(debug){
+    enviarDadosESP("andarAutonomo" + andarAutonomo);
+  }
 
   if(andarAutonomo == 1){
 

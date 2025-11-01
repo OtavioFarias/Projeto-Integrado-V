@@ -27,6 +27,6 @@ void esperarFPGA();
 
 void enviarDadosLaterais();
 
-
+void enviarDadosESP(String msg);
 
 #endif

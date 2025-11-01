@@ -9,6 +9,7 @@
 #include "ultrassonicos.h"
 #include "mpu.h"
 #include "espComunicacao.h"
+#include "outros.h"
 
 enum Direcao {
   FRENTE = 0,

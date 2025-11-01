@@ -81,6 +81,7 @@ void processarMensagem(String msg) {
       else if (chave == "virarCoordenado") virarCoordenado(valor.toInt());
       else if (chave == "ativarEnvioDados") ativarEnvioDados = valor.toInt();
       else if (chave == "andarQuadrado") andarQuadrado(valor.toInt());
+      else if (chave == "debug") debug = valor.toInt();
 
     }
 
@@ -130,5 +131,13 @@ void enviarDadosLaterais(){
 
       Serial2.println("Distância Esquerda: ");
       Serial2.print(distanciaEsquerda);
+
+}
+
+void enviarDadosESP(String msg) {
+
+  Serial.print("Enviando para o ESP: ");
+  Serial.println(msg);
+  Serial2.println(msg);
 
 }
