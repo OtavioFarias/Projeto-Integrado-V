@@ -3,6 +3,7 @@
 
 #pragma once
 #include <HardwareSerial.h>
+#include "toApp.h"
 
 void iniciarComunicacaoArduino();
 
@@ -10,6 +11,8 @@ void lerArduino();
 
 void enviarArduinoTeste();
 
-void enviarDadosVariaveis(String Mensagem);
+void enviarDadosVariaveis(String msg);
+
+void enviarDadosAppV2(String msg);
 
 #endif

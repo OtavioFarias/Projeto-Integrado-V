@@ -1,6 +1,4 @@
-#include <map>
-#include <BluetoothSerial.h>
-#include "toArduino.h"
+#include "toApp.h"
 
 #if !defined(CONFIG_BT_ENABLED) || !defined(CONFIG_BLUEDROID_ENABLED)
 #error Bluetooth is not enabled! Please run `make menuconfig` to and enable it
@@ -14,11 +12,10 @@
 esp_spp_sec_t sec_mask = ESP_SPP_SEC_NONE;  // or ESP_SPP_SEC_ENCRYPT|ESP_SPP_SEC_AUTHENTICATE to request pincode confirmation
 esp_spp_role_t role = ESP_SPP_ROLE_SLAVE;   // or ESP_SPP_ROLE_MASTER
 
-const int LED_PIN = 23;
-
 BluetoothSerial SerialBT;
 
 void iniciarBluetooth(){
+  Serial.begin(115200);
   if (!SerialBT.begin("ESP32test", true)) {
     Serial.println("========== serialBT failed!");
     abort();
@@ -61,7 +58,6 @@ void iniciarBluetooth(){
       }
     } else {
       Serial.println("Didn't find any devices");
-      iniciarBluetooth();
     }
   } else {
     Serial.println("Error on discoverAsync f.e. not working after a \"connect\"");
@@ -70,19 +66,13 @@ void iniciarBluetooth(){
 
 void receberDadosApp(){
   // Se receber dados do Bluetooth, repassa para o Serial
-
-  
   if (SerialBT.available()) {
-    Serial.println(SerialBT.available()); 
-    String mensagem = SerialBT.readStringUntil('\n');
-    Serial.print("Echo: "); 
-    Serial.println(mensagem);
-    enviarDadosVariaveis(mensagem);
+    char c = SerialBT.read();
+    Serial.write(c); // mostra no monitor serial
     SerialBT.print("Echo: "); 
-    SerialBT.println(mensagem); // devolve ao PC
+    SerialBT.println(c); // devolve ao PC
   }
 }
-
 
 void enviarAppTeste(){
   // Também pode enviar mensagens periódicas
@@ -99,4 +89,46 @@ void enviarKeepAlive() {
     lastPing = millis();
     SerialBT.write('\0');             // envia caractere nulo (invisível)
   }
+}
+
+
+void iniciarBluetoothV2() {
+
+  Serial.begin(115200);
+  Serial.println("Iniciando Bluetooth no ESP32...");
+
+  if (!SerialBT.begin("ESP32_RoboAspirador")) {
+    Serial.println("Falha ao iniciar Bluetooth!");
+    while (true) { delay(1000); }
+  }
+
+  const uint8_t* mac = esp_bt_dev_get_address();
+  Serial.printf("Bluetooth iniciado! MAC: %02X:%02X:%02X:%02X:%02X:%02X\n",
+                mac[0], mac[1], mac[2], mac[3], mac[4], mac[5]);
+
+  Serial.println("Aguardando conexão...");
+}
+
+void receberDadosAppV2() {
+  // Recebe dados do app e mostra no Serial Monitor
+  if (SerialBT.available()) {
+    String received = SerialBT.readStringUntil(';');
+    received.trim();
+    Serial.print("Recebido via BT: ");
+    Serial.println(received);
+    enviarDadosVariaveis(received);
+  }
+}
+
+void enviarDadosAppV2(String msg){
+
+    if (Serial.available()) {
+      if (msg.length() > 0) {
+        SerialBT.print(msg);
+        Serial.print("Enviado para o app: ");
+        Serial.println(msg);
+      }
+  }
+
+
 }

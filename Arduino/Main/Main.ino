@@ -11,7 +11,7 @@ void setup() {
   
   Serial.begin(9600);    // Serial para monitor
 
-  //inciarComunicacaoESP();
+  inciarComunicacaoESP();
 
   iniciarMotores();
   //frente();
@@ -56,9 +56,11 @@ void loop() {
 
   if(andarAutonomo == 1){
 
-    Serial.println("Andar Autonomo Ativado");
+    //Serial.println("Andar Autonomo Ativado");
     andarAutomatico();
-    
+    //Serial.println("Andando");
+    //frente();
+
     }
   else{
 

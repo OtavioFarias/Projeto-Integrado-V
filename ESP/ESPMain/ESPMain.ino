@@ -1,21 +1,23 @@
 #include "toApp.h"
 #include "toArduino.h"
-
+#include "toFPGA.h"
 
 void setup() {
-
+  
   Serial.begin(115200);
+  iniciarBluetoothV2();
 
-  iniciarBluetooth(); 
-  //iniciarComunicacaoArduino(); 
+  Serial.println("Bluetooth iniciado");
+  iniciarComunicacaoArduino();
+  Serial.println("UART iniciado");
 
 }
 
 void loop() {
-
-  receberDadosApp();
-  enviarKeepAlive();
-  //enviarAppTeste();
+  
+  receberDadosAppV2();
   lerArduino();
+  //enviarKeepAlive();
+  //enviarAppTeste();
 
 }

@@ -3,13 +3,12 @@
   ESP32 usa UART2 (pinos 16 RX, 17 TX)
 */
 
-#include "toApp.h"
 #include "toArduino.h"
+#include <HardwareSerial.h>
 
 HardwareSerial SerialESP(2);  // UART2
 
-void iniciarComunicacaoArduino() {
-  Serial.begin(9600);                 // Monitor serial
+void iniciarComunicacaoArduino() {               // Monitor serial
   SerialESP.begin(9600, SERIAL_8N1, 16, 17); // RX=16, TX=17
   Serial.println("ESP32 pronto para comunicar com Mega...");
 }
@@ -19,8 +18,7 @@ void lerArduino(){
     String recebido = SerialESP.readStringUntil('\n');
     Serial.print("Recebido do MEGA: ");
     Serial.println(recebido);
-    enviarAppTeste();    
-
+    enviarDadosAppV2(recebido);
   }
 }
 
@@ -33,11 +31,10 @@ void enviarArduinoTeste(){
   }
 }
 
-void enviarDadosVariaveis(String mensagem){
+void enviarDadosVariaveis(String msg){
 
-  Serial.print("Enviando para o MEGA: ");
-  Serial.println(mensagem);
-  SerialESP.print(mensagem); // Envia pelo UART1 (pinos 16/17)
-  //SerialESP.print("VAR1:50;VAR3:200;\n");
+  SerialESP.println(msg);
+  Serial.print("Mensageme enviada para o arduino: ");
+  Serial.println(msg);
 
 }
