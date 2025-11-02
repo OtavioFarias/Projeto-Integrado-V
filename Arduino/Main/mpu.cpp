@@ -27,6 +27,13 @@ void calibrarGyroZ() {
   gz_offset = soma / (float)N;  // média do offset
   Serial.print("Offset Z calibrado: ");
   Serial.println(gz_offset);
+
+  if(debug){
+  enviarDadosESP("Funcao: calibrarGyroZ");
+  enviarDadosESP("Offset: " + String(gz_offset));
+  }
+
+  
 }
 
 // --- Função ajustada ---
@@ -50,7 +57,15 @@ void atualizarAnguloZ_ComFiltro() {
   /*
   Serial.print("Ângulo Z: ");
   Serial.println(anguloZ);
+  
   */
+
+
+if(debug){
+  enviarDadosESP("Funcao: atualizarAngulo_ComFiltro");
+  enviarDadosESP("Angulo Atual: " + String(anguloZ));
+}
+
 }
 
 

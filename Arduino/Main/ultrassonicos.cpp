@@ -30,17 +30,16 @@ void capturaPulso() {
   }
 }
 
-bool temMedida() {
-  return medidaPronta;
-}
-
-float getDistancia() {
-  medidaPronta = false;
-  return duracaoPulso / 58.0; // converte para cm
-}
 
 // Faz uma leitura via pulseIn (sem interrupção)
 float medirSensor(int direcao) {
+
+  if(debug){
+   enviarDadosESP("Funcao: medirSensor");
+    enviarDadosESP("Direcao: " + direcao);
+  }
+
+
   long duracao;
   int trigPin, echoPin;
 
@@ -95,11 +94,21 @@ float medirSensor(int direcao) {
   Serial.println(distancia);
   */
   return distancia;
+
+  if(debug){
+    enviarDadosESP("Distancia: " + String(distancia));
+  }
 }
 
 
 // Média de leituras para reduzir ruído
 float mediaUltrassonico(int n, int direcao) {
+
+  if(debug){
+    enviarDadosESP("Funcao: mediaUltrassonico");
+  
+  }
+
   float soma = 0;
   int count = 0;
   for (int i = 0; i < n; i++) {
@@ -115,6 +124,11 @@ float mediaUltrassonico(int n, int direcao) {
 
 //função para chamar diferentes modos para disparar os sensores, possivelmente juntos, em série ou alternado
 float chamaMedirSensor(){
+
+  if(debug){
+    enviarDadosESP("Funcao: chamaMedirSensor");
+  }
+
 //adicionar média das leiturar baseado na variavel: leiturasUltrassonico = 5;
 
   //Serial.println("Chamando Medir Distância Frente");

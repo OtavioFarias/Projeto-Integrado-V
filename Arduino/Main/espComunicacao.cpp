@@ -31,8 +31,12 @@ void enviarDadosESP(){
 void receberDadosESP() {
   //Serial.println("Tentando ler dados ESP: ");
   
+  //Serial.println("Tentando Ler ESP");
+
   if (Serial2.available()) { // Verifica se há dados
+    Serial.println(Serial2.available());
     String mensagem = Serial2.readStringUntil('\n'); // Lê a string completa até '\n'
+    //String mensagem = String(Serial2.read());
     mensagem.trim(); // Remove espaços ou caracteres invisíveis
     if (mensagem.length() > 0) {
       Serial.print("Recebido do ESP32: ");
@@ -51,10 +55,16 @@ void processarMensagem(String msg) {
   // Divide os pares separados por ';'
   int start = 0;
   int end = msg.indexOf(';');
+
   while (end != -1) {
+
     String par = msg.substring(start, end);
+
     int sep = par.indexOf(':');
     if (sep != -1) {
+
+      Serial.println("To aqui 3");
+
       String chave = par.substring(0, sep);
       String valor = par.substring(sep + 1);
       Serial.print("Chave: "); 
@@ -94,8 +104,10 @@ void processarMensagem(String msg) {
 
 void andarESP(){
 
-  //Serial.println("Andar com controle do App");
+  delay(100);
 
+  //Serial.println("Andar com controle do App");
+/*
   int distancia = medirSensor(0);
 
   if(ativarEnvioDados == 1){
@@ -105,6 +117,7 @@ void andarESP(){
 
   }
 
+*/
 }
 
 void esperarFPGA(){

@@ -5,6 +5,8 @@
 
 
 #include <Arduino.h>
+#include "outros.h"
+#include "espComunicacao.h"
 
 #define TRIG_FRENTE 49
 #define ECHO_FRENTE 19   

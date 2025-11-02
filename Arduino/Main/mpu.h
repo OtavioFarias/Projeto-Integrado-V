@@ -5,7 +5,8 @@
 
 #include <Wire.h>
 #include <MPU6050.h>
-
+#include "outros.h"
+#include "espComunicacao.h"
 
 extern MPU6050 mpu;
 extern float anguloZ;
