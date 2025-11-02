@@ -13,5 +13,5 @@ Um FPGA será utilizado para o processamento dos dados enviados pelo robô e par
 Link para o documento de planejamento: https://www.overleaf.com/read/wmhgfznhyjgz#2d5a3a
 
 # Rich Picture
-![richPicture](./documentacao/richPicture.png)
+![richPicture](./Documentacao/richPicture.png)
 
