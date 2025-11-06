@@ -116,19 +116,18 @@ void receberDadosAppV2() {
     received.trim();
     Serial.print("Recebido via BT: ");
     Serial.println(received);
-    enviarDadosVariaveis(received);
+
+    //modificação temporaria para ajustar formato da string:
+    enviarDadosVariaveis(received + ";");
   }
 }
 
 void enviarDadosAppV2(String msg){
 
-    if (Serial.available()) {
-      if (msg.length() > 0) {
-        SerialBT.print(msg);
-        Serial.print("Enviado para o app: ");
-        Serial.println(msg);
-      }
+  if (msg.length() > 0) {
+    SerialBT.print(msg);
+    Serial.print("Enviado para o app: ");
+    Serial.println(msg);
   }
-
 
 }

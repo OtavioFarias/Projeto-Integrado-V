@@ -5,7 +5,7 @@
 #define TXD2 18
 
 void setup() {
-  Serial.begin(115200);     // Comunicação com o PC
+  Serial.begin(9600);     // Comunicação com o PC
   Serial2.begin(9600);    // Comunicação com o ESP32
   Serial.println("Arduino Mega iniciado e pronto para comunicar com o ESP32");
 }
@@ -32,7 +32,7 @@ void loop() {
 
   // Envia dados do Mega para o ESP32 (simulando sensores, etc.)
   static unsigned long lastSend = 0;
-  if (millis() - lastSend > 2000) {  // a cada 2 segundos
+  if (millis() - lastSen    Serial.println(mensagem);d > 2000) {  // a cada 2 segundos
     lastSend = millis();
     String sensorValue = String(random(0, 100));  // dado simulado
     Serial2.println("Sensor=" + sensorValue);

@@ -34,8 +34,8 @@ void enviarArduinoTeste(){
 void enviarDadosVariaveis(String msg){
 
   //SerialESP.println(msg);
-  Serial.print("Mensageme enviada para o arduino: ");
+  Serial.print("Mensagem enviada para o arduino: ");
   Serial.println(msg);
-  SerialESP.println("debug:1;");
+  SerialESP.println(msg);
 
 }

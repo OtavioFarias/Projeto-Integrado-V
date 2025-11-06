@@ -63,8 +63,6 @@ void processarMensagem(String msg) {
     int sep = par.indexOf(':');
     if (sep != -1) {
 
-      Serial.println("To aqui 3");
-
       String chave = par.substring(0, sep);
       String valor = par.substring(sep + 1);
       Serial.print("Chave: "); 
