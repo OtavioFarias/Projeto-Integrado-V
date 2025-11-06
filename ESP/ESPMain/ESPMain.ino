@@ -17,6 +17,7 @@ void loop() {
   
   receberDadosAppV2();
   lerArduino();
+  //enviarDadosVariaveis("Tá vivo");
   //enviarKeepAlive();
   //enviarAppTeste();
 
