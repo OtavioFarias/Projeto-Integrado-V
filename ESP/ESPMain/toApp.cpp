@@ -111,6 +111,9 @@ void iniciarBluetoothV2() {
 
 void receberDadosAppV2() {
   // Recebe dados do app e mostra no Serial Monitor
+
+  //enviarDadosVariaveis("Teste");
+
   if (SerialBT.available()) {
     String received = SerialBT.readStringUntil(';');
     received.trim();
