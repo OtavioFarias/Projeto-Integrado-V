@@ -60,12 +60,12 @@ void atualizarAnguloZ_ComFiltro() {
   
   */
 
-
+/*
 if(debug){
   enviarDadosESP("Funcao: atualizarAngulo_ComFiltro");
   enviarDadosESP("Angulo Atual: " + String(anguloZ));
 }
-
+*/
 }
 
 

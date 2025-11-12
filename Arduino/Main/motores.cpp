@@ -86,11 +86,11 @@ void testeMotor4(){
 void girarAngulo(){}
 
 void andarAutomatico(){
-
+/*
   if(debug){
     enviarDadosESP("Função: andarAutomatico");
   }
-
+*/
   int distancia = chamaMedirSensor();
 
   Serial.print("Distância: ");
