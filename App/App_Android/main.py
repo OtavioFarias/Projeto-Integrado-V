@@ -403,28 +403,68 @@ class AbaMapa(MDBoxLayout, MDTabsBase):
     def verificar_bluetooth(self, dt):
         msg = self.bt_manager.receber()
         if msg:
-            self.processar_dados(msg)
+            for linha in msg.split(";"):
+                linha = linha.strip()
+                if not linha:
+                    continue
+                self.processar_dados(linha)
 
     def processar_dados(self, dados):
-        """Aceita formatos: 'x,y,v' ou 'xyv'"""
+        """Atualmente ativa:
+            Solução genérica: tenta identificar mensagens no formato x,y,v
+        Alternativa (comentada):
+            Solução com cabeçalhos MSG: e DBG:
+        """
         try:
-            partes = dados.replace(";", "").strip().split(",")
-            if len(partes) == 3:
-                x, y, v = map(int, partes)
-            elif len(dados) == 3:
-                x, y, v = int(dados[0]), int(dados[1]), int(dados[2])
-            else:
-                print(f"Formato inválido: {dados}")
-                return
+            # ======================================================
+            # 🟩 SOLUÇÃO 1 — Com cabeçalhos (comentada)
+            # ======================================================
+            # if dados.startswith("MSG:"):
+            #     conteudo = dados[4:].strip()
+            #     partes = conteudo.split(",")
+            #     if len(partes) == 3:
+            #         x, y, v = map(int, partes)
+            #         self._atualizar_mapa(x, y, v)
+            #         print(f"[MSG] Mapa atualizado em ({x},{y}) = {v}")
+            #     else:
+            #         print(f"[MSG] Formato inválido: {dados}")
+            #
+            # elif dados.startswith("DBG:"):
+            #     print(f"[DEBUG] {dados[4:].strip()}")
+            #
+            # else:
+            #     print(f"[INFO] Mensagem genérica recebida: {dados}")
 
-            if 0 <= x < self.tamanho and 0 <= y < self.tamanho:
-                self.matriz[y][x] = v
-                self.celulas[y][x].md_bg_color = self._cor_por_valor(v)
-                print(f"Atualizado mapa[{y}][{x}] = {v}")
+            # ======================================================
+            # 🟦 SOLUÇÃO 2 — Genérica (ativa)
+            # ======================================================
+            conteudo = dados.replace(";", "").strip()
+            partes = conteudo.split(",")
+
+            if len(partes) == 3 and all(p.strip("-").isdigit() for p in partes):
+                x, y, v = map(int, partes)
+                self._atualizar_mapa(x, y, v)
+                print(f"[GEN] Mapa atualizado -> ({x},{y})={v}")
+
+            elif len(conteudo) == 3 and conteudo.isdigit():
+                # Exemplo: "123" -> x=1, y=2, v=3
+                x, y, v = int(conteudo[0]), int(conteudo[1]), int(conteudo[2])
+                self._atualizar_mapa(x, y, v)
+                print(f"[GEN] Mapa atualizado (compacto) -> ({x},{y})={v}")
+
             else:
-                print(f"Coordenadas fora do limite: ({x}, {y})")
+                print(f"[GEN] Mensagem ignorada: {dados}")
+
         except Exception as e:
-            print("Erro ao processar dados:", e, "| Dado:", dados)
+            print(f"⚠ Erro ao processar dados: {e} | Dado: {dados}")
+
+    def _atualizar_mapa(self, x, y, v):
+        """Função auxiliar que realmente atualiza o mapa visual"""
+        if 0 <= x < self.tamanho and 0 <= y < self.tamanho:
+            self.matriz[y][x] = v
+            self.celulas[y][x].md_bg_color = self._cor_por_valor(v)
+        else:
+            print(f"⚠ Coordenadas fora do limite: ({x}, {y})")
 
     # =========================================================
     # Simulação
@@ -433,7 +473,7 @@ class AbaMapa(MDBoxLayout, MDTabsBase):
         print("\n--- Simulação de recebimento múltiplo iniciada ---")
         # Número de mensagens simuladas
         for _ in range(20):  # Envia 20 pacotes
-            x, y, v = randint(0, 9), randint(0, 9), randint(1, 3)
+            x, y, v = randint(0, 9), randint(0, 9), randint(0, 3)
             msg = f"{x},{y},{v}"
             print(f"Recebendo: {msg}")
             self.processar_dados(msg)
@@ -496,4 +536,3 @@ class AppRoboAspirador(MDApp):
 
 if __name__ == "__main__":
     AppRoboAspirador().run()
-
