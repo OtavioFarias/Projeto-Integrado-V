@@ -90,12 +90,15 @@ void processarMensagem(String msg) {
       else if (chave == "ativarEnvioDados") ativarEnvioDados = valor.toInt();
       else if (chave == "andarQuadrado") andarQuadrado(valor.toInt());
       else if (chave == "debug") debug = valor.toInt();
+      else if (chave == "tamanhoPasso") tamanhoPasso = valor.toInt();
+
+      enviarDadosESP("Recebido com sucesso: " + msg);
 
     }
 
     start = end + 1;
     end = msg.indexOf(';', start);
-    enviarDadosESP();
+    //enviarDadosESP();
   }
 }
 
@@ -120,7 +123,9 @@ void andarESP(){
 
 void esperarFPGA(){
 
-  Serial2.println("Vou bater");
+  if(debug){
+    enviarDadosESP("Função: esperaraFPGA");
+  }
 
   // ESP espera receber esses dois dados depois envia a resposta
   enviarDadosESPparaFPGA(String(posicaoAtualX));

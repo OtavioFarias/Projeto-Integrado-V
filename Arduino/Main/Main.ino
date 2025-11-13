@@ -53,10 +53,12 @@ void loop() {
   
   receberDadosESP();
 
+  /*
   if(debug == 1){
     enviarDadosESP("andarAutonomo" + andarAutonomo);
   }
-
+  */
+  /*
   if(andarAutonomo == 1){
 
     //Serial.println("Andar Autonomo Ativado");
@@ -70,6 +72,13 @@ void loop() {
     andarESP();
 
   }
+  */
 
+  if (Serial.available() > 0) {
+    String input = Serial.readStringUntil('\n');
+    int cmd = input.toInt();
+    virarCoordenado(cmd);
+
+  }
 }
 

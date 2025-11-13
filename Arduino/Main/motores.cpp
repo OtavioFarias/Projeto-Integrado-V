@@ -18,10 +18,12 @@ AF_DCMotor motor3(3);
 AF_DCMotor motor4(4);
 
 int velocidade = 255;
-float toleranciaErroRotacao = 10;
+float toleranciaErroRotacao = 8;
 float distanciaParaVirar = 42;    // cm
 
 Direcao direcaoAtual = FRENTE;
+
+int tamanhoPasso = 180; //ms
 
 //posicao do carrinho na malha
 int posicaoAtualX = 0;
@@ -309,9 +311,9 @@ void virarCoordenado(Direcao direcao) {
     }
 
     if (erro > 0) {
-      passoEsquerda(25); // gira em passos pequenos
+      passoEsquerda(tamanhoPasso); // gira em passos pequenos
     } else {
-      passoDireita(25);
+      passoDireita(tamanhoPasso);
     }
 
     if(debug){

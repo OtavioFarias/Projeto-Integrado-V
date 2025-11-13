@@ -52,7 +52,7 @@ void atualizarAnguloZ_ComFiltro() {
     //ao tentar usar o antigo   anguloZ += gZ * dt; o carrinho mexia apenas metade do ângulo necessário para virar, então alterei o comportamento dessa medida de angulo
 
   // Integra o giroscópio (sem acelerômetro no eixo Z)
-  anguloZ += gZ * dt/2;
+  anguloZ += gZ * dt;
 
   /*
   Serial.print("Ângulo Z: ");

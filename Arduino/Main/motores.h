@@ -20,7 +20,7 @@ enum Direcao {
 
 extern const int pinoSensorHall;
 
-
+extern int tamanhoPasso;
 extern cppQueue	filaDestino;
 
 extern int velocidade;
