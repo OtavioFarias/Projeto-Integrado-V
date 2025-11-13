@@ -120,28 +120,27 @@ void andarESP(){
 
 void esperarFPGA(){
 
-
-  delay(1000);
-
-
   Serial2.println("Vou bater");
 
-  uint8_t valor = 1;    
-  filaDestino.push(&valor);  
+  // ESP espera receber esses dois dados depois envia a resposta
+  enviarDadosESPparaFPGA(String(posicaoAtualX));
+  enviarDadosESPparaFPGA(String(posicaoAtualY));
 
-  delay(1000);
+  String mensagem;
 
+  while((mensagem = receberDadosESPdoFPGA()) != "acabou"){
+    
+    uint8_t valor = mensagem.toInt();    
+    filaDestino.push(&valor);  
+
+  }
 
 }
 
 void enviarDadosLaterais(){
 
-      Serial2.println("Distância Direita: ");
-      Serial2.print(distanciaDireita);
-
-
-      Serial2.println("Distância Esquerda: ");
-      Serial2.print(distanciaEsquerda);
+  enviarDadosESPparaFPGA("Distância Direita: " + String(distanciaDireita));
+  enviarDadosESPparaFPGA("Distância Esquerda: " + String(distanciaEsquerda));
 
 }
 
@@ -149,6 +148,32 @@ void enviarDadosESP(String msg) {
 
   Serial.print("Enviando para o ESP: ");
   Serial.println(msg);
-  Serial2.println(msg);
+  Serial2.println("a" + msg); //mensagem deve ir para o app
 
+}
+
+void enviarDadosESPparaFPGA(String msg) {
+
+  Serial.print("Enviando para o FPGA: ");
+  Serial.println(msg);
+  Serial2.println("f" + msg); //mensagem deve ir para o FPGA
+
+}
+
+String receberDadosESPdoFPGA() {
+  //Serial.println("Tentando ler dados ESP: ");
+  
+  //Serial.println("Tentando Ler ESP");
+  while(1){
+    if (Serial2.available()) { // Verifica se há dados
+      Serial.println(Serial2.available());
+      String mensagem = Serial2.readStringUntil('\n'); // Lê a string completa até '\n'
+      //String mensagem = String(Serial2.read());
+      mensagem.trim(); // Remove espaços ou caracteres invisíveis
+      if (mensagem.length() > 0) {
+        return mensagem;
+      }
+    }
+  }
+  
 }

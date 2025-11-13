@@ -27,6 +27,9 @@ extern int velocidade;
 extern float toleranciaErroRotacao;
 extern float distanciaParaVirar;    // cm
 
+extern int posicaoAtualX;
+extern int posicaoAtualY;
+
 void iniciarMotores();
 
 void frente();

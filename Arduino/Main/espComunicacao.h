@@ -29,4 +29,9 @@ void enviarDadosLaterais();
 
 void enviarDadosESP(String msg);
 
+
+void enviarDadosESPparaFPGA(String msg);
+
+String receberDadosESPdoFPGA();
+
 #endif
