@@ -121,7 +121,7 @@ void receberDadosAppV2() {
     Serial.println(received);
 
     //modificação temporaria para ajustar formato da string:
-    enviarDadosVariaveis(received + ";");
+    enviarDadosVariaveis(received + ";"); //enviando para o arduino
   }
 }
 

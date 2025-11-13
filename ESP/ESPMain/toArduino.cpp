@@ -18,7 +18,24 @@ void lerArduino(){
     String recebido = SerialESP.readStringUntil('\n');
     Serial.print("Recebido do MEGA: ");
     Serial.println(recebido);
-    enviarDadosAppV2(recebido);
+
+    //a -> manda para o App, f -> mapa para o FPGA
+    char identificador = recebido.charAt(0);
+    if(identificador == 'a'){
+
+      enviarDadosAppV2(recebido);
+
+    }
+    else if(identificador == 'f'){
+
+        //void enviarDadosFPGA(String mensagem);//falta implementar
+
+    }
+    else{
+
+      Serial.println("Erro, destino não identificado");
+
+    }
   }
 }
 
