@@ -433,7 +433,7 @@ class AbaMapa(MDBoxLayout, MDTabsBase):
         print("\n--- Simulação de recebimento múltiplo iniciada ---")
         # Número de mensagens simuladas
         for _ in range(20):  # Envia 20 pacotes
-            x, y, v = randint(0, 9), randint(0, 9), randint(0, 3)
+            x, y, v = randint(0, 9), randint(0, 9), randint(1, 3)
             msg = f"{x},{y},{v}"
             print(f"Recebendo: {msg}")
             self.processar_dados(msg)
@@ -496,3 +496,4 @@ class AppRoboAspirador(MDApp):
 
 if __name__ == "__main__":
     AppRoboAspirador().run()
+
