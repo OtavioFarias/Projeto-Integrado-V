@@ -417,7 +417,7 @@ class AbaMapa(MDBoxLayout, MDTabsBase):
         """
         try:
             # ======================================================
-            # 🟩 SOLUÇÃO 1 — Com cabeçalhos (comentada)
+            # SOLUÇÃO 1 — Com cabeçalhos
             # ======================================================
             # if dados.startswith("MSG:"):
             #     conteudo = dados[4:].strip()
@@ -436,7 +436,7 @@ class AbaMapa(MDBoxLayout, MDTabsBase):
             #     print(f"[INFO] Mensagem genérica recebida: {dados}")
 
             # ======================================================
-            # 🟦 SOLUÇÃO 2 — Genérica (ativa)
+            # SOLUÇÃO 2 — Genérica só pq sim, enquanto a gnt não define oq vai ser definitivo
             # ======================================================
             conteudo = dados.replace(";", "").strip()
             partes = conteudo.split(",")
@@ -536,3 +536,4 @@ class AppRoboAspirador(MDApp):
 
 if __name__ == "__main__":
     AppRoboAspirador().run()
+
