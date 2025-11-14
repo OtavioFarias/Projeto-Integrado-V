@@ -1,182 +1,52 @@
-module Malha (
+module Malha #(parameter int TamanhoMalha = 20*20, parameter int tamanhoDados = 8)(
 
     input clock,
     input reset,
 
-	input cacheReq,
-    input [31:0] value,
+    input [tamanhoDados - 1:0] value,
     input read, write,
-    input [31:0] address,
+    input [tamanhoDados - 1:0] address,
 
-    output reg [31:0] outData,
-    output reg ready,
-    output reg hit,
-
+    output reg [tamanhoDados - 1:0] outData
+    
 );
 
-    localparam IDLE = 2'b00,
-               WRITE_BACK = 2'b01,
-               UPDATE_CACHE = 2'b11;
+localparam READ  = 1'b1,
+           WRITE = 1'b0;
 
-    localparam READ  = 1'b1,
-               WRITE = 1'b0;
+reg [tamanhoDados - 1:0] data[0:TamanhoMalha-1];
 
-    parameter CacheTam = 32;
+always_ff @(posedge clock, posedge reset) begin
+    if (reset) begin
 
-    reg [1:0] stage;
+    		for(int i = 0; i < TamanhoMalha; i++) begin
+    		
+    			data[address] <= 0;
+    		
+    		end
 
-    reg [31:0] data[0:CacheTam-1];
-    reg valid[0:CacheTam-1];
-    reg dirty[0:CacheTam-1];
-    reg [24:0] tagArray[0:CacheTam-1];
+    end else begin
 
-    wire [4:0] index = address[6:2];
-    wire [24:0] tag = address[31:7];
-    wire [1:0] request;
+        case (read)
 
-	//DEBUG
-	wire [24:0] tagDebug;
-	wire validDebug;
-	assign validDebug = valid[index];
-	assign tagDebug = tagArray[index];
+            READ: begin
 
-    always_ff @(posedge clock, posedge reset) begin
-        if (reset) begin
-            for (integer i = 0; i < CacheTam; i = i + 1) begin
-                valid[i]    <= 1'b0;
-                tagArray[i] <= 1'b0;
-                dirty[i]    <= 1'b0;
+				outData <= data[address];
+
             end
 
-            writeRAM <= 1'b0;
-            stage <= IDLE;
-            readRAM <= 0;
-            ready <= 1;
-            addressToRAM <= 0;
-            hit <= 0;
-
-        end else begin
-            case (stage)
-
-                IDLE: begin
+            WRITE: begin
+               
+                data[address] <= value;
                 
-		            		if(cacheReq) begin 
-		                case (read)
+            end
 
-		                    READ: begin
-		                        if (valid[index] && tagArray[index] == tag) begin
-		                             outData <= data[index];
-		                             stage <= IDLE;
-		                        		ready <= 1;
-		                        		hit <= 1;
-		                        	
-		                        end else begin
-		                            ready <= 0;
-		                            hit <= 0;
-
-		                            if (dirty[index]) begin
-		                                dirty[index] <= 1'b0;
-		                                writeRAM <= 1'b1;
-		                                stage <= WRITE_BACK;
-		                                addressToRAM <= {tagArray[index], index};
-
-		                                if (byteExtend) begin
-		                                    valueRAM[7:0] = data[index][7:0];
-		                                end else begin
-		                                    if (halfExtend) begin
-		                                        valueRAM[15:0] = data[index][15:0];
-		                                    end else begin
-		                                        valueRAM = data[index];
-		                                    end
-		                                end
-		                            end else begin
-		                                addressToRAM <= address;
-		                                readRAM <= 1'b1;
-		                                stage <= UPDATE_CACHE;
-		                            end
-		                        end
-		                    end
-
-		                    WRITE: begin
-		                        if (valid[index] && tagArray[index] == tag) begin
-		                            data[index] <= value;
-		                            dirty[index] <= 1'b1;
-		                            stage <= IDLE;
-		                            ready <= 1;
-		                            hit <= 1;
-		                            
-		                        end else begin
-		                            ready <= 0;
-		                            hit <= 0;
-
-		                            if (dirty[index]) begin
-		                                dirty[index] <= 1'b0;
-		                                stage <= WRITE_BACK;
-		                                writeRAM <= 1'b1;
-		                                addressToRAM <= {tagArray[index], index};
-
-		                                if (byteExtend) begin
-		                                    valueRAM[7:0] = data[index][7:0];
-		                                end 
-		                                else begin
-		                                    if (halfExtend) begin
-		                                        valueRAM[15:0] = data[index][15:0];
-		                                    end else begin
-		                                        valueRAM = data[index];
-		                                    end
-		                                end
-		                            end else begin
-		                                readRAM <= 1'b1;
-		                                addressToRAM <= address;
-		                                stage <= UPDATE_CACHE;
-		                            end
-		                        end
-		                    end
-	   
-		                endcase
-		            end
-		            else begin
-		            
-				        	stage <= IDLE;
-						hit <= 0;
-		            
-		            end
-                end
-
-                WRITE_BACK: begin
-                    if (dataUsingRAM) begin
-                        stage <= UPDATE_CACHE;
-                    end else begin
-                        stage <= WRITE_BACK;
-                    end
-                end
-
-                UPDATE_CACHE: begin
-                    if (ramReady) begin
-                        
-                        outData <= outRAM;
-                        stage <= IDLE;
-                        ready <= 1;
-
-                        if (writeRAM) begin
-                            writeRAM <= 0;
-                        end else begin
-                            valid[index] <= 1;
-                            tagArray[index] <= tag;
-                            data[index] <= outRAM;
-                            readRAM <= 1'b0;
-                     
-                        end
-                    end else begin
-                        stage <= UPDATE_CACHE;
-                    end
-                end
-
-            endcase
-        end
+        endcase
     end
+end
 
-    
+
+/*
     wire [31:0] data00 = data[0];
     wire [31:0] data01 = data[1];
     wire [31:0] data02 = data[2];
@@ -209,6 +79,6 @@ module Malha (
     wire [31:0] data29 = data[29];
     wire [31:0] data30 = data[30];
     wire [31:0] data31 = data[31];
-    
+*/
 
 endmodule
