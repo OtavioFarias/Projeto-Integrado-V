@@ -1,0 +1,15 @@
+S0 - S1 - S2 - S3
+Registradores temporários do pipeline
+https://teams.microsoft.com/v2/
+
+Malha
+Memória que vai representar a malha com dados dos quadrados (disponibilidade, coordenada, ...)
+
+FIFO (https://www.chipverify.com/verilog/synchronous-fifo)
+Fila para as informações que serão salvas na Heap, como a Heap será em SW, poderá ter atrasos, logo a Fila tentará servirá para o SW consumir os dados e salvar na Heap conforme demanda
+
+vizinhoTop
+O topo do projeto onde serão instanciados os elementos e a comunicação com o NIOS será realizada
+
+controler
+Controlador dos sinais
