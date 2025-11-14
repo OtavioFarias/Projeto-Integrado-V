@@ -1,0 +1,13 @@
+# vsim -c tb -do "log -r /*; vcd file build/dump.svcd; vcd add -r /*;      run -all; quit -f" 
+# Start time: 17:34:23 on Nov 14,2025
+# Loading sv_std.std
+# Loading work.tb
+# log -r /*
+# ** UI-Msg: (vish-4014) No objects found matching '/*'.
+#  vcd file build/dump.svcd
+#  vcd add -r /*
+# ** UI-Msg (suppressible): (vsim-3561) No objects found matching '*'.
+#       run -all
+#  quit -f
+# End time: 17:34:23 on Nov 14,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0

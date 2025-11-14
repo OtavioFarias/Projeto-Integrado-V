@@ -1,11 +1,11 @@
-module Malha #(parameter int TamanhoMalha = 20*20, parameter int tamanhoDados = 8)(
+module Malha #(parameter int TamanhoMalha = 20*20, parameter int tamanhoAddr = 8, parameter int tamanhoDados = 8)(
 
     input clock,
     input reset,
 
     input [tamanhoDados - 1:0] value,
     input read, write,
-    input [tamanhoDados - 1:0] address,
+    input [tamanhoAddr - 1:0] address,
 
     output reg [tamanhoDados - 1:0] outData
     
@@ -19,7 +19,7 @@ reg [tamanhoDados - 1:0] data[0:TamanhoMalha-1];
 always_ff @(posedge clock, posedge reset) begin
     if (reset) begin
 
-    		for(int i = 0; i < TamanhoMalha; i++) begin
+    		for(int i = 0; i < TamanhoMalha*TamanhoMalha; i++) begin
     		
     			data[address] <= 0;
     		
