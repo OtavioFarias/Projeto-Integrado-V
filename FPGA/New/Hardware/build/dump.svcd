@@ -1,5 +1,5 @@
 $date
-	Fri Nov 14 22:51:38 2025
+	Sat Nov 15 15:59:45 2025
 $end
 $version
 	ModelSim Version 2020.1
@@ -9,1183 +9,2654 @@ $timescale
 $end
 
 $scope module tb $end
-$var reg 1 ! clock $end
-$var reg 1 " reset $end
-$var reg 1 # requestHW $end
-$var reg 32 $ address [31:0] $end
-$var reg 32 % dataFromNIOS [31:0] $end
-$var reg 2 & direcaoFromNIOS [1:0] $end
-$var wire 1 ' alguma_saida $end
+$var parameter 32 ! TamanhoMalha $end
+$var parameter 32 " tamanhoDados $end
+$var parameter 32 # addressTam $end
+$var reg 1 $ clock $end
+$var reg 1 % reset $end
+$var reg 1 & requestHW $end
+$var reg 8 ' address [7:0] $end
+$var reg 29 ( dataFromNIOS [28:0] $end
+$var reg 8 ) addressFromNIOS [7:0] $end
+$var reg 1 * readFromNIOS $end
+$var reg 1 + writeFromNIOS $end
+$var reg 1 , readFIFO $end
+$var wire 1 - alguma_saida $end
+$var wire 1 . ready $end
 
 $scope module DUT $end
-$var parameter 32 ( tamanhoDados $end
-$var parameter 32 ) TamanhoMalha $end
-$var wire 1 * clock $end
-$var wire 1 + reset $end
-$var wire 1 , requestHW $end
-$var wire 1 - address [31] $end
-$var wire 1 . address [30] $end
-$var wire 1 / address [29] $end
-$var wire 1 0 address [28] $end
-$var wire 1 1 address [27] $end
-$var wire 1 2 address [26] $end
-$var wire 1 3 address [25] $end
-$var wire 1 4 address [24] $end
-$var wire 1 5 address [23] $end
-$var wire 1 6 address [22] $end
-$var wire 1 7 address [21] $end
-$var wire 1 8 address [20] $end
-$var wire 1 9 address [19] $end
-$var wire 1 : address [18] $end
-$var wire 1 ; address [17] $end
-$var wire 1 < address [16] $end
-$var wire 1 = address [15] $end
-$var wire 1 > address [14] $end
-$var wire 1 ? address [13] $end
-$var wire 1 @ address [12] $end
-$var wire 1 A address [11] $end
-$var wire 1 B address [10] $end
-$var wire 1 C address [9] $end
-$var wire 1 D address [8] $end
-$var wire 1 E address [7] $end
-$var wire 1 F address [6] $end
-$var wire 1 G address [5] $end
-$var wire 1 H address [4] $end
-$var wire 1 I address [3] $end
-$var wire 1 J address [2] $end
-$var wire 1 K address [1] $end
-$var wire 1 L address [0] $end
-$var wire 1 M dataFromNIOS [31] $end
-$var wire 1 N dataFromNIOS [30] $end
-$var wire 1 O dataFromNIOS [29] $end
-$var wire 1 P dataFromNIOS [28] $end
-$var wire 1 Q dataFromNIOS [27] $end
-$var wire 1 R dataFromNIOS [26] $end
-$var wire 1 S dataFromNIOS [25] $end
-$var wire 1 T dataFromNIOS [24] $end
-$var wire 1 U dataFromNIOS [23] $end
-$var wire 1 V dataFromNIOS [22] $end
-$var wire 1 W dataFromNIOS [21] $end
-$var wire 1 X dataFromNIOS [20] $end
-$var wire 1 Y dataFromNIOS [19] $end
-$var wire 1 Z dataFromNIOS [18] $end
-$var wire 1 [ dataFromNIOS [17] $end
-$var wire 1 \ dataFromNIOS [16] $end
-$var wire 1 ] dataFromNIOS [15] $end
-$var wire 1 ^ dataFromNIOS [14] $end
-$var wire 1 _ dataFromNIOS [13] $end
-$var wire 1 ` dataFromNIOS [12] $end
-$var wire 1 a dataFromNIOS [11] $end
-$var wire 1 b dataFromNIOS [10] $end
-$var wire 1 c dataFromNIOS [9] $end
-$var wire 1 d dataFromNIOS [8] $end
-$var wire 1 e dataFromNIOS [7] $end
-$var wire 1 f dataFromNIOS [6] $end
-$var wire 1 g dataFromNIOS [5] $end
-$var wire 1 h dataFromNIOS [4] $end
-$var wire 1 i dataFromNIOS [3] $end
-$var wire 1 j dataFromNIOS [2] $end
-$var wire 1 k dataFromNIOS [1] $end
-$var wire 1 l dataFromNIOS [0] $end
-$var wire 1 m direcaoFromNIOS [1] $end
-$var wire 1 n direcaoFromNIOS [0] $end
-$var wire 1 o addressFromHW $end
-$var wire 1 p valueFromHW $end
-$var wire 1 q outMalha $end
-$var wire 1 r readFromHW $end
-$var wire 1 s writeFromHW $end
-$var wire 1 t writeFIFO $end
-$var wire 1 u valueFIFO $end
-$var wire 1 v valueToMalha $end
-$var wire 1 w readToMalha $end
-$var wire 1 x writeToMalha $end
-$var wire 1 y addressToMalha $end
-$var wire 1 z addresFromNIOS $end
-$var wire 1 { readFromNIOS $end
-$var wire 1 | writeFromNIOS $end
-$var wire 1 } valueFromNIOS $end
-$var wire 1 ~ addresToMalha $end
-$var wire 1 !! dataFIFO $end
-$var wire 1 "! readFIFO $end
-$var wire 1 #! emptyFIFO $end
+$var parameter 32 / TamanhoMalha $end
+$var parameter 32 0 tamanhoDados $end
+$var parameter 32 1 addressTam $end
+$var wire 1 2 clock $end
+$var wire 1 3 reset $end
+$var wire 1 4 requestFromNIOS $end
+$var wire 1 5 addressFromNIOS [7] $end
+$var wire 1 6 addressFromNIOS [6] $end
+$var wire 1 7 addressFromNIOS [5] $end
+$var wire 1 8 addressFromNIOS [4] $end
+$var wire 1 9 addressFromNIOS [3] $end
+$var wire 1 : addressFromNIOS [2] $end
+$var wire 1 ; addressFromNIOS [1] $end
+$var wire 1 < addressFromNIOS [0] $end
+$var wire 1 = dataFromNIOS [28] $end
+$var wire 1 > dataFromNIOS [27] $end
+$var wire 1 ? dataFromNIOS [26] $end
+$var wire 1 @ dataFromNIOS [25] $end
+$var wire 1 A dataFromNIOS [24] $end
+$var wire 1 B dataFromNIOS [23] $end
+$var wire 1 C dataFromNIOS [22] $end
+$var wire 1 D dataFromNIOS [21] $end
+$var wire 1 E dataFromNIOS [20] $end
+$var wire 1 F dataFromNIOS [19] $end
+$var wire 1 G dataFromNIOS [18] $end
+$var wire 1 H dataFromNIOS [17] $end
+$var wire 1 I dataFromNIOS [16] $end
+$var wire 1 J dataFromNIOS [15] $end
+$var wire 1 K dataFromNIOS [14] $end
+$var wire 1 L dataFromNIOS [13] $end
+$var wire 1 M dataFromNIOS [12] $end
+$var wire 1 N dataFromNIOS [11] $end
+$var wire 1 O dataFromNIOS [10] $end
+$var wire 1 P dataFromNIOS [9] $end
+$var wire 1 Q dataFromNIOS [8] $end
+$var wire 1 R dataFromNIOS [7] $end
+$var wire 1 S dataFromNIOS [6] $end
+$var wire 1 T dataFromNIOS [5] $end
+$var wire 1 U dataFromNIOS [4] $end
+$var wire 1 V dataFromNIOS [3] $end
+$var wire 1 W dataFromNIOS [2] $end
+$var wire 1 X dataFromNIOS [1] $end
+$var wire 1 Y dataFromNIOS [0] $end
+$var wire 1 Z readFromNIOS $end
+$var wire 1 [ writeFromNIOS $end
+$var wire 1 \ readFIFO $end
+$var wire 1 . ready $end
+$var wire 1 ] addressWrite [7] $end
+$var wire 1 ^ addressWrite [6] $end
+$var wire 1 _ addressWrite [5] $end
+$var wire 1 ` addressWrite [4] $end
+$var wire 1 a addressWrite [3] $end
+$var wire 1 b addressWrite [2] $end
+$var wire 1 c addressWrite [1] $end
+$var wire 1 d addressWrite [0] $end
+$var wire 1 e custoAcumulado [7] $end
+$var wire 1 f custoAcumulado [6] $end
+$var wire 1 g custoAcumulado [5] $end
+$var wire 1 h custoAcumulado [4] $end
+$var wire 1 i custoAcumulado [3] $end
+$var wire 1 j custoAcumulado [2] $end
+$var wire 1 k custoAcumulado [1] $end
+$var wire 1 l custoAcumulado [0] $end
+$var wire 1 m addressToHW [7] $end
+$var wire 1 n addressToHW [6] $end
+$var wire 1 o addressToHW [5] $end
+$var wire 1 p addressToHW [4] $end
+$var wire 1 q addressToHW [3] $end
+$var wire 1 r addressToHW [2] $end
+$var wire 1 s addressToHW [1] $end
+$var wire 1 t addressToHW [0] $end
+$var wire 1 u dataToMalha [28] $end
+$var wire 1 v dataToMalha [27] $end
+$var wire 1 w dataToMalha [26] $end
+$var wire 1 x dataToMalha [25] $end
+$var wire 1 y dataToMalha [24] $end
+$var wire 1 z dataToMalha [23] $end
+$var wire 1 { dataToMalha [22] $end
+$var wire 1 | dataToMalha [21] $end
+$var wire 1 } dataToMalha [20] $end
+$var wire 1 ~ dataToMalha [19] $end
+$var wire 1 !! dataToMalha [18] $end
+$var wire 1 "! dataToMalha [17] $end
+$var wire 1 #! dataToMalha [16] $end
+$var wire 1 $! dataToMalha [15] $end
+$var wire 1 %! dataToMalha [14] $end
+$var wire 1 &! dataToMalha [13] $end
+$var wire 1 '! dataToMalha [12] $end
+$var wire 1 (! dataToMalha [11] $end
+$var wire 1 )! dataToMalha [10] $end
+$var wire 1 *! dataToMalha [9] $end
+$var wire 1 +! dataToMalha [8] $end
+$var wire 1 ,! dataToMalha [7] $end
+$var wire 1 -! dataToMalha [6] $end
+$var wire 1 .! dataToMalha [5] $end
+$var wire 1 /! dataToMalha [4] $end
+$var wire 1 0! dataToMalha [3] $end
+$var wire 1 1! dataToMalha [2] $end
+$var wire 1 2! dataToMalha [1] $end
+$var wire 1 3! dataToMalha [0] $end
+$var wire 1 4! dataToHW [28] $end
+$var wire 1 5! dataToHW [27] $end
+$var wire 1 6! dataToHW [26] $end
+$var wire 1 7! dataToHW [25] $end
+$var wire 1 8! dataToHW [24] $end
+$var wire 1 9! dataToHW [23] $end
+$var wire 1 :! dataToHW [22] $end
+$var wire 1 ;! dataToHW [21] $end
+$var wire 1 <! dataToHW [20] $end
+$var wire 1 =! dataToHW [19] $end
+$var wire 1 >! dataToHW [18] $end
+$var wire 1 ?! dataToHW [17] $end
+$var wire 1 @! dataToHW [16] $end
+$var wire 1 A! dataToHW [15] $end
+$var wire 1 B! dataToHW [14] $end
+$var wire 1 C! dataToHW [13] $end
+$var wire 1 D! dataToHW [12] $end
+$var wire 1 E! dataToHW [11] $end
+$var wire 1 F! dataToHW [10] $end
+$var wire 1 G! dataToHW [9] $end
+$var wire 1 H! dataToHW [8] $end
+$var wire 1 I! dataToHW [7] $end
+$var wire 1 J! dataToHW [6] $end
+$var wire 1 K! dataToHW [5] $end
+$var wire 1 L! dataToHW [4] $end
+$var wire 1 M! dataToHW [3] $end
+$var wire 1 N! dataToHW [2] $end
+$var wire 1 O! dataToHW [1] $end
+$var wire 1 P! dataToHW [0] $end
+$var wire 1 Q! dataFIFO [8] $end
+$var wire 1 R! dataFIFO [7] $end
+$var wire 1 S! dataFIFO [6] $end
+$var wire 1 T! dataFIFO [5] $end
+$var wire 1 U! dataFIFO [4] $end
+$var wire 1 V! dataFIFO [3] $end
+$var wire 1 W! dataFIFO [2] $end
+$var wire 1 X! dataFIFO [1] $end
+$var wire 1 Y! dataFIFO [0] $end
+$var wire 1 Z! valueFIFO [8] $end
+$var wire 1 [! valueFIFO [7] $end
+$var wire 1 \! valueFIFO [6] $end
+$var wire 1 ]! valueFIFO [5] $end
+$var wire 1 ^! valueFIFO [4] $end
+$var wire 1 _! valueFIFO [3] $end
+$var wire 1 `! valueFIFO [2] $end
+$var wire 1 a! valueFIFO [1] $end
+$var wire 1 b! valueFIFO [0] $end
+$var wire 1 c! valueFromNIOS [28] $end
+$var wire 1 d! valueFromNIOS [27] $end
+$var wire 1 e! valueFromNIOS [26] $end
+$var wire 1 f! valueFromNIOS [25] $end
+$var wire 1 g! valueFromNIOS [24] $end
+$var wire 1 h! valueFromNIOS [23] $end
+$var wire 1 i! valueFromNIOS [22] $end
+$var wire 1 j! valueFromNIOS [21] $end
+$var wire 1 k! valueFromNIOS [20] $end
+$var wire 1 l! valueFromNIOS [19] $end
+$var wire 1 m! valueFromNIOS [18] $end
+$var wire 1 n! valueFromNIOS [17] $end
+$var wire 1 o! valueFromNIOS [16] $end
+$var wire 1 p! valueFromNIOS [15] $end
+$var wire 1 q! valueFromNIOS [14] $end
+$var wire 1 r! valueFromNIOS [13] $end
+$var wire 1 s! valueFromNIOS [12] $end
+$var wire 1 t! valueFromNIOS [11] $end
+$var wire 1 u! valueFromNIOS [10] $end
+$var wire 1 v! valueFromNIOS [9] $end
+$var wire 1 w! valueFromNIOS [8] $end
+$var wire 1 x! valueFromNIOS [7] $end
+$var wire 1 y! valueFromNIOS [6] $end
+$var wire 1 z! valueFromNIOS [5] $end
+$var wire 1 {! valueFromNIOS [4] $end
+$var wire 1 |! valueFromNIOS [3] $end
+$var wire 1 }! valueFromNIOS [2] $end
+$var wire 1 ~! valueFromNIOS [1] $end
+$var wire 1 !" valueFromNIOS [0] $end
+$var wire 1 "" addressFromHW [7] $end
+$var wire 1 #" addressFromHW [6] $end
+$var wire 1 $" addressFromHW [5] $end
+$var wire 1 %" addressFromHW [4] $end
+$var wire 1 &" addressFromHW [3] $end
+$var wire 1 '" addressFromHW [2] $end
+$var wire 1 (" addressFromHW [1] $end
+$var wire 1 )" addressFromHW [0] $end
+$var wire 1 *" readFromHW $end
+$var wire 1 +" writeFromHW $end
+$var wire 1 ," requestToHW $end
+$var wire 1 -" valueFromHW [28] $end
+$var wire 1 ." valueFromHW [27] $end
+$var wire 1 /" valueFromHW [26] $end
+$var wire 1 0" valueFromHW [25] $end
+$var wire 1 1" valueFromHW [24] $end
+$var wire 1 2" valueFromHW [23] $end
+$var wire 1 3" valueFromHW [22] $end
+$var wire 1 4" valueFromHW [21] $end
+$var wire 1 5" valueFromHW [20] $end
+$var wire 1 6" valueFromHW [19] $end
+$var wire 1 7" valueFromHW [18] $end
+$var wire 1 8" valueFromHW [17] $end
+$var wire 1 9" valueFromHW [16] $end
+$var wire 1 :" valueFromHW [15] $end
+$var wire 1 ;" valueFromHW [14] $end
+$var wire 1 <" valueFromHW [13] $end
+$var wire 1 =" valueFromHW [12] $end
+$var wire 1 >" valueFromHW [11] $end
+$var wire 1 ?" valueFromHW [10] $end
+$var wire 1 @" valueFromHW [9] $end
+$var wire 1 A" valueFromHW [8] $end
+$var wire 1 B" valueFromHW [7] $end
+$var wire 1 C" valueFromHW [6] $end
+$var wire 1 D" valueFromHW [5] $end
+$var wire 1 E" valueFromHW [4] $end
+$var wire 1 F" valueFromHW [3] $end
+$var wire 1 G" valueFromHW [2] $end
+$var wire 1 H" valueFromHW [1] $end
+$var wire 1 I" valueFromHW [0] $end
+$var wire 1 J" addressToMalha [7] $end
+$var wire 1 K" addressToMalha [6] $end
+$var wire 1 L" addressToMalha [5] $end
+$var wire 1 M" addressToMalha [4] $end
+$var wire 1 N" addressToMalha [3] $end
+$var wire 1 O" addressToMalha [2] $end
+$var wire 1 P" addressToMalha [1] $end
+$var wire 1 Q" addressToMalha [0] $end
+$var wire 1 R" readToMalha $end
+$var wire 1 S" writeToMalha $end
+$var wire 1 T" direcaoToHW [1] $end
+$var wire 1 U" direcaoToHW [0] $end
+$var wire 1 V" valueToMalha [28] $end
+$var wire 1 W" valueToMalha [27] $end
+$var wire 1 X" valueToMalha [26] $end
+$var wire 1 Y" valueToMalha [25] $end
+$var wire 1 Z" valueToMalha [24] $end
+$var wire 1 [" valueToMalha [23] $end
+$var wire 1 \" valueToMalha [22] $end
+$var wire 1 ]" valueToMalha [21] $end
+$var wire 1 ^" valueToMalha [20] $end
+$var wire 1 _" valueToMalha [19] $end
+$var wire 1 `" valueToMalha [18] $end
+$var wire 1 a" valueToMalha [17] $end
+$var wire 1 b" valueToMalha [16] $end
+$var wire 1 c" valueToMalha [15] $end
+$var wire 1 d" valueToMalha [14] $end
+$var wire 1 e" valueToMalha [13] $end
+$var wire 1 f" valueToMalha [12] $end
+$var wire 1 g" valueToMalha [11] $end
+$var wire 1 h" valueToMalha [10] $end
+$var wire 1 i" valueToMalha [9] $end
+$var wire 1 j" valueToMalha [8] $end
+$var wire 1 k" valueToMalha [7] $end
+$var wire 1 l" valueToMalha [6] $end
+$var wire 1 m" valueToMalha [5] $end
+$var wire 1 n" valueToMalha [4] $end
+$var wire 1 o" valueToMalha [3] $end
+$var wire 1 p" valueToMalha [2] $end
+$var wire 1 q" valueToMalha [1] $end
+$var wire 1 r" valueToMalha [0] $end
+$var wire 1 s" outMalha [28] $end
+$var wire 1 t" outMalha [27] $end
+$var wire 1 u" outMalha [26] $end
+$var wire 1 v" outMalha [25] $end
+$var wire 1 w" outMalha [24] $end
+$var wire 1 x" outMalha [23] $end
+$var wire 1 y" outMalha [22] $end
+$var wire 1 z" outMalha [21] $end
+$var wire 1 {" outMalha [20] $end
+$var wire 1 |" outMalha [19] $end
+$var wire 1 }" outMalha [18] $end
+$var wire 1 ~" outMalha [17] $end
+$var wire 1 !# outMalha [16] $end
+$var wire 1 "# outMalha [15] $end
+$var wire 1 ## outMalha [14] $end
+$var wire 1 $# outMalha [13] $end
+$var wire 1 %# outMalha [12] $end
+$var wire 1 &# outMalha [11] $end
+$var wire 1 '# outMalha [10] $end
+$var wire 1 (# outMalha [9] $end
+$var wire 1 )# outMalha [8] $end
+$var wire 1 *# outMalha [7] $end
+$var wire 1 +# outMalha [6] $end
+$var wire 1 ,# outMalha [5] $end
+$var wire 1 -# outMalha [4] $end
+$var wire 1 .# outMalha [3] $end
+$var wire 1 /# outMalha [2] $end
+$var wire 1 0# outMalha [1] $end
+$var wire 1 1# outMalha [0] $end
+$var wire 1 2# readyHW $end
+$var wire 1 3# writeFIFO $end
+$var wire 1 4# emptyFIFO $end
+
+$scope module Controlador $end
+$var parameter 32 5# TamanhoMalha $end
+$var parameter 32 6# tamanhoDados $end
+$var parameter 32 7# addressTam $end
+$var parameter 1 8# IDLE $end
+$var parameter 1 9# WAIT_HW $end
+$var wire 1 2 clock $end
+$var wire 1 3 reset $end
+$var wire 1 4 requestFromNIOS $end
+$var reg 1 :# ready $end
+$var wire 1 5 addressFromNIOS [7] $end
+$var wire 1 6 addressFromNIOS [6] $end
+$var wire 1 7 addressFromNIOS [5] $end
+$var wire 1 8 addressFromNIOS [4] $end
+$var wire 1 9 addressFromNIOS [3] $end
+$var wire 1 : addressFromNIOS [2] $end
+$var wire 1 ; addressFromNIOS [1] $end
+$var wire 1 < addressFromNIOS [0] $end
+$var wire 1 = dataFromNIOS [28] $end
+$var wire 1 > dataFromNIOS [27] $end
+$var wire 1 ? dataFromNIOS [26] $end
+$var wire 1 @ dataFromNIOS [25] $end
+$var wire 1 A dataFromNIOS [24] $end
+$var wire 1 B dataFromNIOS [23] $end
+$var wire 1 C dataFromNIOS [22] $end
+$var wire 1 D dataFromNIOS [21] $end
+$var wire 1 E dataFromNIOS [20] $end
+$var wire 1 F dataFromNIOS [19] $end
+$var wire 1 G dataFromNIOS [18] $end
+$var wire 1 H dataFromNIOS [17] $end
+$var wire 1 I dataFromNIOS [16] $end
+$var wire 1 J dataFromNIOS [15] $end
+$var wire 1 K dataFromNIOS [14] $end
+$var wire 1 L dataFromNIOS [13] $end
+$var wire 1 M dataFromNIOS [12] $end
+$var wire 1 N dataFromNIOS [11] $end
+$var wire 1 O dataFromNIOS [10] $end
+$var wire 1 P dataFromNIOS [9] $end
+$var wire 1 Q dataFromNIOS [8] $end
+$var wire 1 R dataFromNIOS [7] $end
+$var wire 1 S dataFromNIOS [6] $end
+$var wire 1 T dataFromNIOS [5] $end
+$var wire 1 U dataFromNIOS [4] $end
+$var wire 1 V dataFromNIOS [3] $end
+$var wire 1 W dataFromNIOS [2] $end
+$var wire 1 X dataFromNIOS [1] $end
+$var wire 1 Y dataFromNIOS [0] $end
+$var reg 1 ;# requestToHW $end
+$var reg 8 <# addressToHW [7:0] $end
+$var reg 29 =# dataToHW [28:0] $end
+$var reg 2 ># direcaoToHW [1:0] $end
+$var reg 1 ?# state $end
+$upscope $end
 
 $scope module vizinhos $end
-$var parameter 32 $! TamanhoMalha $end
-$var parameter 32 %! tamanhoDados $end
-$var parameter 32 &! addressTam $end
-$var parameter 32 '! areaMalha $end
-$var wire 1 * clock $end
-$var wire 1 + reset $end
-$var wire 1 , request $end
-$var wire 1 E address [7] $end
-$var wire 1 F address [6] $end
-$var wire 1 G address [5] $end
-$var wire 1 H address [4] $end
-$var wire 1 I address [3] $end
-$var wire 1 J address [2] $end
-$var wire 1 K address [1] $end
-$var wire 1 L address [0] $end
-$var wire 1 P value [28] $end
-$var wire 1 Q value [27] $end
-$var wire 1 R value [26] $end
-$var wire 1 S value [25] $end
-$var wire 1 T value [24] $end
-$var wire 1 U value [23] $end
-$var wire 1 V value [22] $end
-$var wire 1 W value [21] $end
-$var wire 1 X value [20] $end
-$var wire 1 Y value [19] $end
-$var wire 1 Z value [18] $end
-$var wire 1 [ value [17] $end
-$var wire 1 \ value [16] $end
-$var wire 1 ] value [15] $end
-$var wire 1 ^ value [14] $end
-$var wire 1 _ value [13] $end
-$var wire 1 ` value [12] $end
-$var wire 1 a value [11] $end
-$var wire 1 b value [10] $end
-$var wire 1 c value [9] $end
-$var wire 1 d value [8] $end
-$var wire 1 e value [7] $end
-$var wire 1 f value [6] $end
-$var wire 1 g value [5] $end
-$var wire 1 h value [4] $end
-$var wire 1 i value [3] $end
-$var wire 1 j value [2] $end
-$var wire 1 k value [1] $end
-$var wire 1 l value [0] $end
-$var wire 1 m direcao [1] $end
-$var wire 1 n direcao [0] $end
-$var wire 1 s writeMalha $end
-$var wire 1 r readMalha $end
-$var wire 1 (! addressWrite [7] $end
-$var wire 1 )! addressWrite [6] $end
-$var wire 1 *! addressWrite [5] $end
-$var wire 1 +! addressWrite [4] $end
-$var wire 1 ,! addressWrite [3] $end
-$var wire 1 -! addressWrite [2] $end
-$var wire 1 .! addressWrite [1] $end
-$var wire 1 o addressWrite [0] $end
-$var wire 1 /! dataToMalha [28] $end
-$var wire 1 0! dataToMalha [27] $end
-$var wire 1 1! dataToMalha [26] $end
-$var wire 1 2! dataToMalha [25] $end
-$var wire 1 3! dataToMalha [24] $end
-$var wire 1 4! dataToMalha [23] $end
-$var wire 1 5! dataToMalha [22] $end
-$var wire 1 6! dataToMalha [21] $end
-$var wire 1 7! dataToMalha [20] $end
-$var wire 1 8! dataToMalha [19] $end
-$var wire 1 9! dataToMalha [18] $end
-$var wire 1 :! dataToMalha [17] $end
-$var wire 1 ;! dataToMalha [16] $end
-$var wire 1 <! dataToMalha [15] $end
-$var wire 1 =! dataToMalha [14] $end
-$var wire 1 >! dataToMalha [13] $end
-$var wire 1 ?! dataToMalha [12] $end
-$var wire 1 @! dataToMalha [11] $end
-$var wire 1 A! dataToMalha [10] $end
-$var wire 1 B! dataToMalha [9] $end
-$var wire 1 C! dataToMalha [8] $end
-$var wire 1 D! dataToMalha [7] $end
-$var wire 1 E! dataToMalha [6] $end
-$var wire 1 F! dataToMalha [5] $end
-$var wire 1 G! dataToMalha [4] $end
-$var wire 1 H! dataToMalha [3] $end
-$var wire 1 I! dataToMalha [2] $end
-$var wire 1 J! dataToMalha [1] $end
-$var wire 1 p dataToMalha [0] $end
-$var wire 1 K! dataFromMalha [28] $end
-$var wire 1 L! dataFromMalha [27] $end
-$var wire 1 M! dataFromMalha [26] $end
-$var wire 1 N! dataFromMalha [25] $end
-$var wire 1 O! dataFromMalha [24] $end
-$var wire 1 P! dataFromMalha [23] $end
-$var wire 1 Q! dataFromMalha [22] $end
-$var wire 1 R! dataFromMalha [21] $end
-$var wire 1 S! dataFromMalha [20] $end
-$var wire 1 T! dataFromMalha [19] $end
-$var wire 1 U! dataFromMalha [18] $end
-$var wire 1 V! dataFromMalha [17] $end
-$var wire 1 W! dataFromMalha [16] $end
-$var wire 1 X! dataFromMalha [15] $end
-$var wire 1 Y! dataFromMalha [14] $end
-$var wire 1 Z! dataFromMalha [13] $end
-$var wire 1 [! dataFromMalha [12] $end
-$var wire 1 \! dataFromMalha [11] $end
-$var wire 1 ]! dataFromMalha [10] $end
-$var wire 1 ^! dataFromMalha [9] $end
-$var wire 1 _! dataFromMalha [8] $end
-$var wire 1 `! dataFromMalha [7] $end
-$var wire 1 a! dataFromMalha [6] $end
-$var wire 1 b! dataFromMalha [5] $end
-$var wire 1 c! dataFromMalha [4] $end
-$var wire 1 d! dataFromMalha [3] $end
-$var wire 1 e! dataFromMalha [2] $end
-$var wire 1 f! dataFromMalha [1] $end
-$var wire 1 q dataFromMalha [0] $end
-$var wire 1 t writeFIFO $end
-$var wire 1 g! dataFIFO [8] $end
-$var wire 1 h! dataFIFO [7] $end
-$var wire 1 i! dataFIFO [6] $end
-$var wire 1 j! dataFIFO [5] $end
-$var wire 1 k! dataFIFO [4] $end
-$var wire 1 l! dataFIFO [3] $end
-$var wire 1 m! dataFIFO [2] $end
-$var wire 1 n! dataFIFO [1] $end
-$var wire 1 u dataFIFO [0] $end
-$var wire 1 o! x [14] $end
-$var wire 1 p! x [13] $end
-$var wire 1 q! x [12] $end
-$var wire 1 r! x [11] $end
-$var wire 1 s! x [10] $end
-$var wire 1 t! x [9] $end
-$var wire 1 u! x [8] $end
-$var wire 1 v! x [7] $end
-$var wire 1 w! x [6] $end
-$var wire 1 x! x [5] $end
-$var wire 1 y! x [4] $end
-$var wire 1 z! x [3] $end
-$var wire 1 {! x [2] $end
-$var wire 1 |! x [1] $end
-$var wire 1 }! x [0] $end
-$var wire 1 ~! y [14] $end
-$var wire 1 !" y [13] $end
-$var wire 1 "" y [12] $end
-$var wire 1 #" y [11] $end
-$var wire 1 $" y [10] $end
-$var wire 1 %" y [9] $end
-$var wire 1 &" y [8] $end
-$var wire 1 '" y [7] $end
-$var wire 1 (" y [6] $end
-$var wire 1 )" y [5] $end
-$var wire 1 *" y [4] $end
-$var wire 1 +" y [3] $end
-$var wire 1 ," y [2] $end
-$var wire 1 -" y [1] $end
-$var wire 1 ." y [0] $end
-$var wire 1 /" custoAcumulado [7] $end
-$var wire 1 0" custoAcumulado [6] $end
-$var wire 1 1" custoAcumulado [5] $end
-$var wire 1 2" custoAcumulado [4] $end
-$var wire 1 3" custoAcumulado [3] $end
-$var wire 1 4" custoAcumulado [2] $end
-$var wire 1 5" custoAcumulado [1] $end
-$var wire 1 6" custoAcumulado [0] $end
-$var wire 1 7" custoEstimado [7] $end
-$var wire 1 8" custoEstimado [6] $end
-$var wire 1 9" custoEstimado [5] $end
-$var wire 1 :" custoEstimado [4] $end
-$var wire 1 ;" custoEstimado [3] $end
-$var wire 1 <" custoEstimado [2] $end
-$var wire 1 =" custoEstimado [1] $end
-$var wire 1 >" custoEstimado [0] $end
-$var wire 1 ?" pai [1] $end
-$var wire 1 @" pai [0] $end
-$var wire 1 A" aberto $end
-$var wire 1 B" valorCelula $end
-$var reg 8 C" muxDirecao [7:0] $end
-$var wire 1 D" proximoVizinho [7] $end
-$var wire 1 E" proximoVizinho [6] $end
-$var wire 1 F" proximoVizinho [5] $end
-$var wire 1 G" proximoVizinho [4] $end
-$var wire 1 H" proximoVizinho [3] $end
-$var wire 1 I" proximoVizinho [2] $end
-$var wire 1 J" proximoVizinho [1] $end
-$var wire 1 K" proximoVizinho [0] $end
-$var wire 1 L" addressProximoVizinho [7] $end
-$var wire 1 M" addressProximoVizinho [6] $end
-$var wire 1 N" addressProximoVizinho [5] $end
-$var wire 1 O" addressProximoVizinho [4] $end
-$var wire 1 P" addressProximoVizinho [3] $end
-$var wire 1 Q" addressProximoVizinho [2] $end
-$var wire 1 R" addressProximoVizinho [1] $end
-$var wire 1 S" addressProximoVizinho [0] $end
-$var wire 1 T" custoAcumuladoS1 $end
-$var wire 1 U" direcaoS1 $end
-$var wire 1 V" abertoS1 $end
-$var wire 1 W" valor $end
-$var wire 1 X" valorS1 $end
-$var wire 1 Y" xOriginalS1 $end
-$var wire 1 Z" yOriginalS1 $end
-$var wire 1 [" addressS2 [7] $end
-$var wire 1 \" addressS2 [6] $end
-$var wire 1 ]" addressS2 [5] $end
-$var wire 1 ^" addressS2 [4] $end
-$var wire 1 _" addressS2 [3] $end
-$var wire 1 `" addressS2 [2] $end
-$var wire 1 a" addressS2 [1] $end
-$var wire 1 b" addressS2 [0] $end
-$var wire 1 c" custoAcumuladoS2 [7] $end
-$var wire 1 d" custoAcumuladoS2 [6] $end
-$var wire 1 e" custoAcumuladoS2 [5] $end
-$var wire 1 f" custoAcumuladoS2 [4] $end
-$var wire 1 g" custoAcumuladoS2 [3] $end
-$var wire 1 h" custoAcumuladoS2 [2] $end
-$var wire 1 i" custoAcumuladoS2 [1] $end
-$var wire 1 j" custoAcumuladoS2 [0] $end
-$var wire 1 k" dataFromMalhaS2 $end
-$var wire 1 l" direcaoS2 $end
-$var wire 1 m" abertoS2 $end
-$var wire 1 n" valorS2 $end
-$var wire 1 o" xOriginalS2 $end
-$var wire 1 p" yOriginalS2 $end
-$var wire 1 q" xS2 [14] $end
-$var wire 1 r" xS2 [13] $end
-$var wire 1 s" xS2 [12] $end
-$var wire 1 t" xS2 [11] $end
-$var wire 1 u" xS2 [10] $end
-$var wire 1 v" xS2 [9] $end
-$var wire 1 w" xS2 [8] $end
-$var wire 1 x" xS2 [7] $end
-$var wire 1 y" xS2 [6] $end
-$var wire 1 z" xS2 [5] $end
-$var wire 1 {" xS2 [4] $end
-$var wire 1 |" xS2 [3] $end
-$var wire 1 }" xS2 [2] $end
-$var wire 1 ~" xS2 [1] $end
-$var wire 1 !# xS2 [0] $end
-$var wire 1 "# yS2 [14] $end
-$var wire 1 ## yS2 [13] $end
-$var wire 1 $# yS2 [12] $end
-$var wire 1 %# yS2 [11] $end
-$var wire 1 &# yS2 [10] $end
-$var wire 1 '# yS2 [9] $end
-$var wire 1 (# yS2 [8] $end
-$var wire 1 )# yS2 [7] $end
-$var wire 1 *# yS2 [6] $end
-$var wire 1 +# yS2 [5] $end
-$var wire 1 ,# yS2 [4] $end
-$var wire 1 -# yS2 [3] $end
-$var wire 1 .# yS2 [2] $end
-$var wire 1 /# yS2 [1] $end
-$var wire 1 0# yS2 [0] $end
-$var wire 1 1# custoEstimadoS2 [7] $end
-$var wire 1 2# custoEstimadoS2 [6] $end
-$var wire 1 3# custoEstimadoS2 [5] $end
-$var wire 1 4# custoEstimadoS2 [4] $end
-$var wire 1 5# custoEstimadoS2 [3] $end
-$var wire 1 6# custoEstimadoS2 [2] $end
-$var wire 1 7# custoEstimadoS2 [1] $end
-$var wire 1 8# custoEstimadoS2 [0] $end
-$var wire 1 9# paiS2 [1] $end
-$var wire 1 :# paiS2 [0] $end
-$var wire 1 ;# valorCelulaS2 $end
-$var wire 1 <# novoCustoAcumuladoS2 $end
-$var wire 1 =# celulaValorValido $end
-$var wire 1 ># addressValid $end
-$var wire 1 ?# valorValido $end
-$var wire 1 @# candidato $end
-$var wire 1 A# custoAcumuladoS3 $end
-$var wire 1 B# addressS3 $end
-$var wire 1 C# direcaoS3 $end
-$var wire 1 D# abertoS3 $end
-$var wire 1 E# valorS3 $end
-$var wire 1 F# xS3 $end
-$var wire 1 G# yS3 $end
-$var wire 1 H# xOriginalS3 $end
-$var wire 1 I# yOriginalS3 $end
-$var wire 1 J# dx [14] $end
-$var wire 1 K# dx [13] $end
-$var wire 1 L# dx [12] $end
-$var wire 1 M# dx [11] $end
-$var wire 1 N# dx [10] $end
-$var wire 1 O# dx [9] $end
-$var wire 1 P# dx [8] $end
-$var wire 1 Q# dx [7] $end
-$var wire 1 R# dx [6] $end
-$var wire 1 S# dx [5] $end
-$var wire 1 T# dx [4] $end
-$var wire 1 U# dx [3] $end
-$var wire 1 V# dx [2] $end
-$var wire 1 W# dx [1] $end
-$var wire 1 X# dx [0] $end
-$var wire 1 Y# dy [14] $end
-$var wire 1 Z# dy [13] $end
-$var wire 1 [# dy [12] $end
-$var wire 1 \# dy [11] $end
-$var wire 1 ]# dy [10] $end
-$var wire 1 ^# dy [9] $end
-$var wire 1 _# dy [8] $end
-$var wire 1 `# dy [7] $end
-$var wire 1 a# dy [6] $end
-$var wire 1 b# dy [5] $end
-$var wire 1 c# dy [4] $end
-$var wire 1 d# dy [3] $end
-$var wire 1 e# dy [2] $end
-$var wire 1 f# dy [1] $end
-$var wire 1 g# dy [0] $end
-$var wire 1 h# dx_ [14] $end
-$var wire 1 i# dx_ [13] $end
-$var wire 1 j# dx_ [12] $end
-$var wire 1 k# dx_ [11] $end
-$var wire 1 l# dx_ [10] $end
-$var wire 1 m# dx_ [9] $end
-$var wire 1 n# dx_ [8] $end
-$var wire 1 o# dx_ [7] $end
-$var wire 1 p# dx_ [6] $end
-$var wire 1 q# dx_ [5] $end
-$var wire 1 r# dx_ [4] $end
-$var wire 1 s# dx_ [3] $end
-$var wire 1 t# dx_ [2] $end
-$var wire 1 u# dx_ [1] $end
-$var wire 1 v# dx_ [0] $end
-$var wire 1 w# dy_ [14] $end
-$var wire 1 x# dy_ [13] $end
-$var wire 1 y# dy_ [12] $end
-$var wire 1 z# dy_ [11] $end
-$var wire 1 {# dy_ [10] $end
-$var wire 1 |# dy_ [9] $end
-$var wire 1 }# dy_ [8] $end
-$var wire 1 ~# dy_ [7] $end
-$var wire 1 !$ dy_ [6] $end
-$var wire 1 "$ dy_ [5] $end
-$var wire 1 #$ dy_ [4] $end
-$var wire 1 $$ dy_ [3] $end
-$var wire 1 %$ dy_ [2] $end
-$var wire 1 &$ dy_ [1] $end
-$var wire 1 '$ dy_ [0] $end
-$var wire 1 ($ distanciaTotal [14] $end
-$var wire 1 )$ distanciaTotal [13] $end
-$var wire 1 *$ distanciaTotal [12] $end
-$var wire 1 +$ distanciaTotal [11] $end
-$var wire 1 ,$ distanciaTotal [10] $end
-$var wire 1 -$ distanciaTotal [9] $end
-$var wire 1 .$ distanciaTotal [8] $end
-$var wire 1 /$ distanciaTotal [7] $end
-$var wire 1 0$ distanciaTotal [6] $end
-$var wire 1 1$ distanciaTotal [5] $end
-$var wire 1 2$ distanciaTotal [4] $end
-$var wire 1 3$ distanciaTotal [3] $end
-$var wire 1 4$ distanciaTotal [2] $end
-$var wire 1 5$ distanciaTotal [1] $end
-$var wire 1 6$ distanciaTotal [0] $end
-$var wire 1 7$ novoCustoAcumuladoS3 $end
-$var wire 1 8$ custoAcumuladoS4 $end
-$var wire 1 9$ custoEstimadoS4 $end
-$var wire 1 :$ addressS4 $end
-$var wire 1 ;$ direcaoS4 $end
-$var wire 1 <$ abertoS4 $end
-$var wire 1 =$ valorS4 $end
-$var wire 1 >$ distanciaTotalS4 $end
-$var wire 1 ?$ xS4 $end
-$var wire 1 @$ yS4 $end
+$var parameter 32 @# TamanhoMalha $end
+$var parameter 32 A# tamanhoDados $end
+$var parameter 32 B# addressTam $end
+$var parameter 32 C# linear $end
+$var parameter 32 D# areaMalha $end
+$var wire 1 2 clock $end
+$var wire 1 3 reset $end
+$var wire 1 ," request $end
+$var wire 1 m address [7] $end
+$var wire 1 n address [6] $end
+$var wire 1 o address [5] $end
+$var wire 1 p address [4] $end
+$var wire 1 q address [3] $end
+$var wire 1 r address [2] $end
+$var wire 1 s address [1] $end
+$var wire 1 t address [0] $end
+$var wire 1 4! value [28] $end
+$var wire 1 5! value [27] $end
+$var wire 1 6! value [26] $end
+$var wire 1 7! value [25] $end
+$var wire 1 8! value [24] $end
+$var wire 1 9! value [23] $end
+$var wire 1 :! value [22] $end
+$var wire 1 ;! value [21] $end
+$var wire 1 <! value [20] $end
+$var wire 1 =! value [19] $end
+$var wire 1 >! value [18] $end
+$var wire 1 ?! value [17] $end
+$var wire 1 @! value [16] $end
+$var wire 1 A! value [15] $end
+$var wire 1 B! value [14] $end
+$var wire 1 C! value [13] $end
+$var wire 1 D! value [12] $end
+$var wire 1 E! value [11] $end
+$var wire 1 F! value [10] $end
+$var wire 1 G! value [9] $end
+$var wire 1 H! value [8] $end
+$var wire 1 I! value [7] $end
+$var wire 1 J! value [6] $end
+$var wire 1 K! value [5] $end
+$var wire 1 L! value [4] $end
+$var wire 1 M! value [3] $end
+$var wire 1 N! value [2] $end
+$var wire 1 O! value [1] $end
+$var wire 1 P! value [0] $end
+$var wire 1 T" direcao [1] $end
+$var wire 1 U" direcao [0] $end
+$var wire 1 +" writeMalha $end
+$var wire 1 *" readMalha $end
+$var wire 1 "" addressWrite [7] $end
+$var wire 1 #" addressWrite [6] $end
+$var wire 1 $" addressWrite [5] $end
+$var wire 1 %" addressWrite [4] $end
+$var wire 1 &" addressWrite [3] $end
+$var wire 1 '" addressWrite [2] $end
+$var wire 1 (" addressWrite [1] $end
+$var wire 1 )" addressWrite [0] $end
+$var wire 1 -" dataToMalha [28] $end
+$var wire 1 ." dataToMalha [27] $end
+$var wire 1 /" dataToMalha [26] $end
+$var wire 1 0" dataToMalha [25] $end
+$var wire 1 1" dataToMalha [24] $end
+$var wire 1 2" dataToMalha [23] $end
+$var wire 1 3" dataToMalha [22] $end
+$var wire 1 4" dataToMalha [21] $end
+$var wire 1 5" dataToMalha [20] $end
+$var wire 1 6" dataToMalha [19] $end
+$var wire 1 7" dataToMalha [18] $end
+$var wire 1 8" dataToMalha [17] $end
+$var wire 1 9" dataToMalha [16] $end
+$var wire 1 :" dataToMalha [15] $end
+$var wire 1 ;" dataToMalha [14] $end
+$var wire 1 <" dataToMalha [13] $end
+$var wire 1 =" dataToMalha [12] $end
+$var wire 1 >" dataToMalha [11] $end
+$var wire 1 ?" dataToMalha [10] $end
+$var wire 1 @" dataToMalha [9] $end
+$var wire 1 A" dataToMalha [8] $end
+$var wire 1 B" dataToMalha [7] $end
+$var wire 1 C" dataToMalha [6] $end
+$var wire 1 D" dataToMalha [5] $end
+$var wire 1 E" dataToMalha [4] $end
+$var wire 1 F" dataToMalha [3] $end
+$var wire 1 G" dataToMalha [2] $end
+$var wire 1 H" dataToMalha [1] $end
+$var wire 1 I" dataToMalha [0] $end
+$var wire 1 s" dataFromMalha [28] $end
+$var wire 1 t" dataFromMalha [27] $end
+$var wire 1 u" dataFromMalha [26] $end
+$var wire 1 v" dataFromMalha [25] $end
+$var wire 1 w" dataFromMalha [24] $end
+$var wire 1 x" dataFromMalha [23] $end
+$var wire 1 y" dataFromMalha [22] $end
+$var wire 1 z" dataFromMalha [21] $end
+$var wire 1 {" dataFromMalha [20] $end
+$var wire 1 |" dataFromMalha [19] $end
+$var wire 1 }" dataFromMalha [18] $end
+$var wire 1 ~" dataFromMalha [17] $end
+$var wire 1 !# dataFromMalha [16] $end
+$var wire 1 "# dataFromMalha [15] $end
+$var wire 1 ## dataFromMalha [14] $end
+$var wire 1 $# dataFromMalha [13] $end
+$var wire 1 %# dataFromMalha [12] $end
+$var wire 1 &# dataFromMalha [11] $end
+$var wire 1 '# dataFromMalha [10] $end
+$var wire 1 (# dataFromMalha [9] $end
+$var wire 1 )# dataFromMalha [8] $end
+$var wire 1 *# dataFromMalha [7] $end
+$var wire 1 +# dataFromMalha [6] $end
+$var wire 1 ,# dataFromMalha [5] $end
+$var wire 1 -# dataFromMalha [4] $end
+$var wire 1 .# dataFromMalha [3] $end
+$var wire 1 /# dataFromMalha [2] $end
+$var wire 1 0# dataFromMalha [1] $end
+$var wire 1 1# dataFromMalha [0] $end
+$var wire 1 3# writeFIFO $end
+$var wire 1 Z! dataFIFO [8] $end
+$var wire 1 [! dataFIFO [7] $end
+$var wire 1 \! dataFIFO [6] $end
+$var wire 1 ]! dataFIFO [5] $end
+$var wire 1 ^! dataFIFO [4] $end
+$var wire 1 _! dataFIFO [3] $end
+$var wire 1 `! dataFIFO [2] $end
+$var wire 1 a! dataFIFO [1] $end
+$var wire 1 b! dataFIFO [0] $end
+$var wire 1 E# dataFromMalhaS2 [28] $end
+$var wire 1 F# dataFromMalhaS2 [27] $end
+$var wire 1 G# dataFromMalhaS2 [26] $end
+$var wire 1 H# dataFromMalhaS2 [25] $end
+$var wire 1 I# dataFromMalhaS2 [24] $end
+$var wire 1 J# dataFromMalhaS2 [23] $end
+$var wire 1 K# dataFromMalhaS2 [22] $end
+$var wire 1 L# dataFromMalhaS2 [21] $end
+$var wire 1 M# dataFromMalhaS2 [20] $end
+$var wire 1 N# dataFromMalhaS2 [19] $end
+$var wire 1 O# dataFromMalhaS2 [18] $end
+$var wire 1 P# dataFromMalhaS2 [17] $end
+$var wire 1 Q# dataFromMalhaS2 [16] $end
+$var wire 1 R# dataFromMalhaS2 [15] $end
+$var wire 1 S# dataFromMalhaS2 [14] $end
+$var wire 1 T# dataFromMalhaS2 [13] $end
+$var wire 1 U# dataFromMalhaS2 [12] $end
+$var wire 1 V# dataFromMalhaS2 [11] $end
+$var wire 1 W# dataFromMalhaS2 [10] $end
+$var wire 1 X# dataFromMalhaS2 [9] $end
+$var wire 1 Y# dataFromMalhaS2 [8] $end
+$var wire 1 Z# dataFromMalhaS2 [7] $end
+$var wire 1 [# dataFromMalhaS2 [6] $end
+$var wire 1 \# dataFromMalhaS2 [5] $end
+$var wire 1 ]# dataFromMalhaS2 [4] $end
+$var wire 1 ^# dataFromMalhaS2 [3] $end
+$var wire 1 _# dataFromMalhaS2 [2] $end
+$var wire 1 `# dataFromMalhaS2 [1] $end
+$var wire 1 a# dataFromMalhaS2 [0] $end
+$var wire 1 b# x [3] $end
+$var wire 1 c# x [2] $end
+$var wire 1 d# x [1] $end
+$var wire 1 e# x [0] $end
+$var wire 1 f# y [3] $end
+$var wire 1 g# y [2] $end
+$var wire 1 h# y [1] $end
+$var wire 1 i# y [0] $end
+$var wire 1 j# xS4 [3] $end
+$var wire 1 k# xS4 [2] $end
+$var wire 1 l# xS4 [1] $end
+$var wire 1 m# xS4 [0] $end
+$var wire 1 n# yS4 [3] $end
+$var wire 1 o# yS4 [2] $end
+$var wire 1 p# yS4 [1] $end
+$var wire 1 q# yS4 [0] $end
+$var wire 1 r# xS5 [3] $end
+$var wire 1 s# xS5 [2] $end
+$var wire 1 t# xS5 [1] $end
+$var wire 1 u# xS5 [0] $end
+$var wire 1 v# yS5 [3] $end
+$var wire 1 w# yS5 [2] $end
+$var wire 1 x# yS5 [1] $end
+$var wire 1 y# yS5 [0] $end
+$var wire 1 z# xOriginalS1 [3] $end
+$var wire 1 {# xOriginalS1 [2] $end
+$var wire 1 |# xOriginalS1 [1] $end
+$var wire 1 }# xOriginalS1 [0] $end
+$var wire 1 ~# yOriginalS1 [3] $end
+$var wire 1 !$ yOriginalS1 [2] $end
+$var wire 1 "$ yOriginalS1 [1] $end
+$var wire 1 #$ yOriginalS1 [0] $end
+$var wire 1 $$ xOriginalS2 [3] $end
+$var wire 1 %$ xOriginalS2 [2] $end
+$var wire 1 &$ xOriginalS2 [1] $end
+$var wire 1 '$ xOriginalS2 [0] $end
+$var wire 1 ($ yOriginalS2 [3] $end
+$var wire 1 )$ yOriginalS2 [2] $end
+$var wire 1 *$ yOriginalS2 [1] $end
+$var wire 1 +$ yOriginalS2 [0] $end
+$var wire 1 ,$ xOriginalS3 [3] $end
+$var wire 1 -$ xOriginalS3 [2] $end
+$var wire 1 .$ xOriginalS3 [1] $end
+$var wire 1 /$ xOriginalS3 [0] $end
+$var wire 1 0$ yOriginalS3 [3] $end
+$var wire 1 1$ yOriginalS3 [2] $end
+$var wire 1 2$ yOriginalS3 [1] $end
+$var wire 1 3$ yOriginalS3 [0] $end
+$var wire 1 4$ xS3 [3] $end
+$var wire 1 5$ xS3 [2] $end
+$var wire 1 6$ xS3 [1] $end
+$var wire 1 7$ xS3 [0] $end
+$var wire 1 8$ yS3 [3] $end
+$var wire 1 9$ yS3 [2] $end
+$var wire 1 :$ yS3 [1] $end
+$var wire 1 ;$ yS3 [0] $end
+$var wire 1 <$ xS2 [3] $end
+$var wire 1 =$ xS2 [2] $end
+$var wire 1 >$ xS2 [1] $end
+$var wire 1 ?$ xS2 [0] $end
+$var wire 1 @$ yS2 [3] $end
+$var wire 1 A$ yS2 [2] $end
+$var wire 1 B$ yS2 [1] $end
+$var wire 1 C$ yS2 [0] $end
+$var wire 1 D$ custoAcumulado [7] $end
+$var wire 1 E$ custoAcumulado [6] $end
+$var wire 1 F$ custoAcumulado [5] $end
+$var wire 1 G$ custoAcumulado [4] $end
+$var wire 1 H$ custoAcumulado [3] $end
+$var wire 1 I$ custoAcumulado [2] $end
+$var wire 1 J$ custoAcumulado [1] $end
+$var wire 1 K$ custoAcumulado [0] $end
+$var wire 1 L$ custoAcumuladoS1 [7] $end
+$var wire 1 M$ custoAcumuladoS1 [6] $end
+$var wire 1 N$ custoAcumuladoS1 [5] $end
+$var wire 1 O$ custoAcumuladoS1 [4] $end
+$var wire 1 P$ custoAcumuladoS1 [3] $end
+$var wire 1 Q$ custoAcumuladoS1 [2] $end
+$var wire 1 R$ custoAcumuladoS1 [1] $end
+$var wire 1 S$ custoAcumuladoS1 [0] $end
+$var wire 1 T$ custoAcumuladoS3 [7] $end
+$var wire 1 U$ custoAcumuladoS3 [6] $end
+$var wire 1 V$ custoAcumuladoS3 [5] $end
+$var wire 1 W$ custoAcumuladoS3 [4] $end
+$var wire 1 X$ custoAcumuladoS3 [3] $end
+$var wire 1 Y$ custoAcumuladoS3 [2] $end
+$var wire 1 Z$ custoAcumuladoS3 [1] $end
+$var wire 1 [$ custoAcumuladoS3 [0] $end
+$var wire 1 \$ custoAcumuladoS4 [7] $end
+$var wire 1 ]$ custoAcumuladoS4 [6] $end
+$var wire 1 ^$ custoAcumuladoS4 [5] $end
+$var wire 1 _$ custoAcumuladoS4 [4] $end
+$var wire 1 `$ custoAcumuladoS4 [3] $end
+$var wire 1 a$ custoAcumuladoS4 [2] $end
+$var wire 1 b$ custoAcumuladoS4 [1] $end
+$var wire 1 c$ custoAcumuladoS4 [0] $end
+$var wire 1 d$ custoAcumuladoS5 [7] $end
+$var wire 1 e$ custoAcumuladoS5 [6] $end
+$var wire 1 f$ custoAcumuladoS5 [5] $end
+$var wire 1 g$ custoAcumuladoS5 [4] $end
+$var wire 1 h$ custoAcumuladoS5 [3] $end
+$var wire 1 i$ custoAcumuladoS5 [2] $end
+$var wire 1 j$ custoAcumuladoS5 [1] $end
+$var wire 1 k$ custoAcumuladoS5 [0] $end
+$var wire 1 l$ custoEstimado [7] $end
+$var wire 1 m$ custoEstimado [6] $end
+$var wire 1 n$ custoEstimado [5] $end
+$var wire 1 o$ custoEstimado [4] $end
+$var wire 1 p$ custoEstimado [3] $end
+$var wire 1 q$ custoEstimado [2] $end
+$var wire 1 r$ custoEstimado [1] $end
+$var wire 1 s$ custoEstimado [0] $end
+$var wire 1 t$ custoEstimadoS4 [7] $end
+$var wire 1 u$ custoEstimadoS4 [6] $end
+$var wire 1 v$ custoEstimadoS4 [5] $end
+$var wire 1 w$ custoEstimadoS4 [4] $end
+$var wire 1 x$ custoEstimadoS4 [3] $end
+$var wire 1 y$ custoEstimadoS4 [2] $end
+$var wire 1 z$ custoEstimadoS4 [1] $end
+$var wire 1 {$ custoEstimadoS4 [0] $end
+$var wire 1 |$ custoEstimadoS5 [7] $end
+$var wire 1 }$ custoEstimadoS5 [6] $end
+$var wire 1 ~$ custoEstimadoS5 [5] $end
+$var wire 1 !% custoEstimadoS5 [4] $end
+$var wire 1 "% custoEstimadoS5 [3] $end
+$var wire 1 #% custoEstimadoS5 [2] $end
+$var wire 1 $% custoEstimadoS5 [1] $end
+$var wire 1 %% custoEstimadoS5 [0] $end
+$var wire 1 &% custoAcumuladoS2 [7] $end
+$var wire 1 '% custoAcumuladoS2 [6] $end
+$var wire 1 (% custoAcumuladoS2 [5] $end
+$var wire 1 )% custoAcumuladoS2 [4] $end
+$var wire 1 *% custoAcumuladoS2 [3] $end
+$var wire 1 +% custoAcumuladoS2 [2] $end
+$var wire 1 ,% custoAcumuladoS2 [1] $end
+$var wire 1 -% custoAcumuladoS2 [0] $end
+$var wire 1 .% novoCustoAcumuladoS2 [7] $end
+$var wire 1 /% novoCustoAcumuladoS2 [6] $end
+$var wire 1 0% novoCustoAcumuladoS2 [5] $end
+$var wire 1 1% novoCustoAcumuladoS2 [4] $end
+$var wire 1 2% novoCustoAcumuladoS2 [3] $end
+$var wire 1 3% novoCustoAcumuladoS2 [2] $end
+$var wire 1 4% novoCustoAcumuladoS2 [1] $end
+$var wire 1 5% novoCustoAcumuladoS2 [0] $end
+$var wire 1 6% custoVizinhoAcumuladoS2 [7] $end
+$var wire 1 7% custoVizinhoAcumuladoS2 [6] $end
+$var wire 1 8% custoVizinhoAcumuladoS2 [5] $end
+$var wire 1 9% custoVizinhoAcumuladoS2 [4] $end
+$var wire 1 :% custoVizinhoAcumuladoS2 [3] $end
+$var wire 1 ;% custoVizinhoAcumuladoS2 [2] $end
+$var wire 1 <% custoVizinhoAcumuladoS2 [1] $end
+$var wire 1 =% custoVizinhoAcumuladoS2 [0] $end
+$var wire 1 >% addressS4 [7] $end
+$var wire 1 ?% addressS4 [6] $end
+$var wire 1 @% addressS4 [5] $end
+$var wire 1 A% addressS4 [4] $end
+$var wire 1 B% addressS4 [3] $end
+$var wire 1 C% addressS4 [2] $end
+$var wire 1 D% addressS4 [1] $end
+$var wire 1 E% addressS4 [0] $end
+$var wire 1 F% addressS5 [7] $end
+$var wire 1 G% addressS5 [6] $end
+$var wire 1 H% addressS5 [5] $end
+$var wire 1 I% addressS5 [4] $end
+$var wire 1 J% addressS5 [3] $end
+$var wire 1 K% addressS5 [2] $end
+$var wire 1 L% addressS5 [1] $end
+$var wire 1 M% addressS5 [0] $end
+$var wire 1 N% addressS3 [7] $end
+$var wire 1 O% addressS3 [6] $end
+$var wire 1 P% addressS3 [5] $end
+$var wire 1 Q% addressS3 [4] $end
+$var wire 1 R% addressS3 [3] $end
+$var wire 1 S% addressS3 [2] $end
+$var wire 1 T% addressS3 [1] $end
+$var wire 1 U% addressS3 [0] $end
+$var wire 1 V% addressProximoVizinho [7] $end
+$var wire 1 W% addressProximoVizinho [6] $end
+$var wire 1 X% addressProximoVizinho [5] $end
+$var wire 1 Y% addressProximoVizinho [4] $end
+$var wire 1 Z% addressProximoVizinho [3] $end
+$var wire 1 [% addressProximoVizinho [2] $end
+$var wire 1 \% addressProximoVizinho [1] $end
+$var wire 1 ]% addressProximoVizinho [0] $end
+$var wire 1 ^% proximoVizinho [7] $end
+$var wire 1 _% proximoVizinho [6] $end
+$var wire 1 `% proximoVizinho [5] $end
+$var wire 1 a% proximoVizinho [4] $end
+$var wire 1 b% proximoVizinho [3] $end
+$var wire 1 c% proximoVizinho [2] $end
+$var wire 1 d% proximoVizinho [1] $end
+$var wire 1 e% proximoVizinho [0] $end
+$var wire 1 f% addressS2 [7] $end
+$var wire 1 g% addressS2 [6] $end
+$var wire 1 h% addressS2 [5] $end
+$var wire 1 i% addressS2 [4] $end
+$var wire 1 j% addressS2 [3] $end
+$var wire 1 k% addressS2 [2] $end
+$var wire 1 l% addressS2 [1] $end
+$var wire 1 m% addressS2 [0] $end
+$var wire 1 n% pai [1] $end
+$var wire 1 o% pai [0] $end
+$var wire 1 p% paiS2 [1] $end
+$var wire 1 q% paiS2 [0] $end
+$var wire 1 r% aberto $end
+$var wire 1 s% abertoS3 $end
+$var wire 1 t% abertoS2 $end
+$var wire 1 u% abertoS4 $end
+$var wire 1 v% abertoS5 $end
+$var wire 1 w% direcaoS1 [1] $end
+$var wire 1 x% direcaoS1 [0] $end
+$var wire 1 y% direcaoS2 [1] $end
+$var wire 1 z% direcaoS2 [0] $end
+$var wire 1 {% direcaoS3 [1] $end
+$var wire 1 |% direcaoS3 [0] $end
+$var wire 1 }% direcaoS4 [1] $end
+$var wire 1 ~% direcaoS4 [0] $end
+$var wire 1 !& direcaoS5 [1] $end
+$var wire 1 "& direcaoS5 [0] $end
+$var wire 1 #& valorCelula [1] $end
+$var wire 1 $& valorCelula [0] $end
+$var wire 1 %& valorS2 [1] $end
+$var wire 1 && valorS2 [0] $end
+$var wire 1 '& valorS1 [1] $end
+$var wire 1 (& valorS1 [0] $end
+$var wire 1 )& valorS3 [1] $end
+$var wire 1 *& valorS3 [0] $end
+$var wire 1 +& valorS4 [1] $end
+$var wire 1 ,& valorS4 [0] $end
+$var wire 1 -& valorS5 [1] $end
+$var wire 1 .& valorS5 [0] $end
+$var wire 1 /& custoEstimadoS2 [7] $end
+$var wire 1 0& custoEstimadoS2 [6] $end
+$var wire 1 1& custoEstimadoS2 [5] $end
+$var wire 1 2& custoEstimadoS2 [4] $end
+$var wire 1 3& custoEstimadoS2 [3] $end
+$var wire 1 4& custoEstimadoS2 [2] $end
+$var wire 1 5& custoEstimadoS2 [1] $end
+$var wire 1 6& custoEstimadoS2 [0] $end
+$var wire 1 7& novoCustoEstimado [7] $end
+$var wire 1 8& novoCustoEstimado [6] $end
+$var wire 1 9& novoCustoEstimado [5] $end
+$var wire 1 :& novoCustoEstimado [4] $end
+$var wire 1 ;& novoCustoEstimado [3] $end
+$var wire 1 <& novoCustoEstimado [2] $end
+$var wire 1 =& novoCustoEstimado [1] $end
+$var wire 1 >& novoCustoEstimado [0] $end
+$var wire 1 ?& celulaValorValido $end
+$var wire 1 @& addressValid $end
+$var wire 1 A& valorValido $end
+$var wire 1 B& candidato $end
+$var wire 1 C& dx [14] $end
+$var wire 1 D& dx [13] $end
+$var wire 1 E& dx [12] $end
+$var wire 1 F& dx [11] $end
+$var wire 1 G& dx [10] $end
+$var wire 1 H& dx [9] $end
+$var wire 1 I& dx [8] $end
+$var wire 1 J& dx [7] $end
+$var wire 1 K& dx [6] $end
+$var wire 1 L& dx [5] $end
+$var wire 1 M& dx [4] $end
+$var wire 1 N& dx [3] $end
+$var wire 1 O& dx [2] $end
+$var wire 1 P& dx [1] $end
+$var wire 1 Q& dx [0] $end
+$var wire 1 R& dy [14] $end
+$var wire 1 S& dy [13] $end
+$var wire 1 T& dy [12] $end
+$var wire 1 U& dy [11] $end
+$var wire 1 V& dy [10] $end
+$var wire 1 W& dy [9] $end
+$var wire 1 X& dy [8] $end
+$var wire 1 Y& dy [7] $end
+$var wire 1 Z& dy [6] $end
+$var wire 1 [& dy [5] $end
+$var wire 1 \& dy [4] $end
+$var wire 1 ]& dy [3] $end
+$var wire 1 ^& dy [2] $end
+$var wire 1 _& dy [1] $end
+$var wire 1 `& dy [0] $end
+$var wire 1 a& dxS4 [14] $end
+$var wire 1 b& dxS4 [13] $end
+$var wire 1 c& dxS4 [12] $end
+$var wire 1 d& dxS4 [11] $end
+$var wire 1 e& dxS4 [10] $end
+$var wire 1 f& dxS4 [9] $end
+$var wire 1 g& dxS4 [8] $end
+$var wire 1 h& dxS4 [7] $end
+$var wire 1 i& dxS4 [6] $end
+$var wire 1 j& dxS4 [5] $end
+$var wire 1 k& dxS4 [4] $end
+$var wire 1 l& dxS4 [3] $end
+$var wire 1 m& dxS4 [2] $end
+$var wire 1 n& dxS4 [1] $end
+$var wire 1 o& dxS4 [0] $end
+$var wire 1 p& dyS4 [14] $end
+$var wire 1 q& dyS4 [13] $end
+$var wire 1 r& dyS4 [12] $end
+$var wire 1 s& dyS4 [11] $end
+$var wire 1 t& dyS4 [10] $end
+$var wire 1 u& dyS4 [9] $end
+$var wire 1 v& dyS4 [8] $end
+$var wire 1 w& dyS4 [7] $end
+$var wire 1 x& dyS4 [6] $end
+$var wire 1 y& dyS4 [5] $end
+$var wire 1 z& dyS4 [4] $end
+$var wire 1 {& dyS4 [3] $end
+$var wire 1 |& dyS4 [2] $end
+$var wire 1 }& dyS4 [1] $end
+$var wire 1 ~& dyS4 [0] $end
+$var wire 1 !' dx_ [14] $end
+$var wire 1 "' dx_ [13] $end
+$var wire 1 #' dx_ [12] $end
+$var wire 1 $' dx_ [11] $end
+$var wire 1 %' dx_ [10] $end
+$var wire 1 &' dx_ [9] $end
+$var wire 1 '' dx_ [8] $end
+$var wire 1 (' dx_ [7] $end
+$var wire 1 )' dx_ [6] $end
+$var wire 1 *' dx_ [5] $end
+$var wire 1 +' dx_ [4] $end
+$var wire 1 ,' dx_ [3] $end
+$var wire 1 -' dx_ [2] $end
+$var wire 1 .' dx_ [1] $end
+$var wire 1 /' dx_ [0] $end
+$var wire 1 0' dy_ [14] $end
+$var wire 1 1' dy_ [13] $end
+$var wire 1 2' dy_ [12] $end
+$var wire 1 3' dy_ [11] $end
+$var wire 1 4' dy_ [10] $end
+$var wire 1 5' dy_ [9] $end
+$var wire 1 6' dy_ [8] $end
+$var wire 1 7' dy_ [7] $end
+$var wire 1 8' dy_ [6] $end
+$var wire 1 9' dy_ [5] $end
+$var wire 1 :' dy_ [4] $end
+$var wire 1 ;' dy_ [3] $end
+$var wire 1 <' dy_ [2] $end
+$var wire 1 =' dy_ [1] $end
+$var wire 1 >' dy_ [0] $end
+$var wire 1 ?' distanciaTotalS4 [224] $end
+$var wire 1 @' distanciaTotalS4 [223] $end
+$var wire 1 A' distanciaTotalS4 [222] $end
+$var wire 1 B' distanciaTotalS4 [221] $end
+$var wire 1 C' distanciaTotalS4 [220] $end
+$var wire 1 D' distanciaTotalS4 [219] $end
+$var wire 1 E' distanciaTotalS4 [218] $end
+$var wire 1 F' distanciaTotalS4 [217] $end
+$var wire 1 G' distanciaTotalS4 [216] $end
+$var wire 1 H' distanciaTotalS4 [215] $end
+$var wire 1 I' distanciaTotalS4 [214] $end
+$var wire 1 J' distanciaTotalS4 [213] $end
+$var wire 1 K' distanciaTotalS4 [212] $end
+$var wire 1 L' distanciaTotalS4 [211] $end
+$var wire 1 M' distanciaTotalS4 [210] $end
+$var wire 1 N' distanciaTotalS4 [209] $end
+$var wire 1 O' distanciaTotalS4 [208] $end
+$var wire 1 P' distanciaTotalS4 [207] $end
+$var wire 1 Q' distanciaTotalS4 [206] $end
+$var wire 1 R' distanciaTotalS4 [205] $end
+$var wire 1 S' distanciaTotalS4 [204] $end
+$var wire 1 T' distanciaTotalS4 [203] $end
+$var wire 1 U' distanciaTotalS4 [202] $end
+$var wire 1 V' distanciaTotalS4 [201] $end
+$var wire 1 W' distanciaTotalS4 [200] $end
+$var wire 1 X' distanciaTotalS4 [199] $end
+$var wire 1 Y' distanciaTotalS4 [198] $end
+$var wire 1 Z' distanciaTotalS4 [197] $end
+$var wire 1 [' distanciaTotalS4 [196] $end
+$var wire 1 \' distanciaTotalS4 [195] $end
+$var wire 1 ]' distanciaTotalS4 [194] $end
+$var wire 1 ^' distanciaTotalS4 [193] $end
+$var wire 1 _' distanciaTotalS4 [192] $end
+$var wire 1 `' distanciaTotalS4 [191] $end
+$var wire 1 a' distanciaTotalS4 [190] $end
+$var wire 1 b' distanciaTotalS4 [189] $end
+$var wire 1 c' distanciaTotalS4 [188] $end
+$var wire 1 d' distanciaTotalS4 [187] $end
+$var wire 1 e' distanciaTotalS4 [186] $end
+$var wire 1 f' distanciaTotalS4 [185] $end
+$var wire 1 g' distanciaTotalS4 [184] $end
+$var wire 1 h' distanciaTotalS4 [183] $end
+$var wire 1 i' distanciaTotalS4 [182] $end
+$var wire 1 j' distanciaTotalS4 [181] $end
+$var wire 1 k' distanciaTotalS4 [180] $end
+$var wire 1 l' distanciaTotalS4 [179] $end
+$var wire 1 m' distanciaTotalS4 [178] $end
+$var wire 1 n' distanciaTotalS4 [177] $end
+$var wire 1 o' distanciaTotalS4 [176] $end
+$var wire 1 p' distanciaTotalS4 [175] $end
+$var wire 1 q' distanciaTotalS4 [174] $end
+$var wire 1 r' distanciaTotalS4 [173] $end
+$var wire 1 s' distanciaTotalS4 [172] $end
+$var wire 1 t' distanciaTotalS4 [171] $end
+$var wire 1 u' distanciaTotalS4 [170] $end
+$var wire 1 v' distanciaTotalS4 [169] $end
+$var wire 1 w' distanciaTotalS4 [168] $end
+$var wire 1 x' distanciaTotalS4 [167] $end
+$var wire 1 y' distanciaTotalS4 [166] $end
+$var wire 1 z' distanciaTotalS4 [165] $end
+$var wire 1 {' distanciaTotalS4 [164] $end
+$var wire 1 |' distanciaTotalS4 [163] $end
+$var wire 1 }' distanciaTotalS4 [162] $end
+$var wire 1 ~' distanciaTotalS4 [161] $end
+$var wire 1 !( distanciaTotalS4 [160] $end
+$var wire 1 "( distanciaTotalS4 [159] $end
+$var wire 1 #( distanciaTotalS4 [158] $end
+$var wire 1 $( distanciaTotalS4 [157] $end
+$var wire 1 %( distanciaTotalS4 [156] $end
+$var wire 1 &( distanciaTotalS4 [155] $end
+$var wire 1 '( distanciaTotalS4 [154] $end
+$var wire 1 (( distanciaTotalS4 [153] $end
+$var wire 1 )( distanciaTotalS4 [152] $end
+$var wire 1 *( distanciaTotalS4 [151] $end
+$var wire 1 +( distanciaTotalS4 [150] $end
+$var wire 1 ,( distanciaTotalS4 [149] $end
+$var wire 1 -( distanciaTotalS4 [148] $end
+$var wire 1 .( distanciaTotalS4 [147] $end
+$var wire 1 /( distanciaTotalS4 [146] $end
+$var wire 1 0( distanciaTotalS4 [145] $end
+$var wire 1 1( distanciaTotalS4 [144] $end
+$var wire 1 2( distanciaTotalS4 [143] $end
+$var wire 1 3( distanciaTotalS4 [142] $end
+$var wire 1 4( distanciaTotalS4 [141] $end
+$var wire 1 5( distanciaTotalS4 [140] $end
+$var wire 1 6( distanciaTotalS4 [139] $end
+$var wire 1 7( distanciaTotalS4 [138] $end
+$var wire 1 8( distanciaTotalS4 [137] $end
+$var wire 1 9( distanciaTotalS4 [136] $end
+$var wire 1 :( distanciaTotalS4 [135] $end
+$var wire 1 ;( distanciaTotalS4 [134] $end
+$var wire 1 <( distanciaTotalS4 [133] $end
+$var wire 1 =( distanciaTotalS4 [132] $end
+$var wire 1 >( distanciaTotalS4 [131] $end
+$var wire 1 ?( distanciaTotalS4 [130] $end
+$var wire 1 @( distanciaTotalS4 [129] $end
+$var wire 1 A( distanciaTotalS4 [128] $end
+$var wire 1 B( distanciaTotalS4 [127] $end
+$var wire 1 C( distanciaTotalS4 [126] $end
+$var wire 1 D( distanciaTotalS4 [125] $end
+$var wire 1 E( distanciaTotalS4 [124] $end
+$var wire 1 F( distanciaTotalS4 [123] $end
+$var wire 1 G( distanciaTotalS4 [122] $end
+$var wire 1 H( distanciaTotalS4 [121] $end
+$var wire 1 I( distanciaTotalS4 [120] $end
+$var wire 1 J( distanciaTotalS4 [119] $end
+$var wire 1 K( distanciaTotalS4 [118] $end
+$var wire 1 L( distanciaTotalS4 [117] $end
+$var wire 1 M( distanciaTotalS4 [116] $end
+$var wire 1 N( distanciaTotalS4 [115] $end
+$var wire 1 O( distanciaTotalS4 [114] $end
+$var wire 1 P( distanciaTotalS4 [113] $end
+$var wire 1 Q( distanciaTotalS4 [112] $end
+$var wire 1 R( distanciaTotalS4 [111] $end
+$var wire 1 S( distanciaTotalS4 [110] $end
+$var wire 1 T( distanciaTotalS4 [109] $end
+$var wire 1 U( distanciaTotalS4 [108] $end
+$var wire 1 V( distanciaTotalS4 [107] $end
+$var wire 1 W( distanciaTotalS4 [106] $end
+$var wire 1 X( distanciaTotalS4 [105] $end
+$var wire 1 Y( distanciaTotalS4 [104] $end
+$var wire 1 Z( distanciaTotalS4 [103] $end
+$var wire 1 [( distanciaTotalS4 [102] $end
+$var wire 1 \( distanciaTotalS4 [101] $end
+$var wire 1 ]( distanciaTotalS4 [100] $end
+$var wire 1 ^( distanciaTotalS4 [99] $end
+$var wire 1 _( distanciaTotalS4 [98] $end
+$var wire 1 `( distanciaTotalS4 [97] $end
+$var wire 1 a( distanciaTotalS4 [96] $end
+$var wire 1 b( distanciaTotalS4 [95] $end
+$var wire 1 c( distanciaTotalS4 [94] $end
+$var wire 1 d( distanciaTotalS4 [93] $end
+$var wire 1 e( distanciaTotalS4 [92] $end
+$var wire 1 f( distanciaTotalS4 [91] $end
+$var wire 1 g( distanciaTotalS4 [90] $end
+$var wire 1 h( distanciaTotalS4 [89] $end
+$var wire 1 i( distanciaTotalS4 [88] $end
+$var wire 1 j( distanciaTotalS4 [87] $end
+$var wire 1 k( distanciaTotalS4 [86] $end
+$var wire 1 l( distanciaTotalS4 [85] $end
+$var wire 1 m( distanciaTotalS4 [84] $end
+$var wire 1 n( distanciaTotalS4 [83] $end
+$var wire 1 o( distanciaTotalS4 [82] $end
+$var wire 1 p( distanciaTotalS4 [81] $end
+$var wire 1 q( distanciaTotalS4 [80] $end
+$var wire 1 r( distanciaTotalS4 [79] $end
+$var wire 1 s( distanciaTotalS4 [78] $end
+$var wire 1 t( distanciaTotalS4 [77] $end
+$var wire 1 u( distanciaTotalS4 [76] $end
+$var wire 1 v( distanciaTotalS4 [75] $end
+$var wire 1 w( distanciaTotalS4 [74] $end
+$var wire 1 x( distanciaTotalS4 [73] $end
+$var wire 1 y( distanciaTotalS4 [72] $end
+$var wire 1 z( distanciaTotalS4 [71] $end
+$var wire 1 {( distanciaTotalS4 [70] $end
+$var wire 1 |( distanciaTotalS4 [69] $end
+$var wire 1 }( distanciaTotalS4 [68] $end
+$var wire 1 ~( distanciaTotalS4 [67] $end
+$var wire 1 !) distanciaTotalS4 [66] $end
+$var wire 1 ") distanciaTotalS4 [65] $end
+$var wire 1 #) distanciaTotalS4 [64] $end
+$var wire 1 $) distanciaTotalS4 [63] $end
+$var wire 1 %) distanciaTotalS4 [62] $end
+$var wire 1 &) distanciaTotalS4 [61] $end
+$var wire 1 ') distanciaTotalS4 [60] $end
+$var wire 1 () distanciaTotalS4 [59] $end
+$var wire 1 )) distanciaTotalS4 [58] $end
+$var wire 1 *) distanciaTotalS4 [57] $end
+$var wire 1 +) distanciaTotalS4 [56] $end
+$var wire 1 ,) distanciaTotalS4 [55] $end
+$var wire 1 -) distanciaTotalS4 [54] $end
+$var wire 1 .) distanciaTotalS4 [53] $end
+$var wire 1 /) distanciaTotalS4 [52] $end
+$var wire 1 0) distanciaTotalS4 [51] $end
+$var wire 1 1) distanciaTotalS4 [50] $end
+$var wire 1 2) distanciaTotalS4 [49] $end
+$var wire 1 3) distanciaTotalS4 [48] $end
+$var wire 1 4) distanciaTotalS4 [47] $end
+$var wire 1 5) distanciaTotalS4 [46] $end
+$var wire 1 6) distanciaTotalS4 [45] $end
+$var wire 1 7) distanciaTotalS4 [44] $end
+$var wire 1 8) distanciaTotalS4 [43] $end
+$var wire 1 9) distanciaTotalS4 [42] $end
+$var wire 1 :) distanciaTotalS4 [41] $end
+$var wire 1 ;) distanciaTotalS4 [40] $end
+$var wire 1 <) distanciaTotalS4 [39] $end
+$var wire 1 =) distanciaTotalS4 [38] $end
+$var wire 1 >) distanciaTotalS4 [37] $end
+$var wire 1 ?) distanciaTotalS4 [36] $end
+$var wire 1 @) distanciaTotalS4 [35] $end
+$var wire 1 A) distanciaTotalS4 [34] $end
+$var wire 1 B) distanciaTotalS4 [33] $end
+$var wire 1 C) distanciaTotalS4 [32] $end
+$var wire 1 D) distanciaTotalS4 [31] $end
+$var wire 1 E) distanciaTotalS4 [30] $end
+$var wire 1 F) distanciaTotalS4 [29] $end
+$var wire 1 G) distanciaTotalS4 [28] $end
+$var wire 1 H) distanciaTotalS4 [27] $end
+$var wire 1 I) distanciaTotalS4 [26] $end
+$var wire 1 J) distanciaTotalS4 [25] $end
+$var wire 1 K) distanciaTotalS4 [24] $end
+$var wire 1 L) distanciaTotalS4 [23] $end
+$var wire 1 M) distanciaTotalS4 [22] $end
+$var wire 1 N) distanciaTotalS4 [21] $end
+$var wire 1 O) distanciaTotalS4 [20] $end
+$var wire 1 P) distanciaTotalS4 [19] $end
+$var wire 1 Q) distanciaTotalS4 [18] $end
+$var wire 1 R) distanciaTotalS4 [17] $end
+$var wire 1 S) distanciaTotalS4 [16] $end
+$var wire 1 T) distanciaTotalS4 [15] $end
+$var wire 1 U) distanciaTotalS4 [14] $end
+$var wire 1 V) distanciaTotalS4 [13] $end
+$var wire 1 W) distanciaTotalS4 [12] $end
+$var wire 1 X) distanciaTotalS4 [11] $end
+$var wire 1 Y) distanciaTotalS4 [10] $end
+$var wire 1 Z) distanciaTotalS4 [9] $end
+$var wire 1 [) distanciaTotalS4 [8] $end
+$var wire 1 \) distanciaTotalS4 [7] $end
+$var wire 1 ]) distanciaTotalS4 [6] $end
+$var wire 1 ^) distanciaTotalS4 [5] $end
+$var wire 1 _) distanciaTotalS4 [4] $end
+$var wire 1 `) distanciaTotalS4 [3] $end
+$var wire 1 a) distanciaTotalS4 [2] $end
+$var wire 1 b) distanciaTotalS4 [1] $end
+$var wire 1 c) distanciaTotalS4 [0] $end
+$var wire 1 d) distanciaTotalS5 [224] $end
+$var wire 1 e) distanciaTotalS5 [223] $end
+$var wire 1 f) distanciaTotalS5 [222] $end
+$var wire 1 g) distanciaTotalS5 [221] $end
+$var wire 1 h) distanciaTotalS5 [220] $end
+$var wire 1 i) distanciaTotalS5 [219] $end
+$var wire 1 j) distanciaTotalS5 [218] $end
+$var wire 1 k) distanciaTotalS5 [217] $end
+$var wire 1 l) distanciaTotalS5 [216] $end
+$var wire 1 m) distanciaTotalS5 [215] $end
+$var wire 1 n) distanciaTotalS5 [214] $end
+$var wire 1 o) distanciaTotalS5 [213] $end
+$var wire 1 p) distanciaTotalS5 [212] $end
+$var wire 1 q) distanciaTotalS5 [211] $end
+$var wire 1 r) distanciaTotalS5 [210] $end
+$var wire 1 s) distanciaTotalS5 [209] $end
+$var wire 1 t) distanciaTotalS5 [208] $end
+$var wire 1 u) distanciaTotalS5 [207] $end
+$var wire 1 v) distanciaTotalS5 [206] $end
+$var wire 1 w) distanciaTotalS5 [205] $end
+$var wire 1 x) distanciaTotalS5 [204] $end
+$var wire 1 y) distanciaTotalS5 [203] $end
+$var wire 1 z) distanciaTotalS5 [202] $end
+$var wire 1 {) distanciaTotalS5 [201] $end
+$var wire 1 |) distanciaTotalS5 [200] $end
+$var wire 1 }) distanciaTotalS5 [199] $end
+$var wire 1 ~) distanciaTotalS5 [198] $end
+$var wire 1 !* distanciaTotalS5 [197] $end
+$var wire 1 "* distanciaTotalS5 [196] $end
+$var wire 1 #* distanciaTotalS5 [195] $end
+$var wire 1 $* distanciaTotalS5 [194] $end
+$var wire 1 %* distanciaTotalS5 [193] $end
+$var wire 1 &* distanciaTotalS5 [192] $end
+$var wire 1 '* distanciaTotalS5 [191] $end
+$var wire 1 (* distanciaTotalS5 [190] $end
+$var wire 1 )* distanciaTotalS5 [189] $end
+$var wire 1 ** distanciaTotalS5 [188] $end
+$var wire 1 +* distanciaTotalS5 [187] $end
+$var wire 1 ,* distanciaTotalS5 [186] $end
+$var wire 1 -* distanciaTotalS5 [185] $end
+$var wire 1 .* distanciaTotalS5 [184] $end
+$var wire 1 /* distanciaTotalS5 [183] $end
+$var wire 1 0* distanciaTotalS5 [182] $end
+$var wire 1 1* distanciaTotalS5 [181] $end
+$var wire 1 2* distanciaTotalS5 [180] $end
+$var wire 1 3* distanciaTotalS5 [179] $end
+$var wire 1 4* distanciaTotalS5 [178] $end
+$var wire 1 5* distanciaTotalS5 [177] $end
+$var wire 1 6* distanciaTotalS5 [176] $end
+$var wire 1 7* distanciaTotalS5 [175] $end
+$var wire 1 8* distanciaTotalS5 [174] $end
+$var wire 1 9* distanciaTotalS5 [173] $end
+$var wire 1 :* distanciaTotalS5 [172] $end
+$var wire 1 ;* distanciaTotalS5 [171] $end
+$var wire 1 <* distanciaTotalS5 [170] $end
+$var wire 1 =* distanciaTotalS5 [169] $end
+$var wire 1 >* distanciaTotalS5 [168] $end
+$var wire 1 ?* distanciaTotalS5 [167] $end
+$var wire 1 @* distanciaTotalS5 [166] $end
+$var wire 1 A* distanciaTotalS5 [165] $end
+$var wire 1 B* distanciaTotalS5 [164] $end
+$var wire 1 C* distanciaTotalS5 [163] $end
+$var wire 1 D* distanciaTotalS5 [162] $end
+$var wire 1 E* distanciaTotalS5 [161] $end
+$var wire 1 F* distanciaTotalS5 [160] $end
+$var wire 1 G* distanciaTotalS5 [159] $end
+$var wire 1 H* distanciaTotalS5 [158] $end
+$var wire 1 I* distanciaTotalS5 [157] $end
+$var wire 1 J* distanciaTotalS5 [156] $end
+$var wire 1 K* distanciaTotalS5 [155] $end
+$var wire 1 L* distanciaTotalS5 [154] $end
+$var wire 1 M* distanciaTotalS5 [153] $end
+$var wire 1 N* distanciaTotalS5 [152] $end
+$var wire 1 O* distanciaTotalS5 [151] $end
+$var wire 1 P* distanciaTotalS5 [150] $end
+$var wire 1 Q* distanciaTotalS5 [149] $end
+$var wire 1 R* distanciaTotalS5 [148] $end
+$var wire 1 S* distanciaTotalS5 [147] $end
+$var wire 1 T* distanciaTotalS5 [146] $end
+$var wire 1 U* distanciaTotalS5 [145] $end
+$var wire 1 V* distanciaTotalS5 [144] $end
+$var wire 1 W* distanciaTotalS5 [143] $end
+$var wire 1 X* distanciaTotalS5 [142] $end
+$var wire 1 Y* distanciaTotalS5 [141] $end
+$var wire 1 Z* distanciaTotalS5 [140] $end
+$var wire 1 [* distanciaTotalS5 [139] $end
+$var wire 1 \* distanciaTotalS5 [138] $end
+$var wire 1 ]* distanciaTotalS5 [137] $end
+$var wire 1 ^* distanciaTotalS5 [136] $end
+$var wire 1 _* distanciaTotalS5 [135] $end
+$var wire 1 `* distanciaTotalS5 [134] $end
+$var wire 1 a* distanciaTotalS5 [133] $end
+$var wire 1 b* distanciaTotalS5 [132] $end
+$var wire 1 c* distanciaTotalS5 [131] $end
+$var wire 1 d* distanciaTotalS5 [130] $end
+$var wire 1 e* distanciaTotalS5 [129] $end
+$var wire 1 f* distanciaTotalS5 [128] $end
+$var wire 1 g* distanciaTotalS5 [127] $end
+$var wire 1 h* distanciaTotalS5 [126] $end
+$var wire 1 i* distanciaTotalS5 [125] $end
+$var wire 1 j* distanciaTotalS5 [124] $end
+$var wire 1 k* distanciaTotalS5 [123] $end
+$var wire 1 l* distanciaTotalS5 [122] $end
+$var wire 1 m* distanciaTotalS5 [121] $end
+$var wire 1 n* distanciaTotalS5 [120] $end
+$var wire 1 o* distanciaTotalS5 [119] $end
+$var wire 1 p* distanciaTotalS5 [118] $end
+$var wire 1 q* distanciaTotalS5 [117] $end
+$var wire 1 r* distanciaTotalS5 [116] $end
+$var wire 1 s* distanciaTotalS5 [115] $end
+$var wire 1 t* distanciaTotalS5 [114] $end
+$var wire 1 u* distanciaTotalS5 [113] $end
+$var wire 1 v* distanciaTotalS5 [112] $end
+$var wire 1 w* distanciaTotalS5 [111] $end
+$var wire 1 x* distanciaTotalS5 [110] $end
+$var wire 1 y* distanciaTotalS5 [109] $end
+$var wire 1 z* distanciaTotalS5 [108] $end
+$var wire 1 {* distanciaTotalS5 [107] $end
+$var wire 1 |* distanciaTotalS5 [106] $end
+$var wire 1 }* distanciaTotalS5 [105] $end
+$var wire 1 ~* distanciaTotalS5 [104] $end
+$var wire 1 !+ distanciaTotalS5 [103] $end
+$var wire 1 "+ distanciaTotalS5 [102] $end
+$var wire 1 #+ distanciaTotalS5 [101] $end
+$var wire 1 $+ distanciaTotalS5 [100] $end
+$var wire 1 %+ distanciaTotalS5 [99] $end
+$var wire 1 &+ distanciaTotalS5 [98] $end
+$var wire 1 '+ distanciaTotalS5 [97] $end
+$var wire 1 (+ distanciaTotalS5 [96] $end
+$var wire 1 )+ distanciaTotalS5 [95] $end
+$var wire 1 *+ distanciaTotalS5 [94] $end
+$var wire 1 ++ distanciaTotalS5 [93] $end
+$var wire 1 ,+ distanciaTotalS5 [92] $end
+$var wire 1 -+ distanciaTotalS5 [91] $end
+$var wire 1 .+ distanciaTotalS5 [90] $end
+$var wire 1 /+ distanciaTotalS5 [89] $end
+$var wire 1 0+ distanciaTotalS5 [88] $end
+$var wire 1 1+ distanciaTotalS5 [87] $end
+$var wire 1 2+ distanciaTotalS5 [86] $end
+$var wire 1 3+ distanciaTotalS5 [85] $end
+$var wire 1 4+ distanciaTotalS5 [84] $end
+$var wire 1 5+ distanciaTotalS5 [83] $end
+$var wire 1 6+ distanciaTotalS5 [82] $end
+$var wire 1 7+ distanciaTotalS5 [81] $end
+$var wire 1 8+ distanciaTotalS5 [80] $end
+$var wire 1 9+ distanciaTotalS5 [79] $end
+$var wire 1 :+ distanciaTotalS5 [78] $end
+$var wire 1 ;+ distanciaTotalS5 [77] $end
+$var wire 1 <+ distanciaTotalS5 [76] $end
+$var wire 1 =+ distanciaTotalS5 [75] $end
+$var wire 1 >+ distanciaTotalS5 [74] $end
+$var wire 1 ?+ distanciaTotalS5 [73] $end
+$var wire 1 @+ distanciaTotalS5 [72] $end
+$var wire 1 A+ distanciaTotalS5 [71] $end
+$var wire 1 B+ distanciaTotalS5 [70] $end
+$var wire 1 C+ distanciaTotalS5 [69] $end
+$var wire 1 D+ distanciaTotalS5 [68] $end
+$var wire 1 E+ distanciaTotalS5 [67] $end
+$var wire 1 F+ distanciaTotalS5 [66] $end
+$var wire 1 G+ distanciaTotalS5 [65] $end
+$var wire 1 H+ distanciaTotalS5 [64] $end
+$var wire 1 I+ distanciaTotalS5 [63] $end
+$var wire 1 J+ distanciaTotalS5 [62] $end
+$var wire 1 K+ distanciaTotalS5 [61] $end
+$var wire 1 L+ distanciaTotalS5 [60] $end
+$var wire 1 M+ distanciaTotalS5 [59] $end
+$var wire 1 N+ distanciaTotalS5 [58] $end
+$var wire 1 O+ distanciaTotalS5 [57] $end
+$var wire 1 P+ distanciaTotalS5 [56] $end
+$var wire 1 Q+ distanciaTotalS5 [55] $end
+$var wire 1 R+ distanciaTotalS5 [54] $end
+$var wire 1 S+ distanciaTotalS5 [53] $end
+$var wire 1 T+ distanciaTotalS5 [52] $end
+$var wire 1 U+ distanciaTotalS5 [51] $end
+$var wire 1 V+ distanciaTotalS5 [50] $end
+$var wire 1 W+ distanciaTotalS5 [49] $end
+$var wire 1 X+ distanciaTotalS5 [48] $end
+$var wire 1 Y+ distanciaTotalS5 [47] $end
+$var wire 1 Z+ distanciaTotalS5 [46] $end
+$var wire 1 [+ distanciaTotalS5 [45] $end
+$var wire 1 \+ distanciaTotalS5 [44] $end
+$var wire 1 ]+ distanciaTotalS5 [43] $end
+$var wire 1 ^+ distanciaTotalS5 [42] $end
+$var wire 1 _+ distanciaTotalS5 [41] $end
+$var wire 1 `+ distanciaTotalS5 [40] $end
+$var wire 1 a+ distanciaTotalS5 [39] $end
+$var wire 1 b+ distanciaTotalS5 [38] $end
+$var wire 1 c+ distanciaTotalS5 [37] $end
+$var wire 1 d+ distanciaTotalS5 [36] $end
+$var wire 1 e+ distanciaTotalS5 [35] $end
+$var wire 1 f+ distanciaTotalS5 [34] $end
+$var wire 1 g+ distanciaTotalS5 [33] $end
+$var wire 1 h+ distanciaTotalS5 [32] $end
+$var wire 1 i+ distanciaTotalS5 [31] $end
+$var wire 1 j+ distanciaTotalS5 [30] $end
+$var wire 1 k+ distanciaTotalS5 [29] $end
+$var wire 1 l+ distanciaTotalS5 [28] $end
+$var wire 1 m+ distanciaTotalS5 [27] $end
+$var wire 1 n+ distanciaTotalS5 [26] $end
+$var wire 1 o+ distanciaTotalS5 [25] $end
+$var wire 1 p+ distanciaTotalS5 [24] $end
+$var wire 1 q+ distanciaTotalS5 [23] $end
+$var wire 1 r+ distanciaTotalS5 [22] $end
+$var wire 1 s+ distanciaTotalS5 [21] $end
+$var wire 1 t+ distanciaTotalS5 [20] $end
+$var wire 1 u+ distanciaTotalS5 [19] $end
+$var wire 1 v+ distanciaTotalS5 [18] $end
+$var wire 1 w+ distanciaTotalS5 [17] $end
+$var wire 1 x+ distanciaTotalS5 [16] $end
+$var wire 1 y+ distanciaTotalS5 [15] $end
+$var wire 1 z+ distanciaTotalS5 [14] $end
+$var wire 1 {+ distanciaTotalS5 [13] $end
+$var wire 1 |+ distanciaTotalS5 [12] $end
+$var wire 1 }+ distanciaTotalS5 [11] $end
+$var wire 1 ~+ distanciaTotalS5 [10] $end
+$var wire 1 !, distanciaTotalS5 [9] $end
+$var wire 1 ", distanciaTotalS5 [8] $end
+$var wire 1 #, distanciaTotalS5 [7] $end
+$var wire 1 $, distanciaTotalS5 [6] $end
+$var wire 1 %, distanciaTotalS5 [5] $end
+$var wire 1 &, distanciaTotalS5 [4] $end
+$var wire 1 ', distanciaTotalS5 [3] $end
+$var wire 1 (, distanciaTotalS5 [2] $end
+$var wire 1 ), distanciaTotalS5 [1] $end
+$var wire 1 *, distanciaTotalS5 [0] $end
+$var wire 1 +, distanciaTotal [224] $end
+$var wire 1 ,, distanciaTotal [223] $end
+$var wire 1 -, distanciaTotal [222] $end
+$var wire 1 ., distanciaTotal [221] $end
+$var wire 1 /, distanciaTotal [220] $end
+$var wire 1 0, distanciaTotal [219] $end
+$var wire 1 1, distanciaTotal [218] $end
+$var wire 1 2, distanciaTotal [217] $end
+$var wire 1 3, distanciaTotal [216] $end
+$var wire 1 4, distanciaTotal [215] $end
+$var wire 1 5, distanciaTotal [214] $end
+$var wire 1 6, distanciaTotal [213] $end
+$var wire 1 7, distanciaTotal [212] $end
+$var wire 1 8, distanciaTotal [211] $end
+$var wire 1 9, distanciaTotal [210] $end
+$var wire 1 :, distanciaTotal [209] $end
+$var wire 1 ;, distanciaTotal [208] $end
+$var wire 1 <, distanciaTotal [207] $end
+$var wire 1 =, distanciaTotal [206] $end
+$var wire 1 >, distanciaTotal [205] $end
+$var wire 1 ?, distanciaTotal [204] $end
+$var wire 1 @, distanciaTotal [203] $end
+$var wire 1 A, distanciaTotal [202] $end
+$var wire 1 B, distanciaTotal [201] $end
+$var wire 1 C, distanciaTotal [200] $end
+$var wire 1 D, distanciaTotal [199] $end
+$var wire 1 E, distanciaTotal [198] $end
+$var wire 1 F, distanciaTotal [197] $end
+$var wire 1 G, distanciaTotal [196] $end
+$var wire 1 H, distanciaTotal [195] $end
+$var wire 1 I, distanciaTotal [194] $end
+$var wire 1 J, distanciaTotal [193] $end
+$var wire 1 K, distanciaTotal [192] $end
+$var wire 1 L, distanciaTotal [191] $end
+$var wire 1 M, distanciaTotal [190] $end
+$var wire 1 N, distanciaTotal [189] $end
+$var wire 1 O, distanciaTotal [188] $end
+$var wire 1 P, distanciaTotal [187] $end
+$var wire 1 Q, distanciaTotal [186] $end
+$var wire 1 R, distanciaTotal [185] $end
+$var wire 1 S, distanciaTotal [184] $end
+$var wire 1 T, distanciaTotal [183] $end
+$var wire 1 U, distanciaTotal [182] $end
+$var wire 1 V, distanciaTotal [181] $end
+$var wire 1 W, distanciaTotal [180] $end
+$var wire 1 X, distanciaTotal [179] $end
+$var wire 1 Y, distanciaTotal [178] $end
+$var wire 1 Z, distanciaTotal [177] $end
+$var wire 1 [, distanciaTotal [176] $end
+$var wire 1 \, distanciaTotal [175] $end
+$var wire 1 ], distanciaTotal [174] $end
+$var wire 1 ^, distanciaTotal [173] $end
+$var wire 1 _, distanciaTotal [172] $end
+$var wire 1 `, distanciaTotal [171] $end
+$var wire 1 a, distanciaTotal [170] $end
+$var wire 1 b, distanciaTotal [169] $end
+$var wire 1 c, distanciaTotal [168] $end
+$var wire 1 d, distanciaTotal [167] $end
+$var wire 1 e, distanciaTotal [166] $end
+$var wire 1 f, distanciaTotal [165] $end
+$var wire 1 g, distanciaTotal [164] $end
+$var wire 1 h, distanciaTotal [163] $end
+$var wire 1 i, distanciaTotal [162] $end
+$var wire 1 j, distanciaTotal [161] $end
+$var wire 1 k, distanciaTotal [160] $end
+$var wire 1 l, distanciaTotal [159] $end
+$var wire 1 m, distanciaTotal [158] $end
+$var wire 1 n, distanciaTotal [157] $end
+$var wire 1 o, distanciaTotal [156] $end
+$var wire 1 p, distanciaTotal [155] $end
+$var wire 1 q, distanciaTotal [154] $end
+$var wire 1 r, distanciaTotal [153] $end
+$var wire 1 s, distanciaTotal [152] $end
+$var wire 1 t, distanciaTotal [151] $end
+$var wire 1 u, distanciaTotal [150] $end
+$var wire 1 v, distanciaTotal [149] $end
+$var wire 1 w, distanciaTotal [148] $end
+$var wire 1 x, distanciaTotal [147] $end
+$var wire 1 y, distanciaTotal [146] $end
+$var wire 1 z, distanciaTotal [145] $end
+$var wire 1 {, distanciaTotal [144] $end
+$var wire 1 |, distanciaTotal [143] $end
+$var wire 1 }, distanciaTotal [142] $end
+$var wire 1 ~, distanciaTotal [141] $end
+$var wire 1 !- distanciaTotal [140] $end
+$var wire 1 "- distanciaTotal [139] $end
+$var wire 1 #- distanciaTotal [138] $end
+$var wire 1 $- distanciaTotal [137] $end
+$var wire 1 %- distanciaTotal [136] $end
+$var wire 1 &- distanciaTotal [135] $end
+$var wire 1 '- distanciaTotal [134] $end
+$var wire 1 (- distanciaTotal [133] $end
+$var wire 1 )- distanciaTotal [132] $end
+$var wire 1 *- distanciaTotal [131] $end
+$var wire 1 +- distanciaTotal [130] $end
+$var wire 1 ,- distanciaTotal [129] $end
+$var wire 1 -- distanciaTotal [128] $end
+$var wire 1 .- distanciaTotal [127] $end
+$var wire 1 /- distanciaTotal [126] $end
+$var wire 1 0- distanciaTotal [125] $end
+$var wire 1 1- distanciaTotal [124] $end
+$var wire 1 2- distanciaTotal [123] $end
+$var wire 1 3- distanciaTotal [122] $end
+$var wire 1 4- distanciaTotal [121] $end
+$var wire 1 5- distanciaTotal [120] $end
+$var wire 1 6- distanciaTotal [119] $end
+$var wire 1 7- distanciaTotal [118] $end
+$var wire 1 8- distanciaTotal [117] $end
+$var wire 1 9- distanciaTotal [116] $end
+$var wire 1 :- distanciaTotal [115] $end
+$var wire 1 ;- distanciaTotal [114] $end
+$var wire 1 <- distanciaTotal [113] $end
+$var wire 1 =- distanciaTotal [112] $end
+$var wire 1 >- distanciaTotal [111] $end
+$var wire 1 ?- distanciaTotal [110] $end
+$var wire 1 @- distanciaTotal [109] $end
+$var wire 1 A- distanciaTotal [108] $end
+$var wire 1 B- distanciaTotal [107] $end
+$var wire 1 C- distanciaTotal [106] $end
+$var wire 1 D- distanciaTotal [105] $end
+$var wire 1 E- distanciaTotal [104] $end
+$var wire 1 F- distanciaTotal [103] $end
+$var wire 1 G- distanciaTotal [102] $end
+$var wire 1 H- distanciaTotal [101] $end
+$var wire 1 I- distanciaTotal [100] $end
+$var wire 1 J- distanciaTotal [99] $end
+$var wire 1 K- distanciaTotal [98] $end
+$var wire 1 L- distanciaTotal [97] $end
+$var wire 1 M- distanciaTotal [96] $end
+$var wire 1 N- distanciaTotal [95] $end
+$var wire 1 O- distanciaTotal [94] $end
+$var wire 1 P- distanciaTotal [93] $end
+$var wire 1 Q- distanciaTotal [92] $end
+$var wire 1 R- distanciaTotal [91] $end
+$var wire 1 S- distanciaTotal [90] $end
+$var wire 1 T- distanciaTotal [89] $end
+$var wire 1 U- distanciaTotal [88] $end
+$var wire 1 V- distanciaTotal [87] $end
+$var wire 1 W- distanciaTotal [86] $end
+$var wire 1 X- distanciaTotal [85] $end
+$var wire 1 Y- distanciaTotal [84] $end
+$var wire 1 Z- distanciaTotal [83] $end
+$var wire 1 [- distanciaTotal [82] $end
+$var wire 1 \- distanciaTotal [81] $end
+$var wire 1 ]- distanciaTotal [80] $end
+$var wire 1 ^- distanciaTotal [79] $end
+$var wire 1 _- distanciaTotal [78] $end
+$var wire 1 `- distanciaTotal [77] $end
+$var wire 1 a- distanciaTotal [76] $end
+$var wire 1 b- distanciaTotal [75] $end
+$var wire 1 c- distanciaTotal [74] $end
+$var wire 1 d- distanciaTotal [73] $end
+$var wire 1 e- distanciaTotal [72] $end
+$var wire 1 f- distanciaTotal [71] $end
+$var wire 1 g- distanciaTotal [70] $end
+$var wire 1 h- distanciaTotal [69] $end
+$var wire 1 i- distanciaTotal [68] $end
+$var wire 1 j- distanciaTotal [67] $end
+$var wire 1 k- distanciaTotal [66] $end
+$var wire 1 l- distanciaTotal [65] $end
+$var wire 1 m- distanciaTotal [64] $end
+$var wire 1 n- distanciaTotal [63] $end
+$var wire 1 o- distanciaTotal [62] $end
+$var wire 1 p- distanciaTotal [61] $end
+$var wire 1 q- distanciaTotal [60] $end
+$var wire 1 r- distanciaTotal [59] $end
+$var wire 1 s- distanciaTotal [58] $end
+$var wire 1 t- distanciaTotal [57] $end
+$var wire 1 u- distanciaTotal [56] $end
+$var wire 1 v- distanciaTotal [55] $end
+$var wire 1 w- distanciaTotal [54] $end
+$var wire 1 x- distanciaTotal [53] $end
+$var wire 1 y- distanciaTotal [52] $end
+$var wire 1 z- distanciaTotal [51] $end
+$var wire 1 {- distanciaTotal [50] $end
+$var wire 1 |- distanciaTotal [49] $end
+$var wire 1 }- distanciaTotal [48] $end
+$var wire 1 ~- distanciaTotal [47] $end
+$var wire 1 !. distanciaTotal [46] $end
+$var wire 1 ". distanciaTotal [45] $end
+$var wire 1 #. distanciaTotal [44] $end
+$var wire 1 $. distanciaTotal [43] $end
+$var wire 1 %. distanciaTotal [42] $end
+$var wire 1 &. distanciaTotal [41] $end
+$var wire 1 '. distanciaTotal [40] $end
+$var wire 1 (. distanciaTotal [39] $end
+$var wire 1 ). distanciaTotal [38] $end
+$var wire 1 *. distanciaTotal [37] $end
+$var wire 1 +. distanciaTotal [36] $end
+$var wire 1 ,. distanciaTotal [35] $end
+$var wire 1 -. distanciaTotal [34] $end
+$var wire 1 .. distanciaTotal [33] $end
+$var wire 1 /. distanciaTotal [32] $end
+$var wire 1 0. distanciaTotal [31] $end
+$var wire 1 1. distanciaTotal [30] $end
+$var wire 1 2. distanciaTotal [29] $end
+$var wire 1 3. distanciaTotal [28] $end
+$var wire 1 4. distanciaTotal [27] $end
+$var wire 1 5. distanciaTotal [26] $end
+$var wire 1 6. distanciaTotal [25] $end
+$var wire 1 7. distanciaTotal [24] $end
+$var wire 1 8. distanciaTotal [23] $end
+$var wire 1 9. distanciaTotal [22] $end
+$var wire 1 :. distanciaTotal [21] $end
+$var wire 1 ;. distanciaTotal [20] $end
+$var wire 1 <. distanciaTotal [19] $end
+$var wire 1 =. distanciaTotal [18] $end
+$var wire 1 >. distanciaTotal [17] $end
+$var wire 1 ?. distanciaTotal [16] $end
+$var wire 1 @. distanciaTotal [15] $end
+$var wire 1 A. distanciaTotal [14] $end
+$var wire 1 B. distanciaTotal [13] $end
+$var wire 1 C. distanciaTotal [12] $end
+$var wire 1 D. distanciaTotal [11] $end
+$var wire 1 E. distanciaTotal [10] $end
+$var wire 1 F. distanciaTotal [9] $end
+$var wire 1 G. distanciaTotal [8] $end
+$var wire 1 H. distanciaTotal [7] $end
+$var wire 1 I. distanciaTotal [6] $end
+$var wire 1 J. distanciaTotal [5] $end
+$var wire 1 K. distanciaTotal [4] $end
+$var wire 1 L. distanciaTotal [3] $end
+$var wire 1 M. distanciaTotal [2] $end
+$var wire 1 N. distanciaTotal [1] $end
+$var wire 1 O. distanciaTotal [0] $end
+$var wire 1 P. requestS1 $end
+$var wire 1 Q. requestS2 $end
+$var wire 1 R. candidatoS2 $end
+$var wire 1 S. candidatoS3 $end
+$var wire 1 T. candidatoS4 $end
+$var wire 1 U. candidatoS5 $end
+$var reg 8 V. muxDirecao [7:0] $end
 
 $scope module s0 $end
-$var parameter 32 A$ tamanhoDados $end
-$var parameter 32 B$ TamanhoMalha $end
-$var parameter 32 C$ addressTam $end
-$var wire 1 * clock $end
-$var wire 1 + reset $end
-$var wire 1 K" proximoVizinho $end
-$var reg 1 D$ proximoVizinhoOut $end
-$var wire 1 6" custoAcumulado $end
-$var reg 1 E$ custoAcumuladoOut $end
-$var wire 1 n direcao $end
-$var reg 1 F$ direcaoOut $end
-$var wire 1 }! x $end
-$var reg 1 G$ xOut $end
-$var wire 1 ." y $end
-$var reg 1 H$ yOut $end
-$var wire 1 A" aberto $end
-$var reg 1 I$ abertoOut $end
-$var wire 1 J$ valor [1] $end
-$var wire 1 W" valor [0] $end
-$var reg 2 K$ valorOut [1:0] $end
+$var parameter 32 W. tamanhoDados $end
+$var parameter 32 X. TamanhoMalha $end
+$var parameter 32 Y. addressTam $end
+$var parameter 32 Z. linear $end
+$var wire 1 2 clock $end
+$var wire 1 3 reset $end
+$var wire 1 ^% proximoVizinho [7] $end
+$var wire 1 _% proximoVizinho [6] $end
+$var wire 1 `% proximoVizinho [5] $end
+$var wire 1 a% proximoVizinho [4] $end
+$var wire 1 b% proximoVizinho [3] $end
+$var wire 1 c% proximoVizinho [2] $end
+$var wire 1 d% proximoVizinho [1] $end
+$var wire 1 e% proximoVizinho [0] $end
+$var reg 8 [. proximoVizinhoOut [7:0] $end
+$var wire 1 D$ custoAcumulado [7] $end
+$var wire 1 E$ custoAcumulado [6] $end
+$var wire 1 F$ custoAcumulado [5] $end
+$var wire 1 G$ custoAcumulado [4] $end
+$var wire 1 H$ custoAcumulado [3] $end
+$var wire 1 I$ custoAcumulado [2] $end
+$var wire 1 J$ custoAcumulado [1] $end
+$var wire 1 K$ custoAcumulado [0] $end
+$var reg 8 \. custoAcumuladoOut [7:0] $end
+$var wire 1 T" direcao [1] $end
+$var wire 1 U" direcao [0] $end
+$var reg 2 ]. direcaoOut [1:0] $end
+$var wire 1 b# x [3] $end
+$var wire 1 c# x [2] $end
+$var wire 1 d# x [1] $end
+$var wire 1 e# x [0] $end
+$var reg 4 ^. xOut [3:0] $end
+$var wire 1 f# y [3] $end
+$var wire 1 g# y [2] $end
+$var wire 1 h# y [1] $end
+$var wire 1 i# y [0] $end
+$var reg 4 _. yOut [3:0] $end
+$var wire 1 ," request $end
+$var reg 1 `. requestOut $end
 $upscope $end
 
 $scope module s1 $end
-$var parameter 32 L$ tamanhoDados $end
-$var parameter 32 M$ TamanhoMalha $end
-$var parameter 32 N$ addressTam $end
-$var wire 1 * clock $end
-$var wire 1 + reset $end
-$var wire 1 S" address $end
-$var reg 1 O$ addressOut $end
-$var wire 1 q valueFromMalha $end
-$var reg 1 P$ valueFromMalhaOut $end
-$var wire 1 T" custoAcumulado $end
-$var reg 1 Q$ custoAcumuladoOut $end
-$var wire 1 U" direcao $end
-$var reg 1 R$ direcaoOut $end
-$var wire 1 Y" x $end
-$var reg 1 S$ xOut $end
-$var wire 1 Z" y $end
-$var reg 1 T$ yOut $end
-$var wire 1 V" aberto $end
-$var reg 1 U$ abertoOut $end
-$var wire 1 V$ valor [1] $end
-$var wire 1 X" valor [0] $end
-$var reg 2 W$ valorOut [1:0] $end
+$var parameter 32 a. tamanhoDados $end
+$var parameter 32 b. TamanhoMalha $end
+$var parameter 32 c. addressTam $end
+$var parameter 32 d. linear $end
+$var wire 1 2 clock $end
+$var wire 1 3 reset $end
+$var wire 1 V% address [7] $end
+$var wire 1 W% address [6] $end
+$var wire 1 X% address [5] $end
+$var wire 1 Y% address [4] $end
+$var wire 1 Z% address [3] $end
+$var wire 1 [% address [2] $end
+$var wire 1 \% address [1] $end
+$var wire 1 ]% address [0] $end
+$var reg 8 e. addressOut [7:0] $end
+$var wire 1 L$ custoAcumulado [7] $end
+$var wire 1 M$ custoAcumulado [6] $end
+$var wire 1 N$ custoAcumulado [5] $end
+$var wire 1 O$ custoAcumulado [4] $end
+$var wire 1 P$ custoAcumulado [3] $end
+$var wire 1 Q$ custoAcumulado [2] $end
+$var wire 1 R$ custoAcumulado [1] $end
+$var wire 1 S$ custoAcumulado [0] $end
+$var reg 8 f. custoAcumuladoOut [7:0] $end
+$var wire 1 w% direcao [1] $end
+$var wire 1 x% direcao [0] $end
+$var reg 2 g. direcaoOut [1:0] $end
+$var wire 1 z# x [3] $end
+$var wire 1 {# x [2] $end
+$var wire 1 |# x [1] $end
+$var wire 1 }# x [0] $end
+$var reg 4 h. xOut [3:0] $end
+$var wire 1 ~# y [3] $end
+$var wire 1 !$ y [2] $end
+$var wire 1 "$ y [1] $end
+$var wire 1 #$ y [0] $end
+$var reg 4 i. yOut [3:0] $end
+$var wire 1 P. request $end
+$var reg 1 j. requestOut $end
 $upscope $end
 
 $scope module s2 $end
-$var parameter 32 X$ tamanhoDados $end
-$var parameter 32 Y$ TamanhoMalha $end
-$var parameter 32 Z$ addressTam $end
-$var wire 1 * clock $end
-$var wire 1 + reset $end
-$var wire 1 <# custoAcumulado $end
-$var reg 1 [$ custoAcumuladoOut $end
-$var wire 1 b" address $end
-$var reg 1 \$ addressOut $end
-$var wire 1 l" direcao $end
-$var reg 1 ]$ direcaoOut $end
-$var wire 1 !# x $end
-$var reg 1 ^$ xOut $end
-$var wire 1 0# y $end
-$var reg 1 _$ yOut $end
-$var wire 1 o" xOriginal $end
-$var reg 1 `$ xOriginalOut $end
-$var wire 1 p" yOriginal $end
-$var reg 1 a$ yOriginalOut $end
-$var wire 1 m" aberto $end
-$var reg 1 b$ abertoOut $end
-$var wire 1 c$ valor [1] $end
-$var wire 1 n" valor [0] $end
-$var reg 2 d$ valorOut [1:0] $end
+$var parameter 32 k. tamanhoDados $end
+$var parameter 32 l. TamanhoMalha $end
+$var parameter 32 m. addressTam $end
+$var parameter 32 n. linear $end
+$var wire 1 2 clock $end
+$var wire 1 3 reset $end
+$var wire 1 .% custoAcumulado [7] $end
+$var wire 1 /% custoAcumulado [6] $end
+$var wire 1 0% custoAcumulado [5] $end
+$var wire 1 1% custoAcumulado [4] $end
+$var wire 1 2% custoAcumulado [3] $end
+$var wire 1 3% custoAcumulado [2] $end
+$var wire 1 4% custoAcumulado [1] $end
+$var wire 1 5% custoAcumulado [0] $end
+$var reg 8 o. custoAcumuladoOut [7:0] $end
+$var wire 1 f% address [7] $end
+$var wire 1 g% address [6] $end
+$var wire 1 h% address [5] $end
+$var wire 1 i% address [4] $end
+$var wire 1 j% address [3] $end
+$var wire 1 k% address [2] $end
+$var wire 1 l% address [1] $end
+$var wire 1 m% address [0] $end
+$var reg 8 p. addressOut [7:0] $end
+$var wire 1 y% direcao [1] $end
+$var wire 1 z% direcao [0] $end
+$var reg 2 q. direcaoOut [1:0] $end
+$var wire 1 <$ x [3] $end
+$var wire 1 =$ x [2] $end
+$var wire 1 >$ x [1] $end
+$var wire 1 ?$ x [0] $end
+$var reg 4 r. xOut [3:0] $end
+$var wire 1 @$ y [3] $end
+$var wire 1 A$ y [2] $end
+$var wire 1 B$ y [1] $end
+$var wire 1 C$ y [0] $end
+$var reg 4 s. yOut [3:0] $end
+$var wire 1 $$ xOriginal [3] $end
+$var wire 1 %$ xOriginal [2] $end
+$var wire 1 &$ xOriginal [1] $end
+$var wire 1 '$ xOriginal [0] $end
+$var reg 4 t. xOriginalOut [3:0] $end
+$var wire 1 ($ yOriginal [3] $end
+$var wire 1 )$ yOriginal [2] $end
+$var wire 1 *$ yOriginal [1] $end
+$var wire 1 +$ yOriginal [0] $end
+$var reg 4 u. yOriginalOut [3:0] $end
+$var wire 1 t% aberto $end
+$var reg 1 v. abertoOut $end
+$var wire 1 %& valor [1] $end
+$var wire 1 && valor [0] $end
+$var reg 2 w. valorOut [1:0] $end
+$var wire 1 R. candidato $end
+$var reg 1 x. candidatoOut $end
 $upscope $end
 
 $scope module s3 $end
-$var parameter 32 e$ tamanhoDados $end
-$var parameter 32 f$ TamanhoMalha $end
-$var parameter 32 g$ addressTam $end
-$var wire 1 * clock $end
-$var wire 1 + reset $end
-$var wire 1 7$ custoAcumulado $end
-$var reg 1 h$ custoAcumuladoOut $end
-$var wire 1 >" custoEstimado $end
-$var reg 1 i$ custoEstimadoOut $end
-$var wire 1 B# address $end
-$var reg 1 j$ addressOut $end
-$var wire 1 C# direcao $end
-$var reg 1 k$ direcaoOut $end
-$var wire 1 6$ distanciaTotal $end
-$var reg 1 l$ distanciaTotalOut $end
-$var wire 1 D# aberto $end
-$var reg 1 m$ abertoOut $end
-$var wire 1 n$ valor [1] $end
-$var wire 1 E# valor [0] $end
-$var reg 2 o$ valorOut [1:0] $end
-$var wire 1 F# x $end
-$var reg 1 p$ xOut $end
-$var wire 1 G# y $end
-$var reg 1 q$ yOut $end
+$var parameter 32 y. tamanhoDados $end
+$var parameter 32 z. TamanhoMalha $end
+$var parameter 32 {. addressTam $end
+$var parameter 32 |. linear $end
+$var wire 1 2 clock $end
+$var wire 1 3 reset $end
+$var wire 1 T$ custoAcumulado [7] $end
+$var wire 1 U$ custoAcumulado [6] $end
+$var wire 1 V$ custoAcumulado [5] $end
+$var wire 1 W$ custoAcumulado [4] $end
+$var wire 1 X$ custoAcumulado [3] $end
+$var wire 1 Y$ custoAcumulado [2] $end
+$var wire 1 Z$ custoAcumulado [1] $end
+$var wire 1 [$ custoAcumulado [0] $end
+$var reg 8 }. custoAcumuladoOut [7:0] $end
+$var wire 1 l$ custoEstimado [7] $end
+$var wire 1 m$ custoEstimado [6] $end
+$var wire 1 n$ custoEstimado [5] $end
+$var wire 1 o$ custoEstimado [4] $end
+$var wire 1 p$ custoEstimado [3] $end
+$var wire 1 q$ custoEstimado [2] $end
+$var wire 1 r$ custoEstimado [1] $end
+$var wire 1 s$ custoEstimado [0] $end
+$var reg 8 ~. custoEstimadoOut [7:0] $end
+$var wire 1 N% address [7] $end
+$var wire 1 O% address [6] $end
+$var wire 1 P% address [5] $end
+$var wire 1 Q% address [4] $end
+$var wire 1 R% address [3] $end
+$var wire 1 S% address [2] $end
+$var wire 1 T% address [1] $end
+$var wire 1 U% address [0] $end
+$var reg 8 !/ addressOut [7:0] $end
+$var wire 1 {% direcao [1] $end
+$var wire 1 |% direcao [0] $end
+$var reg 2 "/ direcaoOut [1:0] $end
+$var wire 1 +, distanciaTotal [224] $end
+$var wire 1 ,, distanciaTotal [223] $end
+$var wire 1 -, distanciaTotal [222] $end
+$var wire 1 ., distanciaTotal [221] $end
+$var wire 1 /, distanciaTotal [220] $end
+$var wire 1 0, distanciaTotal [219] $end
+$var wire 1 1, distanciaTotal [218] $end
+$var wire 1 2, distanciaTotal [217] $end
+$var wire 1 3, distanciaTotal [216] $end
+$var wire 1 4, distanciaTotal [215] $end
+$var wire 1 5, distanciaTotal [214] $end
+$var wire 1 6, distanciaTotal [213] $end
+$var wire 1 7, distanciaTotal [212] $end
+$var wire 1 8, distanciaTotal [211] $end
+$var wire 1 9, distanciaTotal [210] $end
+$var wire 1 :, distanciaTotal [209] $end
+$var wire 1 ;, distanciaTotal [208] $end
+$var wire 1 <, distanciaTotal [207] $end
+$var wire 1 =, distanciaTotal [206] $end
+$var wire 1 >, distanciaTotal [205] $end
+$var wire 1 ?, distanciaTotal [204] $end
+$var wire 1 @, distanciaTotal [203] $end
+$var wire 1 A, distanciaTotal [202] $end
+$var wire 1 B, distanciaTotal [201] $end
+$var wire 1 C, distanciaTotal [200] $end
+$var wire 1 D, distanciaTotal [199] $end
+$var wire 1 E, distanciaTotal [198] $end
+$var wire 1 F, distanciaTotal [197] $end
+$var wire 1 G, distanciaTotal [196] $end
+$var wire 1 H, distanciaTotal [195] $end
+$var wire 1 I, distanciaTotal [194] $end
+$var wire 1 J, distanciaTotal [193] $end
+$var wire 1 K, distanciaTotal [192] $end
+$var wire 1 L, distanciaTotal [191] $end
+$var wire 1 M, distanciaTotal [190] $end
+$var wire 1 N, distanciaTotal [189] $end
+$var wire 1 O, distanciaTotal [188] $end
+$var wire 1 P, distanciaTotal [187] $end
+$var wire 1 Q, distanciaTotal [186] $end
+$var wire 1 R, distanciaTotal [185] $end
+$var wire 1 S, distanciaTotal [184] $end
+$var wire 1 T, distanciaTotal [183] $end
+$var wire 1 U, distanciaTotal [182] $end
+$var wire 1 V, distanciaTotal [181] $end
+$var wire 1 W, distanciaTotal [180] $end
+$var wire 1 X, distanciaTotal [179] $end
+$var wire 1 Y, distanciaTotal [178] $end
+$var wire 1 Z, distanciaTotal [177] $end
+$var wire 1 [, distanciaTotal [176] $end
+$var wire 1 \, distanciaTotal [175] $end
+$var wire 1 ], distanciaTotal [174] $end
+$var wire 1 ^, distanciaTotal [173] $end
+$var wire 1 _, distanciaTotal [172] $end
+$var wire 1 `, distanciaTotal [171] $end
+$var wire 1 a, distanciaTotal [170] $end
+$var wire 1 b, distanciaTotal [169] $end
+$var wire 1 c, distanciaTotal [168] $end
+$var wire 1 d, distanciaTotal [167] $end
+$var wire 1 e, distanciaTotal [166] $end
+$var wire 1 f, distanciaTotal [165] $end
+$var wire 1 g, distanciaTotal [164] $end
+$var wire 1 h, distanciaTotal [163] $end
+$var wire 1 i, distanciaTotal [162] $end
+$var wire 1 j, distanciaTotal [161] $end
+$var wire 1 k, distanciaTotal [160] $end
+$var wire 1 l, distanciaTotal [159] $end
+$var wire 1 m, distanciaTotal [158] $end
+$var wire 1 n, distanciaTotal [157] $end
+$var wire 1 o, distanciaTotal [156] $end
+$var wire 1 p, distanciaTotal [155] $end
+$var wire 1 q, distanciaTotal [154] $end
+$var wire 1 r, distanciaTotal [153] $end
+$var wire 1 s, distanciaTotal [152] $end
+$var wire 1 t, distanciaTotal [151] $end
+$var wire 1 u, distanciaTotal [150] $end
+$var wire 1 v, distanciaTotal [149] $end
+$var wire 1 w, distanciaTotal [148] $end
+$var wire 1 x, distanciaTotal [147] $end
+$var wire 1 y, distanciaTotal [146] $end
+$var wire 1 z, distanciaTotal [145] $end
+$var wire 1 {, distanciaTotal [144] $end
+$var wire 1 |, distanciaTotal [143] $end
+$var wire 1 }, distanciaTotal [142] $end
+$var wire 1 ~, distanciaTotal [141] $end
+$var wire 1 !- distanciaTotal [140] $end
+$var wire 1 "- distanciaTotal [139] $end
+$var wire 1 #- distanciaTotal [138] $end
+$var wire 1 $- distanciaTotal [137] $end
+$var wire 1 %- distanciaTotal [136] $end
+$var wire 1 &- distanciaTotal [135] $end
+$var wire 1 '- distanciaTotal [134] $end
+$var wire 1 (- distanciaTotal [133] $end
+$var wire 1 )- distanciaTotal [132] $end
+$var wire 1 *- distanciaTotal [131] $end
+$var wire 1 +- distanciaTotal [130] $end
+$var wire 1 ,- distanciaTotal [129] $end
+$var wire 1 -- distanciaTotal [128] $end
+$var wire 1 .- distanciaTotal [127] $end
+$var wire 1 /- distanciaTotal [126] $end
+$var wire 1 0- distanciaTotal [125] $end
+$var wire 1 1- distanciaTotal [124] $end
+$var wire 1 2- distanciaTotal [123] $end
+$var wire 1 3- distanciaTotal [122] $end
+$var wire 1 4- distanciaTotal [121] $end
+$var wire 1 5- distanciaTotal [120] $end
+$var wire 1 6- distanciaTotal [119] $end
+$var wire 1 7- distanciaTotal [118] $end
+$var wire 1 8- distanciaTotal [117] $end
+$var wire 1 9- distanciaTotal [116] $end
+$var wire 1 :- distanciaTotal [115] $end
+$var wire 1 ;- distanciaTotal [114] $end
+$var wire 1 <- distanciaTotal [113] $end
+$var wire 1 =- distanciaTotal [112] $end
+$var wire 1 >- distanciaTotal [111] $end
+$var wire 1 ?- distanciaTotal [110] $end
+$var wire 1 @- distanciaTotal [109] $end
+$var wire 1 A- distanciaTotal [108] $end
+$var wire 1 B- distanciaTotal [107] $end
+$var wire 1 C- distanciaTotal [106] $end
+$var wire 1 D- distanciaTotal [105] $end
+$var wire 1 E- distanciaTotal [104] $end
+$var wire 1 F- distanciaTotal [103] $end
+$var wire 1 G- distanciaTotal [102] $end
+$var wire 1 H- distanciaTotal [101] $end
+$var wire 1 I- distanciaTotal [100] $end
+$var wire 1 J- distanciaTotal [99] $end
+$var wire 1 K- distanciaTotal [98] $end
+$var wire 1 L- distanciaTotal [97] $end
+$var wire 1 M- distanciaTotal [96] $end
+$var wire 1 N- distanciaTotal [95] $end
+$var wire 1 O- distanciaTotal [94] $end
+$var wire 1 P- distanciaTotal [93] $end
+$var wire 1 Q- distanciaTotal [92] $end
+$var wire 1 R- distanciaTotal [91] $end
+$var wire 1 S- distanciaTotal [90] $end
+$var wire 1 T- distanciaTotal [89] $end
+$var wire 1 U- distanciaTotal [88] $end
+$var wire 1 V- distanciaTotal [87] $end
+$var wire 1 W- distanciaTotal [86] $end
+$var wire 1 X- distanciaTotal [85] $end
+$var wire 1 Y- distanciaTotal [84] $end
+$var wire 1 Z- distanciaTotal [83] $end
+$var wire 1 [- distanciaTotal [82] $end
+$var wire 1 \- distanciaTotal [81] $end
+$var wire 1 ]- distanciaTotal [80] $end
+$var wire 1 ^- distanciaTotal [79] $end
+$var wire 1 _- distanciaTotal [78] $end
+$var wire 1 `- distanciaTotal [77] $end
+$var wire 1 a- distanciaTotal [76] $end
+$var wire 1 b- distanciaTotal [75] $end
+$var wire 1 c- distanciaTotal [74] $end
+$var wire 1 d- distanciaTotal [73] $end
+$var wire 1 e- distanciaTotal [72] $end
+$var wire 1 f- distanciaTotal [71] $end
+$var wire 1 g- distanciaTotal [70] $end
+$var wire 1 h- distanciaTotal [69] $end
+$var wire 1 i- distanciaTotal [68] $end
+$var wire 1 j- distanciaTotal [67] $end
+$var wire 1 k- distanciaTotal [66] $end
+$var wire 1 l- distanciaTotal [65] $end
+$var wire 1 m- distanciaTotal [64] $end
+$var wire 1 n- distanciaTotal [63] $end
+$var wire 1 o- distanciaTotal [62] $end
+$var wire 1 p- distanciaTotal [61] $end
+$var wire 1 q- distanciaTotal [60] $end
+$var wire 1 r- distanciaTotal [59] $end
+$var wire 1 s- distanciaTotal [58] $end
+$var wire 1 t- distanciaTotal [57] $end
+$var wire 1 u- distanciaTotal [56] $end
+$var wire 1 v- distanciaTotal [55] $end
+$var wire 1 w- distanciaTotal [54] $end
+$var wire 1 x- distanciaTotal [53] $end
+$var wire 1 y- distanciaTotal [52] $end
+$var wire 1 z- distanciaTotal [51] $end
+$var wire 1 {- distanciaTotal [50] $end
+$var wire 1 |- distanciaTotal [49] $end
+$var wire 1 }- distanciaTotal [48] $end
+$var wire 1 ~- distanciaTotal [47] $end
+$var wire 1 !. distanciaTotal [46] $end
+$var wire 1 ". distanciaTotal [45] $end
+$var wire 1 #. distanciaTotal [44] $end
+$var wire 1 $. distanciaTotal [43] $end
+$var wire 1 %. distanciaTotal [42] $end
+$var wire 1 &. distanciaTotal [41] $end
+$var wire 1 '. distanciaTotal [40] $end
+$var wire 1 (. distanciaTotal [39] $end
+$var wire 1 ). distanciaTotal [38] $end
+$var wire 1 *. distanciaTotal [37] $end
+$var wire 1 +. distanciaTotal [36] $end
+$var wire 1 ,. distanciaTotal [35] $end
+$var wire 1 -. distanciaTotal [34] $end
+$var wire 1 .. distanciaTotal [33] $end
+$var wire 1 /. distanciaTotal [32] $end
+$var wire 1 0. distanciaTotal [31] $end
+$var wire 1 1. distanciaTotal [30] $end
+$var wire 1 2. distanciaTotal [29] $end
+$var wire 1 3. distanciaTotal [28] $end
+$var wire 1 4. distanciaTotal [27] $end
+$var wire 1 5. distanciaTotal [26] $end
+$var wire 1 6. distanciaTotal [25] $end
+$var wire 1 7. distanciaTotal [24] $end
+$var wire 1 8. distanciaTotal [23] $end
+$var wire 1 9. distanciaTotal [22] $end
+$var wire 1 :. distanciaTotal [21] $end
+$var wire 1 ;. distanciaTotal [20] $end
+$var wire 1 <. distanciaTotal [19] $end
+$var wire 1 =. distanciaTotal [18] $end
+$var wire 1 >. distanciaTotal [17] $end
+$var wire 1 ?. distanciaTotal [16] $end
+$var wire 1 @. distanciaTotal [15] $end
+$var wire 1 A. distanciaTotal [14] $end
+$var wire 1 B. distanciaTotal [13] $end
+$var wire 1 C. distanciaTotal [12] $end
+$var wire 1 D. distanciaTotal [11] $end
+$var wire 1 E. distanciaTotal [10] $end
+$var wire 1 F. distanciaTotal [9] $end
+$var wire 1 G. distanciaTotal [8] $end
+$var wire 1 H. distanciaTotal [7] $end
+$var wire 1 I. distanciaTotal [6] $end
+$var wire 1 J. distanciaTotal [5] $end
+$var wire 1 K. distanciaTotal [4] $end
+$var wire 1 L. distanciaTotal [3] $end
+$var wire 1 M. distanciaTotal [2] $end
+$var wire 1 N. distanciaTotal [1] $end
+$var wire 1 O. distanciaTotal [0] $end
+$var reg 225 #/ distanciaTotalOut [224:0] $end
+$var wire 1 s% aberto $end
+$var reg 1 $/ abertoOut $end
+$var wire 1 )& valor [1] $end
+$var wire 1 *& valor [0] $end
+$var reg 2 %/ valorOut [1:0] $end
+$var wire 1 4$ x [3] $end
+$var wire 1 5$ x [2] $end
+$var wire 1 6$ x [1] $end
+$var wire 1 7$ x [0] $end
+$var reg 4 &/ xOut [3:0] $end
+$var wire 1 8$ y [3] $end
+$var wire 1 9$ y [2] $end
+$var wire 1 :$ y [1] $end
+$var wire 1 ;$ y [0] $end
+$var reg 4 '/ yOut [3:0] $end
+$var wire 1 S. candidato $end
+$var reg 1 (/ candidatoOut $end
+$var wire 1 C& dx [14] $end
+$var wire 1 D& dx [13] $end
+$var wire 1 E& dx [12] $end
+$var wire 1 F& dx [11] $end
+$var wire 1 G& dx [10] $end
+$var wire 1 H& dx [9] $end
+$var wire 1 I& dx [8] $end
+$var wire 1 J& dx [7] $end
+$var wire 1 K& dx [6] $end
+$var wire 1 L& dx [5] $end
+$var wire 1 M& dx [4] $end
+$var wire 1 N& dx [3] $end
+$var wire 1 O& dx [2] $end
+$var wire 1 P& dx [1] $end
+$var wire 1 Q& dx [0] $end
+$var reg 15 )/ dxOut [14:0] $end
+$var wire 1 R& dy [14] $end
+$var wire 1 S& dy [13] $end
+$var wire 1 T& dy [12] $end
+$var wire 1 U& dy [11] $end
+$var wire 1 V& dy [10] $end
+$var wire 1 W& dy [9] $end
+$var wire 1 X& dy [8] $end
+$var wire 1 Y& dy [7] $end
+$var wire 1 Z& dy [6] $end
+$var wire 1 [& dy [5] $end
+$var wire 1 \& dy [4] $end
+$var wire 1 ]& dy [3] $end
+$var wire 1 ^& dy [2] $end
+$var wire 1 _& dy [1] $end
+$var wire 1 `& dy [0] $end
+$var reg 15 */ dyOut [14:0] $end
+$upscope $end
+
+$scope module s4 $end
+$var parameter 32 +/ tamanhoDados $end
+$var parameter 32 ,/ TamanhoMalha $end
+$var parameter 32 -/ addressTam $end
+$var parameter 32 ./ linear $end
+$var wire 1 2 clock $end
+$var wire 1 3 reset $end
+$var wire 1 \$ custoAcumulado [7] $end
+$var wire 1 ]$ custoAcumulado [6] $end
+$var wire 1 ^$ custoAcumulado [5] $end
+$var wire 1 _$ custoAcumulado [4] $end
+$var wire 1 `$ custoAcumulado [3] $end
+$var wire 1 a$ custoAcumulado [2] $end
+$var wire 1 b$ custoAcumulado [1] $end
+$var wire 1 c$ custoAcumulado [0] $end
+$var reg 8 // custoAcumuladoOut [7:0] $end
+$var wire 1 t$ custoEstimado [7] $end
+$var wire 1 u$ custoEstimado [6] $end
+$var wire 1 v$ custoEstimado [5] $end
+$var wire 1 w$ custoEstimado [4] $end
+$var wire 1 x$ custoEstimado [3] $end
+$var wire 1 y$ custoEstimado [2] $end
+$var wire 1 z$ custoEstimado [1] $end
+$var wire 1 {$ custoEstimado [0] $end
+$var reg 8 0/ custoEstimadoOut [7:0] $end
+$var wire 1 >% address [7] $end
+$var wire 1 ?% address [6] $end
+$var wire 1 @% address [5] $end
+$var wire 1 A% address [4] $end
+$var wire 1 B% address [3] $end
+$var wire 1 C% address [2] $end
+$var wire 1 D% address [1] $end
+$var wire 1 E% address [0] $end
+$var reg 8 1/ addressOut [7:0] $end
+$var wire 1 }% direcao [1] $end
+$var wire 1 ~% direcao [0] $end
+$var reg 2 2/ direcaoOut [1:0] $end
+$var wire 1 ?' distanciaTotal [224] $end
+$var wire 1 @' distanciaTotal [223] $end
+$var wire 1 A' distanciaTotal [222] $end
+$var wire 1 B' distanciaTotal [221] $end
+$var wire 1 C' distanciaTotal [220] $end
+$var wire 1 D' distanciaTotal [219] $end
+$var wire 1 E' distanciaTotal [218] $end
+$var wire 1 F' distanciaTotal [217] $end
+$var wire 1 G' distanciaTotal [216] $end
+$var wire 1 H' distanciaTotal [215] $end
+$var wire 1 I' distanciaTotal [214] $end
+$var wire 1 J' distanciaTotal [213] $end
+$var wire 1 K' distanciaTotal [212] $end
+$var wire 1 L' distanciaTotal [211] $end
+$var wire 1 M' distanciaTotal [210] $end
+$var wire 1 N' distanciaTotal [209] $end
+$var wire 1 O' distanciaTotal [208] $end
+$var wire 1 P' distanciaTotal [207] $end
+$var wire 1 Q' distanciaTotal [206] $end
+$var wire 1 R' distanciaTotal [205] $end
+$var wire 1 S' distanciaTotal [204] $end
+$var wire 1 T' distanciaTotal [203] $end
+$var wire 1 U' distanciaTotal [202] $end
+$var wire 1 V' distanciaTotal [201] $end
+$var wire 1 W' distanciaTotal [200] $end
+$var wire 1 X' distanciaTotal [199] $end
+$var wire 1 Y' distanciaTotal [198] $end
+$var wire 1 Z' distanciaTotal [197] $end
+$var wire 1 [' distanciaTotal [196] $end
+$var wire 1 \' distanciaTotal [195] $end
+$var wire 1 ]' distanciaTotal [194] $end
+$var wire 1 ^' distanciaTotal [193] $end
+$var wire 1 _' distanciaTotal [192] $end
+$var wire 1 `' distanciaTotal [191] $end
+$var wire 1 a' distanciaTotal [190] $end
+$var wire 1 b' distanciaTotal [189] $end
+$var wire 1 c' distanciaTotal [188] $end
+$var wire 1 d' distanciaTotal [187] $end
+$var wire 1 e' distanciaTotal [186] $end
+$var wire 1 f' distanciaTotal [185] $end
+$var wire 1 g' distanciaTotal [184] $end
+$var wire 1 h' distanciaTotal [183] $end
+$var wire 1 i' distanciaTotal [182] $end
+$var wire 1 j' distanciaTotal [181] $end
+$var wire 1 k' distanciaTotal [180] $end
+$var wire 1 l' distanciaTotal [179] $end
+$var wire 1 m' distanciaTotal [178] $end
+$var wire 1 n' distanciaTotal [177] $end
+$var wire 1 o' distanciaTotal [176] $end
+$var wire 1 p' distanciaTotal [175] $end
+$var wire 1 q' distanciaTotal [174] $end
+$var wire 1 r' distanciaTotal [173] $end
+$var wire 1 s' distanciaTotal [172] $end
+$var wire 1 t' distanciaTotal [171] $end
+$var wire 1 u' distanciaTotal [170] $end
+$var wire 1 v' distanciaTotal [169] $end
+$var wire 1 w' distanciaTotal [168] $end
+$var wire 1 x' distanciaTotal [167] $end
+$var wire 1 y' distanciaTotal [166] $end
+$var wire 1 z' distanciaTotal [165] $end
+$var wire 1 {' distanciaTotal [164] $end
+$var wire 1 |' distanciaTotal [163] $end
+$var wire 1 }' distanciaTotal [162] $end
+$var wire 1 ~' distanciaTotal [161] $end
+$var wire 1 !( distanciaTotal [160] $end
+$var wire 1 "( distanciaTotal [159] $end
+$var wire 1 #( distanciaTotal [158] $end
+$var wire 1 $( distanciaTotal [157] $end
+$var wire 1 %( distanciaTotal [156] $end
+$var wire 1 &( distanciaTotal [155] $end
+$var wire 1 '( distanciaTotal [154] $end
+$var wire 1 (( distanciaTotal [153] $end
+$var wire 1 )( distanciaTotal [152] $end
+$var wire 1 *( distanciaTotal [151] $end
+$var wire 1 +( distanciaTotal [150] $end
+$var wire 1 ,( distanciaTotal [149] $end
+$var wire 1 -( distanciaTotal [148] $end
+$var wire 1 .( distanciaTotal [147] $end
+$var wire 1 /( distanciaTotal [146] $end
+$var wire 1 0( distanciaTotal [145] $end
+$var wire 1 1( distanciaTotal [144] $end
+$var wire 1 2( distanciaTotal [143] $end
+$var wire 1 3( distanciaTotal [142] $end
+$var wire 1 4( distanciaTotal [141] $end
+$var wire 1 5( distanciaTotal [140] $end
+$var wire 1 6( distanciaTotal [139] $end
+$var wire 1 7( distanciaTotal [138] $end
+$var wire 1 8( distanciaTotal [137] $end
+$var wire 1 9( distanciaTotal [136] $end
+$var wire 1 :( distanciaTotal [135] $end
+$var wire 1 ;( distanciaTotal [134] $end
+$var wire 1 <( distanciaTotal [133] $end
+$var wire 1 =( distanciaTotal [132] $end
+$var wire 1 >( distanciaTotal [131] $end
+$var wire 1 ?( distanciaTotal [130] $end
+$var wire 1 @( distanciaTotal [129] $end
+$var wire 1 A( distanciaTotal [128] $end
+$var wire 1 B( distanciaTotal [127] $end
+$var wire 1 C( distanciaTotal [126] $end
+$var wire 1 D( distanciaTotal [125] $end
+$var wire 1 E( distanciaTotal [124] $end
+$var wire 1 F( distanciaTotal [123] $end
+$var wire 1 G( distanciaTotal [122] $end
+$var wire 1 H( distanciaTotal [121] $end
+$var wire 1 I( distanciaTotal [120] $end
+$var wire 1 J( distanciaTotal [119] $end
+$var wire 1 K( distanciaTotal [118] $end
+$var wire 1 L( distanciaTotal [117] $end
+$var wire 1 M( distanciaTotal [116] $end
+$var wire 1 N( distanciaTotal [115] $end
+$var wire 1 O( distanciaTotal [114] $end
+$var wire 1 P( distanciaTotal [113] $end
+$var wire 1 Q( distanciaTotal [112] $end
+$var wire 1 R( distanciaTotal [111] $end
+$var wire 1 S( distanciaTotal [110] $end
+$var wire 1 T( distanciaTotal [109] $end
+$var wire 1 U( distanciaTotal [108] $end
+$var wire 1 V( distanciaTotal [107] $end
+$var wire 1 W( distanciaTotal [106] $end
+$var wire 1 X( distanciaTotal [105] $end
+$var wire 1 Y( distanciaTotal [104] $end
+$var wire 1 Z( distanciaTotal [103] $end
+$var wire 1 [( distanciaTotal [102] $end
+$var wire 1 \( distanciaTotal [101] $end
+$var wire 1 ]( distanciaTotal [100] $end
+$var wire 1 ^( distanciaTotal [99] $end
+$var wire 1 _( distanciaTotal [98] $end
+$var wire 1 `( distanciaTotal [97] $end
+$var wire 1 a( distanciaTotal [96] $end
+$var wire 1 b( distanciaTotal [95] $end
+$var wire 1 c( distanciaTotal [94] $end
+$var wire 1 d( distanciaTotal [93] $end
+$var wire 1 e( distanciaTotal [92] $end
+$var wire 1 f( distanciaTotal [91] $end
+$var wire 1 g( distanciaTotal [90] $end
+$var wire 1 h( distanciaTotal [89] $end
+$var wire 1 i( distanciaTotal [88] $end
+$var wire 1 j( distanciaTotal [87] $end
+$var wire 1 k( distanciaTotal [86] $end
+$var wire 1 l( distanciaTotal [85] $end
+$var wire 1 m( distanciaTotal [84] $end
+$var wire 1 n( distanciaTotal [83] $end
+$var wire 1 o( distanciaTotal [82] $end
+$var wire 1 p( distanciaTotal [81] $end
+$var wire 1 q( distanciaTotal [80] $end
+$var wire 1 r( distanciaTotal [79] $end
+$var wire 1 s( distanciaTotal [78] $end
+$var wire 1 t( distanciaTotal [77] $end
+$var wire 1 u( distanciaTotal [76] $end
+$var wire 1 v( distanciaTotal [75] $end
+$var wire 1 w( distanciaTotal [74] $end
+$var wire 1 x( distanciaTotal [73] $end
+$var wire 1 y( distanciaTotal [72] $end
+$var wire 1 z( distanciaTotal [71] $end
+$var wire 1 {( distanciaTotal [70] $end
+$var wire 1 |( distanciaTotal [69] $end
+$var wire 1 }( distanciaTotal [68] $end
+$var wire 1 ~( distanciaTotal [67] $end
+$var wire 1 !) distanciaTotal [66] $end
+$var wire 1 ") distanciaTotal [65] $end
+$var wire 1 #) distanciaTotal [64] $end
+$var wire 1 $) distanciaTotal [63] $end
+$var wire 1 %) distanciaTotal [62] $end
+$var wire 1 &) distanciaTotal [61] $end
+$var wire 1 ') distanciaTotal [60] $end
+$var wire 1 () distanciaTotal [59] $end
+$var wire 1 )) distanciaTotal [58] $end
+$var wire 1 *) distanciaTotal [57] $end
+$var wire 1 +) distanciaTotal [56] $end
+$var wire 1 ,) distanciaTotal [55] $end
+$var wire 1 -) distanciaTotal [54] $end
+$var wire 1 .) distanciaTotal [53] $end
+$var wire 1 /) distanciaTotal [52] $end
+$var wire 1 0) distanciaTotal [51] $end
+$var wire 1 1) distanciaTotal [50] $end
+$var wire 1 2) distanciaTotal [49] $end
+$var wire 1 3) distanciaTotal [48] $end
+$var wire 1 4) distanciaTotal [47] $end
+$var wire 1 5) distanciaTotal [46] $end
+$var wire 1 6) distanciaTotal [45] $end
+$var wire 1 7) distanciaTotal [44] $end
+$var wire 1 8) distanciaTotal [43] $end
+$var wire 1 9) distanciaTotal [42] $end
+$var wire 1 :) distanciaTotal [41] $end
+$var wire 1 ;) distanciaTotal [40] $end
+$var wire 1 <) distanciaTotal [39] $end
+$var wire 1 =) distanciaTotal [38] $end
+$var wire 1 >) distanciaTotal [37] $end
+$var wire 1 ?) distanciaTotal [36] $end
+$var wire 1 @) distanciaTotal [35] $end
+$var wire 1 A) distanciaTotal [34] $end
+$var wire 1 B) distanciaTotal [33] $end
+$var wire 1 C) distanciaTotal [32] $end
+$var wire 1 D) distanciaTotal [31] $end
+$var wire 1 E) distanciaTotal [30] $end
+$var wire 1 F) distanciaTotal [29] $end
+$var wire 1 G) distanciaTotal [28] $end
+$var wire 1 H) distanciaTotal [27] $end
+$var wire 1 I) distanciaTotal [26] $end
+$var wire 1 J) distanciaTotal [25] $end
+$var wire 1 K) distanciaTotal [24] $end
+$var wire 1 L) distanciaTotal [23] $end
+$var wire 1 M) distanciaTotal [22] $end
+$var wire 1 N) distanciaTotal [21] $end
+$var wire 1 O) distanciaTotal [20] $end
+$var wire 1 P) distanciaTotal [19] $end
+$var wire 1 Q) distanciaTotal [18] $end
+$var wire 1 R) distanciaTotal [17] $end
+$var wire 1 S) distanciaTotal [16] $end
+$var wire 1 T) distanciaTotal [15] $end
+$var wire 1 U) distanciaTotal [14] $end
+$var wire 1 V) distanciaTotal [13] $end
+$var wire 1 W) distanciaTotal [12] $end
+$var wire 1 X) distanciaTotal [11] $end
+$var wire 1 Y) distanciaTotal [10] $end
+$var wire 1 Z) distanciaTotal [9] $end
+$var wire 1 [) distanciaTotal [8] $end
+$var wire 1 \) distanciaTotal [7] $end
+$var wire 1 ]) distanciaTotal [6] $end
+$var wire 1 ^) distanciaTotal [5] $end
+$var wire 1 _) distanciaTotal [4] $end
+$var wire 1 `) distanciaTotal [3] $end
+$var wire 1 a) distanciaTotal [2] $end
+$var wire 1 b) distanciaTotal [1] $end
+$var wire 1 c) distanciaTotal [0] $end
+$var reg 225 3/ distanciaTotalOut [224:0] $end
+$var wire 1 u% aberto $end
+$var reg 1 4/ abertoOut $end
+$var wire 1 +& valor [1] $end
+$var wire 1 ,& valor [0] $end
+$var reg 2 5/ valorOut [1:0] $end
+$var wire 1 j# x [3] $end
+$var wire 1 k# x [2] $end
+$var wire 1 l# x [1] $end
+$var wire 1 m# x [0] $end
+$var reg 4 6/ xOut [3:0] $end
+$var wire 1 n# y [3] $end
+$var wire 1 o# y [2] $end
+$var wire 1 p# y [1] $end
+$var wire 1 q# y [0] $end
+$var reg 4 7/ yOut [3:0] $end
+$var wire 1 T. candidato $end
+$var reg 1 8/ candidatoOut $end
 $upscope $end
 $upscope $end
 
 $scope module Malha $end
-$var parameter 32 r$ TamanhoMalha $end
-$var parameter 32 s$ tamanhoAddr $end
-$var parameter 32 t$ tamanhoDados $end
-$var parameter 1 u$ READ $end
-$var parameter 1 v$ WRITE $end
-$var wire 1 * clock $end
-$var wire 1 + reset $end
-$var wire 1 w$ value [34] $end
-$var wire 1 x$ value [33] $end
-$var wire 1 y$ value [32] $end
-$var wire 1 z$ value [31] $end
-$var wire 1 {$ value [30] $end
-$var wire 1 |$ value [29] $end
-$var wire 1 }$ value [28] $end
-$var wire 1 ~$ value [27] $end
-$var wire 1 !% value [26] $end
-$var wire 1 "% value [25] $end
-$var wire 1 #% value [24] $end
-$var wire 1 $% value [23] $end
-$var wire 1 %% value [22] $end
-$var wire 1 &% value [21] $end
-$var wire 1 '% value [20] $end
-$var wire 1 (% value [19] $end
-$var wire 1 )% value [18] $end
-$var wire 1 *% value [17] $end
-$var wire 1 +% value [16] $end
-$var wire 1 ,% value [15] $end
-$var wire 1 -% value [14] $end
-$var wire 1 .% value [13] $end
-$var wire 1 /% value [12] $end
-$var wire 1 0% value [11] $end
-$var wire 1 1% value [10] $end
-$var wire 1 2% value [9] $end
-$var wire 1 3% value [8] $end
-$var wire 1 4% value [7] $end
-$var wire 1 5% value [6] $end
-$var wire 1 6% value [5] $end
-$var wire 1 7% value [4] $end
-$var wire 1 8% value [3] $end
-$var wire 1 9% value [2] $end
-$var wire 1 :% value [1] $end
-$var wire 1 v value [0] $end
-$var wire 1 w read $end
-$var wire 1 x write $end
-$var wire 1 ;% address [7] $end
-$var wire 1 <% address [6] $end
-$var wire 1 =% address [5] $end
-$var wire 1 >% address [4] $end
-$var wire 1 ?% address [3] $end
-$var wire 1 @% address [2] $end
-$var wire 1 A% address [1] $end
-$var wire 1 y address [0] $end
-$var reg 35 B% outData [34:0] $end
+$var parameter 32 9/ TamanhoMalha $end
+$var parameter 32 :/ tamanhoAddr $end
+$var parameter 32 ;/ tamanhoDados $end
+$var parameter 1 </ READ $end
+$var parameter 1 =/ WRITE $end
+$var wire 1 2 clock $end
+$var wire 1 3 reset $end
+$var wire 1 V" value [28] $end
+$var wire 1 W" value [27] $end
+$var wire 1 X" value [26] $end
+$var wire 1 Y" value [25] $end
+$var wire 1 Z" value [24] $end
+$var wire 1 [" value [23] $end
+$var wire 1 \" value [22] $end
+$var wire 1 ]" value [21] $end
+$var wire 1 ^" value [20] $end
+$var wire 1 _" value [19] $end
+$var wire 1 `" value [18] $end
+$var wire 1 a" value [17] $end
+$var wire 1 b" value [16] $end
+$var wire 1 c" value [15] $end
+$var wire 1 d" value [14] $end
+$var wire 1 e" value [13] $end
+$var wire 1 f" value [12] $end
+$var wire 1 g" value [11] $end
+$var wire 1 h" value [10] $end
+$var wire 1 i" value [9] $end
+$var wire 1 j" value [8] $end
+$var wire 1 k" value [7] $end
+$var wire 1 l" value [6] $end
+$var wire 1 m" value [5] $end
+$var wire 1 n" value [4] $end
+$var wire 1 o" value [3] $end
+$var wire 1 p" value [2] $end
+$var wire 1 q" value [1] $end
+$var wire 1 r" value [0] $end
+$var wire 1 R" read $end
+$var wire 1 S" write $end
+$var wire 1 J" address [7] $end
+$var wire 1 K" address [6] $end
+$var wire 1 L" address [5] $end
+$var wire 1 M" address [4] $end
+$var wire 1 N" address [3] $end
+$var wire 1 O" address [2] $end
+$var wire 1 P" address [1] $end
+$var wire 1 Q" address [0] $end
+$var reg 29 >/ outData [28:0] $end
+$var wire 1 ?/ data16 [28] $end
+$var wire 1 @/ data16 [27] $end
+$var wire 1 A/ data16 [26] $end
+$var wire 1 B/ data16 [25] $end
+$var wire 1 C/ data16 [24] $end
+$var wire 1 D/ data16 [23] $end
+$var wire 1 E/ data16 [22] $end
+$var wire 1 F/ data16 [21] $end
+$var wire 1 G/ data16 [20] $end
+$var wire 1 H/ data16 [19] $end
+$var wire 1 I/ data16 [18] $end
+$var wire 1 J/ data16 [17] $end
+$var wire 1 K/ data16 [16] $end
+$var wire 1 L/ data16 [15] $end
+$var wire 1 M/ data16 [14] $end
+$var wire 1 N/ data16 [13] $end
+$var wire 1 O/ data16 [12] $end
+$var wire 1 P/ data16 [11] $end
+$var wire 1 Q/ data16 [10] $end
+$var wire 1 R/ data16 [9] $end
+$var wire 1 S/ data16 [8] $end
+$var wire 1 T/ data16 [7] $end
+$var wire 1 U/ data16 [6] $end
+$var wire 1 V/ data16 [5] $end
+$var wire 1 W/ data16 [4] $end
+$var wire 1 X/ data16 [3] $end
+$var wire 1 Y/ data16 [2] $end
+$var wire 1 Z/ data16 [1] $end
+$var wire 1 [/ data16 [0] $end
 $upscope $end
 
 $scope module decisor $end
-$var parameter 32 C% tamanhoDados $end
-$var parameter 32 D% TamanhoMalha $end
-$var parameter 32 E% addressTam $end
-$var wire 1 F% addressFromNIOS [7] $end
-$var wire 1 G% addressFromNIOS [6] $end
-$var wire 1 H% addressFromNIOS [5] $end
-$var wire 1 I% addressFromNIOS [4] $end
-$var wire 1 J% addressFromNIOS [3] $end
-$var wire 1 K% addressFromNIOS [2] $end
-$var wire 1 L% addressFromNIOS [1] $end
-$var wire 1 z addressFromNIOS [0] $end
-$var wire 1 { readFromNIOS $end
-$var wire 1 | writeFromNIOS $end
-$var wire 1 M% valueFromNIOS [28] $end
-$var wire 1 N% valueFromNIOS [27] $end
-$var wire 1 O% valueFromNIOS [26] $end
-$var wire 1 P% valueFromNIOS [25] $end
-$var wire 1 Q% valueFromNIOS [24] $end
-$var wire 1 R% valueFromNIOS [23] $end
-$var wire 1 S% valueFromNIOS [22] $end
-$var wire 1 T% valueFromNIOS [21] $end
-$var wire 1 U% valueFromNIOS [20] $end
-$var wire 1 V% valueFromNIOS [19] $end
-$var wire 1 W% valueFromNIOS [18] $end
-$var wire 1 X% valueFromNIOS [17] $end
-$var wire 1 Y% valueFromNIOS [16] $end
-$var wire 1 Z% valueFromNIOS [15] $end
-$var wire 1 [% valueFromNIOS [14] $end
-$var wire 1 \% valueFromNIOS [13] $end
-$var wire 1 ]% valueFromNIOS [12] $end
-$var wire 1 ^% valueFromNIOS [11] $end
-$var wire 1 _% valueFromNIOS [10] $end
-$var wire 1 `% valueFromNIOS [9] $end
-$var wire 1 a% valueFromNIOS [8] $end
-$var wire 1 b% valueFromNIOS [7] $end
-$var wire 1 c% valueFromNIOS [6] $end
-$var wire 1 d% valueFromNIOS [5] $end
-$var wire 1 e% valueFromNIOS [4] $end
-$var wire 1 f% valueFromNIOS [3] $end
-$var wire 1 g% valueFromNIOS [2] $end
-$var wire 1 h% valueFromNIOS [1] $end
-$var wire 1 } valueFromNIOS [0] $end
-$var wire 1 i% addressFromHW [7] $end
-$var wire 1 j% addressFromHW [6] $end
-$var wire 1 k% addressFromHW [5] $end
-$var wire 1 l% addressFromHW [4] $end
-$var wire 1 m% addressFromHW [3] $end
-$var wire 1 n% addressFromHW [2] $end
-$var wire 1 o% addressFromHW [1] $end
-$var wire 1 o addressFromHW [0] $end
-$var wire 1 r readFromHW $end
-$var wire 1 s writeFromHW $end
-$var wire 1 p% valueFromHW [28] $end
-$var wire 1 q% valueFromHW [27] $end
-$var wire 1 r% valueFromHW [26] $end
-$var wire 1 s% valueFromHW [25] $end
-$var wire 1 t% valueFromHW [24] $end
-$var wire 1 u% valueFromHW [23] $end
-$var wire 1 v% valueFromHW [22] $end
-$var wire 1 w% valueFromHW [21] $end
-$var wire 1 x% valueFromHW [20] $end
-$var wire 1 y% valueFromHW [19] $end
-$var wire 1 z% valueFromHW [18] $end
-$var wire 1 {% valueFromHW [17] $end
-$var wire 1 |% valueFromHW [16] $end
-$var wire 1 }% valueFromHW [15] $end
-$var wire 1 ~% valueFromHW [14] $end
-$var wire 1 !& valueFromHW [13] $end
-$var wire 1 "& valueFromHW [12] $end
-$var wire 1 #& valueFromHW [11] $end
-$var wire 1 $& valueFromHW [10] $end
-$var wire 1 %& valueFromHW [9] $end
-$var wire 1 && valueFromHW [8] $end
-$var wire 1 '& valueFromHW [7] $end
-$var wire 1 (& valueFromHW [6] $end
-$var wire 1 )& valueFromHW [5] $end
-$var wire 1 *& valueFromHW [4] $end
-$var wire 1 +& valueFromHW [3] $end
-$var wire 1 ,& valueFromHW [2] $end
-$var wire 1 -& valueFromHW [1] $end
-$var wire 1 p valueFromHW [0] $end
-$var wire 1 .& address [7] $end
-$var wire 1 /& address [6] $end
-$var wire 1 0& address [5] $end
-$var wire 1 1& address [4] $end
-$var wire 1 2& address [3] $end
-$var wire 1 3& address [2] $end
-$var wire 1 4& address [1] $end
-$var wire 1 ~ address [0] $end
-$var wire 1 w read $end
-$var wire 1 x write $end
-$var wire 1 5& value [28] $end
-$var wire 1 6& value [27] $end
-$var wire 1 7& value [26] $end
-$var wire 1 8& value [25] $end
-$var wire 1 9& value [24] $end
-$var wire 1 :& value [23] $end
-$var wire 1 ;& value [22] $end
-$var wire 1 <& value [21] $end
-$var wire 1 =& value [20] $end
-$var wire 1 >& value [19] $end
-$var wire 1 ?& value [18] $end
-$var wire 1 @& value [17] $end
-$var wire 1 A& value [16] $end
-$var wire 1 B& value [15] $end
-$var wire 1 C& value [14] $end
-$var wire 1 D& value [13] $end
-$var wire 1 E& value [12] $end
-$var wire 1 F& value [11] $end
-$var wire 1 G& value [10] $end
-$var wire 1 H& value [9] $end
-$var wire 1 I& value [8] $end
-$var wire 1 J& value [7] $end
-$var wire 1 K& value [6] $end
-$var wire 1 L& value [5] $end
-$var wire 1 M& value [4] $end
-$var wire 1 N& value [3] $end
-$var wire 1 O& value [2] $end
-$var wire 1 P& value [1] $end
-$var wire 1 v value [0] $end
-$var wire 1 Q& requestFromHW $end
+$var parameter 32 \/ tamanhoDados $end
+$var parameter 32 ]/ TamanhoMalha $end
+$var parameter 32 ^/ addressTam $end
+$var wire 1 5 addressFromNIOS [7] $end
+$var wire 1 6 addressFromNIOS [6] $end
+$var wire 1 7 addressFromNIOS [5] $end
+$var wire 1 8 addressFromNIOS [4] $end
+$var wire 1 9 addressFromNIOS [3] $end
+$var wire 1 : addressFromNIOS [2] $end
+$var wire 1 ; addressFromNIOS [1] $end
+$var wire 1 < addressFromNIOS [0] $end
+$var wire 1 Z readFromNIOS $end
+$var wire 1 [ writeFromNIOS $end
+$var wire 1 = valueFromNIOS [28] $end
+$var wire 1 > valueFromNIOS [27] $end
+$var wire 1 ? valueFromNIOS [26] $end
+$var wire 1 @ valueFromNIOS [25] $end
+$var wire 1 A valueFromNIOS [24] $end
+$var wire 1 B valueFromNIOS [23] $end
+$var wire 1 C valueFromNIOS [22] $end
+$var wire 1 D valueFromNIOS [21] $end
+$var wire 1 E valueFromNIOS [20] $end
+$var wire 1 F valueFromNIOS [19] $end
+$var wire 1 G valueFromNIOS [18] $end
+$var wire 1 H valueFromNIOS [17] $end
+$var wire 1 I valueFromNIOS [16] $end
+$var wire 1 J valueFromNIOS [15] $end
+$var wire 1 K valueFromNIOS [14] $end
+$var wire 1 L valueFromNIOS [13] $end
+$var wire 1 M valueFromNIOS [12] $end
+$var wire 1 N valueFromNIOS [11] $end
+$var wire 1 O valueFromNIOS [10] $end
+$var wire 1 P valueFromNIOS [9] $end
+$var wire 1 Q valueFromNIOS [8] $end
+$var wire 1 R valueFromNIOS [7] $end
+$var wire 1 S valueFromNIOS [6] $end
+$var wire 1 T valueFromNIOS [5] $end
+$var wire 1 U valueFromNIOS [4] $end
+$var wire 1 V valueFromNIOS [3] $end
+$var wire 1 W valueFromNIOS [2] $end
+$var wire 1 X valueFromNIOS [1] $end
+$var wire 1 Y valueFromNIOS [0] $end
+$var wire 1 "" addressFromHW [7] $end
+$var wire 1 #" addressFromHW [6] $end
+$var wire 1 $" addressFromHW [5] $end
+$var wire 1 %" addressFromHW [4] $end
+$var wire 1 &" addressFromHW [3] $end
+$var wire 1 '" addressFromHW [2] $end
+$var wire 1 (" addressFromHW [1] $end
+$var wire 1 )" addressFromHW [0] $end
+$var wire 1 *" readFromHW $end
+$var wire 1 +" writeFromHW $end
+$var wire 1 -" valueFromHW [28] $end
+$var wire 1 ." valueFromHW [27] $end
+$var wire 1 /" valueFromHW [26] $end
+$var wire 1 0" valueFromHW [25] $end
+$var wire 1 1" valueFromHW [24] $end
+$var wire 1 2" valueFromHW [23] $end
+$var wire 1 3" valueFromHW [22] $end
+$var wire 1 4" valueFromHW [21] $end
+$var wire 1 5" valueFromHW [20] $end
+$var wire 1 6" valueFromHW [19] $end
+$var wire 1 7" valueFromHW [18] $end
+$var wire 1 8" valueFromHW [17] $end
+$var wire 1 9" valueFromHW [16] $end
+$var wire 1 :" valueFromHW [15] $end
+$var wire 1 ;" valueFromHW [14] $end
+$var wire 1 <" valueFromHW [13] $end
+$var wire 1 =" valueFromHW [12] $end
+$var wire 1 >" valueFromHW [11] $end
+$var wire 1 ?" valueFromHW [10] $end
+$var wire 1 @" valueFromHW [9] $end
+$var wire 1 A" valueFromHW [8] $end
+$var wire 1 B" valueFromHW [7] $end
+$var wire 1 C" valueFromHW [6] $end
+$var wire 1 D" valueFromHW [5] $end
+$var wire 1 E" valueFromHW [4] $end
+$var wire 1 F" valueFromHW [3] $end
+$var wire 1 G" valueFromHW [2] $end
+$var wire 1 H" valueFromHW [1] $end
+$var wire 1 I" valueFromHW [0] $end
+$var wire 1 J" address [7] $end
+$var wire 1 K" address [6] $end
+$var wire 1 L" address [5] $end
+$var wire 1 M" address [4] $end
+$var wire 1 N" address [3] $end
+$var wire 1 O" address [2] $end
+$var wire 1 P" address [1] $end
+$var wire 1 Q" address [0] $end
+$var wire 1 R" read $end
+$var wire 1 S" write $end
+$var wire 1 V" value [28] $end
+$var wire 1 W" value [27] $end
+$var wire 1 X" value [26] $end
+$var wire 1 Y" value [25] $end
+$var wire 1 Z" value [24] $end
+$var wire 1 [" value [23] $end
+$var wire 1 \" value [22] $end
+$var wire 1 ]" value [21] $end
+$var wire 1 ^" value [20] $end
+$var wire 1 _" value [19] $end
+$var wire 1 `" value [18] $end
+$var wire 1 a" value [17] $end
+$var wire 1 b" value [16] $end
+$var wire 1 c" value [15] $end
+$var wire 1 d" value [14] $end
+$var wire 1 e" value [13] $end
+$var wire 1 f" value [12] $end
+$var wire 1 g" value [11] $end
+$var wire 1 h" value [10] $end
+$var wire 1 i" value [9] $end
+$var wire 1 j" value [8] $end
+$var wire 1 k" value [7] $end
+$var wire 1 l" value [6] $end
+$var wire 1 m" value [5] $end
+$var wire 1 n" value [4] $end
+$var wire 1 o" value [3] $end
+$var wire 1 p" value [2] $end
+$var wire 1 q" value [1] $end
+$var wire 1 r" value [0] $end
+$var wire 1 _/ requestFromHW $end
 $upscope $end
 
 $scope module filaHeap $end
-$var parameter 32 R& DEPTH $end
-$var parameter 32 S& DWIDTH $end
-$var wire 1 T& rstn $end
-$var wire 1 * clk $end
-$var wire 1 t wr_en $end
-$var wire 1 "! rd_en $end
-$var wire 1 U& din [15] $end
-$var wire 1 V& din [14] $end
-$var wire 1 W& din [13] $end
-$var wire 1 X& din [12] $end
-$var wire 1 Y& din [11] $end
-$var wire 1 Z& din [10] $end
-$var wire 1 [& din [9] $end
-$var wire 1 \& din [8] $end
-$var wire 1 ]& din [7] $end
-$var wire 1 ^& din [6] $end
-$var wire 1 _& din [5] $end
-$var wire 1 `& din [4] $end
-$var wire 1 a& din [3] $end
-$var wire 1 b& din [2] $end
-$var wire 1 c& din [1] $end
-$var wire 1 u din [0] $end
-$var reg 16 d& dout [15:0] $end
-$var wire 1 #! empty $end
-$var wire 1 e& full $end
-$var reg 3 f& wptr [2:0] $end
-$var reg 3 g& rptr [2:0] $end
+$var parameter 32 `/ DEPTH $end
+$var parameter 32 a/ DWIDTH $end
+$var wire 1 b/ rstn $end
+$var wire 1 2 clk $end
+$var wire 1 3# wr_en $end
+$var wire 1 \ rd_en $end
+$var wire 1 Z! din [8] $end
+$var wire 1 [! din [7] $end
+$var wire 1 \! din [6] $end
+$var wire 1 ]! din [5] $end
+$var wire 1 ^! din [4] $end
+$var wire 1 _! din [3] $end
+$var wire 1 `! din [2] $end
+$var wire 1 a! din [1] $end
+$var wire 1 b! din [0] $end
+$var reg 9 c/ dout [8:0] $end
+$var wire 1 4# empty $end
+$var wire 1 d/ full $end
+$var reg 3 e/ wptr [2:0] $end
+$var reg 3 f/ rptr [2:0] $end
 $upscope $end
 $upscope $end
 $upscope $end
 $enddefinitions $end
 #0
 $dumpvars
-0!
-1"
-0#
-b0 $
-b0 %
-b0 &
-b11111111 C"
-0D$
-0E$
-0F$
-0G$
-0H$
-0I$
-b0 K$
-0O$
-0P$
-0Q$
-0R$
-0S$
-0T$
-0U$
-b0 W$
-0[$
-0\$
-0]$
-0^$
-0_$
-0`$
-0a$
-0b$
-b0 d$
-0h$
-0i$
-0j$
-0k$
-0l$
-0m$
-b0 o$
-0p$
-0q$
-bx B%
-bx d&
-bx f&
-bx g&
-b100011 (
-b1111 )
-b1111 $!
-b11101 %!
-b1000 &!
-b11100001 '!
-b11101 A$
-b1111 B$
-b1000 C$
-b11101 L$
-b1111 M$
-b1000 N$
-b11101 X$
-b1111 Y$
-b1000 Z$
-b11101 e$
-b1111 f$
-b1000 g$
-b11100001 r$
-b1000 s$
-b100011 t$
-b1 u$
-b0 v$
-b11101 C%
-b1111 D%
-b1000 E%
-b1000 R&
-b10000 S&
-z'
-0o
-1p
-xq
-zr
-zs
-1t
-0u
-0}!
-0|!
-0{!
-0z!
-0y!
-0x!
-0w!
-0v!
-0u!
-0t!
-0s!
-0r!
-0q!
-0p!
-0o!
-0."
-0-"
-0,"
-0+"
-0*"
-0)"
-0("
-0'"
-0&"
-0%"
-0$"
-0#"
-0""
-0!"
-0~!
-06"
-05"
-04"
-03"
-02"
-01"
-00"
-0/"
-0>"
-0="
-0<"
-0;"
-0:"
-09"
-08"
-07"
-0@"
-0?"
-0A"
-0B"
-1K"
-1J"
-1I"
-1H"
-1G"
-1F"
-1E"
-1D"
-0S"
-zR"
-zQ"
-zP"
-zO"
-zN"
-zM"
-zL"
-0T"
-0U"
-0V"
-zW"
-0X"
-0Y"
-0Z"
-0b"
-za"
-z`"
-z_"
-z^"
-z]"
-z\"
-z["
-0j"
-0i"
-0h"
-0g"
-0f"
-0e"
-0d"
-0c"
-0k"
-0l"
-0m"
-0n"
-0o"
-0p"
-0!#
-0~"
-0}"
-0|"
-0{"
-0z"
-0y"
-0x"
-0w"
-0v"
-0u"
-0t"
-0s"
-0r"
-0q"
-00#
-0/#
-0.#
-0-#
-0,#
-0+#
-0*#
-0)#
-0(#
-0'#
-0&#
-0%#
-0$#
-0##
-0"#
-08#
-07#
-06#
-05#
-04#
-03#
-02#
-01#
-0:#
-09#
-0;#
-1<#
-1=#
-x>#
-x?#
-1@#
-0A#
-0B#
-0C#
-0D#
-0E#
-0F#
-0G#
-0H#
-0I#
-0X#
-0W#
-0V#
-0U#
-0T#
-0S#
-0R#
-0Q#
-0P#
-0O#
-0N#
-0M#
-0L#
-0K#
-0J#
-0g#
-0f#
-0e#
-0d#
-0c#
-0b#
-0a#
-0`#
-0_#
-0^#
-0]#
-0\#
-0[#
-0Z#
-0Y#
-0v#
-0u#
-0t#
-0s#
-0r#
-0q#
-0p#
-0o#
-0n#
-0m#
-0l#
-0k#
-0j#
-0i#
-0h#
-0'$
-0&$
-0%$
-0$$
-0#$
-0"$
-0!$
-0~#
-0}#
-0|#
-0{#
-0z#
-0y#
-0x#
-0w#
-06$
-05$
-04$
-03$
-02$
-01$
-00$
-0/$
-0.$
-0-$
-0,$
-0+$
-0*$
-0)$
-0($
-z7$
-08$
-09$
-0:$
-0;$
-0<$
-0=$
-0>$
-0?$
-0@$
-xv
-xw
-xx
-zy
-zz
-z{
-z|
-z}
-x~
-xQ&
-x!!
-z"!
-x#!
+0$
+1%
+0&
+b0 '
+b0 (
+b0 )
 0*
-1+
+0+
 0,
-0L
-0K
-0J
-0I
-0H
-0G
-0F
-0E
-0D
-0C
-0B
-0A
-0@
-0?
-0>
-0=
-0<
-0;
-0:
-09
-08
-07
-06
-05
-04
-03
-02
-01
-00
-0/
-0.
-0-
-0l
-0k
-0j
-0i
-0h
-0g
-0f
-0e
-0d
-0c
-0b
-0a
-0`
-0_
-0^
-0]
-0\
-0[
-0Z
-0Y
-0X
-0W
-0V
-0U
-0T
-0S
-0R
-0Q
-0P
-0O
-0N
-0M
+1:#
+0;#
+b0 <#
+b0 =#
+b0 >#
+0?#
+b11111111 V.
+b0 [.
+b0 \.
+b0 ].
+b0 ^.
+b0 _.
+0`.
+b0 e.
+b0 f.
+b0 g.
+b0 h.
+b0 i.
+0j.
+b0 o.
+b0 p.
+b0 q.
+b0 r.
+b0 s.
+b0 t.
+b0 u.
+0v.
+b0 w.
+0x.
+b0 }.
+b0 ~.
+b0 !/
+b0 "/
+b0 #/
+0$/
+b0 %/
+b0 &/
+b0 '/
+0(/
+b0 )/
+b0 */
+b0 //
+b0 0/
+b0 1/
+b0 2/
+b0 3/
+04/
+b0 5/
+b0 6/
+b0 7/
+08/
+bx >/
+bx c/
+bx e/
+bx f/
+b1111 !
+b11101 "
+b1000 #
+b1111 /
+b11101 0
+b1000 1
+b1111 5#
+b11101 6#
+b1000 7#
+b0 8#
+b1 9#
+b1111 @#
+b11101 A#
+b1000 B#
+b100 C#
+b11100001 D#
+b11101 W.
+b1111 X.
+b1000 Y.
+b100 Z.
+b11101 a.
+b1111 b.
+b1000 c.
+b100 d.
+b11101 k.
+b1111 l.
+b1000 m.
+b100 n.
+b11101 y.
+b1111 z.
+b1000 {.
+b100 |.
+b11101 +/
+b1111 ,/
+b1000 -/
+b100 ./
+b11100001 9/
+b1000 :/
+b11101 ;/
+b1 </
+b0 =/
+b11101 \/
+b1111 ]/
+b1000 ^/
+b1000 `/
+b1001 a/
+z-
+1.
+zd
+zc
+zb
+za
+z`
+z_
+z^
+z]
+zl
+zk
+zj
+zi
+zh
+zg
+zf
+ze
+0t
+0s
+0r
+0q
+0p
+0o
 0n
 0m
-0T&
+z3!
+z2!
+z1!
+z0!
+z/!
 z.!
 z-!
 z,!
@@ -1193,6 +2664,29 @@ z+!
 z*!
 z)!
 z(!
+z'!
+z&!
+z%!
+z$!
+z#!
+z"!
+z!!
+z~
+z}
+z|
+z{
+zz
+zy
+zx
+zw
+zv
+zu
+0P!
+0O!
+0N!
+0M!
+0L!
+0K!
 0J!
 0I!
 0H!
@@ -1216,169 +2710,1363 @@ z(!
 06!
 05!
 04!
-03!
-02!
-01!
-00!
-0/!
+xY!
+xX!
+xW!
+xV!
+xU!
+xT!
+xS!
+xR!
+xQ!
+0b!
+0a!
+0`!
+0_!
+0^!
+0]!
+0\!
+0[!
+0Z!
+z!"
+z~!
+z}!
+z|!
+z{!
+zz!
+zy!
+zx!
+zw!
+zv!
+zu!
+zt!
+zs!
+zr!
+zq!
+zp!
+zo!
+zn!
+zm!
+zl!
+zk!
+zj!
+zi!
+zh!
+zg!
 zf!
 ze!
 zd!
 zc!
-zb!
-za!
-z`!
-z_!
-z^!
-z]!
-z\!
-z[!
-zZ!
-zY!
-zX!
-zW!
-zV!
-zU!
-zT!
-zS!
-zR!
-zQ!
-zP!
-zO!
-zN!
-zM!
-zL!
-zK!
-0n!
-0m!
-0l!
-0k!
-0j!
-0i!
-0h!
-0g!
-zJ$
-zV$
-zc$
-zn$
-z:%
-z9%
-z8%
-z7%
-z6%
-z5%
-z4%
-z3%
-z2%
-z1%
-z0%
-z/%
-z.%
-z-%
-z,%
-z+%
-z*%
-z)%
-z(%
-z'%
-z&%
-z%%
-z$%
-z#%
-z"%
-z!%
-z~$
-z}$
-z|$
-z{$
-zz$
-zy$
-zx$
-zw$
-zA%
-z@%
-z?%
-z>%
-z=%
-z<%
-z;%
-zL%
-zK%
-zJ%
-zI%
-zH%
-zG%
-zF%
-zh%
-zg%
-zf%
-ze%
-zd%
-zc%
-zb%
-za%
-z`%
-z_%
-z^%
-z]%
-z\%
-z[%
-zZ%
-zY%
-zX%
-zW%
-zV%
-zU%
-zT%
-zS%
-zR%
-zQ%
-zP%
-zO%
-zN%
-zM%
-zo%
-zn%
-zm%
-zl%
-zk%
-zj%
-zi%
-z-&
-z,&
-z+&
-z*&
-z)&
+0)"
+0("
+0'"
+0&"
+0%"
+0$"
+0#"
+0""
+0*"
+0+"
+0,"
+1I"
+0H"
+0G"
+0F"
+0E"
+0D"
+0C"
+0B"
+0A"
+0@"
+0?"
+0>"
+0="
+0<"
+0;"
+0:"
+09"
+08"
+07"
+06"
+05"
+04"
+03"
+02"
+01"
+00"
+0/"
+0."
+0-"
+0Q"
+0P"
+0O"
+0N"
+0M"
+0L"
+0K"
+0J"
+0R"
+0S"
+0U"
+0T"
+0r"
+0q"
+0p"
+0o"
+0n"
+0m"
+0l"
+0k"
+0j"
+0i"
+0h"
+0g"
+0f"
+0e"
+0d"
+0c"
+0b"
+0a"
+0`"
+0_"
+0^"
+0]"
+0\"
+0["
+0Z"
+0Y"
+0X"
+0W"
+0V"
+x1#
+x0#
+x/#
+x.#
+x-#
+x,#
+x+#
+x*#
+x)#
+x(#
+x'#
+x&#
+x%#
+x$#
+x##
+x"#
+x!#
+x~"
+x}"
+x|"
+x{"
+xz"
+xy"
+xx"
+xw"
+xv"
+xu"
+xt"
+xs"
+12#
+03#
+za#
+z`#
+z_#
+z^#
+z]#
+z\#
+z[#
+zZ#
+zY#
+zX#
+zW#
+zV#
+zU#
+zT#
+zS#
+zR#
+zQ#
+zP#
+zO#
+zN#
+zM#
+zL#
+zK#
+zJ#
+zI#
+zH#
+zG#
+zF#
+zE#
+0e#
+0d#
+0c#
+0b#
+0i#
+0h#
+0g#
+0f#
+0m#
+0l#
+0k#
+0j#
+0q#
+0p#
+0o#
+0n#
+0u#
+0t#
+0s#
+0r#
+0y#
+0x#
+0w#
+0v#
+0}#
+0|#
+0{#
+0z#
+0#$
+0"$
+0!$
+0~#
+0'$
+0&$
+0%$
+0$$
+0+$
+0*$
+0)$
+0($
+0/$
+0.$
+0-$
+0,$
+03$
+02$
+01$
+00$
+07$
+06$
+05$
+04$
+0;$
+0:$
+09$
+08$
+x?$
+x>$
+x=$
+x<$
+xC$
+xB$
+xA$
+x@$
+0K$
+0J$
+0I$
+0H$
+0G$
+0F$
+0E$
+0D$
+0S$
+0R$
+0Q$
+0P$
+0O$
+0N$
+0M$
+0L$
+0[$
+0Z$
+0Y$
+0X$
+0W$
+0V$
+0U$
+0T$
+0c$
+0b$
+0a$
+0`$
+0_$
+0^$
+0]$
+0\$
+0k$
+0j$
+0i$
+0h$
+0g$
+0f$
+0e$
+0d$
+0s$
+0r$
+0q$
+0p$
+0o$
+0n$
+0m$
+0l$
+0{$
+0z$
+0y$
+0x$
+0w$
+0v$
+0u$
+0t$
+0%%
+0$%
+0#%
+0"%
+0!%
+0~$
+0}$
+0|$
+0-%
+0,%
+0+%
+0*%
+0)%
+0(%
+0'%
+0&%
+15%
+04%
+03%
+02%
+01%
+00%
+0/%
+0.%
+x=%
+x<%
+x;%
+x:%
+x9%
+x8%
+x7%
+x6%
+0E%
+0D%
+0C%
+0B%
+0A%
+0@%
+0?%
+0>%
+0M%
+0L%
+0K%
+0J%
+0I%
+0H%
+0G%
+0F%
+0U%
+0T%
+0S%
+0R%
+0Q%
+0P%
+0O%
+0N%
+0]%
+0\%
+0[%
+0Z%
+0Y%
+0X%
+0W%
+0V%
+1e%
+1d%
+1c%
+1b%
+1a%
+1`%
+1_%
+1^%
+0m%
+0l%
+0k%
+0j%
+0i%
+0h%
+0g%
+0f%
+0o%
+0n%
+xq%
+xp%
+0r%
+0s%
+xt%
+0u%
+0v%
+0x%
+0w%
+0z%
+0y%
+0|%
+0{%
+0~%
+0}%
+0"&
+0!&
+0$&
+0#&
+x&&
+x%&
 z(&
 z'&
-z&&
-z%&
-z$&
-z#&
-z"&
-z!&
-z~%
-z}%
-z|%
-z{%
-zz%
-zy%
-zx%
-zw%
-zv%
-zu%
-zt%
-zs%
-zr%
-zq%
-zp%
+0*&
+0)&
+0,&
+0+&
+0.&
+0-&
+x6&
+x5&
 x4&
 x3&
 x2&
 x1&
 x0&
 x/&
-x.&
+0>&
+0=&
+0<&
+0;&
+0:&
+09&
+08&
+07&
+x?&
+0@&
+0A&
+xB&
+0Q&
+0P&
+0O&
+0N&
+0M&
+0L&
+0K&
+0J&
+0I&
+0H&
+0G&
+0F&
+0E&
+0D&
+0C&
+0`&
+0_&
+0^&
+0]&
+0\&
+0[&
+0Z&
+0Y&
+0X&
+0W&
+0V&
+0U&
+0T&
+0S&
+0R&
+0o&
+0n&
+0m&
+0l&
+0k&
+0j&
+0i&
+0h&
+0g&
+0f&
+0e&
+0d&
+0c&
+0b&
+0a&
+0~&
+0}&
+0|&
+0{&
+0z&
+0y&
+0x&
+0w&
+0v&
+0u&
+0t&
+0s&
+0r&
+0q&
+0p&
+0/'
+0.'
+0-'
+0,'
+0+'
+0*'
+0)'
+0('
+0''
+0&'
+0%'
+0$'
+0#'
+0"'
+0!'
+0>'
+0='
+0<'
+0;'
+0:'
+09'
+08'
+07'
+06'
+05'
+04'
+03'
+02'
+01'
+00'
+0c)
+0b)
+0a)
+0`)
+0_)
+0^)
+0])
+0\)
+0[)
+0Z)
+0Y)
+0X)
+0W)
+0V)
+0U)
+0T)
+0S)
+0R)
+0Q)
+0P)
+0O)
+0N)
+0M)
+0L)
+0K)
+0J)
+0I)
+0H)
+0G)
+0F)
+0E)
+0D)
+0C)
+0B)
+0A)
+0@)
+0?)
+0>)
+0=)
+0<)
+0;)
+0:)
+09)
+08)
+07)
+06)
+05)
+04)
+03)
+02)
+01)
+00)
+0/)
+0.)
+0-)
+0,)
+0+)
+0*)
+0))
+0()
+0')
+0&)
+0%)
+0$)
+0#)
+0")
+0!)
+0~(
+0}(
+0|(
+0{(
+0z(
+0y(
+0x(
+0w(
+0v(
+0u(
+0t(
+0s(
+0r(
+0q(
+0p(
+0o(
+0n(
+0m(
+0l(
+0k(
+0j(
+0i(
+0h(
+0g(
+0f(
+0e(
+0d(
+0c(
+0b(
+0a(
+0`(
+0_(
+0^(
+0](
+0\(
+0[(
+0Z(
+0Y(
+0X(
+0W(
+0V(
+0U(
+0T(
+0S(
+0R(
+0Q(
+0P(
+0O(
+0N(
+0M(
+0L(
+0K(
+0J(
+0I(
+0H(
+0G(
+0F(
+0E(
+0D(
+0C(
+0B(
+0A(
+0@(
+0?(
+0>(
+0=(
+0<(
+0;(
+0:(
+09(
+08(
+07(
+06(
+05(
+04(
+03(
+02(
+01(
+00(
+0/(
+0.(
+0-(
+0,(
+0+(
+0*(
+0)(
+0((
+0'(
+0&(
+0%(
+0$(
+0#(
+0"(
+0!(
+0~'
+0}'
+0|'
+0{'
+0z'
+0y'
+0x'
+0w'
+0v'
+0u'
+0t'
+0s'
+0r'
+0q'
+0p'
+0o'
+0n'
+0m'
+0l'
+0k'
+0j'
+0i'
+0h'
+0g'
+0f'
+0e'
+0d'
+0c'
+0b'
+0a'
+0`'
+0_'
+0^'
+0]'
+0\'
+0['
+0Z'
+0Y'
+0X'
+0W'
+0V'
+0U'
+0T'
+0S'
+0R'
+0Q'
+0P'
+0O'
+0N'
+0M'
+0L'
+0K'
+0J'
+0I'
+0H'
+0G'
+0F'
+0E'
+0D'
+0C'
+0B'
+0A'
+0@'
+0?'
+0*,
+0),
+0(,
+0',
+0&,
+0%,
+0$,
+0#,
+0",
+0!,
+0~+
+0}+
+0|+
+0{+
+0z+
+0y+
+0x+
+0w+
+0v+
+0u+
+0t+
+0s+
+0r+
+0q+
+0p+
+0o+
+0n+
+0m+
+0l+
+0k+
+0j+
+0i+
+0h+
+0g+
+0f+
+0e+
+0d+
+0c+
+0b+
+0a+
+0`+
+0_+
+0^+
+0]+
+0\+
+0[+
+0Z+
+0Y+
+0X+
+0W+
+0V+
+0U+
+0T+
+0S+
+0R+
+0Q+
+0P+
+0O+
+0N+
+0M+
+0L+
+0K+
+0J+
+0I+
+0H+
+0G+
+0F+
+0E+
+0D+
+0C+
+0B+
+0A+
+0@+
+0?+
+0>+
+0=+
+0<+
+0;+
+0:+
+09+
+08+
+07+
+06+
+05+
+04+
+03+
+02+
+01+
+00+
+0/+
+0.+
+0-+
+0,+
+0++
+0*+
+0)+
+0(+
+0'+
+0&+
+0%+
+0$+
+0#+
+0"+
+0!+
+0~*
+0}*
+0|*
+0{*
+0z*
+0y*
+0x*
+0w*
+0v*
+0u*
+0t*
+0s*
+0r*
+0q*
+0p*
+0o*
+0n*
+0m*
+0l*
+0k*
+0j*
+0i*
+0h*
+0g*
+0f*
+0e*
+0d*
+0c*
+0b*
+0a*
+0`*
+0_*
+0^*
+0]*
+0\*
+0[*
+0Z*
+0Y*
+0X*
+0W*
+0V*
+0U*
+0T*
+0S*
+0R*
+0Q*
+0P*
+0O*
+0N*
+0M*
+0L*
+0K*
+0J*
+0I*
+0H*
+0G*
+0F*
+0E*
+0D*
+0C*
+0B*
+0A*
+0@*
+0?*
+0>*
+0=*
+0<*
+0;*
+0:*
+09*
+08*
+07*
+06*
+05*
+04*
+03*
+02*
+01*
+00*
+0/*
+0.*
+0-*
+0,*
+0+*
+0**
+0)*
+0(*
+0'*
+0&*
+0%*
+0$*
+0#*
+0"*
+0!*
+0~)
+0})
+0|)
+0{)
+0z)
+0y)
+0x)
+0w)
+0v)
+0u)
+0t)
+0s)
+0r)
+0q)
+0p)
+0o)
+0n)
+0m)
+0l)
+0k)
+0j)
+0i)
+0h)
+0g)
+0f)
+0e)
+0d)
+0O.
+0N.
+0M.
+0L.
+0K.
+0J.
+0I.
+0H.
+0G.
+0F.
+0E.
+0D.
+0C.
+0B.
+0A.
+0@.
+0?.
+0>.
+0=.
+0<.
+0;.
+0:.
+09.
+08.
+07.
+06.
+05.
+04.
+03.
+02.
+01.
+00.
+0/.
+0..
+0-.
+0,.
+0+.
+0*.
+0).
+0(.
+0'.
+0&.
+0%.
+0$.
+0#.
+0".
+0!.
+0~-
+0}-
+0|-
+0{-
+0z-
+0y-
+0x-
+0w-
+0v-
+0u-
+0t-
+0s-
+0r-
+0q-
+0p-
+0o-
+0n-
+0m-
+0l-
+0k-
+0j-
+0i-
+0h-
+0g-
+0f-
+0e-
+0d-
+0c-
+0b-
+0a-
+0`-
+0_-
+0^-
+0]-
+0\-
+0[-
+0Z-
+0Y-
+0X-
+0W-
+0V-
+0U-
+0T-
+0S-
+0R-
+0Q-
+0P-
+0O-
+0N-
+0M-
+0L-
+0K-
+0J-
+0I-
+0H-
+0G-
+0F-
+0E-
+0D-
+0C-
+0B-
+0A-
+0@-
+0?-
+0>-
+0=-
+0<-
+0;-
+0:-
+09-
+08-
+07-
+06-
+05-
+04-
+03-
+02-
+01-
+00-
+0/-
+0.-
+0--
+0,-
+0+-
+0*-
+0)-
+0(-
+0'-
+0&-
+0%-
+0$-
+0#-
+0"-
+0!-
+0~,
+0},
+0|,
+0{,
+0z,
+0y,
+0x,
+0w,
+0v,
+0u,
+0t,
+0s,
+0r,
+0q,
+0p,
+0o,
+0n,
+0m,
+0l,
+0k,
+0j,
+0i,
+0h,
+0g,
+0f,
+0e,
+0d,
+0c,
+0b,
+0a,
+0`,
+0_,
+0^,
+0],
+0\,
+0[,
+0Z,
+0Y,
+0X,
+0W,
+0V,
+0U,
+0T,
+0S,
+0R,
+0Q,
+0P,
+0O,
+0N,
+0M,
+0L,
+0K,
+0J,
+0I,
+0H,
+0G,
+0F,
+0E,
+0D,
+0C,
+0B,
+0A,
+0@,
+0?,
+0>,
+0=,
+0<,
+0;,
+0:,
+09,
+08,
+07,
+06,
+05,
+04,
+03,
+02,
+01,
+00,
+0/,
+0.,
+0-,
+0,,
+0+,
+0P.
+0Q.
+0R.
+0S.
+0T.
+0U.
+x[/
+xZ/
+xY/
+xX/
+xW/
+xV/
+xU/
+xT/
+xS/
+xR/
+xQ/
+xP/
+xO/
+xN/
+xM/
+xL/
+xK/
+xJ/
+xI/
+xH/
+xG/
+xF/
+xE/
+xD/
+xC/
+xB/
+xA/
+x@/
+x?/
+0_/
+x4#
+xd/
+02
+13
+04
+0<
+0;
+0:
+09
+08
+07
+06
+05
+0Y
+0X
+0W
+0V
+0U
+0T
+0S
+0R
+0Q
+0P
+0O
+0N
+0M
+0L
+0K
+0J
+0I
+0H
+0G
+0F
+0E
+0D
+0C
+0B
+0A
+0@
+0?
+0>
+0=
+0Z
+0[
+0\
+0b/
+$end
+#5000
+1$
+12
+0%
+03
+1b/
+b0 e/
+b0 f/
+14#
+0d/
+#10000
+0$
+02
+#15000
+1$
+12
+b10000 )
+b10001011101000000000000000 (
+1+
+1J
+1H
+1G
+1F
+1D
+1@
+18
+1[
+1S"
+1M"
+1c"
+1a"
+1`"
+1_"
+1]"
+1Y"
+b11111111 [.
+b1 o.
+bx r.
+bx s.
+xv.
+bx w.
+xs%
+x*&
+x)&
+x;$
+x:$
+x9$
+x8$
+x7$
+x6$
+x5$
+x4$
+1[$
+1]%
+1\%
+1[%
+1Z%
+1Y%
+1X%
+1W%
+1V%
+1)"
+1("
+1'"
+1&"
+1%"
+1$"
+1#"
+1""
+xQ&
 xP&
 xO&
 xN&
@@ -1393,10 +4081,926 @@ xF&
 xE&
 xD&
 xC&
-xB&
-xA&
-x@&
-x?&
+x`&
+x_&
+x^&
+x]&
+x\&
+x[&
+xZ&
+xY&
+xX&
+xW&
+xV&
+xU&
+xT&
+xS&
+xR&
+#20000
+0$
+02
+#25000
+1$
+12
+b1110 )
+b11100000011101000000000000000 (
+0D
+0@
+1?
+1>
+1=
+1;
+1:
+19
+08
+1P"
+1O"
+1N"
+0M"
+0]"
+0Y"
+1X"
+1W"
+1V"
+b11111111 e.
+b1 }.
+x$/
+bx %/
+bx &/
+bx '/
+bx */
+bx )/
+xu%
+0[/
+0Z/
+0Y/
+0X/
+0W/
+0V/
+0U/
+0T/
+0S/
+0R/
+0Q/
+0P/
+0O/
+0N/
+0M/
+1L/
+0K/
+1J/
+1I/
+1H/
+0G/
+1F/
+0E/
+0D/
+0C/
+1B/
+0A/
+0@/
+0?/
+xo&
+xn&
+xm&
+xl&
+xk&
+xj&
+xi&
+xh&
+xg&
+xf&
+xe&
+xd&
+xc&
+xb&
+xa&
+x~&
+x}&
+x|&
+x{&
+xz&
+xy&
+xx&
+xw&
+xv&
+xu&
+xt&
+xs&
+xr&
+xq&
+xp&
+xq#
+xp#
+xo#
+xn#
+xm#
+xl#
+xk#
+xj#
+x,&
+x+&
+1c$
+1m%
+1l%
+1k%
+1j%
+1i%
+1h%
+1g%
+1f%
+x>'
+x='
+x<'
+x;'
+x:'
+x9'
+x8'
+x7'
+x6'
+x5'
+x4'
+x3'
+x2'
+x1'
+x0'
+x/'
+x.'
+x-'
+x,'
+x+'
+x*'
+x)'
+x('
+x''
+x&'
+x%'
+x$'
+x#'
+x"'
+x!'
+xO.
+xN.
+xM.
+xL.
+xK.
+xJ.
+xI.
+xH.
+xG.
+xF.
+xE.
+xD.
+xC.
+xB.
+xA.
+x@.
+x?.
+x>.
+x=.
+x<.
+x;.
+x:.
+x9.
+x8.
+x7.
+x6.
+x5.
+x4.
+x3.
+x2.
+x1.
+x0.
+x/.
+x..
+x-.
+x,.
+x+.
+x*.
+x).
+x(.
+x'.
+x&.
+x%.
+x$.
+x#.
+x".
+x!.
+x~-
+x}-
+x|-
+x{-
+xz-
+xy-
+xx-
+xw-
+xv-
+xu-
+xt-
+xs-
+xr-
+xq-
+xp-
+xo-
+xn-
+xm-
+xl-
+xk-
+xj-
+xi-
+xh-
+xg-
+xf-
+xe-
+xd-
+xc-
+xb-
+xa-
+x`-
+x_-
+x^-
+x]-
+x\-
+x[-
+xZ-
+xY-
+xX-
+xW-
+xV-
+xU-
+xT-
+xS-
+xR-
+xQ-
+xP-
+xO-
+xN-
+xM-
+xL-
+xK-
+xJ-
+xI-
+xH-
+xG-
+xF-
+xE-
+xD-
+xC-
+xB-
+xA-
+x@-
+x?-
+x>-
+x=-
+x<-
+x;-
+x:-
+x9-
+x8-
+x7-
+x6-
+x5-
+x4-
+x3-
+x2-
+x1-
+x0-
+x/-
+x.-
+x--
+x,-
+x+-
+x*-
+x)-
+x(-
+x'-
+x&-
+x%-
+x$-
+x#-
+x"-
+x!-
+x~,
+x},
+x|,
+x{,
+xz,
+xy,
+xx,
+xw,
+xv,
+xu,
+xt,
+xs,
+xr,
+xq,
+xp,
+xo,
+xn,
+xm,
+xl,
+xk,
+xj,
+xi,
+xh,
+xg,
+xf,
+xe,
+xd,
+xc,
+xb,
+xa,
+x`,
+x_,
+x^,
+x],
+x\,
+x[,
+xZ,
+xY,
+xX,
+xW,
+xV,
+xU,
+xT,
+xS,
+xR,
+xQ,
+xP,
+xO,
+xN,
+xM,
+xL,
+xK,
+xJ,
+xI,
+xH,
+xG,
+xF,
+xE,
+xD,
+xC,
+xB,
+xA,
+x@,
+x?,
+x>,
+x=,
+x<,
+x;,
+x:,
+x9,
+x8,
+x7,
+x6,
+x5,
+x4,
+x3,
+x2,
+x1,
+x0,
+x/,
+x.,
+x-,
+x,,
+x+,
+#30000
+0$
+02
+#35000
+1$
+12
+b0 )
+b11101000000000000000 (
+0?
+0>
+0=
+0;
+0:
+09
+0P"
+0O"
+0N"
+0X"
+0W"
+0V"
+b11111111 p.
+bx #/
+b1 //
+x4/
+bx 5/
+bx 6/
+bx 7/
+xv%
+xy#
+xx#
+xw#
+xv#
+xu#
+xt#
+xs#
+xr#
+x.&
+x-&
+1k$
+xc)
+xb)
+xa)
+x`)
+x_)
+x^)
+x])
+x\)
+x[)
+xZ)
+xY)
+xX)
+xW)
+xV)
+xU)
+xT)
+xS)
+xR)
+xQ)
+xP)
+xO)
+xN)
+xM)
+xL)
+xK)
+xJ)
+xI)
+xH)
+xG)
+xF)
+xE)
+xD)
+xC)
+xB)
+xA)
+x@)
+x?)
+x>)
+x=)
+x<)
+x;)
+x:)
+x9)
+x8)
+x7)
+x6)
+x5)
+x4)
+x3)
+x2)
+x1)
+x0)
+x/)
+x.)
+x-)
+x,)
+x+)
+x*)
+x))
+x()
+x')
+x&)
+x%)
+x$)
+x#)
+x")
+x!)
+x~(
+x}(
+x|(
+x{(
+xz(
+xy(
+xx(
+xw(
+xv(
+xu(
+xt(
+xs(
+xr(
+xq(
+xp(
+xo(
+xn(
+xm(
+xl(
+xk(
+xj(
+xi(
+xh(
+xg(
+xf(
+xe(
+xd(
+xc(
+xb(
+xa(
+x`(
+x_(
+x^(
+x](
+x\(
+x[(
+xZ(
+xY(
+xX(
+xW(
+xV(
+xU(
+xT(
+xS(
+xR(
+xQ(
+xP(
+xO(
+xN(
+xM(
+xL(
+xK(
+xJ(
+xI(
+xH(
+xG(
+xF(
+xE(
+xD(
+xC(
+xB(
+xA(
+x@(
+x?(
+x>(
+x=(
+x<(
+x;(
+x:(
+x9(
+x8(
+x7(
+x6(
+x5(
+x4(
+x3(
+x2(
+x1(
+x0(
+x/(
+x.(
+x-(
+x,(
+x+(
+x*(
+x)(
+x((
+x'(
+x&(
+x%(
+x$(
+x#(
+x"(
+x!(
+x~'
+x}'
+x|'
+x{'
+xz'
+xy'
+xx'
+xw'
+xv'
+xu'
+xt'
+xs'
+xr'
+xq'
+xp'
+xo'
+xn'
+xm'
+xl'
+xk'
+xj'
+xi'
+xh'
+xg'
+xf'
+xe'
+xd'
+xc'
+xb'
+xa'
+x`'
+x_'
+x^'
+x]'
+x\'
+x['
+xZ'
+xY'
+xX'
+xW'
+xV'
+xU'
+xT'
+xS'
+xR'
+xQ'
+xP'
+xO'
+xN'
+xM'
+xL'
+xK'
+xJ'
+xI'
+xH'
+xG'
+xF'
+xE'
+xD'
+xC'
+xB'
+xA'
+x@'
+x?'
+1U%
+1T%
+1S%
+1R%
+1Q%
+1P%
+1O%
+1N%
+1@"
+x6"
+x5"
+x4"
+x3"
+x2"
+x1"
+x0"
+x/"
+x."
+x-"
+xZ!
+#40000
+0$
+02
+#45000
+1$
+12
+b11110 )
+b10011101000000000000000 (
+1C
+1;
+1:
+19
+18
+1P"
+1O"
+1N"
+1M"
+1\"
+b11111111 !/
+bx 3/
+x*,
+x),
+x(,
+x',
+x&,
+x%,
+x$,
+x#,
+x",
+x!,
+x~+
+x}+
+x|+
+x{+
+xz+
+xy+
+xx+
+xw+
+xv+
+xu+
+xt+
+xs+
+xr+
+xq+
+xp+
+xo+
+xn+
+xm+
+xl+
+xk+
+xj+
+xi+
+xh+
+xg+
+xf+
+xe+
+xd+
+xc+
+xb+
+xa+
+x`+
+x_+
+x^+
+x]+
+x\+
+x[+
+xZ+
+xY+
+xX+
+xW+
+xV+
+xU+
+xT+
+xS+
+xR+
+xQ+
+xP+
+xO+
+xN+
+xM+
+xL+
+xK+
+xJ+
+xI+
+xH+
+xG+
+xF+
+xE+
+xD+
+xC+
+xB+
+xA+
+x@+
+x?+
+x>+
+x=+
+x<+
+x;+
+x:+
+x9+
+x8+
+x7+
+x6+
+x5+
+x4+
+x3+
+x2+
+x1+
+x0+
+x/+
+x.+
+x-+
+x,+
+x++
+x*+
+x)+
+x(+
+x'+
+x&+
+x%+
+x$+
+x#+
+x"+
+x!+
+x~*
+x}*
+x|*
+x{*
+xz*
+xy*
+xx*
+xw*
+xv*
+xu*
+xt*
+xs*
+xr*
+xq*
+xp*
+xo*
+xn*
+xm*
+xl*
+xk*
+xj*
+xi*
+xh*
+xg*
+xf*
+xe*
+xd*
+xc*
+xb*
+xa*
+x`*
+x_*
+x^*
+x]*
+x\*
+x[*
+xZ*
+xY*
+xX*
+xW*
+xV*
+xU*
+xT*
+xS*
+xR*
+xQ*
+xP*
+xO*
+xN*
+xM*
+xL*
+xK*
+xJ*
+xI*
+xH*
+xG*
+xF*
+xE*
+xD*
+xC*
+xB*
+xA*
+x@*
+x?*
+x>*
+x=*
+x<*
+x;*
+x:*
+x9*
+x8*
+x7*
+x6*
+x5*
+x4*
+x3*
+x2*
+x1*
+x0*
+x/*
+x.*
+x-*
+x,*
+x+*
+x**
+x)*
+x(*
+x'*
+x&*
+x%*
+x$*
+x#*
+x"*
+x!*
+x~)
+x})
+x|)
+x{)
+xz)
+xy)
+xx)
+xw)
+xv)
+xu)
+xt)
+xs)
+xr)
+xq)
+xp)
+xo)
+xn)
+xm)
+xl)
+xk)
+xj)
+xi)
+xh)
+xg)
+xf)
+xe)
+xd)
+1E%
+1D%
+1C%
+1B%
+1A%
+1@%
+1?%
+1>%
 x>&
 x=&
 x<&
@@ -1405,413 +5009,504 @@ x:&
 x9&
 x8&
 x7&
-x6&
-x5&
-zc&
-zb&
-za&
-z`&
-z_&
-z^&
-z]&
-z\&
-z[&
-zZ&
-zY&
-zX&
-zW&
-zV&
-zU&
-xe&
-$end
-#5000
-1!
-1*
-b0 f&
-b0 g&
-1#!
-0e&
-#10000
-0!
-0*
-#15000
-1!
-1*
-#20000
-0"
-0!
-0+
-0*
-1T&
-#25000
-1!
-1*
-1D$
-bz K$
-xP$
-bz0 W$
-1[$
-bz0 d$
-zh$
-bz0 o$
-b1 f&
-1S"
-xk"
-1A#
-z8$
-zX"
-0#!
-xm"
-1o
-x@#
-#30000
-0!
-0*
-#35000
-1!
-1*
-1O$
-bz W$
-xb$
-b10 f&
-1b"
-zn"
-xD#
-#40000
-b100 $
-b10101011110011010001001000110100 %
-b1 &
-1#
-0!
-1j
-1h
-1g
-1c
-1`
-1\
-1Z
-1Y
-1V
-1U
-1T
-1S
-1Q
-1O
-1M
-1J
-1,
-0I"
-0H"
-0G"
-0F"
-0E"
-0D"
-1="
-1;"
-1:"
-16"
-13"
-1/"
-1?"
-1B"
-1,"
-1+"
-1*"
-1)"
-1'"
-1n
-0*
-b1111 C"
-1G"
-#45000
-1!
-1*
-1E$
-1F$
-1\$
-bz d$
-xm$
-b11 f&
-1T"
-1U"
-1B#
-zE#
-x<$
-xn!
+xH"
+xG"
+xF"
+xE"
+xD"
+xC"
+xB"
+xA"
 #50000
-0!
-0*
+0$
+02
 #55000
-1!
-1*
-1Q$
-1R$
-1j$
-bz o$
-b100 f&
-xj"
-1l"
-1:$
-z=$
-x<#
-1u
+1$
+12
+0+
+0[
+0S"
+b11111111 1/
+1M%
+1L%
+1K%
+1J%
+1I%
+1H%
+1G%
+1F%
+1b!
+1a!
+1`!
+1_!
+1^!
+1]!
+1\!
+1[!
 #60000
-0#
-0!
-0,
-0*
+0$
+02
 #65000
-1!
-1*
-x[$
-1]$
-b101 f&
-xA#
-1C#
-#70000
-0!
-0*
-#75000
-1!
-1*
-1k$
-b110 f&
-1;$
-#80000
-0!
-0*
-#85000
-1!
-1*
-b111 f&
-#90000
-0!
-0*
-#95000
-1!
-1*
-b0 f&
-1#!
-#100000
-b1000 $
-b11011110101011011011111011101111 %
-b10 &
-1#
-0!
-1l
-1k
-1i
-0h
-1f
-1e
-1b
-1a
-1_
-1]
-1W
-0V
-0T
-1R
-1P
-0O
-1N
+1$
+12
+b1111 '
+b1010000000000000000000 (
+1&
 0J
-1I
-1,
-1I"
-1A"
-1>"
-1<"
-0;"
-19"
-18"
-15"
-14"
-12"
-10"
-1-"
-0,"
-0*"
-1("
-1&"
-0n
-1m
-0*
-b11110001 C"
+0H
+0G
+1D
+0C
+14
+0c"
+0a"
+0`"
+1]"
+0\"
+#70000
+0$
+02
+#75000
+1$
+12
+0:#
+1?#
+1;#
+b11110 <#
+b1010000000000000000000 =#
+02#
+1,"
+1=!
+1;!
+1s
+1r
+1q
+1p
+0.
+0d%
+0`%
+0_%
+0^%
+1$&
+1i#
+0&
+04
+#80000
+0$
+02
+#85000
+1$
+12
+b1 >#
+b11101 [.
+b1 _.
+1`.
+1#$
+0\%
+0X%
+0W%
+0V%
+1P.
+1*"
+1_/
+1R"
+1Q"
+1L"
+1K"
+1J"
+1r"
+xq"
+xp"
+xo"
+xn"
+xm"
+xl"
+xk"
+xj"
+1i"
+x_"
+x^"
+x]"
+x\"
+x["
+xZ"
+xY"
+xX"
+xW"
+xV"
+0("
+0$"
+0#"
+0""
+0P"
+0L"
+0K"
 0J"
-0I"
-1H"
-1F"
-1E"
-1D"
-#105000
-1!
-1*
-0F$
-1I$
-1i$
-b1 f&
+1U"
+b1111 V.
+0a%
+1`%
+#90000
+0$
+02
+#95000
+1$
+12
+b10 >#
+b101101 [.
+b1 ].
+b11101 e.
+b1 i.
+1j.
+1+$
+0l%
+0h%
+0g%
+0f%
+1x%
+0Y%
+1X%
+1Q.
+1@&
+0%"
+1$"
+xA&
+xR.
+0M"
+1L"
 0U"
-1V"
-19$
-0#!
+1T"
+b11110001 V.
+1d%
+0`%
+#100000
+0$
+02
+#105000
+1$
+12
+b11 >#
+b1111 [.
+b10 ].
+b101101 e.
+b1 g.
+b11101 p.
+b1 u.
+xx.
+13$
+0T%
+0P%
+0O%
+0N%
+1z%
+0i%
+1h%
+0x%
+1w%
+1\%
+0X%
+xS.
+1("
+0$"
+1P"
+0L"
+1U"
+b1 V.
+1a%
 #110000
-0!
-0*
+0$
+02
 #115000
-1!
-1*
-0R$
-1U$
-b10 f&
-0l"
+1$
+12
+b0 >#
+1:#
+0?#
+b11111 [.
+b11 ].
+b1111 e.
+b10 g.
+b101101 p.
+b1 q.
+b11101 !/
+x(/
+12#
+0D%
+0@%
+0?%
+0>%
+1|%
+0Q%
+1P%
+0z%
+1y%
+1l%
+0h%
+1x%
+1Y%
+xT.
+1.
+1%"
+1M"
+0U"
+0T"
+b11111111 V.
+0d%
 #120000
-0#
-0!
-0,
-0*
+0$
+02
 #125000
-1!
-1*
-0]$
-b11 f&
-0C#
+1$
+12
+0;#
+b11101 [.
+b0 ].
+b11111 e.
+b11 g.
+b1111 p.
+b10 q.
+b101101 !/
+b1 "/
+b11101 1/
+x8/
+0,"
+0L%
+0H%
+0G%
+0F%
+1~%
+0A%
+1@%
+0|%
+1{%
+1T%
+0P%
+1z%
+1i%
+0x%
+0w%
+0\%
+xU.
+x+"
+x3#
+xS"
+0("
+0a!
+0]!
+0\!
+0[!
+0P"
 #130000
-0!
-0*
+0$
+02
 #135000
-1!
-1*
-0k$
-b100 f&
-0;$
+1$
+12
+0`.
+b11101 e.
+b0 g.
+b11111 p.
+b11 q.
+b1111 !/
+b10 "/
+b101101 1/
+b1 2/
+0P.
+1"&
+0I%
+1H%
+0~%
+1}%
+1D%
+0@%
+1|%
+1Q%
+0z%
+0y%
+0l%
+0*"
+x_/
+0R"
+xQ"
+xP"
+xr"
+xi"
+x%"
+x$"
+0^!
+1]!
+18"
+xa"
+xM"
+xL"
 #140000
-0!
-0*
+0$
+02
 #145000
-1!
-1*
-b101 f&
+1$
+12
+0j.
+b11101 p.
+b0 q.
+b11111 !/
+b11 "/
+b1111 1/
+b10 2/
+0Q.
+0"&
+1!&
+1L%
+0H%
+1~%
+1A%
+0|%
+0{%
+0T%
+0R.
+x("
+0$"
+1a!
+0]!
+08"
+17"
+0a"
+x`"
+0L"
 #150000
-0!
-0*
+0$
+02
 #155000
-1!
-1*
-b110 f&
+1$
+12
+0x.
+b11101 !/
+b0 "/
+b11111 1/
+b11 2/
+0S.
+1"&
+1I%
+0~%
+0}%
+0D%
+1%"
+1^!
+18"
+xa"
+1M"
 #160000
-0!
-0*
+0$
+02
 #165000
-1!
-1*
-b111 f&
+1$
+12
+0(/
+b11101 1/
+b0 2/
+0T.
+0"&
+0!&
+0L%
+0("
+0a!
+08"
+07"
+0a"
+0`"
 #170000
-0!
-0*
+0$
+02
 #175000
-1!
-1*
-b0 f&
-1#!
+1$
+12
+08/
+0U.
+0+"
+03#
+0_/
+0S"
+0Q"
+1P"
+0r"
+0q"
+0p"
+0o"
+0n"
+0m"
+0l"
+0k"
+0j"
+0i"
+1_"
+0^"
+1]"
+0\"
+0["
+0Z"
+0Y"
+0X"
+0W"
+0V"
 #180000
-0!
-0*
+0$
+02
 #185000
-1!
-1*
-b1 f&
-0#!
+1$
+12
 #190000
-0!
-0*
+0$
+02
 #195000
-1!
-1*
-b10 f&
+1$
+12
 #200000
-0!
-0*
+0$
+02
 #205000
-1!
-1*
-b11 f&
+1$
+12
 #210000
-0!
-0*
+0$
+02
 #215000
-1!
-1*
-b100 f&
+1$
+12
 #220000
-0!
-0*
+0$
+02
 #225000
-1!
-1*
-b101 f&
+1$
+12
 #230000
-0!
-0*
+0$
+02
 #235000
-1!
-1*
-b110 f&
+1$
+12
 #240000
-0!
-0*
+0$
+02
 #245000
-1!
-1*
-b111 f&
+1$
+12
 #250000
-0!
-0*
+0$
+02
 #255000
-1!
-1*
-b0 f&
-1#!
+1$
+12
 #260000
-0!
-0*
+0$
+02
 #265000
-1!
-1*
-b1 f&
-0#!
+1$
+12
 #270000
-0!
-0*
+0$
+02
 #275000
-1!
-1*
-b10 f&
+1$
+12
 #280000
-0!
-0*
-#285000
-1!
-1*
-b11 f&
-#290000
-0!
-0*
-#295000
-1!
-1*
-b100 f&
-#300000
-0!
-0*
-#305000
-1!
-1*
-b101 f&
-#310000
-0!
-0*
-#315000
-1!
-1*
-b110 f&
+0$
+02

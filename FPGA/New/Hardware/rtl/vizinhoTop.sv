@@ -2,7 +2,8 @@ module vizinhoTop
 #(
 parameter int TamanhoMalha = 15, 
 parameter int tamanhoDados = 6 * $clog2(TamanhoMalha) + 5,
-parameter addressTam = 2 * $clog2(TamanhoMalha)
+parameter addressTam = 2 * $clog2(TamanhoMalha),
+parameter linear = $clog2(TamanhoMalha)
 )
 (
 
@@ -27,12 +28,31 @@ parameter addressTam = 2 * $clog2(TamanhoMalha)
 
 parameter areaMalha = TamanhoMalha*TamanhoMalha;
 
-wire [TamanhoMalha - 1 : 0] x, y;
-wire [addressTam - 1 : 0] custoAcumulado;
-wire [addressTam - 1 : 0] custoEstimado;
-wire [1 : 0] pai;
-wire aberto;
-wire valorCelula; // diz se está ocupado, livre, fronteira ou desconhecido
+wire [tamanhoDados - 1:0] dataFromMalhaS2;
+
+wire [linear - 1 : 0] x, y, xS4, yS4, xS5, yS5, xOriginalS1	, yOriginalS1, xOriginalS2, yOriginalS2, xOriginalS3, yOriginalS3, xS3, yS3, xS2, yS2;
+
+wire [addressTam - 1 : 0] custoAcumulado, custoAcumuladoS1, custoAcumuladoS3, custoAcumuladoS4, custoAcumuladoS5, custoEstimado, custoEstimadoS4, custoEstimadoS5, custoAcumuladoS2, novoCustoAcumuladoS2, custoVizinhoAcumuladoS2;
+
+wire [addressTam - 1 : 0] addressS4, addressS5, addressS3, addressProximoVizinho, proximoVizinho, addressS2;
+
+wire [1 : 0] pai, paiS2;
+
+wire aberto, abertoS3, abertoS2, abertoS4, abertoS5;
+
+wire [1:0] direcaoS1, direcaoS2, direcaoS3, direcaoS4, direcaoS5;
+
+wire [1:0] valorCelula, valorS2, valorS1, valorS3, valorS4, valorS5; // diz se está ocupado, livre, fronteira ou desconhecido
+
+wire [addressTam - 1 : 0] custoEstimadoS2, novoCustoEstimado;
+
+wire celulaValorValido, addressValid, valorValido, candidato;
+
+wire [TamanhoMalha - 1 : 0] dx, dy, dxS4, dyS4, dx_, dy_;
+
+wire [TamanhoMalha*TamanhoMalha - 1 : 0] distanciaTotalS4, distanciaTotalS5, distanciaTotal;
+
+wire requestS1, requestS2, candidatoS2, candidatoS3, candidatoS4, candidatoS5;
 
 assign { 
 	x, y,
@@ -78,12 +98,11 @@ always_comb begin
 	
 end
 
-wire [addressTam - 1:0] proximoVizinho;
 assign proximoVizinho = muxDirecao + address;
 
-wire [addressTam - 1:0] addressProximoVizinho;
-
-S0 s0 (
+S0 
+#(.TamanhoMalha(TamanhoMalha), .tamanhoDados(tamanhoDados), .addressTam(addressTam))
+s0 (
 
 	.clock(clock),
 	.reset(reset),
@@ -96,27 +115,24 @@ S0 s0 (
 	
 	.direcao(direcao),
 	.direcaoOut(direcaoS1),
-	
-	.aberto(aberto),
-	.abertoOut(abertoS1),
-	
-	.valor(valor),
-	.valorOut(valorS1),
 		
 	.x(x),
 	.xOut(xOriginalS1),
 	
 	.y(y),
-	.yOut(yOriginalS1)
+	.yOut(yOriginalS1),
+	
+	.request(request),
+	.requestOut(requestS1)
 	
 );
 
-assign addressWrite = addressProximoVizinho; // no futuro um mux que vai poder escrever dados na malha
+assign readMalha = requestS1;
+assign addressWrite = (writeMalha) ? addressS5 : addressProximoVizinho;
 
-wire [addressTam - 1 : 0] addressS2;
-wire [addressTam - 1 : 0] custoAcumuladoS2;
-
-S1 s1 (
+S1 
+#(.TamanhoMalha(TamanhoMalha), .tamanhoDados(tamanhoDados), .addressTam(addressTam))
+s1 (
 
 	.clock(clock),
 	.reset(reset),
@@ -124,53 +140,43 @@ S1 s1 (
 	.address(addressProximoVizinho),
 	.addressOut(addressS2),
 	
-	.valueFromMalha(dataFromMalha),
-	.valueFromMalhaOut(dataFromMalhaS2),
-	
 	.custoAcumulado(custoAcumuladoS1),
 	.custoAcumuladoOut(custoAcumuladoS2),
 	
 	.direcao(direcaoS1),
 	.direcaoOut(direcaoS2),
-	
-	.aberto(abertoS1),
-	.abertoOut(abertoS2),
-	
-	.valor(valorS1),
-	.valorOut(valorS2),
 		
 	.x(xOriginalS1),
 	.xOut(xOriginalS2),
 	
 	.y(yOriginalS1),
-	.yOut(yOriginalS2)
+	.yOut(yOriginalS2),
+	
+	.request(requestS1),
+	.requestOut(requestS2)
 		
 );
 
-wire [TamanhoMalha - 1 : 0] xS2, yS2;
-wire [addressTam - 1 : 0] custoEstimadoS2;
-wire [1 : 0] paiS2;
-
 assign {
 		 xS2, yS2,
-         valorCelulaS2,
+         valorS2,
          paiS2,
-         custoAcumuladoS2,
+         custoVizinhoAcumuladoS2,
          custoEstimadoS2,
-         abertoS2 } = dataFromMalhaS2;
+         abertoS2 } = dataFromMalha;
 
-
-wire novoCustoAcumuladoS2;
 assign novoCustoAcumuladoS2 = custoAcumuladoS2 + 1;
 
-wire celulaValorValido = (valorCelulaS2 == 0) || (valorCelulaS2 == 3);
-wire addressValid = (addressS2 < areaMalha) && (addressS2 > 0);
-wire valorValido = celulaValorValido && addressValid;
+assign celulaValorValido = (valorS2 == 1);
+assign addressValid = (addressS2 < areaMalha) && (addressS2 > 0);
+assign valorValido = celulaValorValido && addressValid;
+assign candidato = !abertoS2 || novoCustoAcumuladoS2 < custoVizinhoAcumuladoS2;
 
-wire candidato = !abertoS2 || novoCustoAcumuladoS2 < custoAcumuladoS2;
-//somador
+assign candidatoS2 = candidato && requestS2 && valorValido;
 
-S2 s2 (
+S2 
+#(.TamanhoMalha(TamanhoMalha), .tamanhoDados(tamanhoDados), .addressTam(addressTam))
+s2 (
 
 	.clock(clock),
 	.reset(reset),
@@ -200,30 +206,25 @@ S2 s2 (
 	.xOriginalOut(xOriginalS3),
 	
 	.yOriginal(yOriginalS2),
-	.yOriginalOut(yOriginalS3)
+	.yOriginalOut(yOriginalS3),
+	
+	.candidato(candidatoS2),
+	.candidatoOut(candidatoS3)
 
 );
 
-wire [TamanhoMalha - 1 : 0] dx;
 assign dx = xS3 - xOriginalS3;
-
-wire [TamanhoMalha - 1 : 0] dy;
 assign dy = yS3 - yOriginalS3;
 
-wire [TamanhoMalha - 1 : 0] dx_;
-assign dx_ = (dx[TamanhoMalha - 1]) ? !dx : dx;
 
-wire [TamanhoMalha - 1 : 0] dy_;
-assign dy_ = (dy[TamanhoMalha - 1]) ? !dy : dy;
-
-wire [TamanhoMalha - 1 : 0] distanciaTotal = dx_ + dy_;
-
-S3 s3 (
+S3 
+#(.TamanhoMalha(TamanhoMalha), .tamanhoDados(tamanhoDados), .addressTam(addressTam))
+s3 (
 
 	.clock(clock),
 	.reset(reset),
 	
-	.custoAcumulado(novoCustoAcumuladoS3),
+	.custoAcumulado(custoAcumuladoS3),
 	.custoAcumuladoOut(custoAcumuladoS4), 
 	
 	.custoEstimado(custoEstimado),
@@ -248,19 +249,76 @@ S3 s3 (
 	.xOut(xS4),
 	
 	.y(yS3),
-	.yOut(yS4)
+	.yOut(yS4),
+	
+	.candidato(candidatoS3),
+	.candidatoOut(candidatoS4),
+	
+	.dx(dx),
+	.dxOut(dxS4),
+		
+	.dy(dy),
+	.dyOut(dyS4)
+);
+
+
+assign dx_ = (dxS4[TamanhoMalha - 1]) ? !dxS4 : dxS4;
+
+assign dy_ = (dyS4[TamanhoMalha - 1]) ? !dyS4 : dyS4;
+
+assign distanciaTotal = dx_ + dy_;
+
+S4 
+#(.TamanhoMalha(TamanhoMalha), .tamanhoDados(tamanhoDados), .addressTam(addressTam))
+s4 (
+
+	.clock(clock),
+	.reset(reset),
+	
+	.custoAcumulado(custoAcumuladoS4),
+	.custoAcumuladoOut(custoAcumuladoS5), 
+	
+	.custoEstimado(custoEstimadoS4),
+	.custoEstimadoOut(custoEstimadoS5), 
+	
+	.address(addressS4),
+	.addressOut(addressS5),
+	
+	.direcao(direcaoS4),
+	.direcaoOut(direcaoS5),
+	
+	.aberto(abertoS4),
+	.abertoOut(abertoS5),
+	
+	.valor(valorS4),
+	.valorOut(valorS5),
+	
+	.distanciaTotal(distanciaTotalS4),
+	.distanciaTotalOut(distanciaTotalS5),
+	
+	.x(xS4),
+	.xOut(xS5),
+	
+	.y(yS4),
+	.yOut(yS5),
+	
+	.candidato(candidatoS4),
+	.candidatoOut(candidatoS5)
 	
 );
-  
+ 
+assign novoCustoEstimado = custoEstimadoS5 + distanciaTotalS5;
+ 
 assign dataToMalha = {
-		 xS4, yS4,
-         valorS4,
-         direcaoS4,
-         custoAcumuladoS4,
-         custoEstimadoS4,
-         1};
+		 xS5, yS5,
+         valorS5,
+         direcaoS5, //pai
+         custoAcumuladoS5,
+         novoCustoEstimado,
+         1'b1};
 
-assign writeFIFO = 1;
-assign dataFIFO = {abertoS4 ,addressS4};
+assign writeMalha = candidatoS5;
+assign writeFIFO = candidatoS5;
+assign dataFIFO = {abertoS5, addressS5};
 
 endmodule

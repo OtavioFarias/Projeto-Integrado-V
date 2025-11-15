@@ -114,7 +114,7 @@ int aStar_direct(Mapa *mapa,
 
             int nidx = IDX(nx, ny, TAMANHO_MALHA);
             uint8_t v = mapa->malha[nidx];
-            if (v == DESCONHECIDO || v == OCUPADO) continue;
+            if (v == LIVRE) continue;
             if (closed_flag[nidx]) continue;
 
             uint32_t tent_g = gcur + 1;
@@ -157,5 +157,6 @@ int aStar_direct(Mapa *mapa,
     return 1;
 
 }
+
 
 

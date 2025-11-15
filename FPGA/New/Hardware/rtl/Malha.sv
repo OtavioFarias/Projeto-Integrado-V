@@ -27,21 +27,17 @@ always_ff @(posedge clock, posedge reset) begin
 
     end else begin
 
-        case (read)
+        if(read) begin
 
-            READ: begin
+			outData <= data[address];
 
-				outData <= data[address];
+        end
 
-            end
-
-            WRITE: begin
+        if(write) begin
                
-                data[address] <= value;
-                
-            end
-
-        endcase
+            data[address] <= value;
+   
+        end
     end
 end
 
@@ -63,7 +59,11 @@ end
     wire [31:0] data13 = data[13];
     wire [31:0] data14 = data[14];
     wire [31:0] data15 = data[15];
-    wire [31:0] data16 = data[16];
+    
+*/
+    wire [tamanhoDados - 1:0] data16 = data[16];
+    
+/*
     wire [31:0] data17 = data[17];
     wire [31:0] data18 = data[18];
     wire [31:0] data19 = data[19];

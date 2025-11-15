@@ -9,254 +9,303 @@ z2
 !i10f 100
 cModel Technology
 Z0 d/home/kavinho/Projects/piV/Projeto-Integrado-V/FPGA/New/Hardware
-vdecisorMalha
+vcontroler
 Z1 DXx6 sv_std 3 std 0 22 VYECXdT12H8WgbUP_5Y6:3
-Z2 !s110 1763171497
+Z2 !s110 1763233184
+!i10b 1
+!s100 zFComAS]TDj4:;C7GZ>3k3
+Z3 !s11b Dg1SIo80bB@j0V0VzS_@n1
+I`N79QST>>]WZ[m0SRU;=k3
+Z4 VDg1SIo80bB@j0V0VzS_@n1
+S1
+R0
+w1763231846
+8rtl/controler.sv
+Frtl/controler.sv
+!i122 192
+L0 1 92
+Z5 OV;L;2020.1;71
+r1
+!s85 0
+31
+Z6 !s108 1763233183.000000
+!s107 testbench/tb.sv|rtl/vizinhoTop.sv|rtl/Top.sv|rtl/S4.sv|rtl/S3.sv|rtl/S2.sv|rtl/S1.sv|rtl/S0.sv|rtl/Malha.sv|rtl/FIFO.sv|rtl/decisorMalha.sv|rtl/controler.sv|
+Z7 !s90 rtl/controler.sv|rtl/decisorMalha.sv|rtl/FIFO.sv|rtl/Malha.sv|rtl/S0.sv|rtl/S1.sv|rtl/S2.sv|rtl/S3.sv|rtl/S4.sv|rtl/Top.sv|rtl/vizinhoTop.sv|testbench/tb.sv|
+!i113 1
+Z8 tCvgOpt 0
+vdecisorMalha
+R1
+R2
 !i10b 1
 !s100 Eobmz6kK3[DGTG?cFVG>50
-Z3 !s11b Dg1SIo80bB@j0V0VzS_@n1
+R3
 IZjH1Po`O894c6kiGW;FZG3
-Z4 VDg1SIo80bB@j0V0VzS_@n1
+R4
 S1
 R0
 w1763170584
 8rtl/decisorMalha.sv
 Frtl/decisorMalha.sv
-!i122 78
+!i122 192
 L0 1 34
-Z5 OV;L;2020.1;71
-r1
-!s85 0
-31
-Z6 !s108 1763171496.000000
-Z7 !s107 testbench/tb.sv|rtl/vizinhoTop.sv|rtl/Top.sv|rtl/S3.sv|rtl/S2.sv|rtl/S1.sv|rtl/S0.sv|rtl/Malha.sv|rtl/FIFO.sv|rtl/decisorMalha.sv|rtl/controler.sv|
-Z8 !s90 rtl/controler.sv|rtl/decisorMalha.sv|rtl/FIFO.sv|rtl/Malha.sv|rtl/S0.sv|rtl/S1.sv|rtl/S2.sv|rtl/S3.sv|rtl/Top.sv|rtl/vizinhoTop.sv|testbench/tb.sv|
-!i113 1
-Z9 tCvgOpt 0
-ndecisor@malha
-vFIFO
-R1
-R2
-!i10b 1
-!s100 ;dBGfFlclJ^9XcS40j]RJ0
-R3
-IF@i`@za`<GDk93TVf:N]V2
-R4
-S1
-R0
-w1763124237
-8rtl/FIFO.sv
-Frtl/FIFO.sv
-!i122 78
-L0 1 48
 R5
 r1
 !s85 0
 31
 R6
+Z9 !s107 testbench/tb.sv|rtl/vizinhoTop.sv|rtl/Top.sv|rtl/S4.sv|rtl/S3.sv|rtl/S2.sv|rtl/S1.sv|rtl/S0.sv|rtl/Malha.sv|rtl/FIFO.sv|rtl/decisorMalha.sv|rtl/controler.sv|
 R7
-R8
 !i113 1
+R8
+ndecisor@malha
+vFIFO
+R1
+R2
+!i10b 1
+!s100 KRaXGO^[?jgAciVjn9@N32
+R3
+I?UzWc7bYgha2g>RJgFDf]1
+R4
+S1
+R0
+w1763173661
+8rtl/FIFO.sv
+Frtl/FIFO.sv
+!i122 192
+L0 1 49
+R5
+r1
+!s85 0
+31
+R6
 R9
+R7
+!i113 1
+R8
 n@f@i@f@o
 vMalha
 R1
 R2
 !i10b 1
-!s100 fLECbk:kEl2U^Q3?WBV933
+!s100 ;`];eZ]Gf;[2Ol]G=PW^o1
 R3
-IJMXh[k:;V=6BDnK88eMN31
+IBEODFW`B]NIj3HU;^o5XA3
 R4
 S1
 R0
-w1763149039
+w1763226116
 8rtl/Malha.sv
 Frtl/Malha.sv
-!i122 78
+!i122 192
 L0 1 84
 R5
 r1
 !s85 0
 31
 R6
-R7
-R8
-!i113 1
 R9
+R7
+!i113 1
+R8
 n@malha
 vS0
 R1
 R2
 !i10b 1
-!s100 AKg>Tj8<@1NL:3^=kXciA1
+!s100 1EPSV@K1iM1`ddJ[T8F<00
 R3
-IhUif[5M`YoC3X@XzToR1g3
+I2Q<ECk?hMYOEe5f0S27`<2
 R4
 S1
 R0
-w1763171246
+w1763226787
 8rtl/S0.sv
 Frtl/S0.sv
-!i122 78
-L0 1 63
+!i122 192
+L0 1 59
 R5
 r1
 !s85 0
 31
 R6
-R7
-R8
-!i113 1
 R9
+R7
+!i113 1
+R8
 n@s0
 vS1
 R1
 R2
 !i10b 1
-!s100 e25;<c^hN^oZ=^77ehee[1
+!s100 >1gGOg]2J1QOS9j1DPST71
 R3
-ILiFM7H7D2n1EkFkJX[>of1
+I:?;]mUd8BFJ51RSAk6G]?0
 R4
 S1
 R0
-w1763171250
+w1763227390
 8rtl/S1.sv
 Frtl/S1.sv
-!i122 78
-L0 1 68
+!i122 192
+L0 1 57
 R5
 r1
 !s85 0
 31
 R6
-R7
-R8
-!i113 1
 R9
+R7
+!i113 1
+R8
 n@s1
 vS2
 R1
 R2
 !i10b 1
-!s100 hAjb5L]5V?LgAkU?XN_1Q3
+!s100 G]78ClNf4NmIIK`;J76Q71
 R3
-IgB?kGooGdJFZecb3?8l7F2
+IXe27k1b]?]^AJaU9WH`hf2
 R4
 S1
 R0
-w1763171261
+w1763221392
 8rtl/S2.sv
 Frtl/S2.sv
-!i122 78
-L0 1 72
+!i122 192
+L0 1 77
 R5
 r1
 !s85 0
 31
 R6
-R7
-R8
-!i113 1
 R9
+R7
+!i113 1
+R8
 n@s2
 vS3
 R1
 R2
 !i10b 1
-!s100 ;M@PQDA<E?jD];FOkITG73
+!s100 n]jKTC4=G>N6KK;z9PKPM1
 R3
-I500<>IX5X95jNX_EcfdKc2
+I4L8CSHK2fW?GZTNYdFKmb3
 R4
 S1
 R0
-w1763171462
+w1763229847
 8rtl/S3.sv
 Frtl/S3.sv
-!i122 78
-L0 1 70
+!i122 192
+L0 1 86
 R5
 r1
 !s85 0
 31
 R6
-R7
-R8
-!i113 1
 R9
+R7
+!i113 1
+R8
 n@s3
+vS4
+R1
+R2
+!i10b 1
+!s100 VWmBcWnTHfWiFQ6zdAlQC3
+R3
+I7@mI@TZ6Y3eJ261mY9mB@0
+R4
+S1
+R0
+w1763229457
+8rtl/S4.sv
+Frtl/S4.sv
+!i122 192
+L0 1 76
+R5
+r1
+!s85 0
+31
+R6
+R9
+R7
+!i113 1
+R8
+n@s4
 vtb
 R1
 R2
 !i10b 1
-!s100 c32AQ3HBPh`B`P5]UO7:13
+!s100 ^Y19=<=]5^aKnj5`UVLmd1
 R3
-I0>BGg5mRD;AzbHkoX7I]?0
+ILi9S:G4@6Fg8]K_[Q<90D3
 R4
 S1
 R0
-w1763170821
+w1763233182
 8testbench/tb.sv
 Ftestbench/tb.sv
-!i122 78
-L0 3 70
+!i122 192
+L0 3 131
 R5
 r1
 !s85 0
 31
 R6
-R7
-R8
-!i113 1
 R9
+R7
+!i113 1
+R8
 vTop
 R1
 R2
 !i10b 1
-!s100 ?zz[`:HIZ82X?GWYDBBa;1
+!s100 =Z2I8Z>oWAV;4nhN<djJk3
 R3
-IBPTd;_ICikdidG<TPSdl`2
+IiP[DDVJ1f>M:9>a_MBbWV3
 R4
 S1
 R0
-w1763170546
+w1763233098
 8rtl/Top.sv
 Frtl/Top.sv
-!i122 78
-L0 1 103
+!i122 192
+L0 1 159
 R5
 r1
 !s85 0
 31
 R6
-R7
-R8
-!i113 1
 R9
+R7
+!i113 1
+R8
 n@top
 vvizinhoTop
 R1
 R2
 !i10b 1
-!s100 4WhhM00MJHCefXbGceDhZ3
+!s100 e7<g1DWG>C7aP2md[`FYV2
 R3
-IJZzcKBA@;JWdJB^eARE1E3
+IlTmlX>OzfZ0Q72SA>Y;Qo0
 R4
 S1
 R0
-w1763171491
+w1763229661
 Z10 8rtl/vizinhoTop.sv
 Z11 Frtl/vizinhoTop.sv
-!i122 78
-L0 1 266
+!i122 192
+L0 1 324
 R5
 r1
 !s85 0
 31
 R6
-R7
-R8
-!i113 1
 R9
+R7
+!i113 1
+R8
 nvizinho@top
 XvizinhoTop_sv_unit
 R1
@@ -278,8 +327,8 @@ L0 1 0
 R5
 31
 !s108 1763170646.000000
-R7
-R8
+!s107 testbench/tb.sv|rtl/vizinhoTop.sv|rtl/Top.sv|rtl/S3.sv|rtl/S2.sv|rtl/S1.sv|rtl/S0.sv|rtl/Malha.sv|rtl/FIFO.sv|rtl/decisorMalha.sv|rtl/controler.sv|
+!s90 rtl/controler.sv|rtl/decisorMalha.sv|rtl/FIFO.sv|rtl/Malha.sv|rtl/S0.sv|rtl/S1.sv|rtl/S2.sv|rtl/S3.sv|rtl/Top.sv|rtl/vizinhoTop.sv|testbench/tb.sv|
 !i113 1
-R9
+R8
 nvizinho@top_sv_unit

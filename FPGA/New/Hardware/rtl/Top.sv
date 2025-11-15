@@ -1,41 +1,95 @@
-module Top (
+module Top 
+#(
+parameter int TamanhoMalha = 15, 
+parameter int tamanhoDados = 6 * $clog2(TamanhoMalha) + 5,
+parameter addressTam = 2 * $clog2(TamanhoMalha)
+)
+(
 
 	input clock,
 	input reset,
 	
-	input requestHW,
-	input [31:0]address,
-	input [31:0]dataFromNIOS,
-	input [1:0] direcaoFromNIOS
+	input requestFromNIOS,
+	input [addressTam - 1 : 0] addressFromNIOS,
+	input [tamanhoDados - 1:0] dataFromNIOS,
+	
+	input readFromNIOS,
+	input writeFromNIOS,
+	input readFIFO,
+	
+	output ready
 
 );
 
-parameter tamanhoDados = 8 * $clog2(TamanhoMalha) + 3;
-parameter TamanhoMalha = 15;
+wire [addressTam - 1 : 0] addressWrite, custoAcumulado, addressToHW;
+wire [tamanhoDados - 1:0] dataToMalha, dataToHW;
+wire [addressTam : 0] dataFIFO, valueFIFO;
+
+wire	 [tamanhoDados - 1:0] valueFromNIOS;
+
+wire	 [addressTam - 1 : 0] addressFromHW;
+wire	 readFromHW;
+wire	 writeFromHW;
+wire requestToHW;
+wire	 [tamanhoDados - 1:0] valueFromHW;
+	
+wire	 [addressTam - 1 : 0] addressToMalha;
+wire	 readToMalha;
+wire	 writeToMalha;
+wire [1:0] direcaoToHW;
+wire	 [tamanhoDados - 1:0] valueToMalha;
+	
+wire [tamanhoDados - 1:0] outMalha;
+
+wire readyHW;
 
 //NIOS
 /*
 wire [tamanhoDados - 1 : 0] dataFromNIOS;
-wire [1:0] direcaoFromNIOS;
 wire valueFIFO;
 wire emptyFIFO;
 wire readFIFO;
 wire requestHW;
 */
+
+assign ready = readyHW;
+
 //
 
-vizinhoTop #(
-	.TamanhoMalha(TamanhoMalha)
-) vizinhos 
+controler 
+#(.TamanhoMalha(TamanhoMalha), .tamanhoDados(tamanhoDados), .addressTam(addressTam)
+)Controlador
 (
 
 	.clock(clock),
 	.reset(reset),
-	.request(requestHW),
+
+	.requestFromNIOS(requestFromNIOS),
+	.ready(readyHW),
+
+	.addressFromNIOS(addressFromNIOS),
+	.dataFromNIOS(dataFromNIOS),
+
+	.requestToHW(requestToHW),
+	.addressToHW(addressToHW),
+	.dataToHW(dataToHW),
+	.direcaoToHW(direcaoToHW)
 	
-	.address(address),
-	.value(dataFromNIOS),
-	.direcao(direcaoFromNIOS),
+);
+
+
+vizinhoTop 
+#(.TamanhoMalha(TamanhoMalha), .tamanhoDados(tamanhoDados), .addressTam(addressTam))
+vizinhos 
+(
+
+	.clock(clock),
+	.reset(reset),
+	.request(requestToHW),
+	
+	.address(addressToHW),
+	.value(dataToHW),
+	.direcao(direcaoToHW),
 	
 	.addressWrite(addressFromHW),
 	.dataToMalha(valueFromHW),
@@ -64,12 +118,14 @@ Malha (
     
 );
 
-decisorMalha decisor(
+decisorMalha 
+#(.TamanhoMalha(TamanhoMalha), .tamanhoDados(tamanhoDados), .addressTam(addressTam))
+decisor(
 
-	.addressFromNIOS(addresFromNIOS),
+	.addressFromNIOS(addressFromNIOS),
 	.readFromNIOS(readFromNIOS),
 	.writeFromNIOS(writeFromNIOS),
-	.valueFromNIOS(valueFromNIOS),
+	.valueFromNIOS(dataFromNIOS),
 
 	.addressFromHW(addressFromHW),
 	.readFromHW(readFromHW),
@@ -77,14 +133,14 @@ decisorMalha decisor(
 	.valueFromHW(valueFromHW),
 	
 	//Dados para a Malha
-	.address(addresToMalha),
+	.address(addressToMalha),
 	.read(readToMalha),
 	.write(writeToMalha),
 	.value(valueToMalha)
 
 );
 
-FIFO#(.DEPTH(8), .DWIDTH(16)) 
+FIFO#(.DEPTH(8), .DWIDTH(addressTam + 1)) 
 filaHeap (
 
 	.rstn(!reset),               // Active low reset

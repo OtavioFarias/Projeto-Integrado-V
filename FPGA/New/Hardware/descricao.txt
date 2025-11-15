@@ -10,6 +10,9 @@ valor linear X | valor linear Y	 | Valor da Célula | Pai              | Custo A
 Total: 6 log2(TamanhoMalha) + 5
 Ajustar isso
 
+Para Malha 15:
+4 | 4 | 2 | 2 | 8 | 8 | 1
+
 
 FIFO (https://www.chipverify.com/verilog/synchronous-fifo)
 Fila para as informações que serão salvas na Heap, como a Heap será em SW, poderá ter atrasos, logo a Fila tentará servirá para o SW consumir os dados e salvar na Heap conforme demanda
