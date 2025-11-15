@@ -42,7 +42,10 @@ parameter linear = $clog2(TamanhoMalha)
 	output reg [TamanhoMalha - 1 : 0] dxOut,
 	
 	input [TamanhoMalha - 1 : 0] dy,
-	output reg [TamanhoMalha - 1 : 0] dyOut
+	output reg [TamanhoMalha - 1 : 0] dyOut,
+		
+	input lastUse,
+	output reg lastUseOut
 
 );
 
@@ -62,6 +65,7 @@ always_ff @(posedge reset, posedge clock) begin
 		candidatoOut <= 0;
 		dxOut <= 0;
 		dyOut <= 0;
+		lastUseOut <= 0;
 	
 	end
 	else begin
@@ -78,6 +82,7 @@ always_ff @(posedge reset, posedge clock) begin
 		candidatoOut <= candidato;
 		dyOut <= dy;
 		dxOut <= dx;
+		lastUseOut <= lastUse;
 		
 	end
 

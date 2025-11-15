@@ -11,6 +11,8 @@ parameter linear = $clog2(TamanhoMalha)
 	input reset,
 	
 	input request,
+	input lastUse,
+	output lastUseOutput,
 	
 	input [addressTam - 1 : 0] address,
 	input [tamanhoDados - 1:0] value,
@@ -22,7 +24,7 @@ parameter linear = $clog2(TamanhoMalha)
 	input [tamanhoDados - 1:0] dataFromMalha,
 	
 	output writeFIFO,
-	output [addressTam : 0] dataFIFO 
+	output [addressTam : 0] dataFIFO
 
 ); 
 
@@ -53,6 +55,8 @@ wire [TamanhoMalha - 1 : 0] dx, dy, dxS4, dyS4, dx_, dy_;
 wire [TamanhoMalha*TamanhoMalha - 1 : 0] distanciaTotalS4, distanciaTotalS5, distanciaTotal;
 
 wire requestS1, requestS2, candidatoS2, candidatoS3, candidatoS4, candidatoS5;
+
+wire lastUseS1, lastUseS2, lastUseS3, lastUseS4, lastUseS5;
 
 assign { 
 	x, y,
@@ -123,7 +127,10 @@ s0 (
 	.yOut(yOriginalS1),
 	
 	.request(request),
-	.requestOut(requestS1)
+	.requestOut(requestS1),
+	
+	.lastUse(lastUse),
+	.lastUseOut(lastUseS1)
 	
 );
 
@@ -153,7 +160,10 @@ s1 (
 	.yOut(yOriginalS2),
 	
 	.request(requestS1),
-	.requestOut(requestS2)
+	.requestOut(requestS2),
+		
+	.lastUse(lastUseS1),
+	.lastUseOut(lastUseS2)
 		
 );
 
@@ -209,7 +219,10 @@ s2 (
 	.yOriginalOut(yOriginalS3),
 	
 	.candidato(candidatoS2),
-	.candidatoOut(candidatoS3)
+	.candidatoOut(candidatoS3),
+	
+	.lastUse(lastUseS2),
+	.lastUseOut(lastUseS3)
 
 );
 
@@ -258,7 +271,10 @@ s3 (
 	.dxOut(dxS4),
 		
 	.dy(dy),
-	.dyOut(dyS4)
+	.dyOut(dyS4),
+		
+	.lastUse(lastUseS3),
+	.lastUseOut(lastUseS4)
 );
 
 
@@ -303,7 +319,10 @@ s4 (
 	.yOut(yS5),
 	
 	.candidato(candidatoS4),
-	.candidatoOut(candidatoS5)
+	.candidatoOut(candidatoS5),
+		
+	.lastUse(lastUseS4),
+	.lastUseOut(lastUseS5)
 	
 );
  
@@ -320,5 +339,7 @@ assign dataToMalha = {
 assign writeMalha = candidatoS5;
 assign writeFIFO = candidatoS5;
 assign dataFIFO = {abertoS5, addressS5};
+
+assign lastUseOutput = lastUseS5;
 
 endmodule

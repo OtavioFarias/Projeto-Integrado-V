@@ -1,4 +1,4 @@
-module Malha #(parameter int TamanhoMalha = 20*20, parameter int tamanhoAddr = 8, parameter int tamanhoDados = 8)(
+module Malha #(parameter int TamanhoMalha = 20, parameter int tamanhoAddr = 8, parameter int tamanhoDados = 8)(
 
     input clock,
     input reset,

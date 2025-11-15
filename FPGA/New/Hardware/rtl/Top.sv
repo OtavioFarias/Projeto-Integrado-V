@@ -46,6 +46,8 @@ wire readyHW;
 wire writeFIFO;
 wire emptyFIFO;
 
+wire lastUseFromControler, lastUseFromHW;
+
 //NIOS
 /*
 wire [tamanhoDados - 1 : 0] dataFromNIOS;
@@ -77,7 +79,10 @@ controler
 	.requestToHW(requestToHW),
 	.addressToHW(addressToHW),
 	.dataToHW(dataToHW),
-	.direcaoToHW(direcaoToHW)
+	.direcaoToHW(direcaoToHW),
+	
+	.lastUse(lastUseFromControler),
+	.lastUseInput(lastUseFromHW)
 	
 );
 
@@ -102,12 +107,15 @@ vizinhos
 	.writeMalha(writeFromHW),
 	
 	.writeFIFO(writeFIFO),
-	.dataFIFO(valueFIFO) 
+	.dataFIFO(valueFIFO),
+	
+	.lastUse(lastUseFromControler),
+	.lastUseOutput(lastUseFromHW)
 
 ); 
 
 
-Malha #(.TamanhoMalha(TamanhoMalha*TamanhoMalha), .tamanhoDados(tamanhoDados))
+Malha #(.TamanhoMalha(TamanhoMalha), .tamanhoDados(tamanhoDados), .tamanhoAddr(addressTam))
 Malha (
 
     .clock(clock),
