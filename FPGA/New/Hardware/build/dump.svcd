@@ -1,5 +1,5 @@
 $date
-	Fri Nov 14 17:34:23 2025
+	Fri Nov 14 22:51:38 2025
 $end
 $version
 	ModelSim Version 2020.1
@@ -7,3 +7,1811 @@ $end
 $timescale
 	1ps
 $end
+
+$scope module tb $end
+$var reg 1 ! clock $end
+$var reg 1 " reset $end
+$var reg 1 # requestHW $end
+$var reg 32 $ address [31:0] $end
+$var reg 32 % dataFromNIOS [31:0] $end
+$var reg 2 & direcaoFromNIOS [1:0] $end
+$var wire 1 ' alguma_saida $end
+
+$scope module DUT $end
+$var parameter 32 ( tamanhoDados $end
+$var parameter 32 ) TamanhoMalha $end
+$var wire 1 * clock $end
+$var wire 1 + reset $end
+$var wire 1 , requestHW $end
+$var wire 1 - address [31] $end
+$var wire 1 . address [30] $end
+$var wire 1 / address [29] $end
+$var wire 1 0 address [28] $end
+$var wire 1 1 address [27] $end
+$var wire 1 2 address [26] $end
+$var wire 1 3 address [25] $end
+$var wire 1 4 address [24] $end
+$var wire 1 5 address [23] $end
+$var wire 1 6 address [22] $end
+$var wire 1 7 address [21] $end
+$var wire 1 8 address [20] $end
+$var wire 1 9 address [19] $end
+$var wire 1 : address [18] $end
+$var wire 1 ; address [17] $end
+$var wire 1 < address [16] $end
+$var wire 1 = address [15] $end
+$var wire 1 > address [14] $end
+$var wire 1 ? address [13] $end
+$var wire 1 @ address [12] $end
+$var wire 1 A address [11] $end
+$var wire 1 B address [10] $end
+$var wire 1 C address [9] $end
+$var wire 1 D address [8] $end
+$var wire 1 E address [7] $end
+$var wire 1 F address [6] $end
+$var wire 1 G address [5] $end
+$var wire 1 H address [4] $end
+$var wire 1 I address [3] $end
+$var wire 1 J address [2] $end
+$var wire 1 K address [1] $end
+$var wire 1 L address [0] $end
+$var wire 1 M dataFromNIOS [31] $end
+$var wire 1 N dataFromNIOS [30] $end
+$var wire 1 O dataFromNIOS [29] $end
+$var wire 1 P dataFromNIOS [28] $end
+$var wire 1 Q dataFromNIOS [27] $end
+$var wire 1 R dataFromNIOS [26] $end
+$var wire 1 S dataFromNIOS [25] $end
+$var wire 1 T dataFromNIOS [24] $end
+$var wire 1 U dataFromNIOS [23] $end
+$var wire 1 V dataFromNIOS [22] $end
+$var wire 1 W dataFromNIOS [21] $end
+$var wire 1 X dataFromNIOS [20] $end
+$var wire 1 Y dataFromNIOS [19] $end
+$var wire 1 Z dataFromNIOS [18] $end
+$var wire 1 [ dataFromNIOS [17] $end
+$var wire 1 \ dataFromNIOS [16] $end
+$var wire 1 ] dataFromNIOS [15] $end
+$var wire 1 ^ dataFromNIOS [14] $end
+$var wire 1 _ dataFromNIOS [13] $end
+$var wire 1 ` dataFromNIOS [12] $end
+$var wire 1 a dataFromNIOS [11] $end
+$var wire 1 b dataFromNIOS [10] $end
+$var wire 1 c dataFromNIOS [9] $end
+$var wire 1 d dataFromNIOS [8] $end
+$var wire 1 e dataFromNIOS [7] $end
+$var wire 1 f dataFromNIOS [6] $end
+$var wire 1 g dataFromNIOS [5] $end
+$var wire 1 h dataFromNIOS [4] $end
+$var wire 1 i dataFromNIOS [3] $end
+$var wire 1 j dataFromNIOS [2] $end
+$var wire 1 k dataFromNIOS [1] $end
+$var wire 1 l dataFromNIOS [0] $end
+$var wire 1 m direcaoFromNIOS [1] $end
+$var wire 1 n direcaoFromNIOS [0] $end
+$var wire 1 o addressFromHW $end
+$var wire 1 p valueFromHW $end
+$var wire 1 q outMalha $end
+$var wire 1 r readFromHW $end
+$var wire 1 s writeFromHW $end
+$var wire 1 t writeFIFO $end
+$var wire 1 u valueFIFO $end
+$var wire 1 v valueToMalha $end
+$var wire 1 w readToMalha $end
+$var wire 1 x writeToMalha $end
+$var wire 1 y addressToMalha $end
+$var wire 1 z addresFromNIOS $end
+$var wire 1 { readFromNIOS $end
+$var wire 1 | writeFromNIOS $end
+$var wire 1 } valueFromNIOS $end
+$var wire 1 ~ addresToMalha $end
+$var wire 1 !! dataFIFO $end
+$var wire 1 "! readFIFO $end
+$var wire 1 #! emptyFIFO $end
+
+$scope module vizinhos $end
+$var parameter 32 $! TamanhoMalha $end
+$var parameter 32 %! tamanhoDados $end
+$var parameter 32 &! addressTam $end
+$var parameter 32 '! areaMalha $end
+$var wire 1 * clock $end
+$var wire 1 + reset $end
+$var wire 1 , request $end
+$var wire 1 E address [7] $end
+$var wire 1 F address [6] $end
+$var wire 1 G address [5] $end
+$var wire 1 H address [4] $end
+$var wire 1 I address [3] $end
+$var wire 1 J address [2] $end
+$var wire 1 K address [1] $end
+$var wire 1 L address [0] $end
+$var wire 1 P value [28] $end
+$var wire 1 Q value [27] $end
+$var wire 1 R value [26] $end
+$var wire 1 S value [25] $end
+$var wire 1 T value [24] $end
+$var wire 1 U value [23] $end
+$var wire 1 V value [22] $end
+$var wire 1 W value [21] $end
+$var wire 1 X value [20] $end
+$var wire 1 Y value [19] $end
+$var wire 1 Z value [18] $end
+$var wire 1 [ value [17] $end
+$var wire 1 \ value [16] $end
+$var wire 1 ] value [15] $end
+$var wire 1 ^ value [14] $end
+$var wire 1 _ value [13] $end
+$var wire 1 ` value [12] $end
+$var wire 1 a value [11] $end
+$var wire 1 b value [10] $end
+$var wire 1 c value [9] $end
+$var wire 1 d value [8] $end
+$var wire 1 e value [7] $end
+$var wire 1 f value [6] $end
+$var wire 1 g value [5] $end
+$var wire 1 h value [4] $end
+$var wire 1 i value [3] $end
+$var wire 1 j value [2] $end
+$var wire 1 k value [1] $end
+$var wire 1 l value [0] $end
+$var wire 1 m direcao [1] $end
+$var wire 1 n direcao [0] $end
+$var wire 1 s writeMalha $end
+$var wire 1 r readMalha $end
+$var wire 1 (! addressWrite [7] $end
+$var wire 1 )! addressWrite [6] $end
+$var wire 1 *! addressWrite [5] $end
+$var wire 1 +! addressWrite [4] $end
+$var wire 1 ,! addressWrite [3] $end
+$var wire 1 -! addressWrite [2] $end
+$var wire 1 .! addressWrite [1] $end
+$var wire 1 o addressWrite [0] $end
+$var wire 1 /! dataToMalha [28] $end
+$var wire 1 0! dataToMalha [27] $end
+$var wire 1 1! dataToMalha [26] $end
+$var wire 1 2! dataToMalha [25] $end
+$var wire 1 3! dataToMalha [24] $end
+$var wire 1 4! dataToMalha [23] $end
+$var wire 1 5! dataToMalha [22] $end
+$var wire 1 6! dataToMalha [21] $end
+$var wire 1 7! dataToMalha [20] $end
+$var wire 1 8! dataToMalha [19] $end
+$var wire 1 9! dataToMalha [18] $end
+$var wire 1 :! dataToMalha [17] $end
+$var wire 1 ;! dataToMalha [16] $end
+$var wire 1 <! dataToMalha [15] $end
+$var wire 1 =! dataToMalha [14] $end
+$var wire 1 >! dataToMalha [13] $end
+$var wire 1 ?! dataToMalha [12] $end
+$var wire 1 @! dataToMalha [11] $end
+$var wire 1 A! dataToMalha [10] $end
+$var wire 1 B! dataToMalha [9] $end
+$var wire 1 C! dataToMalha [8] $end
+$var wire 1 D! dataToMalha [7] $end
+$var wire 1 E! dataToMalha [6] $end
+$var wire 1 F! dataToMalha [5] $end
+$var wire 1 G! dataToMalha [4] $end
+$var wire 1 H! dataToMalha [3] $end
+$var wire 1 I! dataToMalha [2] $end
+$var wire 1 J! dataToMalha [1] $end
+$var wire 1 p dataToMalha [0] $end
+$var wire 1 K! dataFromMalha [28] $end
+$var wire 1 L! dataFromMalha [27] $end
+$var wire 1 M! dataFromMalha [26] $end
+$var wire 1 N! dataFromMalha [25] $end
+$var wire 1 O! dataFromMalha [24] $end
+$var wire 1 P! dataFromMalha [23] $end
+$var wire 1 Q! dataFromMalha [22] $end
+$var wire 1 R! dataFromMalha [21] $end
+$var wire 1 S! dataFromMalha [20] $end
+$var wire 1 T! dataFromMalha [19] $end
+$var wire 1 U! dataFromMalha [18] $end
+$var wire 1 V! dataFromMalha [17] $end
+$var wire 1 W! dataFromMalha [16] $end
+$var wire 1 X! dataFromMalha [15] $end
+$var wire 1 Y! dataFromMalha [14] $end
+$var wire 1 Z! dataFromMalha [13] $end
+$var wire 1 [! dataFromMalha [12] $end
+$var wire 1 \! dataFromMalha [11] $end
+$var wire 1 ]! dataFromMalha [10] $end
+$var wire 1 ^! dataFromMalha [9] $end
+$var wire 1 _! dataFromMalha [8] $end
+$var wire 1 `! dataFromMalha [7] $end
+$var wire 1 a! dataFromMalha [6] $end
+$var wire 1 b! dataFromMalha [5] $end
+$var wire 1 c! dataFromMalha [4] $end
+$var wire 1 d! dataFromMalha [3] $end
+$var wire 1 e! dataFromMalha [2] $end
+$var wire 1 f! dataFromMalha [1] $end
+$var wire 1 q dataFromMalha [0] $end
+$var wire 1 t writeFIFO $end
+$var wire 1 g! dataFIFO [8] $end
+$var wire 1 h! dataFIFO [7] $end
+$var wire 1 i! dataFIFO [6] $end
+$var wire 1 j! dataFIFO [5] $end
+$var wire 1 k! dataFIFO [4] $end
+$var wire 1 l! dataFIFO [3] $end
+$var wire 1 m! dataFIFO [2] $end
+$var wire 1 n! dataFIFO [1] $end
+$var wire 1 u dataFIFO [0] $end
+$var wire 1 o! x [14] $end
+$var wire 1 p! x [13] $end
+$var wire 1 q! x [12] $end
+$var wire 1 r! x [11] $end
+$var wire 1 s! x [10] $end
+$var wire 1 t! x [9] $end
+$var wire 1 u! x [8] $end
+$var wire 1 v! x [7] $end
+$var wire 1 w! x [6] $end
+$var wire 1 x! x [5] $end
+$var wire 1 y! x [4] $end
+$var wire 1 z! x [3] $end
+$var wire 1 {! x [2] $end
+$var wire 1 |! x [1] $end
+$var wire 1 }! x [0] $end
+$var wire 1 ~! y [14] $end
+$var wire 1 !" y [13] $end
+$var wire 1 "" y [12] $end
+$var wire 1 #" y [11] $end
+$var wire 1 $" y [10] $end
+$var wire 1 %" y [9] $end
+$var wire 1 &" y [8] $end
+$var wire 1 '" y [7] $end
+$var wire 1 (" y [6] $end
+$var wire 1 )" y [5] $end
+$var wire 1 *" y [4] $end
+$var wire 1 +" y [3] $end
+$var wire 1 ," y [2] $end
+$var wire 1 -" y [1] $end
+$var wire 1 ." y [0] $end
+$var wire 1 /" custoAcumulado [7] $end
+$var wire 1 0" custoAcumulado [6] $end
+$var wire 1 1" custoAcumulado [5] $end
+$var wire 1 2" custoAcumulado [4] $end
+$var wire 1 3" custoAcumulado [3] $end
+$var wire 1 4" custoAcumulado [2] $end
+$var wire 1 5" custoAcumulado [1] $end
+$var wire 1 6" custoAcumulado [0] $end
+$var wire 1 7" custoEstimado [7] $end
+$var wire 1 8" custoEstimado [6] $end
+$var wire 1 9" custoEstimado [5] $end
+$var wire 1 :" custoEstimado [4] $end
+$var wire 1 ;" custoEstimado [3] $end
+$var wire 1 <" custoEstimado [2] $end
+$var wire 1 =" custoEstimado [1] $end
+$var wire 1 >" custoEstimado [0] $end
+$var wire 1 ?" pai [1] $end
+$var wire 1 @" pai [0] $end
+$var wire 1 A" aberto $end
+$var wire 1 B" valorCelula $end
+$var reg 8 C" muxDirecao [7:0] $end
+$var wire 1 D" proximoVizinho [7] $end
+$var wire 1 E" proximoVizinho [6] $end
+$var wire 1 F" proximoVizinho [5] $end
+$var wire 1 G" proximoVizinho [4] $end
+$var wire 1 H" proximoVizinho [3] $end
+$var wire 1 I" proximoVizinho [2] $end
+$var wire 1 J" proximoVizinho [1] $end
+$var wire 1 K" proximoVizinho [0] $end
+$var wire 1 L" addressProximoVizinho [7] $end
+$var wire 1 M" addressProximoVizinho [6] $end
+$var wire 1 N" addressProximoVizinho [5] $end
+$var wire 1 O" addressProximoVizinho [4] $end
+$var wire 1 P" addressProximoVizinho [3] $end
+$var wire 1 Q" addressProximoVizinho [2] $end
+$var wire 1 R" addressProximoVizinho [1] $end
+$var wire 1 S" addressProximoVizinho [0] $end
+$var wire 1 T" custoAcumuladoS1 $end
+$var wire 1 U" direcaoS1 $end
+$var wire 1 V" abertoS1 $end
+$var wire 1 W" valor $end
+$var wire 1 X" valorS1 $end
+$var wire 1 Y" xOriginalS1 $end
+$var wire 1 Z" yOriginalS1 $end
+$var wire 1 [" addressS2 [7] $end
+$var wire 1 \" addressS2 [6] $end
+$var wire 1 ]" addressS2 [5] $end
+$var wire 1 ^" addressS2 [4] $end
+$var wire 1 _" addressS2 [3] $end
+$var wire 1 `" addressS2 [2] $end
+$var wire 1 a" addressS2 [1] $end
+$var wire 1 b" addressS2 [0] $end
+$var wire 1 c" custoAcumuladoS2 [7] $end
+$var wire 1 d" custoAcumuladoS2 [6] $end
+$var wire 1 e" custoAcumuladoS2 [5] $end
+$var wire 1 f" custoAcumuladoS2 [4] $end
+$var wire 1 g" custoAcumuladoS2 [3] $end
+$var wire 1 h" custoAcumuladoS2 [2] $end
+$var wire 1 i" custoAcumuladoS2 [1] $end
+$var wire 1 j" custoAcumuladoS2 [0] $end
+$var wire 1 k" dataFromMalhaS2 $end
+$var wire 1 l" direcaoS2 $end
+$var wire 1 m" abertoS2 $end
+$var wire 1 n" valorS2 $end
+$var wire 1 o" xOriginalS2 $end
+$var wire 1 p" yOriginalS2 $end
+$var wire 1 q" xS2 [14] $end
+$var wire 1 r" xS2 [13] $end
+$var wire 1 s" xS2 [12] $end
+$var wire 1 t" xS2 [11] $end
+$var wire 1 u" xS2 [10] $end
+$var wire 1 v" xS2 [9] $end
+$var wire 1 w" xS2 [8] $end
+$var wire 1 x" xS2 [7] $end
+$var wire 1 y" xS2 [6] $end
+$var wire 1 z" xS2 [5] $end
+$var wire 1 {" xS2 [4] $end
+$var wire 1 |" xS2 [3] $end
+$var wire 1 }" xS2 [2] $end
+$var wire 1 ~" xS2 [1] $end
+$var wire 1 !# xS2 [0] $end
+$var wire 1 "# yS2 [14] $end
+$var wire 1 ## yS2 [13] $end
+$var wire 1 $# yS2 [12] $end
+$var wire 1 %# yS2 [11] $end
+$var wire 1 &# yS2 [10] $end
+$var wire 1 '# yS2 [9] $end
+$var wire 1 (# yS2 [8] $end
+$var wire 1 )# yS2 [7] $end
+$var wire 1 *# yS2 [6] $end
+$var wire 1 +# yS2 [5] $end
+$var wire 1 ,# yS2 [4] $end
+$var wire 1 -# yS2 [3] $end
+$var wire 1 .# yS2 [2] $end
+$var wire 1 /# yS2 [1] $end
+$var wire 1 0# yS2 [0] $end
+$var wire 1 1# custoEstimadoS2 [7] $end
+$var wire 1 2# custoEstimadoS2 [6] $end
+$var wire 1 3# custoEstimadoS2 [5] $end
+$var wire 1 4# custoEstimadoS2 [4] $end
+$var wire 1 5# custoEstimadoS2 [3] $end
+$var wire 1 6# custoEstimadoS2 [2] $end
+$var wire 1 7# custoEstimadoS2 [1] $end
+$var wire 1 8# custoEstimadoS2 [0] $end
+$var wire 1 9# paiS2 [1] $end
+$var wire 1 :# paiS2 [0] $end
+$var wire 1 ;# valorCelulaS2 $end
+$var wire 1 <# novoCustoAcumuladoS2 $end
+$var wire 1 =# celulaValorValido $end
+$var wire 1 ># addressValid $end
+$var wire 1 ?# valorValido $end
+$var wire 1 @# candidato $end
+$var wire 1 A# custoAcumuladoS3 $end
+$var wire 1 B# addressS3 $end
+$var wire 1 C# direcaoS3 $end
+$var wire 1 D# abertoS3 $end
+$var wire 1 E# valorS3 $end
+$var wire 1 F# xS3 $end
+$var wire 1 G# yS3 $end
+$var wire 1 H# xOriginalS3 $end
+$var wire 1 I# yOriginalS3 $end
+$var wire 1 J# dx [14] $end
+$var wire 1 K# dx [13] $end
+$var wire 1 L# dx [12] $end
+$var wire 1 M# dx [11] $end
+$var wire 1 N# dx [10] $end
+$var wire 1 O# dx [9] $end
+$var wire 1 P# dx [8] $end
+$var wire 1 Q# dx [7] $end
+$var wire 1 R# dx [6] $end
+$var wire 1 S# dx [5] $end
+$var wire 1 T# dx [4] $end
+$var wire 1 U# dx [3] $end
+$var wire 1 V# dx [2] $end
+$var wire 1 W# dx [1] $end
+$var wire 1 X# dx [0] $end
+$var wire 1 Y# dy [14] $end
+$var wire 1 Z# dy [13] $end
+$var wire 1 [# dy [12] $end
+$var wire 1 \# dy [11] $end
+$var wire 1 ]# dy [10] $end
+$var wire 1 ^# dy [9] $end
+$var wire 1 _# dy [8] $end
+$var wire 1 `# dy [7] $end
+$var wire 1 a# dy [6] $end
+$var wire 1 b# dy [5] $end
+$var wire 1 c# dy [4] $end
+$var wire 1 d# dy [3] $end
+$var wire 1 e# dy [2] $end
+$var wire 1 f# dy [1] $end
+$var wire 1 g# dy [0] $end
+$var wire 1 h# dx_ [14] $end
+$var wire 1 i# dx_ [13] $end
+$var wire 1 j# dx_ [12] $end
+$var wire 1 k# dx_ [11] $end
+$var wire 1 l# dx_ [10] $end
+$var wire 1 m# dx_ [9] $end
+$var wire 1 n# dx_ [8] $end
+$var wire 1 o# dx_ [7] $end
+$var wire 1 p# dx_ [6] $end
+$var wire 1 q# dx_ [5] $end
+$var wire 1 r# dx_ [4] $end
+$var wire 1 s# dx_ [3] $end
+$var wire 1 t# dx_ [2] $end
+$var wire 1 u# dx_ [1] $end
+$var wire 1 v# dx_ [0] $end
+$var wire 1 w# dy_ [14] $end
+$var wire 1 x# dy_ [13] $end
+$var wire 1 y# dy_ [12] $end
+$var wire 1 z# dy_ [11] $end
+$var wire 1 {# dy_ [10] $end
+$var wire 1 |# dy_ [9] $end
+$var wire 1 }# dy_ [8] $end
+$var wire 1 ~# dy_ [7] $end
+$var wire 1 !$ dy_ [6] $end
+$var wire 1 "$ dy_ [5] $end
+$var wire 1 #$ dy_ [4] $end
+$var wire 1 $$ dy_ [3] $end
+$var wire 1 %$ dy_ [2] $end
+$var wire 1 &$ dy_ [1] $end
+$var wire 1 '$ dy_ [0] $end
+$var wire 1 ($ distanciaTotal [14] $end
+$var wire 1 )$ distanciaTotal [13] $end
+$var wire 1 *$ distanciaTotal [12] $end
+$var wire 1 +$ distanciaTotal [11] $end
+$var wire 1 ,$ distanciaTotal [10] $end
+$var wire 1 -$ distanciaTotal [9] $end
+$var wire 1 .$ distanciaTotal [8] $end
+$var wire 1 /$ distanciaTotal [7] $end
+$var wire 1 0$ distanciaTotal [6] $end
+$var wire 1 1$ distanciaTotal [5] $end
+$var wire 1 2$ distanciaTotal [4] $end
+$var wire 1 3$ distanciaTotal [3] $end
+$var wire 1 4$ distanciaTotal [2] $end
+$var wire 1 5$ distanciaTotal [1] $end
+$var wire 1 6$ distanciaTotal [0] $end
+$var wire 1 7$ novoCustoAcumuladoS3 $end
+$var wire 1 8$ custoAcumuladoS4 $end
+$var wire 1 9$ custoEstimadoS4 $end
+$var wire 1 :$ addressS4 $end
+$var wire 1 ;$ direcaoS4 $end
+$var wire 1 <$ abertoS4 $end
+$var wire 1 =$ valorS4 $end
+$var wire 1 >$ distanciaTotalS4 $end
+$var wire 1 ?$ xS4 $end
+$var wire 1 @$ yS4 $end
+
+$scope module s0 $end
+$var parameter 32 A$ tamanhoDados $end
+$var parameter 32 B$ TamanhoMalha $end
+$var parameter 32 C$ addressTam $end
+$var wire 1 * clock $end
+$var wire 1 + reset $end
+$var wire 1 K" proximoVizinho $end
+$var reg 1 D$ proximoVizinhoOut $end
+$var wire 1 6" custoAcumulado $end
+$var reg 1 E$ custoAcumuladoOut $end
+$var wire 1 n direcao $end
+$var reg 1 F$ direcaoOut $end
+$var wire 1 }! x $end
+$var reg 1 G$ xOut $end
+$var wire 1 ." y $end
+$var reg 1 H$ yOut $end
+$var wire 1 A" aberto $end
+$var reg 1 I$ abertoOut $end
+$var wire 1 J$ valor [1] $end
+$var wire 1 W" valor [0] $end
+$var reg 2 K$ valorOut [1:0] $end
+$upscope $end
+
+$scope module s1 $end
+$var parameter 32 L$ tamanhoDados $end
+$var parameter 32 M$ TamanhoMalha $end
+$var parameter 32 N$ addressTam $end
+$var wire 1 * clock $end
+$var wire 1 + reset $end
+$var wire 1 S" address $end
+$var reg 1 O$ addressOut $end
+$var wire 1 q valueFromMalha $end
+$var reg 1 P$ valueFromMalhaOut $end
+$var wire 1 T" custoAcumulado $end
+$var reg 1 Q$ custoAcumuladoOut $end
+$var wire 1 U" direcao $end
+$var reg 1 R$ direcaoOut $end
+$var wire 1 Y" x $end
+$var reg 1 S$ xOut $end
+$var wire 1 Z" y $end
+$var reg 1 T$ yOut $end
+$var wire 1 V" aberto $end
+$var reg 1 U$ abertoOut $end
+$var wire 1 V$ valor [1] $end
+$var wire 1 X" valor [0] $end
+$var reg 2 W$ valorOut [1:0] $end
+$upscope $end
+
+$scope module s2 $end
+$var parameter 32 X$ tamanhoDados $end
+$var parameter 32 Y$ TamanhoMalha $end
+$var parameter 32 Z$ addressTam $end
+$var wire 1 * clock $end
+$var wire 1 + reset $end
+$var wire 1 <# custoAcumulado $end
+$var reg 1 [$ custoAcumuladoOut $end
+$var wire 1 b" address $end
+$var reg 1 \$ addressOut $end
+$var wire 1 l" direcao $end
+$var reg 1 ]$ direcaoOut $end
+$var wire 1 !# x $end
+$var reg 1 ^$ xOut $end
+$var wire 1 0# y $end
+$var reg 1 _$ yOut $end
+$var wire 1 o" xOriginal $end
+$var reg 1 `$ xOriginalOut $end
+$var wire 1 p" yOriginal $end
+$var reg 1 a$ yOriginalOut $end
+$var wire 1 m" aberto $end
+$var reg 1 b$ abertoOut $end
+$var wire 1 c$ valor [1] $end
+$var wire 1 n" valor [0] $end
+$var reg 2 d$ valorOut [1:0] $end
+$upscope $end
+
+$scope module s3 $end
+$var parameter 32 e$ tamanhoDados $end
+$var parameter 32 f$ TamanhoMalha $end
+$var parameter 32 g$ addressTam $end
+$var wire 1 * clock $end
+$var wire 1 + reset $end
+$var wire 1 7$ custoAcumulado $end
+$var reg 1 h$ custoAcumuladoOut $end
+$var wire 1 >" custoEstimado $end
+$var reg 1 i$ custoEstimadoOut $end
+$var wire 1 B# address $end
+$var reg 1 j$ addressOut $end
+$var wire 1 C# direcao $end
+$var reg 1 k$ direcaoOut $end
+$var wire 1 6$ distanciaTotal $end
+$var reg 1 l$ distanciaTotalOut $end
+$var wire 1 D# aberto $end
+$var reg 1 m$ abertoOut $end
+$var wire 1 n$ valor [1] $end
+$var wire 1 E# valor [0] $end
+$var reg 2 o$ valorOut [1:0] $end
+$var wire 1 F# x $end
+$var reg 1 p$ xOut $end
+$var wire 1 G# y $end
+$var reg 1 q$ yOut $end
+$upscope $end
+$upscope $end
+
+$scope module Malha $end
+$var parameter 32 r$ TamanhoMalha $end
+$var parameter 32 s$ tamanhoAddr $end
+$var parameter 32 t$ tamanhoDados $end
+$var parameter 1 u$ READ $end
+$var parameter 1 v$ WRITE $end
+$var wire 1 * clock $end
+$var wire 1 + reset $end
+$var wire 1 w$ value [34] $end
+$var wire 1 x$ value [33] $end
+$var wire 1 y$ value [32] $end
+$var wire 1 z$ value [31] $end
+$var wire 1 {$ value [30] $end
+$var wire 1 |$ value [29] $end
+$var wire 1 }$ value [28] $end
+$var wire 1 ~$ value [27] $end
+$var wire 1 !% value [26] $end
+$var wire 1 "% value [25] $end
+$var wire 1 #% value [24] $end
+$var wire 1 $% value [23] $end
+$var wire 1 %% value [22] $end
+$var wire 1 &% value [21] $end
+$var wire 1 '% value [20] $end
+$var wire 1 (% value [19] $end
+$var wire 1 )% value [18] $end
+$var wire 1 *% value [17] $end
+$var wire 1 +% value [16] $end
+$var wire 1 ,% value [15] $end
+$var wire 1 -% value [14] $end
+$var wire 1 .% value [13] $end
+$var wire 1 /% value [12] $end
+$var wire 1 0% value [11] $end
+$var wire 1 1% value [10] $end
+$var wire 1 2% value [9] $end
+$var wire 1 3% value [8] $end
+$var wire 1 4% value [7] $end
+$var wire 1 5% value [6] $end
+$var wire 1 6% value [5] $end
+$var wire 1 7% value [4] $end
+$var wire 1 8% value [3] $end
+$var wire 1 9% value [2] $end
+$var wire 1 :% value [1] $end
+$var wire 1 v value [0] $end
+$var wire 1 w read $end
+$var wire 1 x write $end
+$var wire 1 ;% address [7] $end
+$var wire 1 <% address [6] $end
+$var wire 1 =% address [5] $end
+$var wire 1 >% address [4] $end
+$var wire 1 ?% address [3] $end
+$var wire 1 @% address [2] $end
+$var wire 1 A% address [1] $end
+$var wire 1 y address [0] $end
+$var reg 35 B% outData [34:0] $end
+$upscope $end
+
+$scope module decisor $end
+$var parameter 32 C% tamanhoDados $end
+$var parameter 32 D% TamanhoMalha $end
+$var parameter 32 E% addressTam $end
+$var wire 1 F% addressFromNIOS [7] $end
+$var wire 1 G% addressFromNIOS [6] $end
+$var wire 1 H% addressFromNIOS [5] $end
+$var wire 1 I% addressFromNIOS [4] $end
+$var wire 1 J% addressFromNIOS [3] $end
+$var wire 1 K% addressFromNIOS [2] $end
+$var wire 1 L% addressFromNIOS [1] $end
+$var wire 1 z addressFromNIOS [0] $end
+$var wire 1 { readFromNIOS $end
+$var wire 1 | writeFromNIOS $end
+$var wire 1 M% valueFromNIOS [28] $end
+$var wire 1 N% valueFromNIOS [27] $end
+$var wire 1 O% valueFromNIOS [26] $end
+$var wire 1 P% valueFromNIOS [25] $end
+$var wire 1 Q% valueFromNIOS [24] $end
+$var wire 1 R% valueFromNIOS [23] $end
+$var wire 1 S% valueFromNIOS [22] $end
+$var wire 1 T% valueFromNIOS [21] $end
+$var wire 1 U% valueFromNIOS [20] $end
+$var wire 1 V% valueFromNIOS [19] $end
+$var wire 1 W% valueFromNIOS [18] $end
+$var wire 1 X% valueFromNIOS [17] $end
+$var wire 1 Y% valueFromNIOS [16] $end
+$var wire 1 Z% valueFromNIOS [15] $end
+$var wire 1 [% valueFromNIOS [14] $end
+$var wire 1 \% valueFromNIOS [13] $end
+$var wire 1 ]% valueFromNIOS [12] $end
+$var wire 1 ^% valueFromNIOS [11] $end
+$var wire 1 _% valueFromNIOS [10] $end
+$var wire 1 `% valueFromNIOS [9] $end
+$var wire 1 a% valueFromNIOS [8] $end
+$var wire 1 b% valueFromNIOS [7] $end
+$var wire 1 c% valueFromNIOS [6] $end
+$var wire 1 d% valueFromNIOS [5] $end
+$var wire 1 e% valueFromNIOS [4] $end
+$var wire 1 f% valueFromNIOS [3] $end
+$var wire 1 g% valueFromNIOS [2] $end
+$var wire 1 h% valueFromNIOS [1] $end
+$var wire 1 } valueFromNIOS [0] $end
+$var wire 1 i% addressFromHW [7] $end
+$var wire 1 j% addressFromHW [6] $end
+$var wire 1 k% addressFromHW [5] $end
+$var wire 1 l% addressFromHW [4] $end
+$var wire 1 m% addressFromHW [3] $end
+$var wire 1 n% addressFromHW [2] $end
+$var wire 1 o% addressFromHW [1] $end
+$var wire 1 o addressFromHW [0] $end
+$var wire 1 r readFromHW $end
+$var wire 1 s writeFromHW $end
+$var wire 1 p% valueFromHW [28] $end
+$var wire 1 q% valueFromHW [27] $end
+$var wire 1 r% valueFromHW [26] $end
+$var wire 1 s% valueFromHW [25] $end
+$var wire 1 t% valueFromHW [24] $end
+$var wire 1 u% valueFromHW [23] $end
+$var wire 1 v% valueFromHW [22] $end
+$var wire 1 w% valueFromHW [21] $end
+$var wire 1 x% valueFromHW [20] $end
+$var wire 1 y% valueFromHW [19] $end
+$var wire 1 z% valueFromHW [18] $end
+$var wire 1 {% valueFromHW [17] $end
+$var wire 1 |% valueFromHW [16] $end
+$var wire 1 }% valueFromHW [15] $end
+$var wire 1 ~% valueFromHW [14] $end
+$var wire 1 !& valueFromHW [13] $end
+$var wire 1 "& valueFromHW [12] $end
+$var wire 1 #& valueFromHW [11] $end
+$var wire 1 $& valueFromHW [10] $end
+$var wire 1 %& valueFromHW [9] $end
+$var wire 1 && valueFromHW [8] $end
+$var wire 1 '& valueFromHW [7] $end
+$var wire 1 (& valueFromHW [6] $end
+$var wire 1 )& valueFromHW [5] $end
+$var wire 1 *& valueFromHW [4] $end
+$var wire 1 +& valueFromHW [3] $end
+$var wire 1 ,& valueFromHW [2] $end
+$var wire 1 -& valueFromHW [1] $end
+$var wire 1 p valueFromHW [0] $end
+$var wire 1 .& address [7] $end
+$var wire 1 /& address [6] $end
+$var wire 1 0& address [5] $end
+$var wire 1 1& address [4] $end
+$var wire 1 2& address [3] $end
+$var wire 1 3& address [2] $end
+$var wire 1 4& address [1] $end
+$var wire 1 ~ address [0] $end
+$var wire 1 w read $end
+$var wire 1 x write $end
+$var wire 1 5& value [28] $end
+$var wire 1 6& value [27] $end
+$var wire 1 7& value [26] $end
+$var wire 1 8& value [25] $end
+$var wire 1 9& value [24] $end
+$var wire 1 :& value [23] $end
+$var wire 1 ;& value [22] $end
+$var wire 1 <& value [21] $end
+$var wire 1 =& value [20] $end
+$var wire 1 >& value [19] $end
+$var wire 1 ?& value [18] $end
+$var wire 1 @& value [17] $end
+$var wire 1 A& value [16] $end
+$var wire 1 B& value [15] $end
+$var wire 1 C& value [14] $end
+$var wire 1 D& value [13] $end
+$var wire 1 E& value [12] $end
+$var wire 1 F& value [11] $end
+$var wire 1 G& value [10] $end
+$var wire 1 H& value [9] $end
+$var wire 1 I& value [8] $end
+$var wire 1 J& value [7] $end
+$var wire 1 K& value [6] $end
+$var wire 1 L& value [5] $end
+$var wire 1 M& value [4] $end
+$var wire 1 N& value [3] $end
+$var wire 1 O& value [2] $end
+$var wire 1 P& value [1] $end
+$var wire 1 v value [0] $end
+$var wire 1 Q& requestFromHW $end
+$upscope $end
+
+$scope module filaHeap $end
+$var parameter 32 R& DEPTH $end
+$var parameter 32 S& DWIDTH $end
+$var wire 1 T& rstn $end
+$var wire 1 * clk $end
+$var wire 1 t wr_en $end
+$var wire 1 "! rd_en $end
+$var wire 1 U& din [15] $end
+$var wire 1 V& din [14] $end
+$var wire 1 W& din [13] $end
+$var wire 1 X& din [12] $end
+$var wire 1 Y& din [11] $end
+$var wire 1 Z& din [10] $end
+$var wire 1 [& din [9] $end
+$var wire 1 \& din [8] $end
+$var wire 1 ]& din [7] $end
+$var wire 1 ^& din [6] $end
+$var wire 1 _& din [5] $end
+$var wire 1 `& din [4] $end
+$var wire 1 a& din [3] $end
+$var wire 1 b& din [2] $end
+$var wire 1 c& din [1] $end
+$var wire 1 u din [0] $end
+$var reg 16 d& dout [15:0] $end
+$var wire 1 #! empty $end
+$var wire 1 e& full $end
+$var reg 3 f& wptr [2:0] $end
+$var reg 3 g& rptr [2:0] $end
+$upscope $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+0!
+1"
+0#
+b0 $
+b0 %
+b0 &
+b11111111 C"
+0D$
+0E$
+0F$
+0G$
+0H$
+0I$
+b0 K$
+0O$
+0P$
+0Q$
+0R$
+0S$
+0T$
+0U$
+b0 W$
+0[$
+0\$
+0]$
+0^$
+0_$
+0`$
+0a$
+0b$
+b0 d$
+0h$
+0i$
+0j$
+0k$
+0l$
+0m$
+b0 o$
+0p$
+0q$
+bx B%
+bx d&
+bx f&
+bx g&
+b100011 (
+b1111 )
+b1111 $!
+b11101 %!
+b1000 &!
+b11100001 '!
+b11101 A$
+b1111 B$
+b1000 C$
+b11101 L$
+b1111 M$
+b1000 N$
+b11101 X$
+b1111 Y$
+b1000 Z$
+b11101 e$
+b1111 f$
+b1000 g$
+b11100001 r$
+b1000 s$
+b100011 t$
+b1 u$
+b0 v$
+b11101 C%
+b1111 D%
+b1000 E%
+b1000 R&
+b10000 S&
+z'
+0o
+1p
+xq
+zr
+zs
+1t
+0u
+0}!
+0|!
+0{!
+0z!
+0y!
+0x!
+0w!
+0v!
+0u!
+0t!
+0s!
+0r!
+0q!
+0p!
+0o!
+0."
+0-"
+0,"
+0+"
+0*"
+0)"
+0("
+0'"
+0&"
+0%"
+0$"
+0#"
+0""
+0!"
+0~!
+06"
+05"
+04"
+03"
+02"
+01"
+00"
+0/"
+0>"
+0="
+0<"
+0;"
+0:"
+09"
+08"
+07"
+0@"
+0?"
+0A"
+0B"
+1K"
+1J"
+1I"
+1H"
+1G"
+1F"
+1E"
+1D"
+0S"
+zR"
+zQ"
+zP"
+zO"
+zN"
+zM"
+zL"
+0T"
+0U"
+0V"
+zW"
+0X"
+0Y"
+0Z"
+0b"
+za"
+z`"
+z_"
+z^"
+z]"
+z\"
+z["
+0j"
+0i"
+0h"
+0g"
+0f"
+0e"
+0d"
+0c"
+0k"
+0l"
+0m"
+0n"
+0o"
+0p"
+0!#
+0~"
+0}"
+0|"
+0{"
+0z"
+0y"
+0x"
+0w"
+0v"
+0u"
+0t"
+0s"
+0r"
+0q"
+00#
+0/#
+0.#
+0-#
+0,#
+0+#
+0*#
+0)#
+0(#
+0'#
+0&#
+0%#
+0$#
+0##
+0"#
+08#
+07#
+06#
+05#
+04#
+03#
+02#
+01#
+0:#
+09#
+0;#
+1<#
+1=#
+x>#
+x?#
+1@#
+0A#
+0B#
+0C#
+0D#
+0E#
+0F#
+0G#
+0H#
+0I#
+0X#
+0W#
+0V#
+0U#
+0T#
+0S#
+0R#
+0Q#
+0P#
+0O#
+0N#
+0M#
+0L#
+0K#
+0J#
+0g#
+0f#
+0e#
+0d#
+0c#
+0b#
+0a#
+0`#
+0_#
+0^#
+0]#
+0\#
+0[#
+0Z#
+0Y#
+0v#
+0u#
+0t#
+0s#
+0r#
+0q#
+0p#
+0o#
+0n#
+0m#
+0l#
+0k#
+0j#
+0i#
+0h#
+0'$
+0&$
+0%$
+0$$
+0#$
+0"$
+0!$
+0~#
+0}#
+0|#
+0{#
+0z#
+0y#
+0x#
+0w#
+06$
+05$
+04$
+03$
+02$
+01$
+00$
+0/$
+0.$
+0-$
+0,$
+0+$
+0*$
+0)$
+0($
+z7$
+08$
+09$
+0:$
+0;$
+0<$
+0=$
+0>$
+0?$
+0@$
+xv
+xw
+xx
+zy
+zz
+z{
+z|
+z}
+x~
+xQ&
+x!!
+z"!
+x#!
+0*
+1+
+0,
+0L
+0K
+0J
+0I
+0H
+0G
+0F
+0E
+0D
+0C
+0B
+0A
+0@
+0?
+0>
+0=
+0<
+0;
+0:
+09
+08
+07
+06
+05
+04
+03
+02
+01
+00
+0/
+0.
+0-
+0l
+0k
+0j
+0i
+0h
+0g
+0f
+0e
+0d
+0c
+0b
+0a
+0`
+0_
+0^
+0]
+0\
+0[
+0Z
+0Y
+0X
+0W
+0V
+0U
+0T
+0S
+0R
+0Q
+0P
+0O
+0N
+0M
+0n
+0m
+0T&
+z.!
+z-!
+z,!
+z+!
+z*!
+z)!
+z(!
+0J!
+0I!
+0H!
+0G!
+0F!
+0E!
+0D!
+0C!
+0B!
+0A!
+0@!
+0?!
+0>!
+0=!
+0<!
+0;!
+0:!
+09!
+08!
+07!
+06!
+05!
+04!
+03!
+02!
+01!
+00!
+0/!
+zf!
+ze!
+zd!
+zc!
+zb!
+za!
+z`!
+z_!
+z^!
+z]!
+z\!
+z[!
+zZ!
+zY!
+zX!
+zW!
+zV!
+zU!
+zT!
+zS!
+zR!
+zQ!
+zP!
+zO!
+zN!
+zM!
+zL!
+zK!
+0n!
+0m!
+0l!
+0k!
+0j!
+0i!
+0h!
+0g!
+zJ$
+zV$
+zc$
+zn$
+z:%
+z9%
+z8%
+z7%
+z6%
+z5%
+z4%
+z3%
+z2%
+z1%
+z0%
+z/%
+z.%
+z-%
+z,%
+z+%
+z*%
+z)%
+z(%
+z'%
+z&%
+z%%
+z$%
+z#%
+z"%
+z!%
+z~$
+z}$
+z|$
+z{$
+zz$
+zy$
+zx$
+zw$
+zA%
+z@%
+z?%
+z>%
+z=%
+z<%
+z;%
+zL%
+zK%
+zJ%
+zI%
+zH%
+zG%
+zF%
+zh%
+zg%
+zf%
+ze%
+zd%
+zc%
+zb%
+za%
+z`%
+z_%
+z^%
+z]%
+z\%
+z[%
+zZ%
+zY%
+zX%
+zW%
+zV%
+zU%
+zT%
+zS%
+zR%
+zQ%
+zP%
+zO%
+zN%
+zM%
+zo%
+zn%
+zm%
+zl%
+zk%
+zj%
+zi%
+z-&
+z,&
+z+&
+z*&
+z)&
+z(&
+z'&
+z&&
+z%&
+z$&
+z#&
+z"&
+z!&
+z~%
+z}%
+z|%
+z{%
+zz%
+zy%
+zx%
+zw%
+zv%
+zu%
+zt%
+zs%
+zr%
+zq%
+zp%
+x4&
+x3&
+x2&
+x1&
+x0&
+x/&
+x.&
+xP&
+xO&
+xN&
+xM&
+xL&
+xK&
+xJ&
+xI&
+xH&
+xG&
+xF&
+xE&
+xD&
+xC&
+xB&
+xA&
+x@&
+x?&
+x>&
+x=&
+x<&
+x;&
+x:&
+x9&
+x8&
+x7&
+x6&
+x5&
+zc&
+zb&
+za&
+z`&
+z_&
+z^&
+z]&
+z\&
+z[&
+zZ&
+zY&
+zX&
+zW&
+zV&
+zU&
+xe&
+$end
+#5000
+1!
+1*
+b0 f&
+b0 g&
+1#!
+0e&
+#10000
+0!
+0*
+#15000
+1!
+1*
+#20000
+0"
+0!
+0+
+0*
+1T&
+#25000
+1!
+1*
+1D$
+bz K$
+xP$
+bz0 W$
+1[$
+bz0 d$
+zh$
+bz0 o$
+b1 f&
+1S"
+xk"
+1A#
+z8$
+zX"
+0#!
+xm"
+1o
+x@#
+#30000
+0!
+0*
+#35000
+1!
+1*
+1O$
+bz W$
+xb$
+b10 f&
+1b"
+zn"
+xD#
+#40000
+b100 $
+b10101011110011010001001000110100 %
+b1 &
+1#
+0!
+1j
+1h
+1g
+1c
+1`
+1\
+1Z
+1Y
+1V
+1U
+1T
+1S
+1Q
+1O
+1M
+1J
+1,
+0I"
+0H"
+0G"
+0F"
+0E"
+0D"
+1="
+1;"
+1:"
+16"
+13"
+1/"
+1?"
+1B"
+1,"
+1+"
+1*"
+1)"
+1'"
+1n
+0*
+b1111 C"
+1G"
+#45000
+1!
+1*
+1E$
+1F$
+1\$
+bz d$
+xm$
+b11 f&
+1T"
+1U"
+1B#
+zE#
+x<$
+xn!
+#50000
+0!
+0*
+#55000
+1!
+1*
+1Q$
+1R$
+1j$
+bz o$
+b100 f&
+xj"
+1l"
+1:$
+z=$
+x<#
+1u
+#60000
+0#
+0!
+0,
+0*
+#65000
+1!
+1*
+x[$
+1]$
+b101 f&
+xA#
+1C#
+#70000
+0!
+0*
+#75000
+1!
+1*
+1k$
+b110 f&
+1;$
+#80000
+0!
+0*
+#85000
+1!
+1*
+b111 f&
+#90000
+0!
+0*
+#95000
+1!
+1*
+b0 f&
+1#!
+#100000
+b1000 $
+b11011110101011011011111011101111 %
+b10 &
+1#
+0!
+1l
+1k
+1i
+0h
+1f
+1e
+1b
+1a
+1_
+1]
+1W
+0V
+0T
+1R
+1P
+0O
+1N
+0J
+1I
+1,
+1I"
+1A"
+1>"
+1<"
+0;"
+19"
+18"
+15"
+14"
+12"
+10"
+1-"
+0,"
+0*"
+1("
+1&"
+0n
+1m
+0*
+b11110001 C"
+0J"
+0I"
+1H"
+1F"
+1E"
+1D"
+#105000
+1!
+1*
+0F$
+1I$
+1i$
+b1 f&
+0U"
+1V"
+19$
+0#!
+#110000
+0!
+0*
+#115000
+1!
+1*
+0R$
+1U$
+b10 f&
+0l"
+#120000
+0#
+0!
+0,
+0*
+#125000
+1!
+1*
+0]$
+b11 f&
+0C#
+#130000
+0!
+0*
+#135000
+1!
+1*
+0k$
+b100 f&
+0;$
+#140000
+0!
+0*
+#145000
+1!
+1*
+b101 f&
+#150000
+0!
+0*
+#155000
+1!
+1*
+b110 f&
+#160000
+0!
+0*
+#165000
+1!
+1*
+b111 f&
+#170000
+0!
+0*
+#175000
+1!
+1*
+b0 f&
+1#!
+#180000
+0!
+0*
+#185000
+1!
+1*
+b1 f&
+0#!
+#190000
+0!
+0*
+#195000
+1!
+1*
+b10 f&
+#200000
+0!
+0*
+#205000
+1!
+1*
+b11 f&
+#210000
+0!
+0*
+#215000
+1!
+1*
+b100 f&
+#220000
+0!
+0*
+#225000
+1!
+1*
+b101 f&
+#230000
+0!
+0*
+#235000
+1!
+1*
+b110 f&
+#240000
+0!
+0*
+#245000
+1!
+1*
+b111 f&
+#250000
+0!
+0*
+#255000
+1!
+1*
+b0 f&
+1#!
+#260000
+0!
+0*
+#265000
+1!
+1*
+b1 f&
+0#!
+#270000
+0!
+0*
+#275000
+1!
+1*
+b10 f&
+#280000
+0!
+0*
+#285000
+1!
+1*
+b11 f&
+#290000
+0!
+0*
+#295000
+1!
+1*
+b100 f&
+#300000
+0!
+0*
+#305000
+1!
+1*
+b101 f&
+#310000
+0!
+0*
+#315000
+1!
+1*
+b110 f&

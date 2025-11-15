@@ -1,13 +1,114 @@
 # vsim -c tb -do "log -r /*; vcd file build/dump.svcd; vcd add -r /*;      run -all; quit -f" 
-# Start time: 17:34:23 on Nov 14,2025
+# Start time: 22:51:37 on Nov 14,2025
 # Loading sv_std.std
 # Loading work.tb
+# Loading work.Top
+# Loading work.vizinhoTop
+# Loading work.S0
+# Loading work.S1
+# Loading work.S2
+# Loading work.S3
+# Loading work.Malha
+# Loading work.decisorMalha
+# Loading work.FIFO
+# ** Warning: (vsim-3015) [PCDPC] - Port size (8) does not match connection size (32) for port 'address'. The port definition is at: rtl/vizinhoTop.sv(14).
+#    Time: 0 ps  Iteration: 0  Instance: /tb/DUT/vizinhos File: rtl/Top.sv Line: 29
+# ** Warning: (vsim-3015) [PCDPC] - Port size (29) does not match connection size (32) for port 'value'. The port definition is at: rtl/vizinhoTop.sv(15).
+#    Time: 0 ps  Iteration: 0  Instance: /tb/DUT/vizinhos File: rtl/Top.sv Line: 29
+# ** Warning: (vsim-3015) [PCDPC] - Port size (8) does not match connection size (1) for port 'addressWrite'. The port definition is at: rtl/vizinhoTop.sv(19).
+#    Time: 0 ps  Iteration: 0  Instance: /tb/DUT/vizinhos File: rtl/Top.sv Line: 29
+# ** Warning: (vsim-3015) [PCDPC] - Port size (29) does not match connection size (1) for port 'dataToMalha'. The port definition is at: rtl/vizinhoTop.sv(20).
+#    Time: 0 ps  Iteration: 0  Instance: /tb/DUT/vizinhos File: rtl/Top.sv Line: 29
+# ** Warning: (vsim-3015) [PCDPC] - Port size (29) does not match connection size (1) for port 'dataFromMalha'. The port definition is at: rtl/vizinhoTop.sv(21).
+#    Time: 0 ps  Iteration: 0  Instance: /tb/DUT/vizinhos File: rtl/Top.sv Line: 29
+# ** Warning: (vsim-3015) [PCDPC] - Port size (9) does not match connection size (1) for port 'dataFIFO'. The port definition is at: rtl/vizinhoTop.sv(24).
+#    Time: 0 ps  Iteration: 0  Instance: /tb/DUT/vizinhos File: rtl/Top.sv Line: 29
+# ** Warning: (vsim-3015) [PCDPC] - Port size (1) does not match connection size (8) for port 'proximoVizinho'. The port definition is at: rtl/S0.sv(11).
+#    Time: 0 ps  Iteration: 0  Instance: /tb/DUT/vizinhos/s0 File: rtl/vizinhoTop.sv Line: 86
+# ** Warning: (vsim-3015) [PCDPC] - Port size (1) does not match connection size (8) for port 'proximoVizinhoOut'. The port definition is at: rtl/S0.sv(12).
+#    Time: 0 ps  Iteration: 0  Instance: /tb/DUT/vizinhos/s0 File: rtl/vizinhoTop.sv Line: 86
+# ** Warning: (vsim-3015) [PCDPC] - Port size (1) does not match connection size (8) for port 'custoAcumulado'. The port definition is at: rtl/S0.sv(14).
+#    Time: 0 ps  Iteration: 0  Instance: /tb/DUT/vizinhos/s0 File: rtl/vizinhoTop.sv Line: 86
+# ** Warning: (vsim-3015) [PCDPC] - Port size (1) does not match connection size (2) for port 'direcao'. The port definition is at: rtl/S0.sv(17).
+#    Time: 0 ps  Iteration: 0  Instance: /tb/DUT/vizinhos/s0 File: rtl/vizinhoTop.sv Line: 86
+# ** Warning: (vsim-3015) [PCDPC] - Port size (2) does not match connection size (1) for port 'valor'. The port definition is at: rtl/S0.sv(29).
+#    Time: 0 ps  Iteration: 0  Instance: /tb/DUT/vizinhos/s0 File: rtl/vizinhoTop.sv Line: 86
+# ** Warning: (vsim-3015) [PCDPC] - Port size (2) does not match connection size (1) for port 'valorOut'. The port definition is at: rtl/S0.sv(30).
+#    Time: 0 ps  Iteration: 0  Instance: /tb/DUT/vizinhos/s0 File: rtl/vizinhoTop.sv Line: 86
+# ** Warning: (vsim-3015) [PCDPC] - Port size (1) does not match connection size (15) for port 'x'. The port definition is at: rtl/S0.sv(20).
+#    Time: 0 ps  Iteration: 0  Instance: /tb/DUT/vizinhos/s0 File: rtl/vizinhoTop.sv Line: 86
+# ** Warning: (vsim-3015) [PCDPC] - Port size (1) does not match connection size (15) for port 'y'. The port definition is at: rtl/S0.sv(23).
+#    Time: 0 ps  Iteration: 0  Instance: /tb/DUT/vizinhos/s0 File: rtl/vizinhoTop.sv Line: 86
+# ** Warning: (vsim-3015) [PCDPC] - Port size (1) does not match connection size (8) for port 'address'. The port definition is at: rtl/S1.sv(11).
+#    Time: 0 ps  Iteration: 0  Instance: /tb/DUT/vizinhos/s1 File: rtl/vizinhoTop.sv Line: 119
+# ** Warning: (vsim-3015) [PCDPC] - Port size (1) does not match connection size (8) for port 'addressOut'. The port definition is at: rtl/S1.sv(12).
+#    Time: 0 ps  Iteration: 0  Instance: /tb/DUT/vizinhos/s1 File: rtl/vizinhoTop.sv Line: 119
+# ** Warning: (vsim-3015) [PCDPC] - Port size (1) does not match connection size (29) for port 'valueFromMalha'. The port definition is at: rtl/S1.sv(14).
+#    Time: 0 ps  Iteration: 0  Instance: /tb/DUT/vizinhos/s1 File: rtl/vizinhoTop.sv Line: 119
+# ** Warning: (vsim-3015) [PCDPC] - Port size (1) does not match connection size (8) for port 'custoAcumuladoOut'. The port definition is at: rtl/S1.sv(18).
+#    Time: 0 ps  Iteration: 0  Instance: /tb/DUT/vizinhos/s1 File: rtl/vizinhoTop.sv Line: 119
+# ** Warning: (vsim-3015) [PCDPC] - Port size (2) does not match connection size (1) for port 'valor'. The port definition is at: rtl/S1.sv(32).
+#    Time: 0 ps  Iteration: 0  Instance: /tb/DUT/vizinhos/s1 File: rtl/vizinhoTop.sv Line: 119
+# ** Warning: (vsim-3015) [PCDPC] - Port size (2) does not match connection size (1) for port 'valorOut'. The port definition is at: rtl/S1.sv(33).
+#    Time: 0 ps  Iteration: 0  Instance: /tb/DUT/vizinhos/s1 File: rtl/vizinhoTop.sv Line: 119
+# ** Warning: (vsim-3015) [PCDPC] - Port size (1) does not match connection size (8) for port 'address'. The port definition is at: rtl/S2.sv(14).
+#    Time: 0 ps  Iteration: 0  Instance: /tb/DUT/vizinhos/s2 File: rtl/vizinhoTop.sv Line: 173
+# ** Warning: (vsim-3015) [PCDPC] - Port size (2) does not match connection size (1) for port 'valor'. The port definition is at: rtl/S2.sv(35).
+#    Time: 0 ps  Iteration: 0  Instance: /tb/DUT/vizinhos/s2 File: rtl/vizinhoTop.sv Line: 173
+# ** Warning: (vsim-3015) [PCDPC] - Port size (2) does not match connection size (1) for port 'valorOut'. The port definition is at: rtl/S2.sv(36).
+#    Time: 0 ps  Iteration: 0  Instance: /tb/DUT/vizinhos/s2 File: rtl/vizinhoTop.sv Line: 173
+# ** Warning: (vsim-3015) [PCDPC] - Port size (1) does not match connection size (15) for port 'x'. The port definition is at: rtl/S2.sv(20).
+#    Time: 0 ps  Iteration: 0  Instance: /tb/DUT/vizinhos/s2 File: rtl/vizinhoTop.sv Line: 173
+# ** Warning: (vsim-3015) [PCDPC] - Port size (1) does not match connection size (15) for port 'y'. The port definition is at: rtl/S2.sv(23).
+#    Time: 0 ps  Iteration: 0  Instance: /tb/DUT/vizinhos/s2 File: rtl/vizinhoTop.sv Line: 173
+# ** Warning: (vsim-3015) [PCDPC] - Port size (1) does not match connection size (8) for port 'custoEstimado'. The port definition is at: rtl/S3.sv(13).
+#    Time: 0 ps  Iteration: 0  Instance: /tb/DUT/vizinhos/s3 File: rtl/vizinhoTop.sv Line: 221
+# ** Warning: (vsim-3015) [PCDPC] - Port size (2) does not match connection size (1) for port 'valor'. The port definition is at: rtl/S3.sv(28).
+#    Time: 0 ps  Iteration: 0  Instance: /tb/DUT/vizinhos/s3 File: rtl/vizinhoTop.sv Line: 221
+# ** Warning: (vsim-3015) [PCDPC] - Port size (2) does not match connection size (1) for port 'valorOut'. The port definition is at: rtl/S3.sv(29).
+#    Time: 0 ps  Iteration: 0  Instance: /tb/DUT/vizinhos/s3 File: rtl/vizinhoTop.sv Line: 221
+# ** Warning: (vsim-3015) [PCDPC] - Port size (1) does not match connection size (15) for port 'distanciaTotal'. The port definition is at: rtl/S3.sv(22).
+#    Time: 0 ps  Iteration: 0  Instance: /tb/DUT/vizinhos/s3 File: rtl/vizinhoTop.sv Line: 221
+# ** Warning: (vsim-3015) [PCDPC] - Port size (35) does not match connection size (1) for port 'value'. The port definition is at: rtl/Malha.sv(6).
+#    Time: 0 ps  Iteration: 0  Instance: /tb/DUT/Malha File: rtl/Top.sv Line: 53
+# ** Warning: (vsim-3015) [PCDPC] - Port size (8) does not match connection size (1) for port 'address'. The port definition is at: rtl/Malha.sv(8).
+#    Time: 0 ps  Iteration: 0  Instance: /tb/DUT/Malha File: rtl/Top.sv Line: 53
+# ** Warning: (vsim-3015) [PCDPC] - Port size (35) does not match connection size (1) for port 'outData'. The port definition is at: rtl/Malha.sv(10).
+#    Time: 0 ps  Iteration: 0  Instance: /tb/DUT/Malha File: rtl/Top.sv Line: 53
+# ** Warning: (vsim-3015) [PCDPC] - Port size (8) does not match connection size (1) for port 'addressFromNIOS'. The port definition is at: rtl/decisorMalha.sv(8).
+#    Time: 0 ps  Iteration: 0  Instance: /tb/DUT/decisor File: rtl/Top.sv Line: 67
+# ** Warning: (vsim-3015) [PCDPC] - Port size (29) does not match connection size (1) for port 'valueFromNIOS'. The port definition is at: rtl/decisorMalha.sv(11).
+#    Time: 0 ps  Iteration: 0  Instance: /tb/DUT/decisor File: rtl/Top.sv Line: 67
+# ** Warning: (vsim-3015) [PCDPC] - Port size (8) does not match connection size (1) for port 'addressFromHW'. The port definition is at: rtl/decisorMalha.sv(13).
+#    Time: 0 ps  Iteration: 0  Instance: /tb/DUT/decisor File: rtl/Top.sv Line: 67
+# ** Warning: (vsim-3015) [PCDPC] - Port size (29) does not match connection size (1) for port 'valueFromHW'. The port definition is at: rtl/decisorMalha.sv(16).
+#    Time: 0 ps  Iteration: 0  Instance: /tb/DUT/decisor File: rtl/Top.sv Line: 67
+# ** Warning: (vsim-3015) [PCDPC] - Port size (8) does not match connection size (1) for port 'address'. The port definition is at: rtl/decisorMalha.sv(19).
+#    Time: 0 ps  Iteration: 0  Instance: /tb/DUT/decisor File: rtl/Top.sv Line: 67
+# ** Warning: (vsim-3015) [PCDPC] - Port size (29) does not match connection size (1) for port 'value'. The port definition is at: rtl/decisorMalha.sv(22).
+#    Time: 0 ps  Iteration: 0  Instance: /tb/DUT/decisor File: rtl/Top.sv Line: 67
+# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'filaHeap'.  Expected 8, found 7.
+#    Time: 0 ps  Iteration: 0  Instance: /tb/DUT/filaHeap File: rtl/Top.sv Line: 88
+# ** Warning: (vsim-3015) [PCDPC] - Port size (16) does not match connection size (1) for port 'din'. The port definition is at: rtl/FIFO.sv(7).
+#    Time: 0 ps  Iteration: 0  Instance: /tb/DUT/filaHeap File: rtl/Top.sv Line: 88
+# ** Warning: (vsim-3015) [PCDPC] - Port size (16) does not match connection size (1) for port 'dout'. The port definition is at: rtl/FIFO.sv(8).
+#    Time: 0 ps  Iteration: 0  Instance: /tb/DUT/filaHeap File: rtl/Top.sv Line: 88
+# ** Warning: (vsim-3722) rtl/Top.sv(88): [TFMPC] - Missing connection for port 'full'.
 # log -r /*
-# ** UI-Msg: (vish-4014) No objects found matching '/*'.
 #  vcd file build/dump.svcd
 #  vcd add -r /*
-# ** UI-Msg (suppressible): (vsim-3561) No objects found matching '*'.
 #       run -all
-#  quit -f
-# End time: 17:34:23 on Nov 14,2025, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
+# [0] [FIFO] wr_en=1 din=0xzZ rd_en=z dout=0xx empty=x full=x
+# [5000] [FIFO] wr_en=1 din=0xzZ rd_en=z dout=0xx empty=1 full=0
+# [25000] [FIFO] wr_en=1 din=0xzZ rd_en=z dout=0xx empty=0 full=0
+# [55000] [FIFO] wr_en=1 din=0xzZ rd_en=z dout=0xx empty=0 full=0
+# [95000] [FIFO] wr_en=1 din=0xzZ rd_en=z dout=0xx empty=1 full=0
+# [105000] [FIFO] wr_en=1 din=0xzZ rd_en=z dout=0xx empty=0 full=0
+# [175000] [FIFO] wr_en=1 din=0xzZ rd_en=z dout=0xx empty=1 full=0
+# [185000] [FIFO] wr_en=1 din=0xzZ rd_en=z dout=0xx empty=0 full=0
+# [255000] [FIFO] wr_en=1 din=0xzZ rd_en=z dout=0xx empty=1 full=0
+# [265000] [FIFO] wr_en=1 din=0xzZ rd_en=z dout=0xx empty=0 full=0
+# ** Note: $finish    : testbench/tb.sv(69)
+#    Time: 320 ns  Iteration: 0  Instance: /tb
+# End time: 22:51:38 on Nov 14,2025, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 42

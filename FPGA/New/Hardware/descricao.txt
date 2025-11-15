@@ -14,8 +14,14 @@ Ajustar isso
 FIFO (https://www.chipverify.com/verilog/synchronous-fifo)
 Fila para as informações que serão salvas na Heap, como a Heap será em SW, poderá ter atrasos, logo a Fila tentará servirá para o SW consumir os dados e salvar na Heap conforme demanda
 
+0 -> insere na Heap 1 -> heapify | addr
+1                                | tamanhoAddr 
+
 vizinhoTop
 O topo do projeto onde serão instanciados os elementos e a comunicação com o NIOS será realizada
 
 controler
 Controlador dos sinais
+
+decisorMalha
+Decide quem pode usar a malha

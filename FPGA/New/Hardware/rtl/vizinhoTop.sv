@@ -1,21 +1,27 @@
-parameter addressTam = 2 * $clog2(TamanhoMalha);
-
 module vizinhoTop 
 #(
 parameter int TamanhoMalha = 15, 
-parameter int tamanhoDados = 6 * $clog2(TamanhoMalha) + 5
+parameter int tamanhoDados = 6 * $clog2(TamanhoMalha) + 5,
+parameter addressTam = 2 * $clog2(TamanhoMalha)
 )
 (
 
 	input clock,
 	input reset,
 	
+	input request,
+	
 	input [addressTam - 1 : 0] address,
 	input [tamanhoDados - 1:0] value,
 	input [1:0] direcao, //00) esquerda 01) frente 2) tras 3) direita 
 	
-	output reg [addressTam - 1:0] addressWrite,
-	input [tamanhoDados - 1:0] dataFromMalha
+	input writeMalha, readMalha,
+	output [addressTam - 1:0] addressWrite,
+	output [tamanhoDados - 1:0] dataToMalha,
+	input [tamanhoDados - 1:0] dataFromMalha,
+	
+	output writeFIFO,
+	output [addressTam : 0] dataFIFO 
 
 ); 
 
@@ -90,9 +96,15 @@ S0 s0 (
 	
 	.direcao(direcao),
 	.direcaoOut(direcaoS1),
+	
+	.aberto(aberto),
+	.abertoOut(abertoS1),
+	
+	.valor(valor),
+	.valorOut(valorS1),
 		
 	.x(x),
-	.xOut(xS1),
+	.xOut(xOriginalS1),
 	
 	.y(y),
 	.yOut(yOriginalS1)
@@ -120,6 +132,12 @@ S1 s1 (
 	
 	.direcao(direcaoS1),
 	.direcaoOut(direcaoS2),
+	
+	.aberto(abertoS1),
+	.abertoOut(abertoS2),
+	
+	.valor(valorS1),
+	.valorOut(valorS2),
 		
 	.x(xOriginalS1),
 	.xOut(xOriginalS2),
@@ -132,7 +150,6 @@ S1 s1 (
 wire [TamanhoMalha - 1 : 0] xS2, yS2;
 wire [addressTam - 1 : 0] custoEstimadoS2;
 wire [1 : 0] paiS2;
-wire abertoS2;
 
 assign {
 		 xS2, yS2,
@@ -157,7 +174,6 @@ S2 s2 (
 
 	.clock(clock),
 	.reset(reset),
-	.flush(!(valorValido && candidato)),
 	
 	.custoAcumulado(novoCustoAcumuladoS2),
 	.custoAcumuladoOut(custoAcumuladoS3), //vai esperar até o último estágio
@@ -168,17 +184,23 @@ S2 s2 (
 	.direcao(direcaoS2),
 	.direcaoOut(direcaoS3),
 	
-	.x(xOriginalS2),
-	.xOut(xOriginalS3),
+	.aberto(abertoS2),
+	.abertoOut(abertoS3),
 	
-	.y(yOriginalS2),
-	.yOut(yOriginalS3),
+	.valor(valorS2),
+	.valorOut(valorS3),
 	
-	.xOriginal(xS2),
-	.xOriginalOut(xS3),
+	.x(xS2),
+	.xOut(xS3),
 	
-	.yOriginal(yS2),
-	.yOriginalOut(yS3)
+	.y(yS2),
+	.yOut(yS3),
+	
+	.xOriginal(xOriginalS2),
+	.xOriginalOut(xOriginalS3),
+	
+	.yOriginal(yOriginalS2),
+	.yOriginalOut(yOriginalS3)
 
 );
 
@@ -213,11 +235,32 @@ S3 s3 (
 	.direcao(direcaoS3),
 	.direcaoOut(direcaoS4),
 	
+	.aberto(abertoS3),
+	.abertoOut(abertoS4),
+	
+	.valor(valorS3),
+	.valorOut(valorS4),
+	
 	.distanciaTotal(distanciaTotal),
-	.distanciaTotalOut(distanciaTotalS4)
+	.distanciaTotalOut(distanciaTotalS4),
+	
+	.x(xS3),
+	.xOut(xS4),
+	
+	.y(yS3),
+	.yOut(yS4)
 	
 );
+  
+assign dataToMalha = {
+		 xS4, yS4,
+         valorS4,
+         direcaoS4,
+         custoAcumuladoS4,
+         custoEstimadoS4,
+         1};
 
-//envio para fila -> heap
+assign writeFIFO = 1;
+assign dataFIFO = {abertoS4 ,addressS4};
 
 endmodule
