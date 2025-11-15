@@ -16,7 +16,7 @@ parameter linear = $clog2(TamanhoMalha)
 	input [tamanhoDados - 1:0] value,
 	input [1:0] direcao, //00) esquerda 01) frente 2) tras 3) direita 
 	
-	input writeMalha, readMalha,
+	output writeMalha, readMalha,
 	output [addressTam - 1:0] addressWrite,
 	output [tamanhoDados - 1:0] dataToMalha,
 	input [tamanhoDados - 1:0] dataFromMalha,

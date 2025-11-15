@@ -43,6 +43,9 @@ wire [tamanhoDados - 1:0] outMalha;
 
 wire readyHW;
 
+wire writeFIFO;
+wire emptyFIFO;
+
 //NIOS
 /*
 wire [tamanhoDados - 1 : 0] dataFromNIOS;
