@@ -102,7 +102,7 @@ initial begin
     
     @(posedge clock);
     
-    address = 15;
+    addressFromNIOS = 15;
     dataFromNIOS = 29'b0000_0001_01_00_00000000_00000000_0;
     requestHW = 1;
     

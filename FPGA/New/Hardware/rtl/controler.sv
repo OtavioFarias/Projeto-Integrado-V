@@ -12,6 +12,7 @@ parameter addressTam = 2 * $clog2(TamanhoMalha)
 
 	input [addressTam - 1 : 0] addressFromNIOS,
 	input [tamanhoDados - 1:0] dataFromNIOS,
+	input write,
 
 	output reg requestToHW,
 	output reg [addressTam - 1 : 0] addressToHW,
@@ -66,10 +67,12 @@ always_ff @(posedge clock, posedge reset) begin
 			
 				if(direcaoToHW == 2'b11) begin
 				
-					direcaoToHW <= 0;
+					requestToHW <= 0;
 					ready <= 1;
-					requestToHW <= 1;
 					state <= IDLE;
+					direcaoToHW <= 0;
+				
+			
 				
 				end
 				else begin

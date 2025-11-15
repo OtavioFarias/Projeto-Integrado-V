@@ -69,6 +69,7 @@ controler
 
 	.addressFromNIOS(addressFromNIOS),
 	.dataFromNIOS(dataFromNIOS),
+	.write(writeFromHW),
 
 	.requestToHW(requestToHW),
 	.addressToHW(addressToHW),
