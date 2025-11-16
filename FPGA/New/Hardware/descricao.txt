@@ -28,3 +28,23 @@ Controlador dos sinais
 
 decisorMalha
 Decide quem pode usar a malha
+
+
+incrementar no futuro para reset da malha: 
+localparam BITS = $clog2(TamanhoMalha);
+
+always_ff @(posedge clk or posedge reset) begin
+    if (reset) begin
+        int x, y;
+        int addr = 0;
+
+        for (y = 0; y < TamanhoMalha; y++) begin
+            for (x = 0; x < TamanhoMalha; x++) begin
+                
+                data[addr] <= { x[BITS-1:0], y[BITS-1:0], {RESTO{1'b0}} };
+
+                addr++;
+            end
+        end
+    end
+end
