@@ -12,6 +12,7 @@ void setup() {
   Serial.begin(9600);    // Serial para monitor
 
   inciarComunicacaoESP();
+  enviarDadosESP("Comunicação ESP inicializada");
 
   iniciarMotores();
   //frente();
@@ -30,6 +31,7 @@ void setup() {
 
   Wire.begin();
   mpu.initialize();
+  enviarDadosESP("MPU inicializado com sucesso");
 
   calibrarGyroZ();
   ultimoTempoMPU = micros();

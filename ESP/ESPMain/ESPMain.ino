@@ -9,6 +9,7 @@ void setup() {
 
   Serial.println("Bluetooth iniciado");
   iniciarComunicacaoArduino();
+  enviarDadosVariaveis("Comunicação UART inicializada");
   Serial.println("UART iniciado");
 
 }
