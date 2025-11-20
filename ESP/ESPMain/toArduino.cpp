@@ -16,24 +16,25 @@ void iniciarComunicacaoArduino() {               // Monitor serial
 void lerArduino(){
   if (SerialESP.available()) {
     String recebido = SerialESP.readStringUntil('\n');
-    Serial.print("Recebido do MEGA: ");
-    Serial.println(recebido);
+    //Serial.print("Recebido do MEGA: ");
+    //Serial.println(recebido);
 
     //a -> manda para o App, f -> mapa para o FPGA
     char identificador = recebido.charAt(0);
     if(identificador == 'a'){
 
       enviarDadosAppV2(recebido);
+      Serial.print("Recebido do MEGA: ");
+      Serial.println(recebido);
+
 
     }
     else if(identificador == 'f'){
 
+      Serial.print("Recebido do MEGA: ");
+      Serial.println(recebido);
+
         //void enviarDadosFPGA(String mensagem);//falta implementar
-
-    }
-    else{
-
-      Serial.println("Erro, destino não identificado");
 
     }
   }
@@ -50,7 +51,7 @@ void enviarArduinoTeste(){
 
 void enviarDadosVariaveis(String msg){
 
-  //SerialESP.println(msg);
+  SerialESP.println(msg);
   Serial.print("Mensagem enviada para o arduino: ");
   Serial.println(msg);
   SerialESP.println(msg);

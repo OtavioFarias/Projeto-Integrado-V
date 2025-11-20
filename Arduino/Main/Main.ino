@@ -9,6 +9,8 @@ int andarAutonomo = 0; //1 - anda sozinho, 0 - Controle via ESP
 
 void setup() {
   
+  //digitalWrite(16, HIGH);
+
   Serial.begin(9600);    // Serial para monitor
 
   inciarComunicacaoESP();
@@ -31,7 +33,7 @@ void setup() {
 
   Wire.begin();
   mpu.initialize();
-  enviarDadosESP("MPU inicializado com sucesso");
+  enviarDadosESP(" MPU inicializado com sucesso");
 
   calibrarGyroZ();
   ultimoTempoMPU = micros();
@@ -48,7 +50,7 @@ void setup() {
   //frente();
 
 }
-
+/*
 void loop() {
 
   atualizarAnguloZ_ComFiltro();
@@ -74,7 +76,7 @@ void loop() {
     andarESP();
 
   }
-  */
+  
 
   if (Serial.available() > 0) {
     String input = Serial.readStringUntil('\n');
@@ -84,3 +86,36 @@ void loop() {
   }
 }
 
+*/
+
+void loop(){
+
+  int contadorPulsos = 0;        // zera contador antes de começar
+  int estadoAnteriorHall = HIGH; // inicializa estado anterior
+
+  while (contadorPulsos < 3) {
+
+    //frente();                 // anda para frente
+    int estadoAtual = digitalRead(pinoSensorHall);
+
+    // Detecta borda HIGH → LOW (ímã aproximou)
+    if (estadoAnteriorHall == HIGH && estadoAtual == LOW) {
+      contadorPulsos++;
+      Serial.print("Pulso detectado! Contagem: ");
+      Serial.println(contadorPulsos);
+    }
+/*
+
+    Serial.print("Contagem de Pulsos: ");
+    Serial.println(contadorPulsos);
+    Serial.print(" / ");
+    */
+    //Serial.println(tamanhoQuadradoEmPulsos);
+
+
+
+    //delay(500);
+    
+  }
+
+}

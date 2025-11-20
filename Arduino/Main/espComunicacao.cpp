@@ -14,6 +14,7 @@ void enviarDadosUltrassonicoESP(float frente, float direita, float esquerda, flo
 
 void inciarComunicacaoESP(){
   Serial2.begin(9600);   // UART com ESP32 define quais usar, vamos usar 16 e 17
+  Serial2.flush();
   Serial.println("Mega pronto para comunicar com ESP32...");
 }
 
@@ -153,6 +154,7 @@ void enviarDadosESP(String msg) {
 
   Serial.print("Enviando para o ESP: ");
   Serial.println(msg);
+  Serial2.flush();
   Serial2.println("a" + msg); //mensagem deve ir para o app
 
 }

@@ -15,15 +15,15 @@ esp_spp_role_t role = ESP_SPP_ROLE_SLAVE;   // or ESP_SPP_ROLE_MASTER
 BluetoothSerial SerialBT;
 
 void iniciarBluetooth(){
-  Serial.begin(115200);
+  //Serial.begin(115200);
   if (!SerialBT.begin("ESP32test", true)) {
-    Serial.println("========== serialBT failed!");
+    //Serial.println("========== serialBT failed!");
     abort();
   }
   // SerialBT.setPin("1234"); // doesn't seem to change anything
   // SerialBT.enableSSP(); // doesn't seem to change anything
 
-  Serial.println("Starting discoverAsync...");
+  //Serial.println("Starting discoverAsync...");
   BTScanResults *btDeviceList = SerialBT.getScanResults();  // maybe accessing from different threads!
   if (SerialBT.discoverAsync([](BTAdvertisedDevice *pDevice) {
         // BTAdvertisedDeviceSet*set = reinterpret_cast<BTAdvertisedDeviceSet*>(pDevice);
@@ -31,21 +31,21 @@ void iniciarBluetooth(){
         Serial.printf(">>>>>>>>>>>Found a new device asynchronously: %s\n", pDevice->toString().c_str());
       })) {
     delay(BT_DISCOVER_TIME);
-    Serial.print("Stopping discoverAsync... ");
+    //Serial.print("Stopping discoverAsync... ");
     SerialBT.discoverAsyncStop();
-    Serial.println("discoverAsync stopped");
+    //Serial.println("discoverAsync stopped");
     delay(5000);
     if (btDeviceList->getCount() > 0) {
       BTAddress addr;
       int channel = 0;
-      Serial.println("Found devices:");
+      //Serial.println("Found devices:");
       for (int i = 0; i < btDeviceList->getCount(); i++) {
         BTAdvertisedDevice *device = btDeviceList->getDevice(i);
-        Serial.printf(" ----- %s  %s %d\n", device->getAddress().toString().c_str(), device->getName().c_str(), device->getRSSI());
+        //Serial.printf(" ----- %s  %s %d\n", device->getAddress().toString().c_str(), device->getName().c_str(), device->getRSSI());
         std::map<int, std::string> channels = SerialBT.getChannels(device->getAddress());
-        Serial.printf("scanned for services, found %d\n", channels.size());
+        //Serial.printf("scanned for services, found %d\n", channels.size());
         for (auto const &entry : channels) {
-          Serial.printf("     channel %d (%s)\n", entry.first, entry.second.c_str());
+          //Serial.printf("     channel %d (%s)\n", entry.first, entry.second.c_str());
         }
         if (channels.size() > 0) {
           addr = device->getAddress();
@@ -53,11 +53,11 @@ void iniciarBluetooth(){
         }
       }
       if (addr) {
-        Serial.printf("connecting to %s - %d\n", addr.toString().c_str(), channel);
+        //Serial.printf("connecting to %s - %d\n", addr.toString().c_str(), channel);
         SerialBT.connect(addr, channel, sec_mask, role);
       }
     } else {
-      Serial.println("Didn't find any devices");
+      //Serial.println("Didn't find any devices");
     }
   } else {
     Serial.println("Error on discoverAsync f.e. not working after a \"connect\"");
@@ -68,7 +68,7 @@ void receberDadosApp(){
   // Se receber dados do Bluetooth, repassa para o Serial
   if (SerialBT.available()) {
     char c = SerialBT.read();
-    Serial.write(c); // mostra no monitor serial
+    //Serial.write(c); // mostra no monitor serial
     SerialBT.print("Echo: "); 
     SerialBT.println(c); // devolve ao PC
   }
@@ -94,19 +94,19 @@ void enviarKeepAlive() {
 
 void iniciarBluetoothV2() {
 
-  Serial.begin(115200);
-  Serial.println("Iniciando Bluetooth no ESP32...");
+  //Serial.begin(115200);
+  //Serial.println("Iniciando Bluetooth no ESP32...");
 
   if (!SerialBT.begin("ESP32_RoboAspirador")) {
-    Serial.println("Falha ao iniciar Bluetooth!");
+    //Serial.println("Falha ao iniciar Bluetooth!");
     while (true) { delay(1000); }
   }
 
   const uint8_t* mac = esp_bt_dev_get_address();
-  Serial.printf("Bluetooth iniciado! MAC: %02X:%02X:%02X:%02X:%02X:%02X\n",
-                mac[0], mac[1], mac[2], mac[3], mac[4], mac[5]);
+  //Serial.printf("Bluetooth iniciado! MAC: %02X:%02X:%02X:%02X:%02X:%02X\n",
+  //              mac[0], mac[1], mac[2], mac[3], mac[4], mac[5]);
 
-  Serial.println("Aguardando conexão...");
+  //Serial.println("Aguardando conexão...");
 }
 
 void receberDadosAppV2() {
@@ -117,8 +117,8 @@ void receberDadosAppV2() {
   if (SerialBT.available()) {
     String received = SerialBT.readStringUntil(';');
     received.trim();
-    Serial.print("Recebido via BT: ");
-    Serial.println(received);
+    //Serial.print("Recebido via BT: ");
+    //Serial.println(received);
 
     //modificação temporaria para ajustar formato da string:
     enviarDadosVariaveis(received + ";"); //enviando para o arduino
@@ -129,8 +129,8 @@ void enviarDadosAppV2(String msg){
 
   if (msg.length() > 0) {
     SerialBT.print(msg);
-    Serial.print("Enviado para o app: ");
-    Serial.println(msg);
+    //Serial.print("Enviado para o app: ");
+    //Serial.println(msg);
   }
 
 }
