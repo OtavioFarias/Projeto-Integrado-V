@@ -1,5 +1,5 @@
 # vsim -c tb -do "log -r /*; vcd file build/dump.svcd; vcd add -r /*;      run -all; quit -f" 
-# Start time: 20:19:03 on Nov 21,2025
+# Start time: 12:39:44 on Nov 22,2025
 # Loading sv_std.std
 # Loading work.tb
 # Loading work.Top
@@ -21,6 +21,6 @@
 #  vcd add -r /*
 #       run -all
 # ** Note: $finish    : testbench/tb.sv(217)
-#    Time: 565 ns  Iteration: 0  Instance: /tb
-# End time: 20:19:04 on Nov 21,2025, Elapsed time: 0:00:01
+#    Time: 645 ns  Iteration: 0  Instance: /tb
+# End time: 12:39:45 on Nov 22,2025, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 2

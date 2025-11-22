@@ -177,7 +177,7 @@ assign {
 
 assign novoCustoAcumuladoS2 = custoAcumuladoS2 + 1;
 
-assign celulaValorValido = (valorS2 == 1);
+assign celulaValorValido = (valorS2 == 1 || valorS2 == 3);
 assign addressValid = (addressS2 < areaMalha) && (addressS2 > 0);
 assign valorValido = celulaValorValido && addressValid;
 assign candidato = !abertoS2 || novoCustoAcumuladoS2 < custoVizinhoAcumuladoS2;

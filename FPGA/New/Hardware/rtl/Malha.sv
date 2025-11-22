@@ -58,30 +58,4 @@ always_ff @(posedge clock, posedge reset) begin
     end
 end
 
-wire [tamanhoDados - 1:0] data00 = data[0];
-wire [tamanhoDados - 1:0] data01 = data[1];
-wire [tamanhoDados - 1:0] data02 = data[2];
-wire [tamanhoDados - 1:0] data03 = data[3];
-wire [tamanhoDados - 1:0] data04 = data[4];
-wire [tamanhoDados - 1:0] data05 = data[5];
-wire [tamanhoDados - 1:0] data06 = data[6];
-wire [tamanhoDados - 1:0] data07 = data[7];
-wire [tamanhoDados - 1:0] data08 = data[8];
-wire [tamanhoDados - 1:0] data09 = data[9];
-wire [tamanhoDados - 1:0] data10 = data[10];
-wire [tamanhoDados - 1:0] data11 = data[11];
-wire [tamanhoDados - 1:0] data12 = data[12];
-wire [tamanhoDados - 1:0] data13 = data[13];
-wire [tamanhoDados - 1:0] data14 = data[14];
-wire [tamanhoDados - 1:0] data15 = data[15];
-wire [tamanhoDados - 1:0] data16 = data[16];
-wire [tamanhoDados - 1:0] data17 = data[17];
-wire [tamanhoDados - 1:0] data18 = data[18];
-wire [tamanhoDados - 1:0] data19 = data[19];
-wire [tamanhoDados - 1:0] data20 = data[20];
-wire [tamanhoDados - 1:0] data21 = data[21];
-wire [tamanhoDados - 1:0] data80 = data[80];
-wire [tamanhoDados - 1:0] data81 = data[81];
-wire [tamanhoDados - 1:0] data82 = data[82];
-
 endmodule
