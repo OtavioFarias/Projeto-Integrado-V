@@ -20,8 +20,8 @@ parameter linear = $clog2(TamanhoMalha)
 	input [1:0] direcao,
 	output reg [1:0] direcaoOut,
 
-	input [TamanhoMalha*TamanhoMalha - 1 : 0] distanciaTotal,
-	output reg [TamanhoMalha*TamanhoMalha - 1 : 0] distanciaTotalOut,
+	input [addressTam - 1 : 0] distanciaTotal,
+	output reg [addressTam - 1 : 0] distanciaTotalOut,
 	
 	input aberto,
 	output reg abertoOut,

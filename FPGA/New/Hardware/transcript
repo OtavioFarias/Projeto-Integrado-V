@@ -1,5 +1,5 @@
 # vsim -c tb -do "log -r /*; vcd file build/dump.svcd; vcd add -r /*;      run -all; quit -f" 
-# Start time: 14:54:38 on Nov 17,2025
+# Start time: 20:19:03 on Nov 21,2025
 # Loading sv_std.std
 # Loading work.tb
 # Loading work.Top
@@ -14,15 +14,13 @@
 # Loading work.decisorMalha
 # Loading work.FIFO
 # ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'Malha'.  Expected 8, found 7.
-#    Time: 0 ps  Iteration: 0  Instance: /tb/DUT/Malha File: rtl/Top.sv Line: 119
-# ** Warning: (vsim-3722) rtl/Top.sv(119): [TFMPC] - Missing connection for port 'dataReady'.
+#    Time: 0 ps  Iteration: 0  Instance: /tb/DUT/Malha File: rtl/Top.sv Line: 120
+# ** Warning: (vsim-3722) rtl/Top.sv(120): [TFMPC] - Missing connection for port 'dataReady'.
 # log -r /*
 #  vcd file build/dump.svcd
 #  vcd add -r /*
 #       run -all
-#           3
-#           3
-# ** Note: $finish    : testbench/tb.sv(130)
-#    Time: 285 ns  Iteration: 0  Instance: /tb
-# End time: 14:54:38 on Nov 17,2025, Elapsed time: 0:00:00
+# ** Note: $finish    : testbench/tb.sv(217)
+#    Time: 565 ns  Iteration: 0  Instance: /tb
+# End time: 20:19:04 on Nov 21,2025, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 2

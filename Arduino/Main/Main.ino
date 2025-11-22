@@ -34,10 +34,10 @@ void setup() {
   Wire.begin();
   mpu.initialize();
   enviarDadosESP(" MPU inicializado com sucesso");
-
+/*
   calibrarGyroZ();
   ultimoTempoMPU = micros();
-
+*/
 
   /*
   if (!mpu.testConnection()) {
@@ -45,12 +45,16 @@ void setup() {
   }else{
   Serial.println("MPU6050 encontrado!");
   }
-
   */
+  
   //frente();
 
+  Serial.println("Setup Finalizado");
+
+  virarCoordenado(1);
+
 }
-/*
+
 void loop() {
 
   atualizarAnguloZ_ComFiltro();
@@ -62,7 +66,7 @@ void loop() {
     enviarDadosESP("andarAutonomo" + andarAutonomo);
   }
   */
-  /*
+  
   if(andarAutonomo == 1){
 
     //Serial.println("Andar Autonomo Ativado");
@@ -76,46 +80,6 @@ void loop() {
     andarESP();
 
   }
-  
 
-  if (Serial.available() > 0) {
-    String input = Serial.readStringUntil('\n');
-    int cmd = input.toInt();
-    virarCoordenado(cmd);
-
-  }
-}
-
-*/
-
-void loop(){
-
-  int contadorPulsos = 0;        // zera contador antes de começar
-  int estadoAnteriorHall = HIGH; // inicializa estado anterior
-
-  while (contadorPulsos < 3) {
-
-    //frente();                 // anda para frente
-    int estadoAtual = digitalRead(pinoSensorHall);
-
-    // Detecta borda HIGH → LOW (ímã aproximou)
-    if (estadoAnteriorHall == HIGH && estadoAtual == LOW) {
-      contadorPulsos++;
-      Serial.print("Pulso detectado! Contagem: ");
-      Serial.println(contadorPulsos);
-    }
-/*
-
-    Serial.print("Contagem de Pulsos: ");
-    Serial.println(contadorPulsos);
-    Serial.print(" / ");
-    */
-    //Serial.println(tamanhoQuadradoEmPulsos);
-
-
-
-    //delay(500);
-    
-  }
 
 }

@@ -1,6 +1,6 @@
 module Top 
 #(
-parameter int TamanhoMalha = 15, 
+parameter int TamanhoMalha = 10, 
 parameter int tamanhoDados = 6 * $clog2(TamanhoMalha) + 5,
 parameter addressTam = 2 * $clog2(TamanhoMalha)
 )
@@ -17,7 +17,8 @@ parameter addressTam = 2 * $clog2(TamanhoMalha)
 	input writeFromNIOS,
 	input readFIFO,
 	
-	output ready
+	output ready,
+	output readyFIFO
 
 );
 
@@ -164,7 +165,9 @@ filaHeap (
 	.wr_en(writeFIFO), 				// Write enable
 	.rd_en(readFIFO), 				// Read enable
 	
-	.empty(emptyFIFO) 				// FIFO is empty when high
+	.empty(emptyFIFO),				// FIFO is empty when high
+	
+	.ready(readyFIFO)
 	
 );
 

@@ -6,8 +6,10 @@ module FIFO #(parameter DEPTH=8, DWIDTH=16)
                         	rd_en, 				// Read enable
     input      [DWIDTH-1:0] din, 				// Data written into FIFO
     output reg [DWIDTH-1:0] dout, 				// Data read from FIFO
-    output              	empty 				// FIFO is empty when high
+    output              	empty, 				// FIFO is empty when high
                         	//full 				// FIFO is full when high
+                        	
+    output reg ready
 );
 
   wire full;
@@ -37,7 +39,7 @@ module FIFO #(parameter DEPTH=8, DWIDTH=16)
     if (!rstn) begin
       rptr <= 0;
     end else begin
-      if (rd_en & !empty) begin
+      if (rd_en & !empty && ready) begin
         dout <= fifo[rptr];
         rptr <= rptr + 1;
       end
@@ -46,4 +48,26 @@ module FIFO #(parameter DEPTH=8, DWIDTH=16)
 
   assign full  = (wptr + 1) == rptr;
   assign empty = wptr == rptr;
+  
+   always_ff @ (posedge clk) begin
+    if (!rstn) begin
+      ready <= 1;
+    end else begin
+	 
+		if (rd_en & !empty && ready) begin
+		
+			ready <= 0;
+		
+		end
+		else begin
+	 
+			if (rd_en == 0) begin
+			  
+				ready <= 1;
+
+			end
+		end
+    end
+  end
+  
 endmodule

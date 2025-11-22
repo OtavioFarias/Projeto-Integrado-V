@@ -52,7 +52,7 @@ wire celulaValorValido, addressValid, valorValido, candidato;
 
 wire [TamanhoMalha - 1 : 0] dx, dy, dxS4, dyS4, dx_, dy_;
 
-wire [TamanhoMalha*TamanhoMalha - 1 : 0] distanciaTotalS4, distanciaTotalS5, distanciaTotal;
+wire [addressTam - 1 : 0] distanciaTotalS5, distanciaTotal;
 
 wire requestS1, requestS2, candidatoS2, candidatoS3, candidatoS4, candidatoS5;
 
@@ -255,9 +255,6 @@ s3 (
 	.valor(valorS3),
 	.valorOut(valorS4),
 	
-	.distanciaTotal(distanciaTotal),
-	.distanciaTotalOut(distanciaTotalS4),
-	
 	.x(xS3),
 	.xOut(xS4),
 	
@@ -278,9 +275,9 @@ s3 (
 );
 
 
-assign dx_ = (dxS4[TamanhoMalha - 1]) ? !dxS4 : dxS4;
+assign dx_ = (dxS4[linear - 1]) ? !dxS4 : dxS4;
 
-assign dy_ = (dyS4[TamanhoMalha - 1]) ? !dyS4 : dyS4;
+assign dy_ = (dyS4[linear - 1]) ? !dyS4 : dyS4;
 
 assign distanciaTotal = dx_ + dy_;
 
@@ -309,7 +306,7 @@ s4 (
 	.valor(valorS4),
 	.valorOut(valorS5),
 	
-	.distanciaTotal(distanciaTotalS4),
+	.distanciaTotal(distanciaTotal),
 	.distanciaTotalOut(distanciaTotalS5),
 	
 	.x(xS4),

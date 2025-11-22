@@ -1,0 +1,44 @@
+# Current time Fri Nov 21 19:24:45 2025
+# ModelSim - Intel FPGA Edition Stack Trace
+# Program = vsim
+# Id = "2020.1"
+# Version = "2020.02"
+# Date = "Feb 28 2020"
+# Platform = "linuxaloem"
+# Signature = fa4d3e95ccc4dcaa70644b276588aa2d
+# 0    0x08dd7804: '<unknown (@0x8dd7804)>'
+# 1    0x08dd1c44: '<unknown (@0x8dd1c44)>'
+# 2    0x08b70981: '<unknown (@0x8b70981)>'
+# 3    0x08b72012: '<unknown (@0x8b72012)>'
+# 4    0x08bc383f: '<unknown (@0x8bc383f)>'
+# 5    0x08b5569a: '<unknown (@0x8b5569a)>'
+# 6    0x08b5a341: '<unknown (@0x8b5a341)>'
+# 7    0x08b65607: '<unknown (@0x8b65607)>'
+# 8    0x0816df2f: '<unknown (@0x816df2f)>'
+# 9    0x0816ec71: '<unknown (@0x816ec71)>'
+# 10   0xf7d171db: 'start_thread + 0x0000014b' in '/lib/libc.so.6'
+# End of Stack Trace
+
+
+# Current time Fri Nov 21 19:26:13 2025
+# ModelSim - Intel FPGA Edition Stack Trace
+# Program = vsim
+# Id = "2020.1"
+# Version = "2020.02"
+# Date = "Feb 28 2020"
+# Platform = "linuxaloem"
+# Signature = fa4d3e95ccc4dcaa70644b276588aa2d
+# 0    0x08dd7804: '<unknown (@0x8dd7804)>'
+# 1    0x08dd1c44: '<unknown (@0x8dd1c44)>'
+# 2    0x08b70981: '<unknown (@0x8b70981)>'
+# 3    0x08b72012: '<unknown (@0x8b72012)>'
+# 4    0x08bc383f: '<unknown (@0x8bc383f)>'
+# 5    0x08b5569a: '<unknown (@0x8b5569a)>'
+# 6    0x08b5a341: '<unknown (@0x8b5a341)>'
+# 7    0x08b65607: '<unknown (@0x8b65607)>'
+# 8    0x0816df2f: '<unknown (@0x816df2f)>'
+# 9    0x0816ec71: '<unknown (@0x816ec71)>'
+# 10   0xf7d171db: 'start_thread + 0x0000014b' in '/lib/libc.so.6'
+# End of Stack Trace
+
+

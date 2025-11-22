@@ -80,5 +80,8 @@ wire [tamanhoDados - 1:0] data18 = data[18];
 wire [tamanhoDados - 1:0] data19 = data[19];
 wire [tamanhoDados - 1:0] data20 = data[20];
 wire [tamanhoDados - 1:0] data21 = data[21];
+wire [tamanhoDados - 1:0] data80 = data[80];
+wire [tamanhoDados - 1:0] data81 = data[81];
+wire [tamanhoDados - 1:0] data82 = data[82];
 
 endmodule

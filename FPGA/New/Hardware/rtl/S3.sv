@@ -19,9 +19,6 @@ parameter linear = $clog2(TamanhoMalha)
 
 	input [1:0] direcao,
 	output reg [1:0] direcaoOut,
-
-	input [TamanhoMalha*TamanhoMalha - 1 : 0] distanciaTotal,
-	output reg [TamanhoMalha*TamanhoMalha - 1 : 0] distanciaTotalOut,
 	
 	input aberto,
 	output reg abertoOut,
@@ -57,7 +54,6 @@ always_ff @(posedge reset, posedge clock) begin
 		custoEstimadoOut <= 0;
 		addressOut <= 0;
 		direcaoOut <= 0;
-		distanciaTotalOut <= 0;
 		abertoOut <= 0;
 		valorOut <= 0;
 		xOut <= 0;
@@ -74,7 +70,6 @@ always_ff @(posedge reset, posedge clock) begin
 		custoEstimadoOut <= custoEstimado;
 		addressOut <= address;
 		direcaoOut <= direcao;
-		distanciaTotalOut <= distanciaTotal;
 		abertoOut <= aberto;
 		valorOut <= valor;
 		xOut <= x;

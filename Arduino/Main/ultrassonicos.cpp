@@ -34,6 +34,10 @@ void capturaPulso() {
 // Faz uma leitura via pulseIn (sem interrupção)
 float medirSensor(int direcao) {
 
+  Serial.print("Medir Sensor: ");
+  Serial.println(direcao);
+
+
   if(debug){
    enviarDadosESP("Funcao: medirSensor");
     enviarDadosESP("Direcao: " + direcao);
@@ -66,24 +70,21 @@ float medirSensor(int direcao) {
 
   int tempo = 30000;
 
-  do{
+  // Dispara o pulso ultrassônico
+  //Inicializa
+  digitalWrite(trigPin, LOW);
+  delayMicroseconds(2);
 
-    // Dispara o pulso ultrassônico
-    digitalWrite(trigPin, LOW);
-    delayMicroseconds(2);
-    digitalWrite(trigPin, HIGH);
-    delayMicroseconds(10);
-    digitalWrite(trigPin, LOW);
+  digitalWrite(trigPin, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(trigPin, LOW);
 
-    // Mede o tempo do eco
-    duracao = pulseIn(echoPin, HIGH, tempo); // timeout 30ms
+  // Mede o tempo do eco
+  duracao = pulseIn(echoPin, HIGH, tempo);
 
-    tempo += 10000; //adiciona 10ms a cada medição
+  Serial.print("Duração Atual");
+  Serial.println(duracao);
 
-    delay(50);
-
-  }while(duracao == 0 && tempo < 100000); //1s tempo máximo de medição
-  
   if (duracao == 0) return -1; // sem eco
 
   float distancia = duracao / 58.0; // converte em cm
@@ -93,6 +94,10 @@ float medirSensor(int direcao) {
   Serial.print(": ");
   Serial.println(distancia);
   */
+
+  Serial.print("Distancia Medida");
+  Serial.println(distancia);
+
   return distancia;
 
   if(debug){
@@ -103,6 +108,9 @@ float medirSensor(int direcao) {
 
 // Média de leituras para reduzir ruído
 float mediaUltrassonico(int n, int direcao) {
+
+  Serial.print("Medindo Ultrassonico: ");
+  Serial.println(direcao);
 
   if(debug){
     enviarDadosESP("Funcao: mediaUltrassonico");
@@ -125,6 +133,8 @@ float mediaUltrassonico(int n, int direcao) {
 //função para chamar diferentes modos para disparar os sensores, possivelmente juntos, em série ou alternado
 float chamaMedirSensor(){
 
+  Serial.println("Medindo Sensores");
+
   if(debug){
     enviarDadosESP("Funcao: chamaMedirSensor");
   }
@@ -133,13 +143,20 @@ float chamaMedirSensor(){
 
   //Serial.println("Chamando Medir Distância Frente");
   distanciaFrente = mediaUltrassonico(leiturasUltrassonico, 0);
-
+  Serial.print("Distância Frente:");
+  Serial.println(distanciaFrente);
+/*
   //Serial.println("Chamando Medir Distância Direita");
   distanciaDireita = mediaUltrassonico(leiturasUltrassonico, 2);
+  Serial.print("Distância Direita:");
+  Serial.println(distanciaDireita);
+
 
   //Serial.println("Chamando Medir Distância Esquerda");
   distanciaEsquerda = mediaUltrassonico(leiturasUltrassonico, 1);
-
+  Serial.print("Distância Esquerda:");
+  Serial.println(distanciaEsquerda);
+*/
   return distanciaFrente;
 
 }
