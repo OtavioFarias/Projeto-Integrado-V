@@ -1,4 +1,4 @@
-//#include "toApp.h"
+#include "toApp.h"
 #include "toArduino.h"
 #include "toFPGA.h"
 
@@ -12,7 +12,9 @@ void setup() {
   enviarDadosVariaveis("Comunicação UART inicializada");
   Serial.println("UART iniciado");
 
-
+  iniciarWIFI();
+  enviarDadosVariaveis("WIFI iniciado");
+  Serial.println("WIFI iniciado");
 
 }
 
@@ -20,6 +22,7 @@ void loop() {
   
   receberDadosAppV2();
   lerArduino();
+  receberDadosFPGA();
   //enviarDadosVariaveis("Tá vivo");
   //enviarKeepAlive();
   //enviarAppTeste();

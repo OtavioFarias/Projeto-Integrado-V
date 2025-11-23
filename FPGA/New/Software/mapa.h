@@ -6,7 +6,7 @@
 
 #include <stdio.h>
 
-#define TAMANHO_MALHA 1
+#define TAMANHO_MALHA 10
 #define TAMANHO_MALHA_TOTAL TAMANHO_MALHA*TAMANHO_MALHA
 
 #define DESCONHECIDO 0

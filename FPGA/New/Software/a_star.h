@@ -17,3 +17,4 @@ int aStar_direct(Mapa *mapa,
 
 #endif
 
+

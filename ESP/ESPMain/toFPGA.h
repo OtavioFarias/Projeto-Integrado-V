@@ -1,5 +1,3 @@
-
-/*
 #ifndef TOFPGA_H
 #define TOFPGA_H
 
@@ -10,10 +8,8 @@
 
 void iniciarWIFI();
 
-void enviarDados(String mensagem);
+void enviarDadosFPGA(String msg);
 
-void receberDados();
+void receberDadosFPGA();
 
 #endif
-
-*/

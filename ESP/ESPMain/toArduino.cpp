@@ -16,8 +16,8 @@ void iniciarComunicacaoArduino() {               // Monitor serial
 void lerArduino(){
   if (SerialESP.available()) {
     String recebido = SerialESP.readStringUntil('\n');
-    Serial.print("Recebido do MEGA: ");
-    Serial.println(recebido);
+    //Serial.print("Recebido do MEGA: ");
+    //Serial.println(recebido);
 
     //a -> manda para o App, f -> mapa para o FPGA
     char identificador = recebido.charAt(0);

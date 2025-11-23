@@ -1,38 +1,65 @@
-
-/*
 #include "toFPGA.h"
 
-// Configuração do Access Point
-const char* ssid = "ESP32_AP";
-const char* password = "12345678";
+const char* ap_ssid = "ESP32_REDE";
+const char* ap_password = "12345678";
 
-// Porta para comunicação TCP
-WiFiServer server(80);
-WiFiClient client;
+WiFiServer server(5000);
 
-void iniciarWIFI(){
+void iniciarWIFI() {
   Serial.begin(115200);
 
-  // Inicia o AP
-  WiFi.softAP(ssid, password);
+  Serial.println("Criando Access Point...");
+  WiFi.mode(WIFI_AP);
+  WiFi.softAP(ap_ssid, ap_password);
 
-  // Inicia o servidor
+  Serial.print("AP IP: ");
+  Serial.println(WiFi.softAPIP());
+
   server.begin();
+  Serial.println("Servidor TCP iniciado na porta 5000");
 }
 
 
-// -------- FUNÇÃO PARA ENVIAR DADOS --------
-void enviarDados(String mensagem) {
-  if (client && client.connected()) {
-    client.println(mensagem);
+void enviarDadosFPGA(String msg){
+
+  WiFiClient client = server.available();
+
+  if (client) {
+    Serial.println("PC conectado!");
+
+      if (client.available()) {
+        
+        Serial.print("Enviando para o FPGA: ");
+        Serial.println(msg);
+        client.println(msg);
+
+      }
+
+    client.stop();
+
   }
+
 }
 
-// -------- FUNÇÃO PARA RECEBER DADOS --------
-void receberDados() {
-  if (client && client.available()) {
-    String dados = client.readStringUntil('\n');
+void receberDadosFPGA(){
+
+  WiFiClient client = server.available();
+
+  if (client) {
+
+    Serial.println("PC conectado!");
+
+    if (client.available()) {
+      String msg = client.readStringUntil('\n');
+      Serial.print("Recebido do FPGA: ");
+      Serial.println(msg);
+
+    }
+
+    client.stop();
+
   }
+
 }
-*/
+
 
