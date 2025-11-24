@@ -18,6 +18,10 @@ enum Direcao {
   TRAS = 3
 };
 
+extern float distanciaDesejada;
+
+extern Direcao direcaoAtual;
+
 extern const int pinoSensorHall;
 
 extern int tamanhoPasso;

@@ -5,11 +5,18 @@
 
 #include <WiFi.h>
 #include <Arduino.h>
+#include "toArduino.h"
 
 void iniciarWIFI();
 
 void enviarDadosFPGA(String msg);
 
-void receberDadosFPGA();
+String receberDadosFPGA();
+
+void comunicarFPGA(String mensagem);
+
+void esperarCaminho();
+
+void receberMapa();
 
 #endif

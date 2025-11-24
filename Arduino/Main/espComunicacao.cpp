@@ -128,8 +128,7 @@ void esperarFPGA(){
   }
 
   // ESP espera receber esses dois dados depois envia a resposta
-  enviarDadosESPparaFPGA(String(posicaoAtualX));
-  enviarDadosESPparaFPGA(String(posicaoAtualY));
+  enviarDadosESPparaFPGA(String("Novo_Trajeto") + String(" x:") + String(posicaoAtualX) + String(" y:") + String(posicaoAtualX));
 
   String mensagem;
 
@@ -144,11 +143,11 @@ void esperarFPGA(){
 
 void enviarDadosLaterais(){
 
-  enviarDadosESPparaFPGA("Distância Direita: " + String(distanciaDireita));
-  enviarDadosESPparaFPGA("Distância Esquerda: " + String(distanciaEsquerda));
+  enviarDadosESPparaFPGA(String("Atualizar_Mapa:") + String(" x:") + String(posicaoAtualX) + String(" y:") + String(posicaoAtualX) + String(" Distância_Direita:") + String((int)(distanciaDireita / distanciaDesejada)) + String(" Distância_Esquerda:") + String((int) (distanciaEsquerda/ distanciaDesejada)) + String(" Direcao_Atual:") + String(direcaoAtual));
 
 }
 
+//Sempre para o App
 void enviarDadosESP(String msg) {
 
   Serial.print("Enviando para o ESP: ");

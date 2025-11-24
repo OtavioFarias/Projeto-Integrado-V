@@ -4,6 +4,7 @@
 #pragma once
 #include <HardwareSerial.h>
 #include "toApp.h"
+#include "toFPGA.h"
 
 void iniciarComunicacaoArduino();
 

@@ -14,6 +14,7 @@ void iniciarComunicacaoArduino() {               // Monitor serial
 }
 
 void lerArduino(){
+
   if (SerialESP.available()) {
     String recebido = SerialESP.readStringUntil('\n');
     //Serial.print("Recebido do MEGA: ");
@@ -34,7 +35,7 @@ void lerArduino(){
       Serial.print("Recebido do MEGA: ");
       Serial.println(recebido);
 
-        //void enviarDadosFPGA(String mensagem);//falta implementar
+      comunicarFPGA(recebido);
 
     }
   }

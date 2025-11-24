@@ -51,8 +51,7 @@ void setup() {
 
   Serial.println("Setup Finalizado");
 
-  virarCoordenado(1);
-
+  
 }
 
 void loop() {
