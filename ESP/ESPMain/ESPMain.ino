@@ -12,7 +12,7 @@ void setup() {
   enviarDadosVariaveis("Comunicação UART inicializada");
   Serial.println("UART iniciado");
 
-  iniciarWIFI();
+  //iniciarWIFI();
   enviarDadosVariaveis("WIFI iniciado");
   Serial.println("WIFI iniciado");
 
@@ -22,7 +22,7 @@ void loop() {
   
   receberDadosAppV2();
   lerArduino();
-  receberDadosFPGA();
+  //receberDadosFPGA();
   //enviarDadosVariaveis("Tá vivo");
   //enviarKeepAlive();
   //enviarAppTeste();

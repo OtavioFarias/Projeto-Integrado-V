@@ -95,18 +95,18 @@ void enviarKeepAlive() {
 void iniciarBluetoothV2() {
 
   //Serial.begin(115200);
-  //Serial.println("Iniciando Bluetooth no ESP32...");
+  Serial.println("Iniciando Bluetooth no ESP32...");
 
   if (!SerialBT.begin("ESP32_RoboAspirador")) {
-    //Serial.println("Falha ao iniciar Bluetooth!");
+    Serial.println("Falha ao iniciar Bluetooth!");
     while (true) { delay(1000); }
   }
 
   const uint8_t* mac = esp_bt_dev_get_address();
-  //Serial.printf("Bluetooth iniciado! MAC: %02X:%02X:%02X:%02X:%02X:%02X\n",
-  //              mac[0], mac[1], mac[2], mac[3], mac[4], mac[5]);
+  Serial.printf("Bluetooth iniciado! MAC: %02X:%02X:%02X:%02X:%02X:%02X\n",
+                mac[0], mac[1], mac[2], mac[3], mac[4], mac[5]);
 
-  //Serial.println("Aguardando conexão...");
+  Serial.println("Aguardando conexão...");
 }
 
 void receberDadosAppV2() {
@@ -117,8 +117,8 @@ void receberDadosAppV2() {
   if (SerialBT.available()) {
     String received = SerialBT.readStringUntil(';');
     received.trim();
-    //Serial.print("Recebido via BT: ");
-    //Serial.println(received);
+    Serial.print("Recebido via BT: ");
+    Serial.println(received);
 
     //modificação temporaria para ajustar formato da string:
     enviarDadosVariaveis(received + ";"); //enviando para o arduino
