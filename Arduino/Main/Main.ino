@@ -51,7 +51,7 @@ void setup() {
 
   Serial.println("Setup Finalizado");
 
-  esperarFPGA();
+  enviarDadosLaterais();
   
 }
 
