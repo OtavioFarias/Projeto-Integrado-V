@@ -5,23 +5,30 @@ const char* ap_password = "12345678";
 
 WiFiServer server(5000);
 
+
+WiFiClient client;
+
+
 void iniciarWIFI() {
 
   Serial.println("Criando Access Point...");
   WiFi.mode(WIFI_AP);
   WiFi.softAP(ap_ssid, ap_password);
 
+
   Serial.print("AP IP: ");
   Serial.println(WiFi.softAPIP());
 
   server.begin();
   Serial.println("Servidor TCP iniciado na porta 5000");
+
+  client = server.available();
 }
 
 
 void enviarDadosFPGA(int msg){
 
-  WiFiClient client = server.available();
+  //WiFiClient client = server.available();
 
   if (client) {
     Serial.println("PC conectado!");
@@ -34,7 +41,7 @@ void enviarDadosFPGA(int msg){
 
       }
 
-    client.stop();
+    //client.stop();
 
   }
 
@@ -42,7 +49,7 @@ void enviarDadosFPGA(int msg){
 
 String receberDadosFPGA(){
 
-  WiFiClient client = server.available();
+  //WiFiClient client = server.available();
 
   if (client) {
 
@@ -74,7 +81,7 @@ String receberDadosFPGA(){
 
       }
 
-    client.stop();
+    //client.stop();
 
   }
 

@@ -20,6 +20,8 @@ void setup() {
 
 void loop() {
   
+
+  enviarDadosFPGA(15);
   receberDadosAppV2();
   lerArduino();
   receberDadosFPGA();
