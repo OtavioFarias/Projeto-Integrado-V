@@ -15,3 +15,34 @@ Link para o documento de planejamento: https://www.overleaf.com/read/wmhgfznhyjg
 # Rich Picture
 ![richPicture](./Documentacao/richPicture.png)
 
+# Organização das Pastas
+
+## App
+
+Executável do app para comunicação com o carrinho e código-fonte. A comunicação é realizada via Bluetooth, ajustada para funcionar exclusivamente com o endereço MAC do ESP utilizado no projeto.
+
+## ESP
+
+Códigos-fonte para uso no ESP, divididos em:
+
+* **ESPMain.ino**: Funções `void` e `setup` para comunicação.
+* **OTHERS.CPP/H**: Utilitários para uso nas demais funções.
+* **toApp.cpp/h**: Comunicação Bluetooth com o app.
+* **toArduino.cpp/h**: Comunicação serial UART com o Arduino.
+* **toFPGA.cpp/h**: Comunicação Wi-Fi com o FPGA (atualmente, conecta-se com o PC apenas para validação).
+
+## Arduino
+
+* **Main.ino**: Funções `setup` e `void` para inicialização dos sensores e comunicação.
+* **espComunicacao.cpp/h**: Comunicação com o ESP via UART.
+* **motores.cpp/h**: Controle dos motores através da ponte H e agrupamento das funções para controle dos sensores.
+* **mpu.cpp/h**: Controle do MPU para ajuste de ângulo de rotação.
+* **outros.cpp/h**: Funções auxiliares.
+* **ultrassonico.cpp/h**: Controle dos três ultrassônicos para medição de distância.
+
+## FPGA
+
+* **Hardware**: Implementação em Verilog do trecho escolhido.
+* **Software**: Software inicial sem hardware.
+* **SWparaRodarFingindoSerOFPGA**: Software adaptado para simulação do FPGA.
+* **quartus.zip**: Projeto Quartus integrado e funcional com o acelerador.
