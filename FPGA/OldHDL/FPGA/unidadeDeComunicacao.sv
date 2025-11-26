@@ -1,1 +1,0 @@
-//unidade responsável por traduzir os dados para enviar e receber do esp
