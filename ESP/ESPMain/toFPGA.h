@@ -10,7 +10,7 @@
 
 void iniciarWIFI();
 
-void enviarDadosFPGA(int msg);
+void enviarDadosFPGA(String msg);
 
 String receberDadosFPGA();
 

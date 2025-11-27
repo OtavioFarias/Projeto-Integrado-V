@@ -22,13 +22,9 @@ void loop() {
 
   aceitarConexao();
   
-  //enviarDadosFPGA(15);
-
+  
   receberDadosAppV2();
-  //lerArduino();
+  lerArduino();
   receberDadosFPGA();
-  //enviarDadosVariaveis("Tá vivo");
-  //enviarKeepAlive();
-  //enviarAppTeste();
 
 }

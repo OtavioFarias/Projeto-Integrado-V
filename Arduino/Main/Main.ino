@@ -31,13 +31,13 @@ void setup() {
 
   pinMode(pinoSensorHall, INPUT_PULLUP);
 
+
   Wire.begin();
   mpu.initialize();
   enviarDadosESP(" MPU inicializado com sucesso");
-/*
+
   calibrarGyroZ();
   ultimoTempoMPU = micros();
-*/
 
   /*
   if (!mpu.testConnection()) {
@@ -52,9 +52,9 @@ void setup() {
   Serial.println("Setup Finalizado");
 
   enviarDadosLaterais();
-  //enviarDadosESPparaFPGA(String("Atualizar_Mapa:") + " "  + String(4) + " "  + String(4) + " "  + String((int)(2)) + " "  + String(2) + " "  + String(0));
+  enviarDadosESPparaFPGA(String("Atualizar_Mapa:") + " "  + String(4) + " "  + String(4) + " "  + String((int)(2)) + " "  + String(2) + " "  + String(0));
 
-  //esperarFPGA();
+  esperarFPGA();
   
   
 }

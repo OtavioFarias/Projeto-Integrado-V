@@ -26,8 +26,8 @@ Direcao direcaoAtual = FRENTE;
 int tamanhoPasso = 180; //ms
 
 //posicao do carrinho na malha
-int posicaoAtualX = 0;
-int posicaoAtualY = 0;
+int posicaoAtualX = 5;
+int posicaoAtualY = 5;
 
 cppQueue	filaDestino(sizeof(uint8_t), 10, FIFO, true);
 

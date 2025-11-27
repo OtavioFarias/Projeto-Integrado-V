@@ -22,24 +22,13 @@ void iniciarWIFI() {
   Serial.println("Servidor TCP iniciado na porta 5000");
 
 }
-
-
-void enviarDadosFPGA(int msg){
-
+void enviarDadosFPGA(String msg) {
   if (client && client.connected()) {
-    Serial.println("PC conectado!");
-
-      if (client.available()) {
-        
-        Serial.print("Enviando para o FPGA: ");
-        Serial.println(msg);
-        client.println(msg);
-        return;
-
-      }
-
+    client.println(msg);          // envia sempre
+    client.flush();               // força envio imediato
+    Serial.print("Enviado: ");
+    Serial.println(msg);
   }
-
 }
 
 String receberDadosFPGA(){
@@ -57,6 +46,8 @@ String receberDadosFPGA(){
 
           if(separarBits(msg, 0, 0) == "1"){
 
+            Serial.println("Esperar Mapa");
+
             receberMapa(separarBits(msg, 1, 8).toInt());
 
             return "acabou";
@@ -65,7 +56,9 @@ String receberDadosFPGA(){
           
           if(msg.toInt() == 0) {
             
-            enviarDadosFPGA(1);
+            Serial.println("Esperar caminho");
+
+            enviarDadosFPGA("1");
             esperarFPGA();
 
           }
@@ -107,8 +100,7 @@ void comunicarFPGA(String mensagem){
     int DistanciaY = mensagem.substring(pos4 + 1, pos5).toInt();
     int direcao = mensagem.substring(pos5 + 1, pos6).toInt();
 
-
-    String valorEnvio = String(0);
+    String valorEnvio = "00000000000000000000000000000000";
 
     valorEnvio = escreverBits(valorEnvio, 0, 0, 1);
     valorEnvio = escreverBits(valorEnvio, 1, 4, x);
@@ -117,7 +109,10 @@ void comunicarFPGA(String mensagem){
     valorEnvio = escreverBits(valorEnvio, 17, 24, DistanciaY);
     valorEnvio = escreverBits(valorEnvio, 25, 25, direcao);
 
-    enviarDadosFPGA(valorEnvio.toInt()); 
+    Serial.print("Enviando para o FPGA do atualizar Mapa: ");
+    Serial.println(valorEnvio);
+
+    enviarDadosFPGA(valorEnvio); 
 
   }else 
   if (cabecalho == "fNovo_Trajeto") {
@@ -130,13 +125,16 @@ void comunicarFPGA(String mensagem){
     Serial.println(x);
     Serial.println(y);
 
-    String valorEnvio = String(0);
+    String valorEnvio = "00000000000000000000000000000000";
 
     valorEnvio = escreverBits(valorEnvio, 0, 0, 0);
     valorEnvio = escreverBits(valorEnvio, 1, 4, x);
     valorEnvio = escreverBits(valorEnvio, 5, 8, y);
 
-    enviarDadosFPGA(valorEnvio.toInt());    
+    Serial.print("Enviando para o FPGA do novo trajeto: ");
+    Serial.println(valorEnvio);
+
+    enviarDadosFPGA(valorEnvio);    
 
     esperarCaminho();
 
@@ -151,11 +149,13 @@ void comunicarFPGA(String mensagem){
 
 void esperarCaminho(){
 
+  client.flush(); 
+
   Serial.println("Esperando novo caminho");
 
   int tamanho = -1;
 
-  while(tamanho < 0){
+  while(tamanho <= 1){
     
     tamanho = receberDadosFPGA().toInt();
 
