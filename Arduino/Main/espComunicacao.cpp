@@ -14,7 +14,9 @@ void enviarDadosUltrassonicoESP(float frente, float direita, float esquerda, flo
 
 void inciarComunicacaoESP(){
   Serial2.begin(9600);   // UART com ESP32 define quais usar, vamos usar 16 e 17
+  Serial2.setTimeout(100); // 100 ms em vez de 1000
   Serial.println("Mega pronto para comunicar com ESP32...");
+
 }
 
 void enviarDadosESP(){
@@ -26,26 +28,25 @@ void enviarDadosESP(){
   }
 }
 
-
+String bufferESP = "";
 
 void receberDadosESP() {
-  //Serial.println("Tentando ler dados ESP: ");
-  
-  //Serial.println("Tentando Ler ESP");
+  while (Serial2.available()) {
+    char c = Serial2.read();
 
-  if (Serial2.available()) { // Verifica se há dados
-    Serial.println(Serial2.available());
-    String mensagem = Serial2.readStringUntil('\n'); // Lê a string completa até '\n'
-    //String mensagem = String(Serial2.read());
-    mensagem.trim(); // Remove espaços ou caracteres invisíveis
-    if (mensagem.length() > 0) {
-      Serial.print("Recebido do ESP32: ");
-      Serial.println(mensagem);
-      processarMensagem(mensagem); // envia para a função que processa a mensagem
+    if (c == '\n') {  
+      bufferESP.trim();
+      if (bufferESP.length() > 0) {
+        Serial.print("Recebido do ESP32: ");
+        Serial.println(bufferESP);
+        processarMensagem(bufferESP);
+      }
+      bufferESP = ""; // limpa buffer
+    } else {
+      bufferESP += c;
     }
   }
 }
-
 
 // Função para processar a mensagem recebida
 void processarMensagem(String msg) {
@@ -138,6 +139,8 @@ void esperarFPGA(){
     filaDestino.push(&valor);  
 
   }
+
+  Serial.println("Novo Trajeto Recebido");
 
 }
 

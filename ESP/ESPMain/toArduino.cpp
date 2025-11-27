@@ -52,9 +52,9 @@ void enviarArduinoTeste(){
 
 void enviarDadosVariaveis(String msg){
 
-  SerialESP.println(msg);
   Serial.print("Mensagem enviada para o arduino: ");
   Serial.println(msg);
   SerialESP.println(msg);
+  delay(50);
 
 }

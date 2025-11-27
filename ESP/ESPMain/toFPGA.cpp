@@ -23,6 +23,9 @@ void iniciarWIFI() {
 
 }
 void enviarDadosFPGA(String msg) {
+
+  client.flush();
+
   if (client && client.connected()) {
     client.println(msg);          // envia sempre
     client.flush();               // força envio imediato
@@ -48,7 +51,11 @@ String receberDadosFPGA(){
 
             Serial.println("Esperar Mapa");
 
-            receberMapa(separarBits(msg, 1, 8).toInt());
+            int tamanho = binToInt(separarBits(msg, 1, 8));
+            Serial.print("Tamanho do Mapa: ");
+            Serial.println(tamanho);
+
+            receberMapa(tamanho);
 
             return "acabou";
             
@@ -63,6 +70,9 @@ String receberDadosFPGA(){
 
           }
         }
+
+        client.flush();
+
         return msg;
 
       }
@@ -75,6 +85,8 @@ String receberDadosFPGA(){
 
 // Ajusta os dados para o padrão esperado do FPGA
 void comunicarFPGA(String mensagem){
+
+  delay(1000);
 
   Serial.println("Separando Mensagem Para o FPGA");
 
@@ -103,16 +115,19 @@ void comunicarFPGA(String mensagem){
     String valorEnvio = "00000000000000000000000000000000";
 
     valorEnvio = escreverBits(valorEnvio, 0, 0, 1);
-    valorEnvio = escreverBits(valorEnvio, 1, 4, x);
-    valorEnvio = escreverBits(valorEnvio, 5, 8, y);
-    valorEnvio = escreverBits(valorEnvio, 9, 16, DistanciaX);
-    valorEnvio = escreverBits(valorEnvio, 17, 24, DistanciaY);
-    valorEnvio = escreverBits(valorEnvio, 25, 25, direcao);
+    valorEnvio = escreverBits(valorEnvio, 2, 5, x);
+    valorEnvio = escreverBits(valorEnvio, 6, 9, y);
+    valorEnvio = escreverBits(valorEnvio, 10, 10, direcao);
+    valorEnvio = escreverBits(valorEnvio, 11, 14, DistanciaX);
+    valorEnvio = escreverBits(valorEnvio, 15, 18, DistanciaY);
+    
 
     Serial.print("Enviando para o FPGA do atualizar Mapa: ");
     Serial.println(valorEnvio);
 
     enviarDadosFPGA(valorEnvio); 
+
+    esperarFPGA();
 
   }else 
   if (cabecalho == "fNovo_Trajeto") {
@@ -127,9 +142,11 @@ void comunicarFPGA(String mensagem){
 
     String valorEnvio = "00000000000000000000000000000000";
 
-    valorEnvio = escreverBits(valorEnvio, 0, 0, 0);
-    valorEnvio = escreverBits(valorEnvio, 1, 4, x);
-    valorEnvio = escreverBits(valorEnvio, 5, 8, y);
+    valorEnvio = escreverBits(valorEnvio, 0, 1, 3);
+    valorEnvio = escreverBits(valorEnvio, 2, 5, x);
+    valorEnvio = escreverBits(valorEnvio, 6, 9, y);
+    valorEnvio = escreverBits(valorEnvio, 10, 10, 1);
+
 
     Serial.print("Enviando para o FPGA do novo trajeto: ");
     Serial.println(valorEnvio);
@@ -149,45 +166,70 @@ void comunicarFPGA(String mensagem){
 
 void esperarCaminho(){
 
-  client.flush(); 
-
   Serial.println("Esperando novo caminho");
 
   int tamanho = -1;
 
-  while(tamanho <= 1){
+  String binTamanho, binDados;
+
+  while(tamanho < 0 || binTamanho.equals("1")){
     
-    tamanho = receberDadosFPGA().toInt();
+    binTamanho = receberDadosFPGA();
+    tamanho = binToInt(separarBits(binTamanho, 0, 7));
 
   }
 
   Serial.print("Tamanho: ");
   Serial.println(tamanho);
 
+  int tamanho1 = -1;
+
+  while((binDados = receberDadosFPGA()).equals(binTamanho) || binDados.equals("1"));
+
+  Serial.println("Bins");
+  Serial.println(binDados);
+  Serial.println(binTamanho);
+
   int counter = 0;
   int counter2 = 0;
 
-  while(counter < tamanho / 16){
 
-    counter = 0;
+  while(counter <= (int)tamanho / 16){
 
-    counter++;
-
+  
     String valor = " ";
 
-    while(valor == " ") {
+    if(counter == 0){
 
-      valor = receberDadosFPGA();
+        valor = binDados;
+        Serial.println("Dados vindo de Cima");
+        Serial.println(valor);
+
+    }else{
+
+      while(valor.equals(" ") || valor.equals("1")) {
+
+        valor = receberDadosFPGA();
+
+      }
 
     }
+
+    Serial.print("Caminho recebido do FPGA: ");
+    Serial.println(valor);
 
     while(counter2 < 16){
 
-      enviarDadosVariaveis(separarBits(valor, 0 + counter2*2, 3 + counter2*2));
+      delay(500);
+      enviarDadosVariaveis(separarBits(valor, 0 + counter2*2, 1 + counter2*2));
 
       counter2++;
 
+      if(counter*16 + counter2 >= tamanho) break;
+
     }
+
+    counter++;
 
   }
 
@@ -203,21 +245,26 @@ void receberMapa(int tamanho){
   int counter2 = 0;
 
 
-  while(counter < tamanho/3){
+  while(counter <= (int)tamanho/3){
 
     String valor = " ";
     
-    while(valor == 0){ 
+    while(valor.equals(" ") || valor.equals("1")){ 
       
       valor = receberDadosFPGA();
 
     }
 
+    Serial.print("Dado Recebido: ");
+    Serial.println(valor);
+
     counter2 = 0;
 
     while(counter2 < 3){
 
-      enviarDadosAppV2("m" + separarBits(valor, 0 + counter2*10, 3 + counter2*10) + ";" + separarBits(valor, 4 + counter2*10, 7 + counter2*10)  + ";" + separarBits(valor, 8 + counter2*10, 9 + counter2*10));
+      String mapaEnviar = "MPA" + separarBits(valor, 0 + counter2*10, 3 + counter2*10) + ";" + separarBits(valor, 4 + counter2*10, 7 + counter2*10)  + ";" + separarBits(valor, 8 + counter2*10, 9 + counter2*10);
+
+      enviarDadosAppV2(mapaEnviar);
 
       counter2++;
 
@@ -227,6 +274,7 @@ void receberMapa(int tamanho){
 
   }
   
+  Serial.println("Mapa enviado");
 
 }
 
@@ -246,3 +294,5 @@ void aceitarConexao() {
     }
   }
 }
+
+

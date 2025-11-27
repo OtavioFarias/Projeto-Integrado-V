@@ -1,29 +1,282 @@
 #include "comunicacao.h"
-#include <sys/socket.h>
-#include <arpa/inet.h>
-#include <netinet/in.h>
-#include <sys/select.h>
-#include <sys/time.h>
-#include <string.h>
+#include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include <unistd.h>
-#include <time.h>
-#include <errno.h>
 
-static int global_sockfd = -1;
 static MapUpdate buffer_updates[MAX_BUFFER_MAPA];
 static int qtd_updates = 0;
+static uint8_t ultima_pos_x = 0;
+static uint8_t ultima_pos_y = 0;
 
-static volatile bool flag_pedido_nova_rota = false;
-
-// === CORREÇÃO: Variáveis para guardar a posição do robô ===
-static volatile uint8_t ultima_pos_x = 0;
-static volatile uint8_t ultima_pos_y = 0;
+// Protótipos
+void enviar_buffer_mapa_app_simulado(int socket);
+void bufferizar_update(uint8_t x, uint8_t y);
+void comm_escrever_bits(uint32_t *buffer, int *pos_bit, int val, int nbits);
+int comm_ler_bits(uint32_t buffer, int *pos_bit, int nbits);
+int idx(int x, int y);
 
 // ============================================================================
-// FUNÇÕES AUXILIARES DE BITS
+// AUXILIAR: Imprime 32 bits (Int -> String)
+// ==========================================================comm_escrever_bits==================
+void print_binary_string(uint32_t n) {
+    for (int i = 31; i >= 0; i--) {
+        printf("%d", (n >> i) & 1);
+    }
+    printf("\n");
+}
+
+// ============================================================================
+// AUXILIAR: Converte String "1010..." -> Int32
+// ============================================================================
+uint32_t string_to_binary(char* str) {
+    uint32_t val = 0;
+
+    // REMOVE whitespace: \r \n \t e espaços
+    char clean[40];
+    int w = 0;
+
+    for (int i = 0; str[i] != 0 && w < 32; i++) {
+        if (str[i] == '0' || str[i] == '1') {
+            clean[w++] = str[i];
+        }
+    }
+    clean[w] = 0;
+
+    // Agora sim converte corretamente
+    for (int i = 0; i < w; i++) {
+        if (clean[i] == '1') {
+            val |= (1u << (31 - i));
+        }
+    }
+
+    printf("Limpo: %s \t Int: %u\n", clean, val);
+    return val;
+}
+
+
+// ============================================================================
+// INICIALIZAÇÃO
+// ============================================================================
+bool comunicacao_iniciar() {
+    printf("[SIMULADOR BIT-A-BIT] Pronto.\n");
+    return true;
+}
+
+void comunicacao_encerrar() {
+    printf("[SISTEMA] Encerrando.\n");
+}
+
+// ============================================================================
+// RECEBIMENTO (STRING DE BITS -> DECODIFICAÇÃO -> LÓGICA)
+// ============================================================================
+int recebeDado(int sock) {
+ 
+    /*
+    printf("\n[ENTRADA] Cole os 32 bits: ");
+    if (fgets(buffer, sizeof(buffer), stdin) == NULL) return EVENTO_NENHUM;
+    */
+  
+    /*
+    // Limpeza básica da string
+    buffer[strcspn(buffer, "\n")] = 0;
+    if (strlen(buffer) < 30) return EVENTO_NENHUM; // Ignora lixo curto
+    */
+  
+    // 1. CONVERTE STRING DE BITS PARA INTEIRO 32 BITS REAL
+    uint32_t pacote = receberDadosESP(sock);
+
+    printf("\n=== ANALISANDO PACOTE 0x%08X ===\n", pacote);
+
+    int pos = 0;
+
+    // 2. LÊ HEADER (2 bits)
+    int header = comm_ler_bits(pacote, &pos, 2);
+
+    printf(" [31-30] Header: %d ", header);
+    if (header == HEADER_DADOS_MAPA) printf("(DADOS DE MAPA)\n");
+    else if (header == HEADER_REQ_ROTA) printf("(PEDIDO DE ROTA)\n");
+    else { printf("(DESCONHECIDO)\n"); return EVENTO_NENHUM; }
+
+    printf("Indo para separação\n");
+                           
+    // --- LÓGICA PARA DADOS DE MAPA (Header 2 / '10') ---
+    if (header == HEADER_DADOS_MAPA) {
+        // Protocolo: 10 [X 4b] [Y 4b] [H 1b] [Dir 4b] [Esq 4b] ...
+        uint8_t x    = comm_ler_bits(pacote, &pos, 4);
+        uint8_t y    = comm_ler_bits(pacote, &pos, 4);
+        uint8_t hv   = comm_ler_bits(pacote, &pos, 1);
+        uint8_t dDir = comm_ler_bits(pacote, &pos, 4);
+        uint8_t dEsq = comm_ler_bits(pacote, &pos, 4);
+
+        printf(" [29-26] Pos X : %d\n", x);
+        printf(" [25-22] Pos Y : %d\n", y);
+        printf(" [21-21] Orient: %d (%s)\n", hv, hv ? "Horizontal" : "Vertical");
+        printf(" [20-17] D. Dir: %d blocos\n", dDir);
+        printf(" [16-13] D. Esq: %d blocos\n", dEsq);
+        printf("----------------------------------\n");
+
+        // Atualiza Estado
+        ultima_pos_x = x;
+        ultima_pos_y = y;
+        bool horizontal = (hv == 1);
+
+        // Lógica Real
+        mapa_atualizar(x, y, horizontal, dDir, dEsq);
+
+        // Bufferiza resposta pro App
+        qtd_updates = 0;
+        bufferizar_update(x, y);
+        int dirX = horizontal ? 1 : 0;
+        int dirY = horizontal ? 0 : 1;
+
+        for (int d = 1; d <= dDir; d++) bufferizar_update(x + d*dirX, y + d*dirY);
+        bufferizar_update(x + (dDir*dirX) + dirX, y + (dDir*dirY) + dirY);
+
+        for (int d = 1; d <= dEsq; d++) bufferizar_update(x - d*dirX, y - d*dirY);
+        bufferizar_update(x - (dEsq*dirX) - dirX, y - (dEsq*dirY) - dirY);
+
+        enviar_buffer_mapa_app_simulado(sock);
+        return EVENTO_MAPA_ATUALIZADO;
+    }
+
+    // --- LÓGICA PARA PEDIDO DE ROTA (Header 0 / '00') ---
+    else if (header == HEADER_REQ_ROTA) {
+      
+        printf("Separando nova rota\n");
+      
+        // Protocolo: 00 [X 4b] [Y 4b] ...
+        
+        printf("Pos: %d\n", pos);
+        printf("Pacote %d\n", pacote);
+      
+        uint8_t x = comm_ler_bits(pacote, &pos, 4);
+      
+        printf("Batata 0\n");
+        printf("Pos: %d \t Pacote %d\n", pos, pacote);
+      
+        uint8_t y = comm_ler_bits(pacote, &pos, 4);
+      
+        printf("Batata\n");
+      
+        printf("Pos: %d \t Pacote %d\n", pos, pacote);
+      
+        /*uint8_t verificacao = comm_ler_bits(pacote, &pos, 1);
+      
+        printf("Verificação: %d", verificacao);
+      
+        if(verificacao != 1){
+           
+          return EVENTO_NENHUM;
+          
+        }
+*/
+        printf(" [29-26] Origem X: %d\n", x);
+        printf(" [25-22] Origem Y: %d\n", y);
+        printf("----------------------------------\n");
+
+        ultima_pos_x = x;
+        ultima_pos_y = y;
+      
+        return EVENTO_PEDIDO_ROTA;
+    }
+
+    return EVENTO_NENHUM;
+}
+
+// ============================================================================
+// SAÍDA BINÁRIA (RESPOSTAS)
 // ============================================================================
 
+void caminho(uint8_t* caminho_saida, int tamanho, int sock) {
+    if (tamanho <= 0) return;
+
+    printf("\n>>> RESPOSTA GERADA (CAMINHO) >>>\n");
+
+    // 1. Tamanho
+    uint32_t pct_tamanho = 0;
+    int pos = 0;
+    comm_escrever_bits(&pct_tamanho, &pos, tamanho, 8);
+    enviarDadosESP(sock, u32_to_bin(pct_tamanho));
+
+    printf("Pacote Tamanho (%d): ", tamanho);
+    print_binary_string(pct_tamanho);
+
+    // 2. Dados
+    uint32_t buffer_dados = 0;
+    int bits_ocupados = 0;
+    pos = 0;
+
+    for (int i = 0; i < tamanho; i++) {
+        uint32_t val = caminho_saida[i] & 0x03;
+        int shift = 32 - bits_ocupados - 2;
+        buffer_dados |= (val << shift);
+        bits_ocupados += 2;
+
+        if (bits_ocupados == 32 || i == tamanho - 1) {
+            printf("Pacote Passos:      ");
+            print_binary_string(buffer_dados);
+            enviarDadosESP(sock, u32_to_bin(buffer_dados));
+            sleep(10); 
+            buffer_dados = 0;
+            bits_ocupados = 0;
+        }
+    }
+    printf("<<< FIM RESPOSTA <<<\n");
+}
+
+void enviar_buffer_mapa_app_simulado(int sock) {
+    if (qtd_updates == 0) return;
+
+    printf("\n>>> RESPOSTA GERADA (ATUALIZAÇÃO APP) >>>\n");
+
+    // Header + Qtd
+    uint32_t pct_controle = 0;
+    int pos = 0;
+    comm_escrever_bits(&pct_controle, &pos, 1, 1);
+    comm_escrever_bits(&pct_controle, &pos, qtd_updates, 8);
+
+    printf("Pacote Controle (Qtd %d): ", qtd_updates);
+    print_binary_string(pct_controle);
+    enviarDadosESP(sock, u32_to_bin(pct_controle));
+
+    printf("Preparando para enviar o mapa\n");
+  
+    // Dados
+    uint32_t buffer_dados = 0;
+    int bits_ocupados = 0;
+    pos = 0;
+
+    for (int i = 0; i < qtd_updates; i++) {
+        MapUpdate u = buffer_updates[i];
+
+        // Monta pacote manualmente para visualização
+        int shift = 32 - bits_ocupados - 4;
+        buffer_dados |= ((u.x & 0xF) << shift);
+        bits_ocupados += 4;
+
+        shift = 32 - bits_ocupados - 4;
+        buffer_dados |= ((u.y & 0xF) << shift);
+        bits_ocupados += 4;
+
+        shift = 32 - bits_ocupados - 2;
+        buffer_dados |= ((u.valor & 0x3) << shift);
+        bits_ocupados += 2;
+
+        if (bits_ocupados >= 30 || i == qtd_updates - 1) {
+            printf("Pacote Dados Mapa:        ");
+            print_binary_string(buffer_dados);
+            enviarDadosESP(sock, u32_to_bin(buffer_dados));
+            buffer_dados = 0;
+            bits_ocupados = 0;
+        }
+    }
+    printf("<<< FIM RESPOSTA <<<\n");
+}
+
+// ============================================================================
+// AUXILIARES DE BITS
+// ============================================================================
 void comm_escrever_bits(uint32_t *buffer, int *pos_bit, int val, int nbits) {
     uint32_t mask = (1 << nbits) - 1;
     uint32_t val_limpo = val & mask;
@@ -35,297 +288,120 @@ void comm_escrever_bits(uint32_t *buffer, int *pos_bit, int val, int nbits) {
 }
 
 int comm_ler_bits(uint32_t buffer, int *pos_bit, int nbits) {
+    // Se for pedir bits além do limite, trunque
+    if (*pos_bit + nbits > 32)
+        nbits = 32 - *pos_bit;
+
     int shift = 32 - (*pos_bit) - nbits;
-    uint32_t mask = (1 << nbits) - 1;
-    int valor = (buffer >> shift) & mask;
+    if (shift < 0) shift = 0;
+
+    uint32_t mask = (nbits == 32) ? 0xFFFFFFFF : ((1u << nbits) - 1);
+
+    uint32_t valor = (buffer >> shift) & mask;
     *pos_bit += nbits;
+
     return valor;
 }
 
-void comm_debug_print_bits(uint32_t val, const char* label) {
-    printf("[DEBUG NET] %s: ", label);
-    for (int i = 31; i >= 0; i--) {
-        printf("%d", (val >> i) & 1);
-        if (i % 4 == 0 && i != 0) printf(" ");
-    }
-    printf(" (Hex: 0x%08X)\n", val);
-}
 
 void bufferizar_update(uint8_t x, uint8_t y) {
     if (qtd_updates >= MAX_BUFFER_MAPA) return;
-    if (x >= TAMANHO_MALHA || y >= TAMANHO_MALHA) return;
-
     int indice = idx(x, y);
     int valor_bruto = readMalha(indice);
-
-    // Extração manual (Lógica 29 bits do mapa.c)
+    // Lógica de extração de valor (bits 8 e 9)
     const int TOTAL_BITS = 29;
     int inicio_fisico = (TOTAL_BITS - 1) - 9;
     int largura = 2;
     int valor_cell = (valor_bruto >> inicio_fisico) & ((1 << largura) - 1);
-
     buffer_updates[qtd_updates].x = x;
     buffer_updates[qtd_updates].y = y;
     buffer_updates[qtd_updates].valor = valor_cell;
     qtd_updates++;
 }
 
-// ============================================================================
-// CONEXÃO
-// ============================================================================
-
-int iniciar_conexao_socket() {
-    int sockfd = 0;
-    struct sockaddr_in serv_addr;
-
-    if ((sockfd = socket(AF_INET, SOCK_STREAM, 0)) < 0) {
-        perror("[COMMS] Erro criar socket");
-        return -1;
-    }
-
-    serv_addr.sin_family = AF_INET;
-    serv_addr.sin_port = htons(PORTA_SERVIDOR);
-
-    if (inet_pton(AF_INET, IP_SERVIDOR, &serv_addr.sin_addr) <= 0) return -1;
-
-    if (connect(sockfd, (struct sockaddr*)&serv_addr, sizeof(serv_addr)) < 0) {
-        close(sockfd);
-        return -1;
-    }
-    printf("[COMMS] Conectado.\n");
-    global_sockfd = sockfd;
-    return sockfd;
-}
-
-int aguardar_esp_livre(int sockfd) {
-    int32_t req = 0;
-    int32_t resp_rede;
-    int resp_local;
-
-    while (1) {
-        // Handshake PC->ESP: Envia 0, espera 1
-        if (send(sockfd, &req, sizeof(req), 0) < 0) return -1;
-
-        fd_set readfds;
-        struct timeval tv;
-        FD_ZERO(&readfds);
-        FD_SET(sockfd, &readfds);
-        tv.tv_sec = TIMEOUT_HANDSHAKE_SEC;
-        tv.tv_usec = 0;
-
-        int activity = select(sockfd + 1, &readfds, NULL, NULL, &tv);
-
-        if (activity <= 0) continue;
-
-        int bytes = recv(sockfd, &resp_rede, sizeof(resp_rede), 0);
-        if (bytes <= 0) return -1;
-
-        resp_local = ntohl(resp_rede);
-        if (resp_local == 1) return 1;
-
-        usleep(500000);
-    }
-}
-
-// ============================================================================
-// ENVIO: CAMINHO PARA ARDUINO (SEM HANDSHAKE)
-// ============================================================================
-
-void enviar_caminho_arduino(int sockfd, uint8_t* caminho_saida, int tamanho) {
-    if (tamanho <= 0) return;
-
-    printf("[COMMS] Enviando Caminho (%d passos) [Sem Handshake]...\n", tamanho);
-
-    // 1. Pacote de Tamanho (8 bits no MSB)
-    uint32_t pct_tamanho = 0;
-    int pos = 0;
-    comm_escrever_bits(&pct_tamanho, &pos, tamanho, 8);
-
-    uint32_t net_pkg = htonl(pct_tamanho);
-    send(sockfd, &net_pkg, sizeof(net_pkg), 0);
-
-    usleep(5000);
-
-    // 2. Pacotes de Dados
-    uint32_t buffer_dados = 0;
-    int bits_ocupados = 0;
-    pos = 0;
-
-    for (int i = 0; i < tamanho; i++) {
-        comm_escrever_bits(&buffer_dados, &pos, caminho_saida[i], 2);
-        bits_ocupados += 2;
-
-        if (bits_ocupados == 32 || i == tamanho - 1) {
-            net_pkg = htonl(buffer_dados);
-            send(sockfd, &net_pkg, sizeof(net_pkg), 0);
-
-            buffer_dados = 0;
-            pos = 0;
-            bits_ocupados = 0;
-            usleep(5000);
-        }
-    }
-}
-
-// ============================================================================
-// ENVIO: MAPA PARA APP (COM HANDSHAKE)
-// ============================================================================
-
-void enviar_buffer_mapa_app(int sockfd) {
-    if (qtd_updates == 0) return;
-
-    if (aguardar_esp_livre(sockfd) != 1) return;
-
-    printf("[COMMS] Enviando Mapa (%d updates)...\n", qtd_updates);
-
-    // Header 1 (App) + Qtd
-    uint32_t pct_controle = 0;
-    int pos = 0;
-    comm_escrever_bits(&pct_controle, &pos, 1, 1);
-    comm_escrever_bits(&pct_controle, &pos, qtd_updates, 8);
-
-    uint32_t net_pkg = htonl(pct_controle);
-    send(sockfd, &net_pkg, sizeof(net_pkg), 0);
-
-    // Dados
-    uint32_t buffer_dados = 0;
-    int updates_no_pacote = 0;
-    pos = 0;
-
-    for (int i = 0; i < qtd_updates; i++) {
-        MapUpdate u = buffer_updates[i];
-        comm_escrever_bits(&buffer_dados, &pos, u.x, 4);
-        comm_escrever_bits(&buffer_dados, &pos, u.y, 4);
-        comm_escrever_bits(&buffer_dados, &pos, u.valor, 2);
-
-        updates_no_pacote++;
-
-        if (updates_no_pacote == 3 || i == qtd_updates - 1) {
-            net_pkg = htonl(buffer_dados);
-            send(sockfd, &net_pkg, sizeof(net_pkg), 0);
-            buffer_dados = 0;
-            pos = 0;
-            updates_no_pacote = 0;
-            usleep(5000);
-        }
-    }
-    qtd_updates = 0;
-}
-
-// ============================================================================
-// RECEPÇÃO: TRATA HANDSHAKE (2) E CABEÇALHOS (0, 1)
-// ============================================================================
-
-void recebeDado(int sockfd) {
-    int32_t buffer_rede;
-
-    // Bloqueia esperando pacote
-    int bytes = recv(sockfd, &buffer_rede, sizeof(buffer_rede), 0);
-    if (bytes <= 0) return;
-
-    uint32_t pacote = ntohl(buffer_rede);
-    int pos = 0;
+uint8_t ler_pos_x() { return ultima_pos_x; }
+uint8_t ler_pos_y() { return ultima_pos_y; }
+bool sinal_nova_rota() { return false; }
+bool sinal_mapear() { return true; }
+                                   
+void enviarDadosESP(int sock, const char *msg){
   
-    printf("Recebido: %d\n", pacote);
+  sleep(1);
+  
+  send(sock, msg, strlen(msg), 0);
 
-    // Lê 2 BITS de cabeçalho
-    int header = comm_ler_bits(pacote, &pos, 2);
+  printf("Enviado para o ESP: %s\n", msg);
 
-    // ------------------------------------------------------------------------
-    // CASO 2: PEDIDO DE PERMISSÃO (HANDSHAKE)
-    // ------------------------------------------------------------------------
-    if (header == HEADER_HANDSHAKE_REQ) { // 10 (bin) = 2 (dec)
-        printf("[COMMS] Handshake Recebido: ESP quer enviar dados.\n");
+  sleep(1);   
 
-        if (flag_pedido_nova_rota) {
-            printf("[COMMS] Handshake Resp: 3 (OCUPADO - Processando Rota Anterior).\n");
-            int32_t resp = RESP_PC_OCUPADO; // Envia 3
-            int32_t resp_net = htonl(resp);
-            send(sockfd, &resp_net, sizeof(resp_net), 0);
-        } else {
-            printf("[COMMS] Handshake Resp: 2 (LIVRE - Pode mandar).\n");
-            int32_t resp = RESP_PC_LIVRE; // Envia 2
-            int32_t resp_net = htonl(resp);
-            send(sockfd, &resp_net, sizeof(resp_net), 0);
-        }
+}
+
+uint32_t receberDadosESP(int sock){
+  
+  char buffer[256];
+  int len;
+  
+  len = recv(sock, buffer, sizeof(buffer) - 1, 0);
+
+  if (len > 0) {
+      buffer[len] = '\0';   // finaliza a string
+      printf("Recebido do ESP32: %s\n", buffer);
+      //enviarDadosESP(sock, "10101010101010101010101010101010");
+  }
+  else if (len == 0) {
+      printf("Conexão fechada pelo ESP32\n");
+  }
+  else {
+      perror("Erro no recv");
+  }
+          
+  usleep(10000);
+  
+  return string_to_binary(buffer);
+
+}
+    
+
+void calcular_e_enviar_rota( int sock) {
+    uint8_t caminho_saida[TAMANHO_MALHA_TOTAL];
+    result_t alvo;
+
+    uint8_t cx = ler_pos_x();
+    uint8_t cy = ler_pos_y();
+
+    printf("CX: %d\n", cx);
+    printf("CY: %d\n", cy);
+  
+  
+    alvo = bfs_raio(cx, cy);
+
+    if (!alvo.finished) {
+        printf("[MAIN] Mapa completo.\n");
         return;
     }
 
-    // ------------------------------------------------------------------------
-    // CASO 0: PEDIDO DE NOVA ROTA
-    // ------------------------------------------------------------------------
-    else if (header == HEADER_REQ_ROTA) { // 00 (bin) = 0 (dec)
-        printf("[COMMS] Recebido Header 0: Pedido de Novo Trajeto.\n");
-      /*
-      result_t resultadoBusca = bfs_raio(posX, posY);
-      int caminhoLen = aStar_direct(posX, posY, resultadoBusca.destinoX, resultadoBusca.destinoY, caminho_saida);
-      
-      //falta coisa aqui
-      */
-    }
-
-    // ------------------------------------------------------------------------
-    // CASO 1: DADOS DE SENSOR (MAPA)
-    // ------------------------------------------------------------------------
-    else if (header == HEADER_DADOS_MAPA) { // 01 (bin) = 1 (dec)
-        // [X(4)] [Y(4)] [HV(1)] [Dir(4)] [Esq(4)]
-        uint8_t posX = comm_ler_bits(pacote, &pos, 4);
-        uint8_t posY = comm_ler_bits(pacote, &pos, 4);
-
-        // === CORREÇÃO: Salva a posição recebida nas variáveis globais ===
-        ultima_pos_x = posX;
-        ultima_pos_y = posY;
-
-        uint8_t hv   = comm_ler_bits(pacote, &pos, 1);
-        uint8_t dDir = comm_ler_bits(pacote, &pos, 4);
-        uint8_t dEsq = comm_ler_bits(pacote, &pos, 4);
-
-        printf("[COMMS] Header 1 (Mapa): X:%d Y:%d\n", posX, posY);
-
-        mapa_atualizar(posX, posY, (hv == 1), dDir, dEsq);
-
-        // Preencher Buffer para o App
-        qtd_updates = 0;
-        bufferizar_update(posX, posY);
-
-        int dirX = (hv == 1) ? 1 : 0;
-        int dirY = (hv == 1) ? 0 : 1;
-
-        for (int d = 1; d <= dDir; d++) bufferizar_update(posX + d*dirX, posY + d*dirY);
-        bufferizar_update(posX + (dDir*dirX) + dirX, posY + (dDir*dirY) + dirY);
-
-        for (int d = 1; d <= dEsq; d++) bufferizar_update(posX - d*dirX, posY - d*dirY);
-        bufferizar_update(posX - (dEsq*dirX) - dirX, posY - (dEsq*dirY) - dirY);
-
-        enviar_buffer_mapa_app(sockfd);
+    int passos = aStar_direct(cx, cy, alvo.destinoX, alvo.destinoY, caminho_saida);
+  
+    printf("Passos até o destino: %d\n", passos);
+  
+    if (passos > 0) {
+        caminho(caminho_saida, passos, sock);
+    } else {
+        printf("[MAIN] Erro: Sem caminho.\n");
     }
 }
 
-// ============================================================================
-// CONTROLE E LEITURA DE ESTADO
-// ============================================================================
+const char *u32_to_bin(uint32_t value) {
+    // String estática: 32 bits + '\0'
+    static char buffer[33];
+    buffer[32] = '\0';
 
-bool sinal_nova_rota() {
-    if (flag_pedido_nova_rota) {
-        flag_pedido_nova_rota = false;
-        return true;
+    for (int i = 31; i >= 0; i--) {
+        buffer[31 - i] = (value & (1u << i)) ? '1' : '0';
     }
-    return false;
+
+    return buffer;
 }
 
-bool sinal_mapear() { return true; }
 
-// === CORREÇÃO: Implementação das funções de leitura ===
-uint8_t ler_pos_x() {
-    return ultima_pos_x;
-}
 
-uint8_t ler_pos_y() {
-    return ultima_pos_y;
-}
-
-void caminho(uint8_t* caminho_saida, int tamanho) {
-    if (global_sockfd != -1) {
-        enviar_caminho_arduino(global_sockfd, caminho_saida, tamanho);
-    }
-}

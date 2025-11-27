@@ -169,10 +169,11 @@ void irParaCoordenada(){
 
   //chamar função que envia requisição para o FPGA e espera
 
-  esperarFPGA();
+  //esperarFPGA();
 
   Serial.println("Novo Trajeto Recebido do FPGA");
 
+  /*
   while (!filaDestino.isEmpty()) {
 
     uint8_t valor; 
@@ -182,6 +183,9 @@ void irParaCoordenada(){
 
 
   }
+  */
+
+  andarQuadrado(1);
 
 }
 

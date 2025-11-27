@@ -16,12 +16,13 @@ void setup() {
   enviarDadosVariaveis("WIFI iniciado");
   Serial.println("WIFI iniciado");
 
+
+
 }
 
 void loop() {
 
   aceitarConexao();
-  
   
   receberDadosAppV2();
   lerArduino();

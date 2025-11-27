@@ -54,11 +54,11 @@ void atualizarAnguloZ_ComFiltro() {
   // Integra o giroscópio (sem acelerômetro no eixo Z)
   anguloZ += gZ * dt;
 
-  /*
+  
   Serial.print("Ângulo Z: ");
   Serial.println(anguloZ);
   
-  */
+  
 
 /*
 if(debug){

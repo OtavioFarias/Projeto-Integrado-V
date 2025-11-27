@@ -7,29 +7,49 @@
 #include <stdio.h>
 #include <stdbool.h>
 #include <stdint.h>
-
-//#include "altera_avalon_performance_counter.h"
-//#include "system.h"
+#include <unistd.h>
 
 int main(void)
 {
+    mapa_reset();
+    printf("================================================\n");
+    printf("   SIMULADOR FPGA (ENTRADA DE BITS REAIS)       \n");
+    printf("================================================\n");
+    comunicacao_iniciar();
   
-  mapa_reset();
+    int sock;
+    struct sockaddr_in addr;
 
-  printf("=== Sistema de Mapeamento ===\n");
+    sock = socket(AF_INET, SOCK_STREAM, 0);
 
-  uint8_t caminho_saida[TAMANHO_MALHA_TOTAL];
-  
-  printf("Iniciando Comunicação com o ESP\n");
-  
-  int socket = iniciar_conexao_socket();
-  
-  while (1) {
+    addr.sin_family = AF_INET;
+    addr.sin_port = htons(PORT);
+    inet_pton(AF_INET, ESP_IP, &addr.sin_addr);
 
-    recebeDado(socket);
-      
-  }
-  
+    printf("Conectando ao ESP32...\n");
+
+    if (connect(sock, (struct sockaddr*)&addr, sizeof(addr)) < 0) {
+        perror("Erro ao conectar");
+        return 1;
+    }
+
+    printf("Conectado ao ESP32!\n");
+
+    while (1) {
+        int evento = recebeDado(sock);
+
+        if (evento == EVENTO_PEDIDO_ROTA) {
+            calcular_e_enviar_rota(sock);
+        }
+        else if (evento == EVENTO_MAPA_ATUALIZADO) {
+            printf("[MAIN] Mapa Atualizado. Visualização:\n");
+            mapa_print();
+        }
+
+        usleep(50000);
+    }
+
+    comunicacao_encerrar();
     return 0;
-  
 }
+

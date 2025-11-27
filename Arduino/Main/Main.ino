@@ -5,7 +5,7 @@
 #include "ultrassonicos.h"
 #include <EnableInterrupt.h>
 
-int andarAutonomo = 0; //1 - anda sozinho, 0 - Controle via ESP
+int andarAutonomo = 1; //1 - anda sozinho, 0 - Controle via ESP
 
 void setup() {
   
@@ -34,6 +34,7 @@ void setup() {
 
   Wire.begin();
   mpu.initialize();
+
   enviarDadosESP(" MPU inicializado com sucesso");
 
   calibrarGyroZ();
@@ -46,22 +47,26 @@ void setup() {
   Serial.println("MPU6050 encontrado!");
   }
   */
-  
-  //frente();
 
   Serial.println("Setup Finalizado");
 
-  enviarDadosLaterais();
-  enviarDadosESPparaFPGA(String("Atualizar_Mapa:") + " "  + String(4) + " "  + String(4) + " "  + String((int)(2)) + " "  + String(2) + " "  + String(0));
+  
+
+  enviarDadosESPparaFPGA(String("Atualizar_Mapa:") + " "  + String(5) + " "  + String(5) + " "  + String((int)(2)) + " "  + String(2) + " "  + String(0));
 
   esperarFPGA();
   
-  
+
+
 }
 
 void loop() {
 
   atualizarAnguloZ_ComFiltro();
+
+  Serial.println("To aqui");
+
+  //virarCoordenado(1);
   
   receberDadosESP();
 
@@ -73,7 +78,7 @@ void loop() {
   
   if(andarAutonomo == 1){
 
-    //Serial.println("Andar Autonomo Ativado");
+    Serial.println("Andar Autonomo Ativado");
     andarAutomatico();
     //Serial.println("Andando");
     //frente();

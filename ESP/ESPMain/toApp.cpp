@@ -118,7 +118,6 @@ void receberDadosAppV2() {
     String received = SerialBT.readStringUntil(';');
     received.trim();
     Serial.print("Recebido via BT: ");
-    Serial.println(received);
 
     //modificação temporaria para ajustar formato da string:
     enviarDadosVariaveis(received + ";"); //enviando para o arduino
@@ -129,8 +128,8 @@ void enviarDadosAppV2(String msg){
 
   if (msg.length() > 0) {
     SerialBT.print(msg);
-    //Serial.print("Enviado para o app: ");
-    //Serial.println(msg);
+    Serial.print("Enviado para o app: ");
+    Serial.println(msg);
   }
 
 }
