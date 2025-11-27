@@ -22,4 +22,6 @@ void receberMapa(int tamanho);
 
 void esperarFPGA();
 
+void aceitarConexao();
+
 #endif

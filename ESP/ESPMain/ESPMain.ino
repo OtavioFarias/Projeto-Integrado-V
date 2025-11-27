@@ -19,11 +19,13 @@ void setup() {
 }
 
 void loop() {
-  
 
-  enviarDadosFPGA(15);
+  aceitarConexao();
+  
+  //enviarDadosFPGA(15);
+
   receberDadosAppV2();
-  lerArduino();
+  //lerArduino();
   receberDadosFPGA();
   //enviarDadosVariaveis("Tá vivo");
   //enviarKeepAlive();

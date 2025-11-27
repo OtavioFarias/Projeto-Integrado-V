@@ -5,7 +5,6 @@ const char* ap_password = "12345678";
 
 WiFiServer server(5000);
 
-
 WiFiClient client;
 
 
@@ -22,15 +21,12 @@ void iniciarWIFI() {
   server.begin();
   Serial.println("Servidor TCP iniciado na porta 5000");
 
-  client = server.available();
 }
 
 
 void enviarDadosFPGA(int msg){
 
-  //WiFiClient client = server.available();
-
-  if (client) {
+  if (client && client.connected()) {
     Serial.println("PC conectado!");
 
       if (client.available()) {
@@ -38,10 +34,9 @@ void enviarDadosFPGA(int msg){
         Serial.print("Enviando para o FPGA: ");
         Serial.println(msg);
         client.println(msg);
+        return;
 
       }
-
-    //client.stop();
 
   }
 
@@ -49,39 +44,35 @@ void enviarDadosFPGA(int msg){
 
 String receberDadosFPGA(){
 
-  //WiFiClient client = server.available();
-
-  if (client) {
-
-    Serial.println("PC conectado!");
+  if (client && client.connected()) {
 
       if(client.available()) {
         String msg = client.readStringUntil('\n');
         msg.trim();
 
-        Serial.print("Recebido do FPGA: ");
-        Serial.println(msg);
+        if(msg != "batata") {
 
-        if(separarBits(msg, 0, 0) == "1"){
+          Serial.print("Recebido do FPGA: ");
+          Serial.println(msg);
 
-          receberMapa(separarBits(msg, 1, 8).toInt());
+          if(separarBits(msg, 0, 0) == "1"){
 
-          return "acabou";
+            receberMapa(separarBits(msg, 1, 8).toInt());
+
+            return "acabou";
+            
+          }
           
-        }
-        
-        if(msg.toInt() == 0) {
-          
-          enviarDadosFPGA(1);
-          esperarFPGA();
+          if(msg.toInt() == 0) {
+            
+            enviarDadosFPGA(1);
+            esperarFPGA();
 
+          }
         }
-
         return msg;
 
       }
-
-    //client.stop();
 
   }
 
@@ -243,4 +234,15 @@ void esperarFPGA(){
 
   while(receberDadosFPGA() != "acabou");
 
+}
+
+void aceitarConexao() {
+  if (!client || !client.connected()) {
+    WiFiClient novo = server.available();
+
+    if (novo) {
+      client = novo;   // guarda o cliente que conectou
+      Serial.println("PC conectado ao ESP32!");
+    }
+  }
 }

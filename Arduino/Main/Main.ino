@@ -52,6 +52,10 @@ void setup() {
   Serial.println("Setup Finalizado");
 
   enviarDadosLaterais();
+  //enviarDadosESPparaFPGA(String("Atualizar_Mapa:") + " "  + String(4) + " "  + String(4) + " "  + String((int)(2)) + " "  + String(2) + " "  + String(0));
+
+  //esperarFPGA();
+  
   
 }
 
