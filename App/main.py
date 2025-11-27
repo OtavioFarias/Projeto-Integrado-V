@@ -403,60 +403,28 @@ class AbaMapa(MDBoxLayout, MDTabsBase):
     def verificar_bluetooth(self, dt):
         msg = self.bt_manager.receber()
         if msg:
-            for linha in msg.split(";"):
-                linha = linha.strip()
-                if not linha:
-                    continue
-                self.processar_dados(linha)
-
-    def processar_dados(self, dados):
-        """Atualmente ativa:
-            Solução genérica: tenta identificar mensagens no formato x,y,v
-        Alternativa (comentada):
-            Solução com cabeçalhos MSG: e DBG:
-        """
-        try:
-            # ======================================================
-            # SOLUÇÃO 1 — Com cabeçalhos
-            # ======================================================
-            # if dados.startswith("MSG:"):
-            #     conteudo = dados[4:].strip()
-            #     partes = conteudo.split(",")
-            #     if len(partes) == 3:
-            #         x, y, v = map(int, partes)
-            #         self._atualizar_mapa(x, y, v)
-            #         print(f"[MSG] Mapa atualizado em ({x},{y}) = {v}")
-            #     else:
-            #         print(f"[MSG] Formato inválido: {dados}")
-            #
-            # elif dados.startswith("DBG:"):
-            #     print(f"[DEBUG] {dados[4:].strip()}")
-            #
-            # else:
-            #     print(f"[INFO] Mensagem genérica recebida: {dados}")
-
-            # ======================================================
-            # SOLUÇÃO 2 — Genérica só pq sim, enquanto a gnt não define oq vai ser definitivo
-            # ======================================================
-            conteudo = dados.replace(";", "").strip()
-            partes = conteudo.split(",")
-
-            if len(partes) == 3 and all(p.strip("-").isdigit() for p in partes):
-                x, y, v = map(int, partes)
-                self._atualizar_mapa(x, y, v)
-                print(f"[GEN] Mapa atualizado -> ({x},{y})={v}")
-
-            elif len(conteudo) == 3 and conteudo.isdigit():
-                # Exemplo: "123" -> x=1, y=2, v=3
-                x, y, v = int(conteudo[0]), int(conteudo[1]), int(conteudo[2])
-                self._atualizar_mapa(x, y, v)
-                print(f"[GEN] Mapa atualizado (compacto) -> ({x},{y})={v}")
-
+            self.terminal.text += f"\n<- {msg}"
+            self.scroll.scroll_y = 0
+            # Verifica se a mensagem tem o cabeçalho "MPA"
+            if msg.startswith("MPA"):
+                self.processar_mpa(msg)
             else:
-                print(f"[GEN] Mensagem ignorada: {dados}")
+                print(f"⚠ Mensagem desconhecida: {msg}")
 
-        except Exception as e:
-            print(f"⚠ Erro ao processar dados: {e} | Dado: {dados}")
+    def processar_mpa(self, dados):
+        # O formato esperado é: MPAXXXX;YYYY;VV
+        partes = dados[3:].split(";")  # Ignora 'MPA' e divide pelos ';'
+        if len(partes) == 3:
+            x = int(partes[0], 2)  # Primeiros 4 bits (X)
+            y = int(partes[1], 2)  # Próximos 4 bits (Y)
+            valor = int(partes[2], 2)  # Valor da cor (2 bits)
+
+            # Atualiza a célula no mapa com as coordenadas e valor de cor
+            self._atualizar_mapa(x, y, valor)
+
+            print(f"🟩 MAPA atualizado: X={x} Y={y} Valor={valor}")
+        else:
+            print(f"⚠ Formato de dados inválido para MPA: {dados}")
 
     def _atualizar_mapa(self, x, y, v):
         """Função auxiliar que realmente atualiza o mapa visual"""
@@ -466,28 +434,42 @@ class AbaMapa(MDBoxLayout, MDTabsBase):
         else:
             print(f"⚠ Coordenadas fora do limite: ({x}, {y})")
 
-    # =========================================================
-    # Simulação
-    # =========================================================
+    def _cor_por_valor(self, v):
+        if v == 0:
+            return (0, 0, 0, 1)       # desconhecido
+        elif v == 1:
+            return (0, 1, 0, 1)       # livre
+        elif v == 2:
+            return (1, 0, 0, 1)       # obstáculo
+        elif v == 3:
+            return (1, 1, 0, 1)   # fronteira
+        return (1, 1, 1, 1)           # fallback
+
     def simular_recebimento(self, instance):
         print("\n--- Simulação de recebimento múltiplo iniciada ---")
         # Número de mensagens simuladas
         for _ in range(20):  # Envia 20 pacotes
-            x, y, v = randint(0, 9), randint(0, 9), randint(0, 3)
-            msg = f"{x},{y},{v}"
+            # Gera coordenadas X e Y aleatórias no intervalo de 0 a 9 (4 bits)
+            x = randint(0, 9)
+            y = randint(0, 9)
+
+            # Gera valor aleatório para a cor (1, 2 ou 3)
+            v = randint(1, 3)
+
+            # Converte coordenadas X e Y para binário de 4 bits
+            x_bin = f"{x:04b}"  # Converte X para binário com 4 bits
+            y_bin = f"{y:04b}"  # Converte Y para binário com 4 bits
+
+            # Converte o valor da célula (v) para binário de 2 bits
+            v_bin = f"{v:02b}"  # Converte v para binário com 2 bits
+
+            # Cria a mensagem no formato correto (MPA + coordenadas binárias + valor binário)
+            msg = f"MPA{x_bin};{y_bin};{v_bin}"
+
             print(f"Recebendo: {msg}")
-            self.processar_dados(msg)
+            self.processar_mpa(msg)  # Processa a mensagem
             time.sleep(0.1)
         print("--- Simulação concluída ---\n")
-
-    def _cor_por_valor(self, valor):
-        cores = {
-            0: (0, 0, 0, 1),
-            1: (0, 1, 0, 1),
-            2: (1, 0, 0, 1),
-            3: (1, 1, 0, 1)
-        }
-        return cores.get(valor, (0, 0, 0, 1))
 
     def _bloco_legenda(self, texto, cor):
         box = MDBoxLayout(orientation="horizontal", spacing=dp(5), size_hint_x=None, width=dp(120))
@@ -536,4 +518,3 @@ class AppRoboAspirador(MDApp):
 
 if __name__ == "__main__":
     AppRoboAspirador().run()
-
