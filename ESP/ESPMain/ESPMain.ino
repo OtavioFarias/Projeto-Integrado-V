@@ -22,6 +22,8 @@ void setup() {
 
 void loop() {
 
+  enviarDadosAppV2("MPA0100;0101;01");
+
   aceitarConexao();
   
   receberDadosAppV2();
